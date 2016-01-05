@@ -1,0 +1,49 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "WARG Docs\n\n\nThe official source of all your WARG needs. Joking, there's only documentation here. Enjoy!\n\n\n\n\nProjects\n\n\n\n\nPicPilot Documentation\n\n\nGroundstation Documentation\n\n\nComputer Vision Documentation", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#warg-docs", 
+            "text": "The official source of all your WARG needs. Joking, there's only documentation here. Enjoy!", 
+            "title": "WARG Docs"
+        }, 
+        {
+            "location": "/#projects", 
+            "text": "PicPilot Documentation  Groundstation Documentation  Computer Vision Documentation", 
+            "title": "Projects"
+        }, 
+        {
+            "location": "/groundstation/", 
+            "text": "Welcome to the Groundstation docs!\n\n\nheader2", 
+            "title": "Groundstation"
+        }, 
+        {
+            "location": "/groundstation/#welcome-to-the-groundstation-docs", 
+            "text": "header2", 
+            "title": "Welcome to the Groundstation docs!"
+        }, 
+        {
+            "location": "/picpilot/", 
+            "text": "Welcome to the picpilot docs!", 
+            "title": "Picpilot"
+        }, 
+        {
+            "location": "/picpilot/#welcome-to-the-picpilot-docs", 
+            "text": "", 
+            "title": "Welcome to the picpilot docs!"
+        }, 
+        {
+            "location": "/computervision/", 
+            "text": "Welcome to the Computer Vision Docs!", 
+            "title": "Computer Vision"
+        }, 
+        {
+            "location": "/computervision/#welcome-to-the-computer-vision-docs", 
+            "text": "", 
+            "title": "Welcome to the Computer Vision Docs!"
+        }
+    ]
+}

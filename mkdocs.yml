@@ -1,0 +1,13 @@
+site_name: WARG Docs
+theme: cosmo
+site_url: http://www.docs.uwarg.com
+repo_url: https://github.com/UWARG/WARG-Docs
+site_author: University of Waterloo Aerial Robotics Group
+site_favicon: favicon.ico
+copyright: Copyright <a href="http://www.uwarg.com"> University of Waterloo Aerial Robotics Group</a>
+
+pages:
+- Home: index.md
+- Groundstation: groundstation/index.md
+- Picpilot: picpilot/index.md
+- Computer Vision: computervision/index.md

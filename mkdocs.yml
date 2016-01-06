@@ -1,5 +1,4 @@
 site_name: WARG Docs
-theme: cosmo
 site_url: http://www.docs.uwarg.com
 repo_url: https://github.com/UWARG/WARG-Docs
 site_author: University of Waterloo Aerial Robotics Group
@@ -9,7 +8,21 @@ copyright: Copyright <a href="http://www.uwarg.com"> University of Waterloo Aeri
 pages:
 - Home: index.md
 - Groundstation: groundstation/index.md
-- Picpilot: picpilot/index.md
+- PicPilot:
+  - Table of Contents: picpilot/index.md
+  - Introduction: picpilot/introduction.md
+  - PID Loops: picpilot/pid-loops.md
+  - PWM and IO: picpilot/pwm-io.md
+  - UART: picpilot/uart.md
+  - SPI: picpilot/spi.md
+  - Direct Memory Access: picpilot/direct-memory-access.md
+  - I2C: picpilot/i2c.md
+  - Datalink: picpilot/datalink.md
+  - Analog to Digital Converter: picpilot/analog-to-digital-converter.md
+  - Sensors and Peripherals: picpilot/sensors-and-peripherals.md
+  - Attitude Control: picpilot/attitude-control.md
+  - Path Management: picpilot/path-management.md
+  - FAQ: picpilot/faq.md
 - Computer Vision: computervision/index.md
 - Bootcamps:
   - Mechanical: bootcamp/mechanical.md

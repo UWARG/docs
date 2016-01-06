@@ -98,6 +98,12 @@
     </url>
         
     <url>
+     <loc>http://www.docs.uwarg.com/picpilot/resources/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>http://www.docs.uwarg.com/picpilot/faq/</loc>
      <lastmod>2016-01-06</lastmod>
      <changefreq>daily</changefreq>

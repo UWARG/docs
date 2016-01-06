@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="University of Waterloo Aerial Robotics Group">
-        <link rel="canonical" href="http://www.docs.uwarg.com/picpilot/sensors-and-peripherals/">
+        <link rel="canonical" href="http://www.docs.uwarg.com/picpilot/resources/">
         <link rel="shortcut icon" href="../../../../favicon.ico">
         
 
-	<title>Sensors and Peripherals - WARG Docs</title>
+	<title>Resources - WARG Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -131,8 +131,8 @@
 
                         
                             
-<li class="active">
-    <a href="./">Sensors and Peripherals</a>
+<li >
+    <a href="../sensors-and-peripherals/">Sensors and Peripherals</a>
 </li>
 
                         
@@ -149,8 +149,8 @@
 
                         
                             
-<li >
-    <a href="../resources/">Resources</a>
+<li class="active">
+    <a href="./">Resources</a>
 </li>
 
                         
@@ -196,12 +196,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../analog-to-digital-converter/">
+                        <a rel="next" href="../path-management/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../attitude-control/">
+                        <a rel="prev" href="../faq/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -226,94 +226,19 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#sensors-and-peripherals">Sensors and Peripherals</a></li>
-        
-            <li><a href="#gps-mediatek-3329">GPS (MEDIATEK-3329)</a></li>
-        
-            <li><a href="#imu-vn-100vectornav-100">IMU (VN-100/VectorNav-100)</a></li>
-        
-            <li><a href="#altimeter-mpl3115a2">Altimeter (MPL3115A2)</a></li>
-        
-            <li><a href="#wireless-link-xbee-pro-s3b">Wireless Link - XBEE PRO S3B</a></li>
-        
-            <li><a href="#rc-receiver-ezuhf">RC Receiver (EzUHF)</a></li>
-        
-            <li><a href="#airspeed-sensor-wip">Airspeed Sensor (WIP)</a></li>
-        
-            <li><a href="#ultrasonic-sensor-wip">Ultrasonic Sensor (WIP)</a></li>
+        <li class="main active"><a href="#additional-readings-and-resources">Additional Readings and Resources</a></li>
         
     
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="sensors-and-peripherals">Sensors and Peripherals</h1>
-<p>There are multiple devices and peripherals currently in use on the PICpilot, however, the purpose of this document is not to document their functionality. Instead, appropriate references are listed below.</p>
-<h2 id="gps-mediatek-3329">GPS (MEDIATEK-3329)</h2>
-<p>This GPS module outputs data in the form of NMEA strings. These are ASCI strings with GPS relevant data embedded in them. A separate program is used to convert these strings to a useable format. The PICpilot expects the data to be in the form of a structure:</p>
-<pre><code>typedef struct _GPSData {
-
-    long double latitude;  //8 Bytes
-
-    long double longitude; //8 Bytes
-
-    float time;     //4 Bytes
-
-    float speed;
-
-    int altitude;
-
-    int heading;
-
-    char satellites;    //1 Byte
-
-    char positionFix;
-
-} GPSData;
-</code></pre>
-<p><em>Latitude</em> and <em>Longitude</em> should be in degrees.</p>
-<p><em>Time</em> should be in 24 hour time, with the decimal portion indicating milliseconds.</p>
-<p><em>Speed</em> should be in m/s.</p>
-<p><em>Altitude</em> should be in m.</p>
-<p><em>Heading</em> should be in degrees (geographical heading, not magnetic).</p>
-<p><em>Satellites</em> is the number of connected satellites.</p>
-<p><em>PositionFix</em> is a number representing the accuracy of the data (0 = no data, 1 = GPS functional, 2 = DGPS functional)</p>
-<p>In the current PICpilot, GPS updates occur 10 times a second.</p>
-<p>The data sheets can be retrieved from here:</p>
-<p><a href="https://drive.google.com/file/d/0BySpWXvmBM4JQXVOR093anI0YXc/view?usp=sharing">https://drive.google.com/file/d/0BySpWXvmBM4JQXVOR093anI0YXc/view?usp=sharing</a></p>
-<p><a href="https://drive.google.com/file/d/0BySpWXvmBM4JR2xTV3dCcGJWczQ/view?usp=sharing">https://drive.google.com/file/d/0BySpWXvmBM4JR2xTV3dCcGJWczQ/view?usp=sharing</a></p>
-<h2 id="imu-vn-100vectornav-100">IMU (VN-100/VectorNav-100)</h2>
-<p>The VectorNav-100 has a Kalman filter implemented within it. All the registers and commands that can be executed on the oldest VectorNav are available in four files within the PICpilot code. This includes the VN100.c/.h files, the VN_user.c/.h files, the VN_lib.c/.h, and the VN_math.c/.h files.</p>
-<p>I GET IT that was 8 files, not four....moving on...</p>
-<p>You will find the SPI initialization function in the VN100.c file. It initializes the SPI2 interface.</p>
-<p>In the PICpilot, the two most commonly called functions are <em>VN100_SPI_GetYPR()</em> and <em>VN100_SPI_GetRates()</em>. These two functions get the rate and angles of rotation along the yaw, pitch, and roll axis of the vehicle.</p>
-<p>For a complete list of functions and settings take a look at the documentation:</p>
-<p><a href="https://drive.google.com/file/d/0BySpWXvmBM4JYXlSdW85NnlxYkE/view?usp=sharing">https://drive.google.com/file/d/0BySpWXvmBM4JYXlSdW85NnlxYkE/view?usp=sharing</a></p>
-<h2 id="altimeter-mpl3115a2">Altimeter (MPL3115A2)</h2>
-<p>The complete functionality of the altimeter can be found in the MPL3115A2.c/.h files.</p>
-<p>There are only 3 functions implemented in the code. An initialization, calibration, and sensor read function.</p>
-<p>To see the complete list of functions provided by the altimeter, as well as further details see the documentation here:</p>
-<p><a href="https://drive.google.com/file/d/0BySpWXvmBM4JeUE4Y3BhQzVMdkk/view?usp=sharing">https://drive.google.com/file/d/0BySpWXvmBM4JeUE4Y3BhQzVMdkk/view?usp=sharing</a></p>
-<h2 id="wireless-link-xbee-pro-s3b">Wireless Link - XBEE PRO S3B</h2>
-<p>The XBEE PRO S3B is currently the wireless interface used with the PICpilot. Nonetheless, many wireless links can be easily substituted with minimal coding as long as a UART interface is supported.</p>
-<p>The PICpilot currently only supports this model currently. This wireless link uses the 900MHz spectrum for communication between devices.</p>
-<p>According to the packet structure specification in the datasheet below, the data is sent or received in that manner.</p>
-<p>For details on other functions and feature that are part of the XBEE PRO S3B module download the documentation here:</p>
-<p><a href="https://drive.google.com/file/d/0BySpWXvmBM4JNzdLWXdCWHlEcGs/view?usp=sharing">https://drive.google.com/file/d/0BySpWXvmBM4JNzdLWXdCWHlEcGs/view?usp=sharing</a></p>
-<p>The above link also includes details on the packet structure. See page 62 for the Tx packet structure. See page 70 for the Rx packet structure.</p>
-<p>The configuration options for the base station can be found here:</p>
-<p><a href="https://drive.google.com/file/d/0BySpWXvmBM4JTXZESmFEMG9uZEk/view?usp=sharing">https://drive.google.com/file/d/0BySpWXvmBM4JTXZESmFEMG9uZEk/view?usp=sharing</a></p>
-<p>The configuration options for the aircraft module can be found here:</p>
-<p><a href="https://drive.google.com/file/d/0BySpWXvmBM4Jdml6Wlg5UFZKWEE/view?usp=sharing">https://drive.google.com/file/d/0BySpWXvmBM4Jdml6Wlg5UFZKWEE/view?usp=sharing</a></p>
-<h2 id="rc-receiver-ezuhf">RC Receiver (EzUHF)</h2>
-<p>The exact model of the RC Receiver is insignificant to the functionality of the PICpilot. However, the PICpilot has 8 PWM inputs and 8 PWM outputs. Therefore, it would be prudent to have a RC Receiver capable of managing 8 channels.</p>
-<p>The current receiver uses the 431-437MHz spectrum.</p>
-<p>The documentation can be found here:</p>
-<p><a href="http://www.immersionrc.com/downloads/manuals/EzUHFManual_EN_v1.0.pdf">http://www.immersionrc.com/downloads/manuals/EzUHFManual_EN_v1.0.pdf</a></p>
-<h2 id="airspeed-sensor-wip">Airspeed Sensor (WIP)</h2>
-<p>This has not been implemented yet.</p>
-<h2 id="ultrasonic-sensor-wip">Ultrasonic Sensor (WIP)</h2>
-<p>This has not been implemented yet.</p></div>
+<h1 id="additional-readings-and-resources">Additional Readings and Resources</h1>
+<ul>
+<li><a href="http://adamone.rchomepage.com/guide.htm">Information on Model Aircraft</a></li>
+<li><a href="http://adamone.rchomepage.com/index2.htm">General Aerodynamic Principles</a></li>
+<li><a href="http://gitimmersion.com/">Git Help</a></li>
+</ul></div>
             
         </div>
 

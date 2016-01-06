@@ -32,12 +32,12 @@
         }, 
         {
             "location": "/picpilot/", 
-            "text": "Welcome to the PicPilot wiki!\n\n\nThis site is to document all the functions and required background knowledge about the autopilot system.\n\n\n\n\nIntroduction\n\n\nSetup\n\n\nC\n\n\nProgramming the Device\n\n\nAutopilot System Overview\n\n\nSchematics and Board Design\n\n\nProject Files\n\n\nCoding Format\n\n\n\n\n\n\nPID Loops\n\n\nPWM I/O\n\n\nUniversal Asynchronous Receive/Transmit (UART)\n\n\nSerial Peripheral Interface (SPI)\n\n\nDirect Memory Access (DMA)\n\n\nInter-Interchip Communication (I2C)\n\n\nDatalink\n\n\nAnalog-to-Digital Converter (ADC)\n\n\nSensors and Peripherals\n\n\nGPS(MEDIATEK-3329)\n\n\nIMU (VectorNav-100)\n\n\nAltimeter (MPL3115A2)\n\n\nXBEE PRO S3B\n\n\nRC Receiever (EzUHF)\n\n\nAirspeed Sensor (To be implemented)\n\n\nUltrasonic Sensor (To be implemented)\n\n\n\n\n\n\nAttitude Control\n\n\nPath Management\n\n\nFAQ - WIP\n\n\n\n\nBackground Reading\n\n\n\n\nInformation on Model Aircraft\n\n\nGeneral Aerodynamic Principles\n\n\nGit Help", 
+            "text": "Welcome to the PicPilot wiki!\n\n\nThis site is to document all the functions and required background knowledge about the autopilot system.\n\n\n\n\nIntroduction\n\n\nSetup\n\n\nC\n\n\nProgramming the Device\n\n\nAutopilot System Overview\n\n\nSchematics and Board Design\n\n\nProject Files\n\n\nCoding Convention\n\n\n\n\n\n\nPID Loops\n\n\nPWM I/O\n\n\nUniversal Asynchronous Receive/Transmit (UART)\n\n\nSerial Peripheral Interface (SPI)\n\n\nDirect Memory Access (DMA)\n\n\nInter-Interchip Communication (I2C)\n\n\nDatalink\n\n\nAnalog-to-Digital Converter (ADC)\n\n\nSensors and Peripherals\n\n\nGPS(MEDIATEK-3329)\n\n\nIMU (VectorNav-100)\n\n\nAltimeter (MPL3115A2)\n\n\nXBEE PRO S3B\n\n\nRC Receiever (EzUHF)\n\n\nAirspeed Sensor (To be implemented)\n\n\nUltrasonic Sensor (To be implemented)\n\n\n\n\n\n\nAttitude Control\n\n\nPath Management\n\n\nFAQ - WIP\n\n\n\n\nBackground Reading\n\n\n\n\nInformation on Model Aircraft\n\n\nGeneral Aerodynamic Principles\n\n\nGit Help", 
             "title": "Table of Contents"
         }, 
         {
             "location": "/picpilot/#welcome-to-the-picpilot-wiki", 
-            "text": "This site is to document all the functions and required background knowledge about the autopilot system.   Introduction  Setup  C  Programming the Device  Autopilot System Overview  Schematics and Board Design  Project Files  Coding Format    PID Loops  PWM I/O  Universal Asynchronous Receive/Transmit (UART)  Serial Peripheral Interface (SPI)  Direct Memory Access (DMA)  Inter-Interchip Communication (I2C)  Datalink  Analog-to-Digital Converter (ADC)  Sensors and Peripherals  GPS(MEDIATEK-3329)  IMU (VectorNav-100)  Altimeter (MPL3115A2)  XBEE PRO S3B  RC Receiever (EzUHF)  Airspeed Sensor (To be implemented)  Ultrasonic Sensor (To be implemented)    Attitude Control  Path Management  FAQ - WIP   Background Reading   Information on Model Aircraft  General Aerodynamic Principles  Git Help", 
+            "text": "This site is to document all the functions and required background knowledge about the autopilot system.   Introduction  Setup  C  Programming the Device  Autopilot System Overview  Schematics and Board Design  Project Files  Coding Convention    PID Loops  PWM I/O  Universal Asynchronous Receive/Transmit (UART)  Serial Peripheral Interface (SPI)  Direct Memory Access (DMA)  Inter-Interchip Communication (I2C)  Datalink  Analog-to-Digital Converter (ADC)  Sensors and Peripherals  GPS(MEDIATEK-3329)  IMU (VectorNav-100)  Altimeter (MPL3115A2)  XBEE PRO S3B  RC Receiever (EzUHF)  Airspeed Sensor (To be implemented)  Ultrasonic Sensor (To be implemented)    Attitude Control  Path Management  FAQ - WIP   Background Reading   Information on Model Aircraft  General Aerodynamic Principles  Git Help", 
             "title": "Welcome to the PicPilot wiki!"
         }, 
         {
@@ -384,6 +384,16 @@
             "location": "/picpilot/path-management/#managing-path-data", 
             "text": "Path data is stored in a structure, which contains all necessary information for a single path (line) segment. The construct looks as follows:  typedef struct _PathData{\n\n    struct _PathData* next;\n\n    struct _PathData* previous;\n\n    long double longitude;  //TODO: Longitude and Latitude is bulky. Use cartesian 2D approximations\n\n    long double latitude;\n\n    float altitude;\n\n    float radius; //Radius of turn\n\n    char id;    //Array ID\n\n    char index;\n\n} PathData;  This structure is a doubly linked list element. It links to the previous node and the next node. This makes it easy to traverse from one element to another. As a result, it is easy to add, insert, delete, and clear all waypoint nodes.  The included functions are:  PathData* initializePathNode(void);\n\nunsigned int destroyPathNode(PathData* node);\n\nPathData* initializePathNodeAndNext(void);\n\nunsigned int appendPathNode(PathData* node);\n\nunsigned int removePathNode(unsigned int ID);\n\nvoid clearPathNodes(void);\n\nunsigned int insertPathNode(PathData* node, unsigned int previousID, unsigned int nextID);  These functions are all executed in the _checkAMData() _function. This function polls input over the DMA/SPI bus. When a new input is detected (via the WaypointWrapper structure), a corresponding function is executed.", 
             "title": "Managing Path Data"
+        }, 
+        {
+            "location": "/picpilot/resources/", 
+            "text": "Additional Readings and Resources\n\n\n\n\nInformation on Model Aircraft\n\n\nGeneral Aerodynamic Principles\n\n\nGit Help", 
+            "title": "Resources"
+        }, 
+        {
+            "location": "/picpilot/resources/#additional-readings-and-resources", 
+            "text": "Information on Model Aircraft  General Aerodynamic Principles  Git Help", 
+            "title": "Additional Readings and Resources"
         }, 
         {
             "location": "/picpilot/faq/", 

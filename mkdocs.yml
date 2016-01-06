@@ -22,7 +22,9 @@ pages:
   - Sensors and Peripherals: picpilot/sensors-and-peripherals.md
   - Attitude Control: picpilot/attitude-control.md
   - Path Management: picpilot/path-management.md
+  - Resources: picpilot/resources.md
   - FAQ: picpilot/faq.md
+
 - Computer Vision: computervision/index.md
 - Bootcamps:
   - Mechanical: bootcamp/mechanical.md

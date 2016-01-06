@@ -11,3 +11,5 @@ pages:
 - Groundstation: groundstation/index.md
 - Picpilot: picpilot/index.md
 - Computer Vision: computervision/index.md
+- Bootcamps:
+  - Mechanical: bootcamp/mechanical.md

@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="University of Waterloo Aerial Robotics Group">
+        <link rel="canonical" href="http://www.docs.uwarg.com/picpilot/datalink/">
+        <link rel="shortcut icon" href="../../../../favicon.ico">
+        
+
+	<title>Datalink - WARG Docs</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">WARG Docs</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../groundstation/">Groundstation</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">PicPilot <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../">Table of Contents</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../introduction/">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../pid-loops/">PID Loops</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../pwm-io/">PWM and IO</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../uart/">UART</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../spi/">SPI</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../direct-memory-access/">Direct Memory Access</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../i2c/">I2C</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Datalink</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../analog-to-digital-converter/">Analog to Digital Converter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../sensors-and-peripherals/">Sensors and Peripherals</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../attitude-control/">Attitude Control</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../path-management/">Path Management</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../faq/">FAQ</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../computervision/">Computer Vision</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bootcamps <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../bootcamp/mechanical/">Mechanical</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../i2c/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../analog-to-digital-converter/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/UWARG/WARG-Docs">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#datalink">Datalink</a></li>
+        
+            <li><a href="#telemetry-downlink-data">Telemetry (Downlink) Data</a></li>
+        
+            <li><a href="#command-uplink-data">Command (Uplink) Data</a></li>
+        
+            <li><a href="#in-the-code">In the code</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="datalink">Datalink</h1>
+<p>The datalink is one of the most important peripheral components in an unmanned system. It provides information on the status of the aircraft (telemetry) and provides the crucial functionality of an uplink, in order to be able to communicate with the system and make changes to its overall functionality.</p>
+<p>Make note that the details of this system can change frequently due to the requirements of each user. The telemetry data may change from the ones present in this document. Likewise, uplink commands may change based on newly implemented features and requirements. Although, this document should be updated whenever there is a change, this may not always occur. Therefore, be careful when referencing data in this section.</p>
+<h2 id="telemetry-downlink-data">Telemetry (Downlink) Data</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Data</strong></th>
+<th><strong>Programming Variable</strong></th>
+<th><strong>Format</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latitude</td>
+<td>Lat</td>
+<td>Long double (64bit floating point)</td>
+<td>The latitude location of the airplane in degrees.</td>
+</tr>
+<tr>
+<td>Longitude</td>
+<td>Lon</td>
+<td>Long double (64bit floating point)</td>
+<td>The longitude location of the airplane in degrees.</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>Time</td>
+<td>Float (32 bit floating point)</td>
+<td>The time as a UTC time stamp.</td>
+</tr>
+<tr>
+<td>Pitch</td>
+<td>Pitch</td>
+<td>Float</td>
+<td>The current state estimation of the pitch of the aircraft in degrees.</td>
+</tr>
+<tr>
+<td>Roll</td>
+<td>Roll</td>
+<td>Float</td>
+<td>The current state estimation of the roll of the aircraft in degrees.</td>
+</tr>
+<tr>
+<td>Yaw</td>
+<td>Yaw</td>
+<td>Float</td>
+<td>The current state estimation of the yaw of the aircraft according to the magnetometer in degrees.</td>
+</tr>
+<tr>
+<td>Pitch Rate</td>
+<td>Pitch_rate</td>
+<td>Float</td>
+<td>The gyroscope sensor data. The rate of rotation of the aircraft in radians per second.</td>
+</tr>
+<tr>
+<td>Roll Rate</td>
+<td>Roll_rate</td>
+<td>Float</td>
+<td>The gyroscope sensor data. The rate of rotation of the aircraft in radians per second.</td>
+</tr>
+<tr>
+<td>Yaw Rate</td>
+<td>Yaw_rate</td>
+<td>Float</td>
+<td>The gyroscope sensor data. The rate of rotation of the aircraft in radians per second.</td>
+</tr>
+<tr>
+<td>Derivative Gain</td>
+<td>Kd_gain</td>
+<td>Float</td>
+<td>A predetermined gain value for a PID loop. Typically used for tuning and debugging purposes.</td>
+</tr>
+<tr>
+<td>Proportional Gain</td>
+<td>Kp_gain</td>
+<td>Float</td>
+<td>A predetermined gain value for a PID loop. Typically used for tuning and debugging purposes.</td>
+</tr>
+<tr>
+<td>Integral Gain</td>
+<td>Ki_gain</td>
+<td>Float</td>
+<td>A predetermined gain value for a PID loop. Typically used for tuning and debugging purposes.</td>
+</tr>
+<tr>
+<td>Heading</td>
+<td>Heading</td>
+<td>Float</td>
+<td>The GPS heading of the aircraft in degrees ranging from 0 to 360.</td>
+</tr>
+<tr>
+<td>Ground Speed</td>
+<td>Ground_speed</td>
+<td>Float</td>
+<td>The ground speed of the aircraft in meters per second.</td>
+</tr>
+<tr>
+<td>Pitch Setpoint</td>
+<td>Pitch_setpoint</td>
+<td>Float</td>
+<td>The autopilot-controlled setpoint for the pitch angle in degrees.</td>
+</tr>
+<tr>
+<td>Roll Setpoint</td>
+<td>Roll_setpoint</td>
+<td>Float</td>
+<td>The autopilot-controlled setpoint for the Roll angle in degrees.</td>
+</tr>
+<tr>
+<td>Heading Setpoint</td>
+<td>heading_setpoint</td>
+<td>Float</td>
+<td>The autopilot-controlled setpoint for the heading angle in degrees.</td>
+</tr>
+<tr>
+<td>Throttle Setpoint</td>
+<td>Throttle_setpoint</td>
+<td>Float</td>
+<td>The autopilot-controlled setpoint for the propeller speed in terms of percentage (0-100%)</td>
+</tr>
+<tr>
+<td>Altitude Setpoint</td>
+<td>altitude_setpoint</td>
+<td>Float</td>
+<td>The autopilot-controlled setpoint for the altitude above mean sea level. (in meters)</td>
+</tr>
+<tr>
+<td>Altitude</td>
+<td>altitude</td>
+<td>Float</td>
+<td>The altitude of the plane above the mean sea level (in meters)</td>
+</tr>
+<tr>
+<td>Pitch Setpoint (Controller)</td>
+<td>int_pitch_setpoint</td>
+<td>Float</td>
+<td>The user input for the Pitch angle in arbitrary timer tick units.</td>
+</tr>
+<tr>
+<td>Roll Setpoint(Controller)</td>
+<td>int_roll_setpoint</td>
+<td>Float</td>
+<td>The user input for the Roll angle in arbitrary timer tick units.</td>
+</tr>
+<tr>
+<td>Yaw Setpoint (Controller)</td>
+<td>int_yaw_setpoint</td>
+<td>Float</td>
+<td>The user input for the yaw angle in arbitrary timer tick units.</td>
+</tr>
+<tr>
+<td>Last Wireless Command Sent&amp;Received</td>
+<td>lastCommandSent</td>
+<td>int</td>
+<td>This is a combination of the command number (commands.h) multiplied by 100. For every subsequent call, the number is incremented by 1.For example, if the return home command was called 5 times, this variable would be equal to: <em>4105</em></td>
+</tr>
+<tr>
+<td>Error Codes</td>
+<td>errorCodes</td>
+<td>Unsigned int</td>
+<td>Signals any problems that may be occurring or have occurred.This value is retrieved from StartupErrorCodes.c. The possible values are (and any binary combination):0b0000000000000000: No Errors0b0000000000000001:Power on reset occurred.0b0000000000000010:Brown out reset occurred.0b0000000000000100:Idle Mode Reset Occurred.0b0000000000001000:Sleep Mode Reset Occurred.0b0000000000010000:Software Watch Dog Timer Reset Occurred.0b0000000000100000:Software Reset Occurred.0b0000000001000000:External Reset Occurred.0b0000000010000000:Voltage Regulator Reset Occurred.0b0000000100000000:Illegal Opcode Reset Occurred.0b0000001000000000:Trap Reset Occurred.0b1000000000000000:UHF Switch is ON (Can be used to indicate joystick controller connection)</td>
+</tr>
+<tr>
+<td>Camera Counter</td>
+<td>cameraCounter</td>
+<td>Unsigned Int</td>
+<td>Every time the camera is triggered, this value increases by one. This allows one to keep track which picture corresponds to what data.</td>
+</tr>
+<tr>
+<td>Waypoint Index</td>
+<td>waypointIndex</td>
+<td>Char</td>
+<td>Indicates what waypoint the vehicle is attempting to get to.-1 - indicates that the vehicle is going "HOME"Any other value indicates the waypoint in the order that it was added.</td>
+</tr>
+<tr>
+<td>Controller Status Indicator</td>
+<td>Editing_gain</td>
+<td>Char</td>
+<td>An indicator that depicts which gain values are currently being changed.0x00 = Manual Mode0x01 = Yaw0x02 = Pitch0x03 = Roll0x04 = Heading0x05 = Altitude0x06 = Throttle</td>
+</tr>
+<tr>
+<td>GPS Status Indicator</td>
+<td>Gps_status</td>
+<td>Char</td>
+<td>An indicator that depicts the number of satellites connected, as well as the status of the gps fix. Format:0x<GPS Fix><Satellites> For example:0x00 = No GPS Fix, 0 Satellites0x1A = GPS Fix, 10 Satellites0x24 = DGPS Fix, 4 Satellites</td>
+</tr>
+<tr>
+<td>Battery Level Indicator</td>
+<td>batteryLevel</td>
+<td>Char</td>
+<td>This indicator provides the battery level as a percentage (%) of the original battery capacity specified in the voltageSensor.c/h files.</td>
+</tr>
+</tbody>
+</table>
+<p>Note that all telemetry data must be visible within the scope of the AttitudeManager.c file.</p>
+<h2 id="command-uplink-data">Command (Uplink) Data</h2>
+<p>Every command that is sent to the UAV must be predefined with an ID, as well as an associated function. Some commands only change variable values, whereas some call functions with the associated data as a parameter.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Command ID</strong></th>
+<th><strong>Socket Command</strong></th>
+<th><strong>Associated Function</strong></th>
+<th><strong>Format</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>debug:<data></td>
+<td>UART1_SendString(<data>)</td>
+<td>Char Array</td>
+<td>The debugging command, which writes to the UART1 port.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>set_pitchKDGain:<data></td>
+<td>setGain(PITCH, KD_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the derivative gain for pitch control.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>set_rollKDGain:<data></td>
+<td>setGain(ROLL, KD_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the derivative gain for roll control.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>set_yawKDGain:<data></td>
+<td>setGain(YAW, KD_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the derivative gain for yaw control.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>set_pitchKPGain:<data></td>
+<td>setGain(PITCH, KP_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the proportional gain for pitch control.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>set_rollKPGain:<data></td>
+<td>setGain(ROLL, KP_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the proportional gain for roll control.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>set_yawKPGain:<data></td>
+<td>setGain(YAW, KP_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the proportional gain for yaw control.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>set_pitchKIGain:<data></td>
+<td>setGain(PITCH, KI_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the integral gain for pitch control.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>set_rollKIGain:<data></td>
+<td>setGain(ROLL, KI_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the proportional gain for roll control.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>set_yawKIGain:<data></td>
+<td>setGain(YAW, KI_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the proportional gain for yaw control.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>set_headingKDGain:<data></td>
+<td>setGain(HEADING, KD_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the derivative gain for heading control.</td>
+</tr>
+<tr>
+<td>11</td>
+<td>set_headingKPGain:<data></td>
+<td>setGain(HEADING, KP_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the proportional gain for heading control.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>set_headingKIGain:<data></td>
+<td>setGain(HEADING, KI_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the integral gain for heading control.</td>
+</tr>
+<tr>
+<td>13</td>
+<td>set_altitudeKDGain:<data></td>
+<td>setGain(ALTITUDE, KD_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the derivative gain for altitude control.</td>
+</tr>
+<tr>
+<td>14</td>
+<td>set_altitudeKPGain:<data></td>
+<td>setGain(ALTITUDE, KP_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the proportional gain for altitude control.</td>
+</tr>
+<tr>
+<td>15</td>
+<td>set_altitudeKIGain:<data></td>
+<td>setGain(ALTITUDE, KI_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the integral gain for altitude control.</td>
+</tr>
+<tr>
+<td>16</td>
+<td>set_throttleKDGain:<data></td>
+<td>setGain(THROTTLE, KD_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the derivative gain for throttle control (speed).</td>
+</tr>
+<tr>
+<td>17</td>
+<td>set_throttleKPGain:<data></td>
+<td>setGain(THROTTLE, KP_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the derivative gain for throttle control (speed).</td>
+</tr>
+<tr>
+<td>18</td>
+<td>set_throttleKIGain:<data></td>
+<td>setGain(THROTTLE, KI_GAIN, <data>)</td>
+<td>Float</td>
+<td>The command to set the integral gain for throttle control (speed).</td>
+</tr>
+<tr>
+<td>19</td>
+<td>set_pathGain:<data></td>
+<td><Currently Unsupported, but will not cause errors if set></td>
+<td>Float</td>
+<td>The command used to set the gain that scales lateral positional control around a path.</td>
+</tr>
+<tr>
+<td>20</td>
+<td>set_orbitGain:<data></td>
+<td><Currently Unsupported, but will not cause errors if set></td>
+<td>Float</td>
+<td>The command used to set the gain that scales orbital convergence.</td>
+</tr>
+<tr>
+<td>21</td>
+<td>set_showGain:<data></td>
+<td>displayGain = <data></td>
+<td>Char</td>
+<td>The command used to switch the output between multiple gain types:0x00 = Yaw0x01 = Pitch0x02 = Roll0x03 = Heading0x04 = Altitude0x05 = Throttle*Note that there is no support for the path gain or orbital gain yet.</td>
+</tr>
+<tr>
+<td>22</td>
+<td>set_pitchRate:<data></td>
+<td>sp_PitchRate = <data></td>
+<td>Int</td>
+<td>The user input for the pitch rate in PWM timer tick units. (Normal values range from 470 to 941 [dependent on setup]). Note you must set command 32 greater than 4 to use this.</td>
+</tr>
+<tr>
+<td>23</td>
+<td>set_rollRate:<data></td>
+<td>sp_RollRate = <data></td>
+<td>Int</td>
+<td>The user input for the roll rate in PWM timer tick units. (Normal values range from 470 to 941 [dependent on setup]) Note you must set command 32 greater than 4 to use this.</td>
+</tr>
+<tr>
+<td>24</td>
+<td>set_yawRate:<data></td>
+<td>sp_YawRate = <data></td>
+<td>Int</td>
+<td>The user input for the roll rate in PWM timer tick units. (Normal values range from 470 to 941 [dependent on setup]) Note you must set command 32 greater than 4 to use this.</td>
+</tr>
+<tr>
+<td>25</td>
+<td>set_pitchAngle:<data></td>
+<td>sp_PitchAngle = <data></td>
+<td>Float</td>
+<td>The user input for the pitch angle in degrees. Note you must set command 32 greater than 5 to use this.</td>
+</tr>
+<tr>
+<td>26</td>
+<td>set_rollAngle:<data></td>
+<td>sp_RollAngle = <data></td>
+<td>Float</td>
+<td>The user input for the roll angle in degrees. Note you must set command 32 greater than 5 to use this.</td>
+</tr>
+<tr>
+<td>27</td>
+<td>set_yawAngle:<data></td>
+<td><Currently Unsupported, but will not cause errors if set>sp_YawAngle = <data></td>
+<td>Float</td>
+<td>The user input for the yaw angle in degrees. WILL LIKELY BE REMOVED IN THE FUTURE IF UNEEDED. Note you must set command 32 greater than 5 to use this.</td>
+</tr>
+<tr>
+<td>28</td>
+<td>set_altitude:<data></td>
+<td>sp_Altitude = <data></td>
+<td>Float</td>
+<td>The user input for the altitude in meters above sea level. Note you must set command 32 greater than 6 to use this.</td>
+</tr>
+<tr>
+<td>29</td>
+<td>set_heading:<data></td>
+<td><sp\_Heading> = <data></td>
+<td>Float</td>
+<td>The user input for the heading in standard compass bearing degrees. Note you must set command 32 greater than 7 to use this.</td>
+</tr>
+<tr>
+<td>30</td>
+<td>set_throttle:<data></td>
+<td><sp\_Throttle> = <data></td>
+<td>Int</td>
+<td>The user input for the throttle as a percentage. Note you must set command 32 to 8 to use this.</td>
+</tr>
+<tr>
+<td>31</td>
+<td>set_autonomousLevel:<data></td>
+<td>controlLevel = <data></td>
+<td>Int</td>
+<td>This sets the source of control input between the autopilot, the remote control, and the ground stations:0b00000000 = Full manual control (default)0b00000001 = Set Pitch Rate(0), Pitch Angle(1)0b00000010 = Pitch Control Source: Controller(0), Ground Station(1) 0b00000100 = Roll Control Type: Roll Rate(0), Roll Angle(1)0b00001000 = Roll Control Sources: Controller(0), Ground Station(1)0b00110000 = Throttle control source: Controller(0), Ground Station(1), Autopilot(2) 0b01000000 = Altitude Source: Ground Station(0), Autopilot(1)0b10000000 = Altitude Control On(1) or Off(0)0b100000000 = Heading control source: Ground Station(0), Autopilot(1)0b1000000000=  To fly with Ground Station Control of the Pitch Rate and Roll Angle:set_autonomousLevel:14To fly with Ground Station Control of the Pitch Rate, Roll Angle, and Throttle:set_autonomousLevel:30To fly with Ground Station Control of Altitude, and Throttle (Roll controlled by controller):set_autonomousLevel:134To fly with Ground Station Control of Altitude, Throttle, Roll Angle:set_autonomousLevel:156To reset everything and fly with controller:set_autonomousLevel:0</td>
+</tr>
+<tr>
+<td>32</td>
+<td>set_angularWalkVariance:<data></td>
+<td>setAngularWalkVariance(<data>)</td>
+<td>Float</td>
+<td>Sets the Kalman Filter parameter that determines how fast the gyro bias estimates converge.</td>
+</tr>
+<tr>
+<td>33</td>
+<td>Set_gyroVariance:<data></td>
+<td>setGyroVariance(<data>)</td>
+<td>Float</td>
+<td>Sets the Kalman filter parameter that determines the weighting of the gryo in the attitude estimates of the plane.</td>
+</tr>
+<tr>
+<td>34</td>
+<td>set_magneticVariance:<data></td>
+<td>setMagneticVariance(<data>)</td>
+<td>Float</td>
+<td>Sets the Kalman filter parameter that determines the weighting of the magnetometers in the attitude estimates of the plane.</td>
+</tr>
+<tr>
+<td>35</td>
+<td>set_accelVariance:<data></td>
+<td>setAccelVariance(<data>)</td>
+<td>Float</td>
+<td>Sets the Kalman filter parameter that determines the weighting of the accelerometers in the attitude estimates of the plane.</td>
+</tr>
+<tr>
+<td>36</td>
+<td>set_scaleFactor:<data></td>
+<td>pitchScaleFactor = <data></td>
+<td>Float</td>
+<td>Sets the value for the feed-forward term of pitch, when the aircraft is turning. In other words, when the aircraft is turning, this proportion is added to the elevators to prevent the airplane from losing altitude.</td>
+</tr>
+<tr>
+<td>37</td>
+<td>calibrate_altimeter:<data></td>
+<td>amData.calibrationHeight = <data>amData.command = PM_CALIBRATE_ALTIMETER</td>
+<td>Float</td>
+<td>This sets the reference height on the altimeter to a predefined value. This allows one to choose a <em>relative</em> value for the height aircraft. For example, one may set 0m to refer to the starting or landing terrain height.</td>
+</tr>
+<tr>
+<td>38</td>
+<td>clear_waypoints:<data></td>
+<td>amData.waypoint.id = <data>amData.command = PM_CLEAR_WAYPOINTS</td>
+<td>Byte</td>
+<td>This command clears ALL waypoints. The <data> is just a dummy variable.</td>
+</tr>
+<tr>
+<td>39</td>
+<td>remove_waypoint:<data></td>
+<td>amData.waypoint.id = <data>amData.command = PM_REMOVE_WAYPOINT</td>
+<td>Byte</td>
+<td>This command removes a specific waypoint given a specific ID as the parameter.</td>
+</tr>
+<tr>
+<td>40</td>
+<td>set_targetWaypoint:<data></td>
+<td>amData.waypoint.id = <data>amData.command = PM_SET_TARGET_WAYPOINT</td>
+<td>Byte</td>
+<td>The target waypoint is the waypoint which the UAV is trying to currently get to. If this command is called, it can be used to skip waypoints, or return to waypoints. The <data> is the specified ID for the new target.</td>
+</tr>
+<tr>
+<td>41</td>
+<td>return_home:<data></td>
+<td>amData.command = PM_RETURN_HOME</td>
+<td>Byte</td>
+<td>This tells the plane to go to the "home" coordinates. The <data> is just a dummy variable.</td>
+</tr>
+<tr>
+<td>42</td>
+<td>cancel_returnHome:<data></td>
+<td>amData.command = PM_CANCEL_RETURN_HOME</td>
+<td>Byte</td>
+<td>This tells the plane to return back to its original path after being called to the "home" coordinates.</td>
+</tr>
+<tr>
+<td>43</td>
+<td>send_heartbeat:<data></td>
+<td>heartbeatTimer = time</td>
+<td>Byte</td>
+<td>This sends a "heartbeat" (verification ping) to the plane to tell it that a data connection is still present. If this command is not received after a certain amount of time, emergency maneuvers will be used.</td>
+</tr>
+<tr>
+<td>44</td>
+<td>trigger_camera:<data></td>
+<td>triggerCamera(<data>)</td>
+<td>Int</td>
+<td>This manually triggers the camera via a "fake" PWM signal. The <data> is the integer value of the PWM signal.</td>
+</tr>
+<tr>
+<td>45</td>
+<td>set_triggerDistance:<data></td>
+<td>setTriggerDistance(<data>)</td>
+<td>Float</td>
+<td>This sets the trigger distance (how often a picture is taken based on distance). This <data> is a value in meters.</td>
+</tr>
+<tr>
+<td>46</td>
+<td>set_gimbleOffset:<data></td>
+<td>setGimbleOffset(<data>)</td>
+<td>Int</td>
+<td>This provides an offset to the gimbal. If the gimbal is misaligned on start up, this function can correct it.</td>
+</tr>
+<tr>
+<td>47</td>
+<td>kill_plane:<data></td>
+<td>if (<data> == 1234)                    killingPlane = 1;</td>
+<td>Int</td>
+<td>This crashes the plane into the ground (in emergencies). This requires a password (<data> = "1234") to ensure this isn't an accident.</td>
+</tr>
+<tr>
+<td>48</td>
+<td>unkill_plane:<data></td>
+<td>if (<data> == 1234)                    killingPlane = 0;</td>
+<td>Int</td>
+<td>This changes the state of the plane from "I'm crashing" to "Nevermind, this was just a test". This requires a password (<data> = "1234") to ensure this isn't an accident.</td>
+</tr>
+<tr>
+<td>128</td>
+<td>new_waypoint:<data>,<data>,<data>,<data></td>
+<td>amData.command = PM_NEW_WAYPOINTamData.waypoint = <data></td>
+<td>4 floats</td>
+<td>This uploads and appends a waypoint to the aircraft based on corresponding gps coordinates and path instructions. The format is (longitude, latitude, altitude,radius).</td>
+</tr>
+<tr>
+<td>129</td>
+<td>insert_Waypoint:</td>
+<td>amData.command = PM_INSERT_WAYPOINT amData.waypoint = <data></td>
+<td>4 floats followed by 2 Bytes</td>
+<td>This uploads and inserts a waypoint to the aircraft based on corresponding gps coordinates and path instructions. The format is (longitude, latitude, altitude,radius,nextID,previousID).</td>
+</tr>
+<tr>
+<td>130</td>
+<td>set_ReturnHomeCoordinates:</td>
+<td>amData.command = PM_SET_RETURN_HOME_COORDINATESamData.waypoint = <data></td>
+<td>3 Floats</td>
+<td>This sets the home coordinates, to which the plane will return in case of an emergency. The format is (longitude, latitude, altitude).</td>
+</tr>
+<tr>
+<td>131</td>
+<td>tare_IMU:<data>,<data>,<data></td>
+<td>adjustVNOrientationMatrix(float* adjustment);</td>
+<td>3 Floats</td>
+<td>This adds a bias adjustment to the matrix based on the last setting. The 3 data values are the x,y,z components of the aircraft.</td>
+</tr>
+<tr>
+<td>132</td>
+<td>Set_IMU:<data>,<data>,<data></td>
+<td>setVNOrientationMatrix(float* adjustment);</td>
+<td>3 Floats</td>
+<td>This is used to set the reference frame of the aircraft's IMU unit. The input values are the x,y,z values of the IMU's rotation respectively.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="in-the-code">In the code</h2>
+<p>Prior to usage, the datalink must be initialized.  This is done so in <em>main.c _using _initDataLink()</em>. This simply initializes the UART2 interface (see UART section) for appropriate usage with the datalink.</p>
+<p>After initialization, the data link can be used. The interface used to queue data to the datalink is present in the AttitudeManager.c file.</p>
+<h3 id="in-the-code-downlinktelemetry">In the code – Downlink/Telemetry</h3>
+<p>Data is exported to the data link at a certain frequency (according to a clock). This is done by calling <em>writeDatalink(frequency)</em>, where frequency is the time between packets. This subroutine creates a structure (defined in <em>net.h</em>) which contains memory locations for every variable. This data is then pushed to be processed in <em>net_outbound.c</em>.</p>
+<pre><code>if (time - lastTime &gt; frequency) {
+
+    lastTime = time;
+
+    struct telem_block* statusData = createTelemetryBlock();
+
+    statusData-&gt;lat = gps_Latitude;
+
+    statusData-&gt;lon = gps_Longitude;
+
+    ...
+
+return pushOutboundTelemetryQueue(statusData);
+
+}
+</code></pre>
+<p>When all the data is assembled in the struct, <em>pushOutboundTelemetryQueue(statusData)</em> is called. This pushes the data onto a queue to be processed later:</p>
+<pre><code>int pushOutboundTelemetryQueue(struct telem_block *telem) {
+
+    if (getOutboundQueueLength() &gt;= OUTBOUND_QUEUE_SIZE) {
+
+        return -1;
+
+    }
+
+    outBuffer[outbuff_end] = telem;
+
+    outbuff_end++;
+
+    outbuff_end = outbuff_end % OUTBOUND_QUEUE_SIZE;
+
+    return getOutboundQueueLength();
+
+}
+</code></pre>
+<p>Note that this is a circular buffer. When the buffer reaches the OUTBOUND_QUEUE_SIZE, the outbuff_end variable starts from 0 and overwrites the old data.</p>
+<p>Every once in a while, the data accumulated must be processed. As a result, every iteration of the program runs a subroutine to maintain and cleanup the circular buffer. For the outgoing buffer, this method is <em>outboundBufferMaintenance()</em>:</p>
+<pre><code>if ( stagingBuffer.sendIndex &gt;= PACKET_LENGTH ) {
+
+    destroyTelemetryBlock(stagingBuffer.telemetry.asStruct);
+
+    if ( getOutboundQueueLength() ) {
+
+        stageTelemetryBlock(popOutboundTelemetryQueue());
+
+    }
+
+} else if ( stagingBuffer.telemetry.asStruct == 0 &amp;&amp; getOutboundQueueLength() ) {
+
+    stageTelemetryBlock(popOutboundTelemetryQueue());
+
+}
+</code></pre>
+<p>Note that the structure of <em>stagingBuffer</em> is as follows:</p>
+<pre><code>struct telem_buffer {
+
+    unsigned int sendIndex;             // index into telemetry to send
+
+    unsigned char header[API_HEADER_LENGTH];    // The header for the telem
+
+    union {
+
+        struct telem_block *asStruct;   // The telemetry block being sent
+
+        unsigned char *asArray;         // The telemetry intepreted as an array
+
+    } telemetry;
+
+    unsigned char checksum;             // The checksum so far
+
+};
+</code></pre>
+<p>Note that the <em>stagingBuffer _converts the data into a data link friendly format. The data link hardware requires that each data packet must be sent with a header, the data, and a checksum (For more specification see the XBEE section). These are 3 components of the _telem_buffer</em> structure. The 4th component is the <em>sendIndex</em> variable. This value is used to keep track (index) what data has already been sent or still needs to be sent.</p>
+<p>After sufficient error checking (making sure <em>sendIndex</em> is less than the allowed packet size), stageTelemetryBlock(popOutboundTelemetryQueue()) is called. This method takes (pops) the next struct of data and stages it to be sent. <em>stageTelemetryBlock()</em> is responsible for converting the telemetry data into a <em>telem_buffer</em> structure.</p>
+<pre><code>void stageTelemetryBlock(struct telem_block *telem) {
+
+    stagingBuffer.telemetry.asStruct = telem;
+
+    generateApiHeader(stagingBuffer.header, 0);
+
+    stagingBuffer.checksum = 0;
+
+    // Send index should be reset last for reasons
+
+    stagingBuffer.sendIndex = 0;
+
+    sendNextByte();
+
+}
+</code></pre>
+<p>The first line of the subroutine adds the data into the packet. The second line (<em>generateApiHeader(stagingBuffer.header,0))</em> creates an appropriate header in the <em>stagingBuffer.header</em> memory address with a data frame of 0. (See the XBEE section for the datasheet). The API header includes information involving which device the packet should be sent to, the length of the packet, as well as acknowledgement options, and packet types (data packet, configuration packet, status packet). After the <em>checksum</em> and <em>sendIndex</em> are explicitly reset, the sending process begins with <em>sendNextByte()</em>:</p>
+<pre><code>void sendNextByte(void) {
+
+    unsigned char sendByte; // The byte to send
+
+    if ( stagingBuffer.sendIndex &lt; API_HEADER_LENGTH ) {
+
+        //while (U2STAbits.TRMT == 0);
+
+        sendByte = stagingBuffer.header[stagingBuffer.sendIndex] &amp; 0xFF;
+
+        // Compute checksum
+
+        if (stagingBuffer.sendIndex &gt;= 3) {
+
+            stagingBuffer.checksum += sendByte &amp; 0xFF;
+
+        }
+
+    } else if ( stagingBuffer.sendIndex &lt; PACKET_LENGTH - 1 ) {
+
+        sendByte = stagingBuffer.telemetry.asArray[stagingBuffer.sendIndex - API_HEADER_LENGTH] &amp; 0xFF;
+
+        stagingBuffer.checksum += sendByte &amp; 0xFF;
+
+    } else if ( stagingBuffer.sendIndex == PACKET_LENGTH - 1) {
+
+        sendByte = 0xFF - (stagingBuffer.checksum &amp; 0xFF);
+
+    } else {
+
+        IFS1bits.U2TXIF = 0;
+
+        return;
+
+    }
+
+    stagingBuffer.sendIndex++;
+
+    IFS1bits.U2TXIF = 0;
+
+    U2TXREG = sendByte;
+
+}
+</code></pre>
+<p>All the "<em>if</em>" statements above, compile the header, the data and the checksum together. Note that the checksum is the bitwise inverse of the actual sum: sendByte = 0xFF - (stagingBuffer.checksum &amp; 0xFF). The most important part of this process is the last line, where each byte is sent to the UART transmit buffer. Since the UART transmit process is interrupt-based, each interrupt keeps calling <em>sendNextByte()</em>, until there is no more data left:</p>
+<pre><code>void __attribute__((__interrupt__, no_auto_psv)) _U2TXInterrupt(void) {
+
+    // Short circuit if nothing in the staging area yet
+
+    if ( stagingBuffer.telemetry.asStruct == 0 ) {
+
+        IFS1bits.U2TXIF = 0;
+
+        return;
+
+    }
+
+    sendNextByte();
+
+}
+</code></pre>
+<p>The process can be described through this flowchart:</p>
+<p><img alt="Downlink Flowchart" src="http://i.imgur.com/2pCYJRK.jpg" /></p>
+<h3 id="in-the-code-uplink">In the code – Uplink</h3>
+<p>Once every iteration, a command is read from the uplink queue. This is done by calling readDatalink(). The command <em>popCommand()</em> is called. If any new commands have been received, <em>popCommand()</em> will return a <em>command</em> struct (defined in <em>net.h</em>):</p>
+<pre><code>struct command {
+
+    unsigned char cmd;
+
+    unsigned char data\_length;
+
+    unsigned char data[101];
+
+};
+</code></pre>
+<p>It is fairly straight forward. The structure contains a <em>cmd.cmd _which indicates the command ID. This ID corresponds to a certain function that needs to be completed. Following the pop command are a series of case statements (one for each command ID). For instance, if the command ID is 30, the following command is run (in _net_inbound.c</em>):</p>
+<pre><code>struct command* cmd = popCommand();
+
+//TODO: Add rudimentary input validation
+
+if ( cmd ) {
+
+    if (lastCommandSentCode == cmd-&gt;cmd){
+
+        lastCommandSentCode++;
+
+    }
+
+    else{
+
+        lastCommandSentCode = cmd-&gt;cmd * 100;
+
+    }
+
+    switch (cmd-&gt;cmd) {
+
+        ...
+
+        case SET_THROTTLE:
+
+            sp_ThrottleRate = (int)(*(int*)(&amp;cmd-&gt;data) / 100.0  * (890 - 454) + 454);
+
+            break;
+
+        ...
+    }
+
+}
+</code></pre>
+<p>The throttle ends up being set to the value indicated in the <em>cmd.data</em> location. In addition, the last command read is stored and sent to the ground station as verification that the command was received.</p>
+<p>The <em>popCommand() _function waits and reads the next available command from a circular buffer (note the _INBOUND_QUEUE_SIZE</em> variable). If the command doesn't exist, it exits the function.</p>
+<p>In order for the command structure to exist, the <em>U2RXInterrupt</em> must have been triggered. This occurs when new data is sent.</p>
+<pre><code>void __attribute__((__interrupt__, no_auto_psv)) _U2RXInterrupt(void) {
+
+    unsigned char data = U2RXREG;
+
+    if ( rawPacketStatus[packetPos] != BUSY ) {    // no buffer available to write
+
+        packetPos = ( packetPos + 1  ) % RAW_PACKET_BUFFER_SIZE;
+
+        IFS1bits.U2RXIF = 0;
+
+        return;
+
+    }
+
+    switch ( payloadPos ) {
+
+        case 0:
+
+            if ( data != START_DELIMITER ) {
+
+                IFS1bits.U2RXIF = 0;
+
+                return;
+
+            }
+
+            break;
+
+        case 1:
+
+            if ( data != 0 ) {
+
+                payloadPos = 0;
+
+                IFS1bits.U2RXIF = 0;
+
+                return;                 // packet length &lt; 100 bytes, so msb == 0
+
+            }
+
+            break;
+
+        case 2:
+
+            payloadLength[packetPos] = data;
+
+            break;
+
+        default:        // Normally, don't do anything special
+
+            break;
+
+    }
+
+    rawPackets[packetPos][payloadPos++] = data;
+
+    if ( payloadPos &amp;&amp; payloadPos == payloadLength[packetPos] + 3 + 1) {   // at end of packet
+
+        rawPacketStatus[packetPos] = READY;
+
+        payloadPos = 0;
+
+        packetPos = ( packetPos + 1  ) % RAW_PACKET_BUFFER_SIZE;
+
+        if ( rawPacketStatus[packetPos] == EMPTY ) {
+
+            rawPacketStatus[packetPos] = BUSY;
+
+        }
+
+    }
+
+    IFS1bits.U2RXIF = 0;
+
+}
+</code></pre>
+<p>The first thing that occurs when new data arrives is a check to see if there is enough memory to store the data. A <em>if statement</em> is used to check if the buffer (rawPacketStatus) is busy or not.  Note that the interrupt will only record the data, if the current <em>packetPos</em> marked busy.</p>
+<p>If the buffer is full, the next buffer location is checked. Otherwise, the packet is parsed byte by byte.</p>
+<p>Firstly, the start delimiter is looked for using a case statement. Until the start delimiter is found, nothing happens. Secondly, for case 1 and 2, the length of the packet is check and recorded. Once the length of the packet is known, the <em>data</em> is read into a 2d array called <em>rawPackets</em>. This array contains each byte of every packet in the circular buffer. Once all the data is copied into the array, the packet is marked as <em>READY</em>, and the next one is marked <em>BUSY</em> if it is <em>EMPTY</em>, and the processing of the data begins on the next maintenance cycle when <em>inboundBufferMaintenance()</em> is called from <em>main.c</em>:</p>
+<pre><code>void inboundBufferMaintenance(void) {
+
+    int i;
+
+    for ( i = 0; i &lt; RAW_PACKET_BUFFER_SIZE; i++ ) {
+
+        if ( rawPacketStatus[i] == READY &amp;&amp; checkPacket(rawPackets[i]) ) {
+
+            struct command\* cmd = createCommand( rawPackets[i] );
+
+            if ( cmd ) {            // create command was successful ?
+
+                pushCommand( cmd ); // queue it up
+
+                rawPacketStatus[i] = EMPTY;         // buffer is now good for writing another packet
+
+            }
+
+        }
+
+    }
+
+    if ( rawPacketStatus[0] == EMPTY ) {
+
+        rawPacketStatus[0] = BUSY;
+
+    }
+
+}
+</code></pre>
+<p>This subroutine iterates through each buffer location and checks for any <em>READY</em> packets. If one is found, and it has been verified through a checksum, the command structure is created from the data using the <em>createCommand(rawPackets[i])</em> method. Once this is done, the previous spot is marked <em>EMPTY</em>. The first buffer is always primed if it is empty.</p>
+<p><img alt="Uplink Flowchart" src="http://i.imgur.com/F71doku.png" /></p></div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+                <p>Copyright <a href="http://www.uwarg.com"> University of Waterloo Aerial Robotics Group</a></p>
+            
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

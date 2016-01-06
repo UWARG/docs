@@ -18,11 +18,91 @@
     
 
     
+        
     <url>
      <loc>http://www.docs.uwarg.com/picpilot/</loc>
      <lastmod>2016-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/picpilot/introduction/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/picpilot/pid-loops/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/picpilot/pwm-io/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/picpilot/uart/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/picpilot/spi/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/picpilot/direct-memory-access/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/picpilot/i2c/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/picpilot/datalink/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/picpilot/analog-to-digital-converter/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/picpilot/sensors-and-peripherals/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/picpilot/attitude-control/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/picpilot/path-management/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/picpilot/faq/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     

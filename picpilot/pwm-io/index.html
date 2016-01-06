@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="University of Waterloo Aerial Robotics Group">
+        <link rel="canonical" href="http://www.docs.uwarg.com/picpilot/pwm-io/">
+        <link rel="shortcut icon" href="../../../../favicon.ico">
+        
+
+	<title>PWM and IO - WARG Docs</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">WARG Docs</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../groundstation/">Groundstation</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">PicPilot <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../">Table of Contents</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../introduction/">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../pid-loops/">PID Loops</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">PWM and IO</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../uart/">UART</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../spi/">SPI</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../direct-memory-access/">Direct Memory Access</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../i2c/">I2C</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../datalink/">Datalink</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../analog-to-digital-converter/">Analog to Digital Converter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../sensors-and-peripherals/">Sensors and Peripherals</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../attitude-control/">Attitude Control</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../path-management/">Path Management</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../faq/">FAQ</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../computervision/">Computer Vision</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bootcamps <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../bootcamp/mechanical/">Mechanical</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../pid-loops/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../uart/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/UWARG/WARG-Docs">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#pwm-and-io">PWM and IO</a></li>
+        
+            <li><a href="#hardware">Hardware</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="pwm-and-io">PWM and IO</h1>
+<p>PWM stands for Pulse Width Modulation. This means that digital or analog data is encoded through the use of square wave electrical signals, where the width of the square wave determines the value of the data. For instance, in UAVs, a larger square wave will add more throttle, whereas a smaller square wave will add less throttle. The same concepts apply to the ailerons, flaps, rudder, and elevators. A PWM signal can be plotted on a voltage - time plot to attain the following graph:</p>
+<p><img alt="PWM Sample" src="http://i.imgur.com/VlwY9Dx.jpg" /></p>
+<p>For this application, the most common pulse width for a square wave is 1.5 milliseconds. This value represents the zero position for all control surfaces. The maximum value for the square wave is 2 milliseconds. The minimum value is 1 millisecond. Likewise, when using throttle, a 1 millisecond square wave is 0% throttle, and a 2 millisecond square wave is 100% throttle. For instance, here is a diagram of 3 consecutive pulses, which command the plane to throttle to 100%, followed by 50%, followed by 0%:</p>
+<p><img alt="PWM in aircraft" src="http://i.imgur.com/7LFQ9Af.jpg" /></p>
+<p>The duty cycle or period specifies the frequency of the pulses. For servo motors, the period is 22.5 milliseconds. This means that one square wave should be detected every 22.5 milliseconds. If the period is unreasonably short, or unreasonably long, the servo motor may seize, until the data is corrected. The allowable error range varies between speed controllers, but it is generally very forgiving (from experience). In general, make sure the period is more than 12 milliseconds and less than 25 milliseconds.</p>
+<p>These PWM signals can be used to convey information as input and output to a digital signal controller (DSC). The input is often referred to as "Input Capture". The output is often referred to as "Output Capture". Each wire connection can handle one channel. The current implementation of the PICpilot supports 8 input channels and 8 output channels. Out of the 8 input channels, 6 are currently used. Out of the 8 output channels, 6 are currently used. The roll, pitch, throttle, yaw and the autopilot on/off channels are the most critical in order for the UAV to work. This encompasses 9 channels in total (5 inputs, 4 outputs).</p>
+<h2 id="hardware">Hardware</h2>
+<p>The dspic33fj256gp710a chip supports 16 channels (8 inputs and 8 outputs):</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Function</th>
+<th>Pin/Port</th>
+<th>Input/Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Roll</td>
+<td>68/RD8</td>
+<td>Input</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Pitch</td>
+<td>69/RD9</td>
+<td>Input</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Throttle</td>
+<td>70/RD10</td>
+<td>Input</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Yaw</td>
+<td>71/RD11</td>
+<td>Input</td>
+</tr>
+<tr>
+<td>5</td>
+<td>UHF Switch</td>
+<td>79/RD12</td>
+<td>Input</td>
+</tr>
+<tr>
+<td>6</td>
+<td>N/A</td>
+<td>80/RD13</td>
+<td>Input</td>
+</tr>
+<tr>
+<td>7</td>
+<td>N/A</td>
+<td>47/RD14</td>
+<td>Input</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Autopilot On/Off</td>
+<td>48/RD15</td>
+<td>Input</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Roll</td>
+<td>72/RD0</td>
+<td>Output</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Pitch</td>
+<td>76/RD1</td>
+<td>Output</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Throttle</td>
+<td>77/RD2</td>
+<td>Output</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Yaw</td>
+<td>78/RD3</td>
+<td>Output</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Camera Shutter</td>
+<td>81/RD4</td>
+<td>Output</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Camera Gimbal</td>
+<td>82/RD5</td>
+<td>Output</td>
+</tr>
+<tr>
+<td>7</td>
+<td>N/A</td>
+<td>83/RD6</td>
+<td>Output</td>
+</tr>
+<tr>
+<td>8</td>
+<td>N/A</td>
+<td>84/RD7</td>
+<td>Output</td>
+</tr>
+</tbody>
+</table>
+<p>Each pin has corresponding registers to determine the configuration for each pin. The input capture settings that can be configured include the clock source (for timing and comparison), edge detection (trigger on rising, falling or both), and interrupts (every event, or every 2, 3, or 4). For output compare, the settings that can be configured include the clock source, pulse type (single, continuous, high/low initialization).</p>
+<p>For detailed hardware specifications see the Microchip website: <a href="http://www.microchip.com/wwwproducts/Devices.aspx?product=dsPIC33FJ256GP710A">dspic33fj256gp710A</a></p>
+<p><strong>In the Code</strong></p>
+<p>Three files are in charge of controlling all the PWM signals. InputCapture.c, which contains all the functions used to manage input capture, OutputCompare.C, which contains all the functions used to manage output compare. Finally, PWM.c links these files together.</p>
+<p>PWM.c combines both input capture and output compare into a simple interface that is easy to manage and consistent to use. It then applies scaling factors to the arbitrary timer units, which map the Input Capture and Output Capture values to variables that range between -100 and 100.</p>
+<p>PWM.c contains 7 functions:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Function Name</strong></th>
+<th><strong>Input Variables</strong></th>
+<th><strong>Output</strong></th>
+<th><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>initPWM</td>
+<td>inputChannels, outputChannels</td>
+<td>None.</td>
+<td>This function MUST be called before any other functions used below.The variables must be in binary representation. For example, channel 1, 2, and 5 enabled is: 0b00010011</td>
+</tr>
+<tr>
+<td>PWMInputCalibration</td>
+<td>channel, signalScaleFactor, signalOffset</td>
+<td>None.</td>
+<td>Calibrates the input from the controller so that the range outputs from -100 to 100.</td>
+</tr>
+<tr>
+<td>PWMOutputCalibration</td>
+<td>channel, signalScaleFactor, signalOffset</td>
+<td>None.</td>
+<td>Calibrates the output from the controller so that the range outputs from -100 to 100.</td>
+</tr>
+<tr>
+<td>getPWM</td>
+<td>channel</td>
+<td>Integer</td>
+<td>Returns the value (scaled) from the input of a certain channel.</td>
+</tr>
+<tr>
+<td>getPWMArray</td>
+<td>None.</td>
+<td>None.</td>
+<td>Returns the value (scaled) from the input of all channels.</td>
+</tr>
+<tr>
+<td>setPWM</td>
+<td>channel, pwm</td>
+<td>None.</td>
+<td>Sets a certain output compare channel to a certain value according to the pwm range between -100 and 100.</td>
+</tr>
+<tr>
+<td>setPWMArray</td>
+<td>ocArray</td>
+<td>None.</td>
+<td>Sets all output compare channels to values stored in an array. These should be between -100 and 100.</td>
+</tr>
+</tbody>
+</table>
+<p>For future use, the calibration functions should be coordinated with the ground station, in order to be able to calibrate the controller/plane sensitivities and limits "on the go".</p>
+<p>It should be noted that the initialization procedure is necessary for the PWM IO functions to work.</p>
+<p>For input capture, the settings that are initialized include (for channel 1):</p>
+<pre><code>   IC1CONbits.ICM = 0b00; // Disable Input Capture 1 module
+
+   IC1CONbits.ICTMR = 1; // Select Timer2 as the IC1 Time base
+
+   IC1CONbits.ICI = 0b11; // Interrupt on every capture event
+
+   IC1CONbits.ICM = 0b001; // Generate capture event on every Rising and Falling edge
+
+   // Enable Capture Interrupt And Timer2
+
+   IPC0bits.IC1IP = 7; // Setup IC1 interrupt priority level - Highest
+
+   IFS0bits.IC1IF = 0; // Clear IC1 Interrupt Status Flag
+
+   IEC0bits.IC1IE = 1; // Enable IC1 interrupt
+</code></pre>
+<p>The initialization procedure selects a timer, setting for frequency of capture events, interrupt frequency, as well as other interrupt settings.</p>
+<p>For output capture, the settings that are initialized include (for channel 1):</p>
+<pre><code>// Initialize Output Compare Module
+
+OC1CONbits.OCM = 0b000; // Disable Output Compare Module
+
+OC1R = MIDDLE\_PWM; // Write the duty cycle for the first PWM pulse = 1.5ms/4688
+
+OC1RS = MIDDLE\_PWM; // Write the duty cycle for the second PWM pulse] = 1.5ms/4688
+
+OC1CONbits.OCTSEL = 0; // Select Timer 2 as output compare time base
+
+OC1CONbits.OCM = 0b110; // Select the Output Compare mode (without fault protection)
+</code></pre>
+<p>The initialization procedure selects a timer, initial duty cycle (this changes after the first program cycle), and output compare mode.</p>
+<p>Likewise, since both IC and OC use <em>timer2</em>. An initialization of this component is also required:</p>
+<pre><code>T2CONbits.TON = 0; // Disable Timer
+
+T2CONbits.TCS = 0; // Select internal instruction cycle clock
+
+T2CONbits.TGATE = 0; // Disable Gated Timer mode
+
+T2CONbits.TCKPS = 0b01; // Select 1:8 Prescaler
+
+TMR2 = 0x00; // Clear timer register
+
+setPeriod(20);
+
+IPC1bits.T2IP = 0x01; // Set Timer 2 Interrupt Priority Level - Lowest
+
+IFS0bits.T2IF = 0; // Clear Timer 2 Interrupt Flag
+
+IEC0bits.T2IE = 1; // Enable Timer 2 interrupt
+
+T2CONbits.TON = 1; // Start Timer
+</code></pre>
+<p>The initialization procedure selects the clock source (internal instruction clock), selects a scaling amount (determined via oscilloscope measurements), sets the period of the pulse cycle (20ms), and enables the Timer2  interrupt (this is not used for PWM signals, it is used to keep track of the runtime of the chip).</p></div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+                <p>Copyright <a href="http://www.uwarg.com"> University of Waterloo Aerial Robotics Group</a></p>
+            
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

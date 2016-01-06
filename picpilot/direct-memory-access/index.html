@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="University of Waterloo Aerial Robotics Group">
+        <link rel="canonical" href="http://www.docs.uwarg.com/picpilot/direct-memory-access/">
+        <link rel="shortcut icon" href="../../../../favicon.ico">
+        
+
+	<title>Direct Memory Access - WARG Docs</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">WARG Docs</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../groundstation/">Groundstation</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">PicPilot <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../">Table of Contents</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../introduction/">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../pid-loops/">PID Loops</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../pwm-io/">PWM and IO</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../uart/">UART</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../spi/">SPI</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Direct Memory Access</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../i2c/">I2C</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../datalink/">Datalink</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../analog-to-digital-converter/">Analog to Digital Converter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../sensors-and-peripherals/">Sensors and Peripherals</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../attitude-control/">Attitude Control</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../path-management/">Path Management</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../faq/">FAQ</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../computervision/">Computer Vision</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bootcamps <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../bootcamp/mechanical/">Mechanical</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../spi/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../i2c/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/UWARG/WARG-Docs">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#direct-memory-access">Direct Memory Access</a></li>
+        
+            <li><a href="#in-the-code">In the code</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="direct-memory-access">Direct Memory Access</h1>
+<p>Direct Memory Access (or DMA), is a microcontroller feature, which allows peripheral interfaces to directly access memory, completely bypassing the CPU. The CPU only needs to setup the transfer of data. The rest of the process is done without it.</p>
+<p>DMA is a commonly used in graphic, network, and sound cards. More importantly, it is used in multi-core processors, which is essentially the usage of DMA in the PICpilot.</p>
+<p>One DMA cycle follows this procedure:</p>
+<p><img alt="DMA Cycle" src="http://i.imgur.com/5dBPCdc.png" /></p>
+<p>In the PICpilot, the only peripheral that uses DMA is the SPI interface, although many other ones are supported.</p>
+<p>When a DMA transfer occurs, first a peripheral makes a request to the DMA controller (based on a predefined channel number). The request causes the DMA controller to read or write to a preconfigured peripheral address. Once this is completed, the DMA controller writes the data to the DPSRAM location (this is RAM dedicated to the DMA controller) or reads from it. The direction in which this transfer occurs depends on the register value corresponding to the predefined settings of the DMA controller.</p>
+<p>In the PICpilot, the Direct Memory Access module is constantly active through the SPI1 module. This means that the data transmission is continuous between both chips. Essentially, when this process is continuous it provides a way to share global variables between two physical microcontrollers simultaneously. This is how path data gets transmitted to the attitude manager. The path data is made global between the two chips.</p>
+<p>It should be noted that DMA is also used between the path manager chip and the GPS.</p>
+<p>On the PIC microcontroller, the DMA must only be initialized. The DMA controller continues operation automatically without direct processor input. The code to initialize the interface is below.</p>
+<h2 id="in-the-code">In the code</h2>
+<p>In order to transfer data using DMA, both chips must have been initialized. In the PICpilot, only the DMA interface is initialized for data transfer between the GPS and the Path Management Chip (PM Chip), as well as the PM Chip and the Attitude Management Chip (AM Chip). Both of these connections are enabled using SPI (see previous section).</p>
+<p>The GPS continuously sends data as soon as it is plugged in. It sends data in the following data format:</p>
+<pre><code>typedef struct _GPSData {
+
+    long double latitude;  //8 Bytes
+
+    long double longitude; //8 Bytes
+
+    float time;     //4 Bytes
+
+    float speed;
+
+    int altitude;
+
+    int heading;
+
+    char satellites;    //1 Byte
+
+    char positionFix;
+
+} GPSData;
+</code></pre>
+<p>In order to properly configure this connection the following code is used:</p>
+<pre><code>GPSData gpsData __attribute__((space(dma)));
+
+/*
+
+ *
+
+ */
+
+void __attribute__((__interrupt__, no_auto_psv)) _DMA2Interrupt(void){
+
+    newGPSDataAvailable = 1;
+
+    IFS1bits.DMA2IF = 0;// Clear the DMA0 Interrupt Flag
+
+}
+
+void init_DMA2(){
+
+    IFS1bits.DMA2IF = 0;
+
+    IEC1bits.DMA2IE = 1;
+
+    DMA2CONbits.AMODE = 0b00; //Register Indirect Mode
+
+    DMA2CONbits.DIR = 0; //Transfer from SPI to DSPRAM
+
+    DMA2CONbits.MODE = 0b00; //Transfer continuously
+
+    DMA2CONbits.SIZE = 1; //Transfer bytes (8 bits)
+
+    DMA2STA = __builtin_dmaoffset(&amp;gpsData); //Primary Transfer Buffer
+
+    DMA2PAD = (volatile unsigned int) &amp;SPI2BUF; //Peripheral Address
+
+    DMA2CNT = sizeof(GPSData) - 1; //+1 for checksum //DMA Transfer Count Length
+
+    DMA2REQ = 0b0100001; //IRQ code for SPI2
+
+    DMA2CONbits.CHEN = 1; //Enable the channel
+
+}
+</code></pre>
+<p>Note how a block of memory ("GPSData") is reserved for the incoming data from the GPS unit.  The register values are configured as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Register</th>
+<th>Value</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DMA2CONbits.AMODE</td>
+<td>0</td>
+<td>This enables Register Indirect with Post Increment Mode. This enables data to be stored in chunks one after another (incremented locations).</td>
+</tr>
+<tr>
+<td>DMA2CONbits.DIR</td>
+<td>0</td>
+<td>This indicates the direction that data travels on the bus. In this case, the data is always <em>incoming</em>. Therefore, it is copied from the SPI interface to the DSPRAM.</td>
+</tr>
+<tr>
+<td>DMA2CONbits.MODE</td>
+<td>0</td>
+<td>This indicates if the transfer occurs a single time, or continuously, and whether a ping pong buffer should be used. It is currently enabled for continuous usage without a ping pong buffer.</td>
+</tr>
+<tr>
+<td>DMA2CONbits.SIZE</td>
+<td>1</td>
+<td>Indicates if each DMA transfer is 8 bits or 16 bits. In this case, it is 8 bits.</td>
+</tr>
+<tr>
+<td>DMA2STA</td>
+<td>&amp;gpsData with an added DMA offset</td>
+<td>This indicates where the primary buffer is located. This memory block was initialized at the beginning of the above code snippet, where "space(dma)" is called.</td>
+</tr>
+<tr>
+<td>DMA2PAD</td>
+<td>&amp;SPI2BUF</td>
+<td>This stores the referenced location from where the data is obtained. (This DMA channel will use the SPI2 buffer to get the data).</td>
+</tr>
+<tr>
+<td>DMA2CNT</td>
+<td>Number of bytes in GPSData - 1</td>
+<td>This is a counter variable, which indicates the number of transfers that need to be completed per DMA request.</td>
+</tr>
+<tr>
+<td>DMA2REQ</td>
+<td>0b0100001</td>
+<td>This is the IRQ (Interrupt Request) code for the SPI2 interface. This allows the peripheral to send an interrupt request to the DMA controller instead of the CPU.</td>
+</tr>
+<tr>
+<td>DMA2CONbits.CHEN</td>
+<td>1</td>
+<td>Enables the DMA channel.</td>
+</tr>
+</tbody>
+</table>
+<p>On the other hand, the setup between the PM chip and the AM chip is slightly different. These two chips communicate with each other simultaneously through the SPI1 interface. The code controlling the initialization found in InterchipDMA.c/.h.</p>
+<p>The data being sent to the PM chip from the AM chip is in the form of:</p>
+<pre><code>typedef struct _AMData {
+
+    WaypointWrapper waypoint;
+
+    float pathGain;
+
+    float orbitGain;
+
+    float calibrationHeight;
+
+    char command;
+
+    char checksum;
+
+} AMData;
+</code></pre>
+<p>Vice-versa, the data being sent to the AM chip from the PM chip is in the form of:</p>
+<pre><code>typedef struct _PMData {
+
+    float time;     //4 Bytes   -  hhmmss.ssss
+
+    long double latitude;  //8 Bytes - ddd.mmmmmm
+
+    long double longitude; //8 Bytes - ddd.mmmmmm
+
+    float speed;    //KM/H
+
+    float altitude;
+
+    int sp_Altitude; // Meters
+
+    int heading;  //Degrees
+
+    int sp_Heading; //Degrees
+
+    char satellites;    //1 Byte
+
+    char positionFix;   //0 = No GPS, 1 = GPS fix, 2 = DGSP Fix
+
+    char targetWaypoint;
+
+    char batteryLevel;
+
+ } PMData;
+</code></pre>
+<p>The initialization process is extremely similar for both chips (PM and AM). Each chip requires a DMA channel to read the incoming data, as well as to write the outgoing data. As a result, both the AM chip and the PM chip have the same setup with a few different variables names:</p>
+<pre><code>void __attribute__((__interrupt__, no_auto_psv)) _DMA0Interrupt(void){
+
+#if !PATH_MANAGER
+
+    if (!transmitInitialized){
+
+        transmitInitialized = 1;
+
+        DMA1REQbits.FORCE = 1;
+
+    while (DMA1REQbits.FORCE == 1);
+
+    }
+
+#endif
+
+    newDataAvailable = 1;
+
+    IFS0bits.DMA0IF = 0;// Clear the DMA0 Interrupt Flag
+
+}
+
+void __attribute__((__interrupt__, no_auto_psv)) _DMA1Interrupt(void){
+
+    IFS0bits.DMA1IF = 0;// Clear the DMA0 Interrupt Flag
+
+}
+
+void init_DMA0(){
+
+    IFS0bits.DMA0IF = 0;
+
+    IEC0bits.DMA0IE = 1;
+
+    IPC1bits.DMA0IP = 7; //Highest Priority
+
+    DMACS0 = 0; //Clear any IO error flags
+
+    DMA0CONbits.DIR = 0; //Transfer from SPI to DSPRAM
+
+    DMA0CONbits.AMODE = 0b00; //With post increment mode
+
+    DMA0CONbits.MODE = 0b00; //Transfer continuously
+
+    DMA0CONbits.SIZE = 0; //Transfer words (16 bits)
+
+#if PATH_MANAGER
+
+    DMA0STA = __builtin_dmaoffset(&amp;amData); //Primary Transfer Buffer
+
+#else
+
+    DMA0STA = __builtin_dmaoffset(&amp;pmData); //Primary Transfer Buffer
+
+#endif
+
+    DMA0PAD = (volatile unsigned int) &amp;SPI1BUF; //Peripheral Address
+
+    DMA0CNT = PATH_MANAGER?(sizeof(AMData)/2 + sizeof(AMData) % 2 - 1):(sizeof(PMData)/2 + sizeof(PMData) % 2 - 1); //+1 for checksum //DMA Transfer Count Length
+
+    DMA0REQ = 0x000A;//0b0100001; //IRQ code for SPI1
+
+    DMA0CONbits.CHEN = 1; //Enable the channel
+
+}
+
+void init_DMA1(){
+
+    IFS0bits.DMA1IF = 0;
+
+    IEC0bits.DMA1IE = 1;
+
+    IPC3bits.DMA1IP = 7;
+
+    DMACS1 = 0; //Clear any IO error flags
+
+    DMA1CONbits.DIR = 1; //Transfer from DSPRAM to SPI
+
+    DMA1CONbits.AMODE = 0b00; //Without post increment mode
+
+    DMA1CONbits.MODE = 0b00; //Transfer continuously, ping ponging between buffers
+
+    DMA1CONbits.SIZE = 0; //Transfer words (16 bits)
+
+#if PATH_MANAGER
+
+    DMA1STA = __builtin_dmaoffset(&amp;pmData); //Primary Transfer Buffer
+
+#else
+
+    DMA1STA = __builtin_dmaoffset(&amp;amData); //Primary Transfer Buffer
+
+#endif
+
+    DMA1PAD = (volatile unsigned int) &amp;SPI1BUF; //Peripheral Address
+
+    DMA1CNT = PATH_MANAGER?(sizeof(PMData)/2 + sizeof(PMData) % 2 - 1):(sizeof(AMData)/2 + sizeof(AMData) % 2 - 1); //+1 for checksum //DMA Transfer Count Length
+
+    DMA1REQ = 0x000A;//0b0100001; //IRQ code for SPI1
+
+    DMA1CONbits.CHEN = 1; //Enable the channel
+
+}
+</code></pre>
+<p>The above code is very similar to the first example with the GPS. The differences include the direction of data transfer, the buffer variables, the IRQ codes, as well as the 16 bit mode interfacing.</p>
+<p>Also, in order to initialize transfer, the SPI master must send the first packet. This is evident in the DMA0 interrupt routine:</p>
+<pre><code>#if !PATH\_MANAGER
+
+    if (!transmitInitialized){
+
+        transmitInitialized = 1;
+
+        DMA1REQbits.FORCE = 1;
+
+    while (DMA1REQbits.FORCE == 1);
+
+    }
+
+ #endif
+</code></pre>
+<p>A DMA request is forced by setting the DMA1REQbits.FORCE bit to 1. The following sets of data do not need to be forced, they happen automatically (since continuous mode was enabled).</p></div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+                <p>Copyright <a href="http://www.uwarg.com"> University of Waterloo Aerial Robotics Group</a></p>
+            
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

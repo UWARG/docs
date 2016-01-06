@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="University of Waterloo Aerial Robotics Group">
-        <link rel="canonical" href="http://www.docs.uwarg.com/bootcamp/mechanical/">
+        <link rel="canonical" href="http://www.docs.uwarg.com/picpilot/analog-to-digital-converter/">
         <link rel="shortcut icon" href="../../../../favicon.ico">
         
 
-	<title>Mechanical - WARG Docs</title>
+	<title>Analog to Digital Converter - WARG Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -66,91 +66,91 @@
                 
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">PicPilot <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
 <li >
-    <a href="../../picpilot/">Table of Contents</a>
+    <a href="../">Table of Contents</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../picpilot/introduction/">Introduction</a>
+    <a href="../introduction/">Introduction</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../picpilot/pid-loops/">PID Loops</a>
+    <a href="../pid-loops/">PID Loops</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../picpilot/pwm-io/">PWM and IO</a>
+    <a href="../pwm-io/">PWM and IO</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../picpilot/uart/">UART</a>
+    <a href="../uart/">UART</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../picpilot/spi/">SPI</a>
+    <a href="../spi/">SPI</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../picpilot/direct-memory-access/">Direct Memory Access</a>
+    <a href="../direct-memory-access/">Direct Memory Access</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../picpilot/i2c/">I2C</a>
+    <a href="../i2c/">I2C</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../picpilot/datalink/">Datalink</a>
+    <a href="../datalink/">Datalink</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Analog to Digital Converter</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../picpilot/analog-to-digital-converter/">Analog to Digital Converter</a>
+    <a href="../sensors-and-peripherals/">Sensors and Peripherals</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../picpilot/sensors-and-peripherals/">Sensors and Peripherals</a>
+    <a href="../attitude-control/">Attitude Control</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../picpilot/attitude-control/">Attitude Control</a>
+    <a href="../path-management/">Path Management</a>
 </li>
 
                         
                             
 <li >
-    <a href="../../picpilot/path-management/">Path Management</a>
-</li>
-
-                        
-                            
-<li >
-    <a href="../../picpilot/faq/">FAQ</a>
+    <a href="../faq/">FAQ</a>
 </li>
 
                         
@@ -165,13 +165,13 @@
                 
                 
                 
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bootcamps <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
-<li class="active">
-    <a href="./">Mechanical</a>
+<li >
+    <a href="../../bootcamp/mechanical/">Mechanical</a>
 </li>
 
                         
@@ -190,12 +190,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../../computervision/">
+                        <a rel="next" href="../datalink/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
-                    <li class="disabled">
-                        <a rel="prev" >
+                    <li >
+                        <a rel="prev" href="../sensors-and-peripherals/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -220,56 +220,52 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#warg-mechanical-bootcamp">WARG Mechanical Bootcamp</a></li>
+        <li class="main active"><a href="#analog-to-digital-converter">Analog to Digital Converter</a></li>
         
-            <li><a href="#introduction">Introduction</a></li>
-        
-            <li><a href="#bootcamp-objectives">Bootcamp Objectives</a></li>
-        
-            <li><a href="#bootcamp-outline">Bootcamp Outline</a></li>
-        
-            <li><a href="#1-two-axis-camera-gimbal">1. Two-Axis Camera Gimbal:</a></li>
-        
-            <li><a href="#2-previous-team-contribution">2. Previous Team Contribution</a></li>
-        
-            <li><a href="#completion-of-bootcamp">Completion of Bootcamp</a></li>
+            <li><a href="#in-the-code">In the code</a></li>
         
     
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="warg-mechanical-bootcamp">WARG Mechanical Bootcamp</h1>
-<h2 id="introduction">Introduction</h2>
-<p>WARG members often find that joining this team requires more knowledge and has a larger learning curve than other student teams. Once members have acquired this knowledge they gain a lot of confidence and are able to make large contributions to the team. Therefore, this Bootcamp is designed as a first task to be completed to both help you through the learning curve, while giving you a project that is fully your own. The hope is that once you complete this Bootcamp you will feel confident and hopefully have acquired enough skills such that you are ready to take on tasks with our aircraft! Just a quick disclaimer, this Bootcamp will help accelerate and minimize the learning curve but it will not give you all knowledge. The remaining knowledge will be acquired through completing other tasks with the team.</p>
-<h2 id="bootcamp-objectives">Bootcamp Objectives</h2>
-<ul>
-<li>Make justified mechanical design decisions based on project constraints and criteria</li>
-<li>Learn to take accurate measurements of parts using vernier callipers</li>
-<li>Learn CAD design in SolidWorks</li>
-<li>Learn how to make assemblies in SolidWorks</li>
-</ul>
-<h2 id="bootcamp-outline">Bootcamp Outline</h2>
-<p>This Bootcamp has two options, both of which require a Team Leads approval of completion in order to move onto working on other tasks. The estimated time of completion for this Bootcamp is 1 week.</p>
-<h2 id="1-two-axis-camera-gimbal">1. Two-Axis Camera Gimbal:</h2>
-<h3 id="background">Background</h3>
-<p>A camera gimbal is an electromechanical device used to stabilize and direct a camera in a desired direction. On our aircraft the camera is a crucial component which provides us with the information allowing us to locate targets using our computer vision software. The camera gimbal houses the camera used to obtain these images. During flight it is vital to keep the camera as still as possible while always pointing towards the ground no matter what orientation the aircraft is in.</p>
-<h3 id="task">Task</h3>
-<p>You are tasked with designing a two-axis gimbal (mechanical or electromechanical) to house a GoPro Hero 3 camera. This gimbal design needs to be lightweight, minimize drag and have a 360 degree range of motion in both axis. The gimbal will be attached to a flat rigid board using four M4 bolts. The design does not need to include the board but needs to have proper holes for the bolts to attach the gimbal to the board. You will need to come into the WARG bay (E5 2001) and take all necessary measurements of the GoPro in METRIC UNITS using our Vernier Callipers. You need to design a case to hold the GoPro and the case must make the power button easily accessible through the case. All parts must be made in SolidWorks using units of <strong>mm and g</strong>. If your design uses servos and/or motors you will need to model these in SolidWorks as well. Once all of the parts are made you will make an assembly with the proper mating to demonstrate the 360 degree range of motion in both axis. Once all of these tasks are completed you can bring your completed <strong>part files and assembly file</strong> to a Team Lead for evaluation.</p>
-<h3 id="project-checklist">Project Checklist</h3>
-<ul>
-<li>Parts made in SolidWorks using dimensions of mm and g</li>
-<li>GoPro Case measured with power button exposed</li>
-<li>Mounting method using 4 M4 bolts to the flat board</li>
-<li>Motors / Servos selected and modeled (if required)</li>
-<li>Assembly created with the gimbal able to rotate 360 degrees in both axis</li>
-</ul>
-<h3 id="using-solidworks">Using Solidworks</h3>
-<p>There are many options for you to use SolidWorks (SW) for this Bootcamp. First, SW has a free 30 day trial which can be downloaded from their website. Second, if you are an MME student you should already have a version downloaded from your ME 100 class. Third, all the engineering computer labs have SW on the computers. Fourth, the WARG Bay has a version of SW on our desktop computer. One of these methods should be used to complete the Bootcamp. Therefore, you all should have access to the SW software.</p>
-<h2 id="2-previous-team-contribution">2. Previous Team Contribution</h2>
-<p>If you have been on the team and feel that you have made a contribution significant to be exempt from the option 1 you can contact a Team Lead to explain, and preferably show the project you have done. It will be up to the Team Lead’s discretion whether you qualify to be exempt from the Bootcamp. If the Team Lead feels that you should still complete option 1 it is because they think you can learn and gain skills from the completion of the Bootcamp. An example of a project that would be exempted: 3D modeling of our VTOL aircraft in SolidWorks.</p>
-<h2 id="completion-of-bootcamp">Completion of Bootcamp</h2>
-<p>Upon the approved completion of the Bootcamp by a Team Lead you are now eligible to work on other tasks with the team! If you have any feedback you would like to give to make this Bootcamp better please let a Team Lead know as we want this to be the best and most informative introduction to the team as possible.</p></div>
+<h1 id="analog-to-digital-converter">Analog to Digital Converter</h1>
+<p>The Analog to Digital Converter (ADC) on the PICpilot is used for a single purpose, which to monitor and report the battery life remaining for the vehicle and/or the autopilot. The path managing chip is responsible for measuring the battery voltage. Based on the reference voltage, a percentage is determined which indicates the voltage measured in relationship to the reference voltage. This data is transmitted to the attitude manager chip and then it is transmitted wirelessly along with the telemetry data.</p>
+<p>The functionality of the ADC is fairly straightforward. The ADC module switches between two states. One of which is the sampling period, whereas the other is the conversion period. During the conversion period, no sampling is performed. Instead, the previously captured data is converted into a 12 bit number. Therefore, in order to attain the voltage percent, you simply divide the data by 4096, the largest possible 12 bit number.</p>
+<p>In the PICpilot, the ADC module is triggered through interrupts (although it can also be manually polled).</p>
+<h2 id="in-the-code">In the code</h2>
+<p>All the code for the voltage sensor is available in the <em>voltageSensor.c</em> and <em>.h</em> files. The code which controls the ADC module is extremely straight forward. The process mostly involves initializations. Most of the "magic" is handled automatically by the module, therefore minimal logical coding is required. A few of the important lines have been included below:</p>
+<pre><code>AD1CON1bits.FORM = 0;                // Data Output Format: Unsigned Int
+
+AD1CON1bits.SSRC = 7;                // Internal Counter (SAMC) ends sampling and starts conversion
+
+AD1CON1bits.AD12B = 1;                // 12-bit single channel operation
+
+AD1CON1bits.SAMP = 1;
+
+AD1CON2bits.SMPI=0;                        // Interrupt address every sample/conversion
+
+AD1CON2bits.CHPS = 0;                //We are using channel 0
+
+AD1CON2bits.VCFG = 0;                 //Voltage Reference is 3.3V and Ground Reference is Ground
+
+AD1CON3bits.SAMC=0;                         // Auto Sample Time = 0\*Tad
+
+AD1CON3bits.ADCS=6;                        // ADC Conversion Clock Tad=Tcy\*(ADCS+1)= (1/40M)\*7 = 175nS
+
+
+
+AD1CHS0bits.CH0SA = 0xC;                 //Channel 0 positive input on AN12 (Sample A)
+
+AD1CHS0bits.CH0SB = 0xC;                 //Channel 0 positive input on AN12 (Sample B)
+
+IFS0bits.AD1IF = 0;                        // Clear the A/D interrupt flag bit
+
+IEC0bits.AD1IE = 1;                        // Enable A/D interrupt
+
+AD1CON1bits.ADON = 1;                // Turn on the A/D converter
+</code></pre>
+<p>After each interrupt, the battery voltage is updated into the <em>currentSignal</em> variable. When the battery voltage is requested, this integer is multiplied by 100 and divided by 4096 to get a percentage (4096 is 12 bits of data).</p></div>
             
         </div>
 

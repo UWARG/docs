@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="University of Waterloo Aerial Robotics Group">
+        <link rel="canonical" href="http://www.docs.uwarg.com/picpilot/pid-loops/">
+        <link rel="shortcut icon" href="../../../../favicon.ico">
+        
+
+	<title>PID Loops - WARG Docs</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">WARG Docs</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../groundstation/">Groundstation</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">PicPilot <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../">Table of Contents</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../introduction/">Introduction</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">PID Loops</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../pwm-io/">PWM and IO</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../uart/">UART</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../spi/">SPI</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../direct-memory-access/">Direct Memory Access</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../i2c/">I2C</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../datalink/">Datalink</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../analog-to-digital-converter/">Analog to Digital Converter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../sensors-and-peripherals/">Sensors and Peripherals</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../attitude-control/">Attitude Control</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../path-management/">Path Management</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../faq/">FAQ</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../computervision/">Computer Vision</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bootcamps <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../bootcamp/mechanical/">Mechanical</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../introduction/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../pwm-io/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/UWARG/WARG-Docs">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#pid-loops">PID Loops</a></li>
+        
+            <li><a href="#rate-control">Rate Control</a></li>
+        
+            <li><a href="#rate-control-in-the-code">Rate Control - In The Code</a></li>
+        
+            <li><a href="#angular-control">Angular Control</a></li>
+        
+            <li><a href="#angular-control-in-the-code">Angular Control – In The Code</a></li>
+        
+            <li><a href="#heading-control">Heading Control</a></li>
+        
+            <li><a href="#heading-control-in-the-code">Heading Control – In The Code</a></li>
+        
+            <li><a href="#altitude-and-throttle-control">Altitude and Throttle Control</a></li>
+        
+            <li><a href="#altitude-and-throttle-control-in-the-code">Altitude and Throttle Control – In The Code</a></li>
+        
+            <li><a href="#total-pid-control-overview">Total PID Control Overview</a></li>
+        
+            <li><a href="#tuning-pid-loops">Tuning PID Loops</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="pid-loops">PID Loops</h1>
+<p>PID Loops are vital to the functionality of the PICpilot Autopilot software. UAV systems (especially fixed-wing) are difficult to characterize through a mathematical model. Hence, a control algorithm, such as a PID loop, simplifies the process. It does so by making small changes to the system at regular intervals. The algorithm tracks changes in the past (short term and long term) and the present to be adaptive to future conditions. For instance, if a sudden disturbance is introduced into the system, differential control will compensate and attempt to stabilize the system.</p>
+<p>The letters "PID" stand for:</p>
+<ul>
+<li>
+<p>Proportional Control – This stabilizes any instantaneous changes to the system</p>
+</li>
+<li>
+<p>Integral Control – This stabilizes and reduces long-term error in the system</p>
+</li>
+<li>
+<p>Derivative Control – This stabilizes abrupt changes (large derivative values).</p>
+</li>
+</ul>
+<p>PI systems are usually more common than PID systems. Nonetheless, a common PID system would look like this:</p>
+<p><img alt="A common PID Loop" src="http://i.imgur.com/9J12pgG.png" /></p>
+<p><em>A common PID control loop</em></p>
+<p>In a PID system, the input, r(t), is compared with the output, y(t), in the time domain. The subtraction between these two values yields the error, e(t). The error is then fed into the PID modules. Note each module contains a constant Kd, Kp, Ki. These are scaling factors. They determine the proportions in which each module adds together.</p>
+<p>For the proportional module, the error is simply multiplied by a factor.</p>
+<p>For the integral module, the error is integrated over time, before being multiplied by its corresponding factor.</p>
+<p>For the derivative module, the error is differentiated at each time step, before being multiplied by its corresponding factor.</p>
+<p>These three values are added together to determine u(t), which controls the system (plane, quadcopter, etc.). This can be expressed through the following code segment:</p>
+<p>int controlSignal = (int)(HEADING_ROLL_SCALE_FACTOR * ((dValue * kd_gain[HEADING]) + (error * kp_gain[HEADING]) + (sum_gain[HEADING] * ki_gain[HEADING])));</p>
+<p>Where <em>HEADING_ROLL_SCALE _FACTOR</em> is a dimensionless scale factor.</p>
+<p>Where <em>dValue</em> is the derivative.</p>
+<p>Where <em>sum_gain</em> is the integral summation over time.</p>
+<p>Where <em>error</em> is the setpoint minus the output.</p>
+<p>Where <em>kd_gain</em> is the derivative gain.</p>
+<p>Where <em>kp_gain</em> is the proportional gain.</p>
+<p>Where <em>ki_gain</em> is the integral gain.</p>
+<p>Note that abrupt changes would affect the derivative term, gradual drift would affect the integral term, and anything in between would affect the proportional term.</p>
+<p>The PID model used in the PICpilot is slightly different. Some modules are rearranged, and a hierarchy of PID loops is present.</p>
+<h2 id="rate-control">Rate Control</h2>
+<p>Rate control is the basis of most aerial aircraft. The flaps on the wings of a plane control the rate at which it turns or rotates, but not the actual angle of the aircraft. For instance, if the flaps on a fixed wing aircraft were fully deflected, the aircraft would continuously spin out of control. It will not stop at a certain angle. In that sense, you control the <em>rate of angular rotation</em>, also known as the derivative. Likewise, the sensors on the aircraft (gyroscopes), measure the rate of rotation (derivative). This provides an interesting PID system. This PID loop only contains the derivative term. Hence the name "rate control".  The rate control diagram looks like this:</p>
+<p><img alt="Rate Control PID loop" src="http://i.imgur.com/mX1H9wo.png" /></p>
+<p><em>Rate control PID loop</em></p>
+<p>The equation that relates the input with the output is:</p>
+<p>Control Signal = (dx – dy) * Kd</p>
+<p>Control Signal = de * Kd</p>
+<h2 id="rate-control-in-the-code">Rate Control - In The Code</h2>
+<p>Rate Control takes place at the end of the program execution cycle. The code responsible for this can be found in the _AttitudeManager.c _and _OrientationControl.c _files. The function that completes the calculation is called:</p>
+<p>int controlSignal(float setpoint, float output, unsigned char type)</p>
+<p>This function is responsible for the angular rates of the plane. It contains the differential equations that are part of the PID control system. It calculates the derivative term of the control signal. The setpoint (target value required by the system) and the output (current state of the system) are both inputs to this function in terms of angles (deg/s or rad/s). The units depend on the value of SERVO_SCALE_FACTOR which can be changed for various units. The original value was degrees per second.</p>
+<h2 id="angular-control">Angular Control</h2>
+<p>Once the roll, pitch, and yaw of the aircraft are empirically controlled (using the rate control code), the roll, pitch, and yaw can then be controlled in terms of angles. In other words, this PI controller allows the aircraft to be commanded to maintain a certain angle in the air, such as a 30 degree bank angle. This allows the aircraft to be controlled by the autopilot to turn, as well as alter its altitude.</p>
+<p>An Inertial Measurement Unit (IMU) provides the sensory information required to control the plane in this manner. The IMU usually uses a Kalman filter and state estimation (using integration) to determine the position of the unit.</p>
+<p>The resulting angular control PI loop incorporates the rate control loop from the section above. The angular control diagram looks like this:</p>
+<p><img alt="Angular Control PID Loop" src="http://i.imgur.com/m1VRtS8.png" /></p>
+<p><em>Angular Control PID Loop</em></p>
+<p>The equations that relate r(t) and dx(t) are:</p>
+<p>dx(t) = (r – y) * Kp + Ki * integral(r-y,dt)</p>
+<p>dx(t) = e * Kp + Ki * integral(e,dt)</p>
+<h2 id="angular-control-in-the-code">Angular Control – In The Code</h2>
+<p>Angular control code takes place right before the rate control portion of the code. The code responsible for this can be found in the _AttitudeManager.c _and _OrientationControl.c _files. The function responsible for these calculations is called:</p>
+<p>int controlSignalAngles(float setpoint, float output, unsigned char type, float SERVO_SCALE_FACTOR_ANGLES)</p>
+<p>This function is responsible for the orientation of the plane. It contains the equations that model a PID control system. It calculates the proportional and integral term of the control signal. The setpoint (target value required by the system) and the output (current state of the system) are both inputs to this function in terms of angles (deg or rad), where the units depend on the value of SERVO_SCALE_FACTOR_ANGLES which can be changed for various units.</p>
+<h2 id="heading-control">Heading Control</h2>
+<p>Once rudimentary control of the aircraft is attained using the angular control loop and the rate control loop, the position of the aircraft can be controlled. As a result, the next control loop controls the heading of the aircraft. For instance, the plane can be directed at a 30 degree magnetic heading, and it will maintain that heading for as long as is required.</p>
+<p>The measurements come from an external GPS sensor. The sensor measurements can also come from other sources, but they need to be in units of degrees. Currently, the calculations are done in degrees.</p>
+<p>This control system uses the commonly recognized PID loop structure:</p>
+<p><img alt="Heading Control PID Loop" src="http://i.imgur.com/GF1ZfEg.png" /></p>
+<p><em>Heading Control PID Loop</em></p>
+<p>The equations that relate r(t) and h(t) are:</p>
+<p>r(t) = Kd * d(h – θ)/dt + (h – θ) * Kp + Ki * integral(h – θ,dt)</p>
+<p>r(t) = Kd * de/dt + e * Kp + Ki * integral(e,dt)</p>
+<h2 id="heading-control-in-the-code">Heading Control – In The Code</h2>
+<p>Heading control code takes place right before the angular control portion of the code. The code responsible for this can be found in the _AttitudeManager.c _and _OrientationControl.c _files. The function responsible for these calculations is called:</p>
+<p>int controlSignalHeading(int setpoint, int output)</p>
+<p>This function is responsible for steering the plane in the correct direction. It contains the equations that model a PID control system. It calculates the derivative, proportional, and integral term of the control signal. The setpoint (target value required by the system) and the output (current state of the system) are both inputs to this function in terms of angles (currently in degrees).</p>
+<p>This function completes a comparison between the setpoint and the output, and then decides if it should turn left or right. When the setpoint and the output are subtracted, the resulting error is set to be between -180 and +180, where -180 degrees indicates the requirement to bank left and +180 degrees indicates the requirement to bank right.</p>
+<p>The remainder of the PID control is the same. An integrator, derivative, and proportional term is present.</p>
+<h2 id="altitude-and-throttle-control">Altitude and Throttle Control</h2>
+<p>Altitude and Throttle control are two separate control loops. However, they are highly dependent on one another. For instance, if the throttle is increased, the plane has a natural tendency to gain altitude. Likewise, if the throttle is decreased, the plane has a natural tendency to lose altitude. Likewise, the opposite is true; if the plane gains or losses altitude, the airspeed of the aircraft changes.</p>
+<p>Both altitude and throttle control is established by the use of PID loops. Currently, altitude uses the <em>proportional</em> and _derivative _terms, whereas, throttle uses only the _proportional _term. You can determine this by looking at the gain settings for each PID loop (if the gain is zero, the respective PID term is unused).</p>
+<p>Generally, the throttle control should be regulated using an airspeed sensor, in order to keep the airspeed constant. However, in cases where there is no airspeed sensor (such as in SPIKE), altitude is used directly to calculate both the throttle and the pitch angle (to change the altitude). This directly affects airspeed and altitude, and if properly tuned is quite effective. This is the appropriate PID diagram for a non-airspeed sensor setup:</p>
+<p><img alt="Altitude and Throttle Control PID Loop - No airspeed" src="http://i.imgur.com/0GwtClc.png" /></p>
+<p><em>Altitude and Throttle Control PID Loop – No airspeed sensor</em></p>
+<p><img alt="ltitude and Throttle Control PID Loop - With airspeed" src="http://i.imgur.com/pvEm8KO.png" /></p>
+<p><em>Altitude and Throttle Control PID Loop – Airspeed sensor</em></p>
+<h2 id="altitude-and-throttle-control-in-the-code">Altitude and Throttle Control – In The Code</h2>
+<p>In the PIC pilot software, altitude control is dependent on a PID loop. Currently, the integral term is implemented, but unused. On the other hand, the throttle control only uses the proportional term and the integral term. The derivative term is negligible. Currently, the integral term is unused (for SPIKE) and thus only the proportional term is used. The function responsible for the PID control of the altitude is:</p>
+<p>int controlSignalAltitude(int sp_Altitude,int gps_Altitude);</p>
+<p>This function is responsible for the altitude control of the plane. It contains the equations that model a PID control system. It calculates the proportional, integral, and derivative terms of the control signal. The setpoint (target value required by the system) and the output (current state of the system) are both inputs to this function in terms of meters above the initial starting point.</p>
+<p>The two parameters used to call the function are the setpoint (sp_Altitude) and the sensor output (gps_Altitude). These are then used to calculate the corresponding error.</p>
+<p>The function responsible for the PID control of the throttle is:</p>
+<p>int controlSignalThrottle(int setpoint, int output);</p>
+<p>This function is responsible for the throttle control of the plane. It contains the equations that model a PID control system. It calculates the proportional, integral, and derivative terms of the control signal. The setpoint (target value required by the system) and the output (current state of the system) are both inputs to this function in terms of percentage from no throttle (0%) to full throttle (100%).</p>
+<p>The two parameters used to call the function are the setpoint and the sensor output. These are then used to calculate the corresponding error.</p>
+<h2 id="total-pid-control-overview">Total PID Control Overview</h2>
+<p>The total control diagram can be approximated with the flow chart below:</p>
+<p><img alt="Total PID System" src="http://i.imgur.com/mQi5zdb.png" /></p>
+<h2 id="tuning-pid-loops">Tuning PID Loops</h2>
+<p>As explained above, PID loops keep unstable systems stable via input through (primarily) electronic means. In order to do so, one must analyze the transfer functions of the system and determine PID control gains, or more practically develop these gains from empirically testing the system.</p>
+<p>The empirical method which WARG employs in the PID tuning is called the <a href="http://en.wikipedia.org/wiki/Ziegler%E2%80%93Nichols_method">Zieger-Nichols Method</a>. This method involves a tuning procedure with the assistance of the following chart:</p>
+<table>
+<thead>
+<tr>
+<th><em>Control Type</em></th>
+<th><em>Kp</em></th>
+<th><em>Ki</em></th>
+<th><em>Kd</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P</td>
+<td>0.5Ku</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>PI</td>
+<td>0.45Ku</td>
+<td>1.2Kp/Tu</td>
+<td>-</td>
+</tr>
+<tr>
+<td>PD</td>
+<td>0.8Ku</td>
+<td>-</td>
+<td>KpTu/8</td>
+</tr>
+<tr>
+<td>Classic PID</td>
+<td>0.6Ku</td>
+<td>2Kp/Tu</td>
+<td>KpTu/8</td>
+</tr>
+<tr>
+<td>Pessen Integral Rule</td>
+<td>0.7Ku</td>
+<td>2.5Kp/Tu</td>
+<td>3KpTu/20</td>
+</tr>
+<tr>
+<td>Some Overshoot</td>
+<td>0.33Ku</td>
+<td>2Kp/Tu</td>
+<td>KpTu/3</td>
+</tr>
+<tr>
+<td>No Overshoot</td>
+<td>0.2Ku</td>
+<td>2Kp/Tu</td>
+<td>KpTu/3</td>
+</tr>
+</tbody>
+</table>
+<p>As a general rule, flying a vehicle requires minimal overshoot and maximum disturbance rejection. The "Some Overshoot" control type is unwanted in aerial applications.</p>
+<p>The tuning procedure is as follows:</p>
+<ol>
+<li>Begin with roll. Increase the proportional gain until the plane oscillates with a constant period and amplitude.</li>
+<li>Retrieve the data, plot it in excel and determine the period of oscillation (Tu­). The proportional gain at which the vehicle began to oscillate is the Ultimate Gain (Ku). Use the above chart to determine the appropriate gain values.</li>
+<li>Reset all the gains. Repeat steps 1 and 2 for pitch and yaw (if need be).</li>
+<li>Repeat steps 1 and 2, but with all the calculated gains running on the system. This step will fine tune all the values since pitch, roll, and yaw are interdependent. You will only need to repeat this step, whenever making changes to the PID setup or any crucial component on the system itself.</li>
+</ol></div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+                <p>Copyright <a href="http://www.uwarg.com"> University of Waterloo Aerial Robotics Group</a></p>
+            
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="University of Waterloo Aerial Robotics Group">
+        <link rel="canonical" href="http://www.docs.uwarg.com/picpilot/attitude-control/">
+        <link rel="shortcut icon" href="../../../../favicon.ico">
+        
+
+	<title>Attitude Control - WARG Docs</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">WARG Docs</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../groundstation/">Groundstation</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">PicPilot <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../">Table of Contents</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../introduction/">Introduction</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../pid-loops/">PID Loops</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../pwm-io/">PWM and IO</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../uart/">UART</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../spi/">SPI</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../direct-memory-access/">Direct Memory Access</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../i2c/">I2C</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../datalink/">Datalink</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../analog-to-digital-converter/">Analog to Digital Converter</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../sensors-and-peripherals/">Sensors and Peripherals</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Attitude Control</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../path-management/">Path Management</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../faq/">FAQ</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../computervision/">Computer Vision</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bootcamps <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../bootcamp/mechanical/">Mechanical</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li >
+                        <a rel="next" href="../sensors-and-peripherals/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../path-management/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/UWARG/WARG-Docs">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#attitude-control">Attitude Control</a></li>
+        
+            <li><a href="#initialization">Initialization</a></li>
+        
+            <li><a href="#aggregation-of-data">Aggregation of Data</a></li>
+        
+            <li><a href="#error-analysis-pid-control">Error Analysis (PID control)</a></li>
+        
+            <li><a href="#output-corrections">Output Corrections</a></li>
+        
+            <li><a href="#control-levels">Control Levels</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="attitude-control">Attitude Control</h1>
+<p>Attitude Control is very similar regardless of the aircraft which is being used. The end goal is to be able to keep the aircraft stable and in control. The way in which this is achieved is always very similar.</p>
+<p>In the PICpilot, we use PID loops to manage our system. Although there are other types of controllers available, PID controllers are the best option due to their reliability, accuracy, and simplicity. The section on PID loops has a detailed explanation of how they work, and how they work together.</p>
+<p>This section mostly deals with the <em>AttitudeManager.c</em> file, as the name implies.</p>
+<p>The attitude manager has the 3 main goals, as well as a side task. The 3 main goals include the aggregation of status data (inputs, sensors, etc.), error analysis on the status of the aircraft, and corrections to the aircraft. The side task involves sending all this data to the ground station, as well as receiving from the ground station.</p>
+<h2 id="initialization">Initialization</h2>
+<p>The initialization process involves beginning communication with all components. The process involves the following steps:</p>
+<ol>
+<li>Initializing communication to the Path Manager via SPI and DMA</li>
+<li>VN 100 is initialized</li>
+<li>VN 100 is offset according to a rotation matrix</li>
+<li>VN 100 is then calibrated with confidence parameters for the X/Y/Z magnetometers, accelerometers, and gyroscopes</li>
+<li>PWM input and output is specified according to the used channels</li>
+</ol>
+<p>This can be found in the <em>attitudeInit()</em> function in the <em>AttitudeManager.c</em> file.</p>
+<h2 id="aggregation-of-data">Aggregation of Data</h2>
+<p>Using the initialized sensors from the prior section, the vehicle can now collect data systematically.</p>
+<p>Every loop, new data is acquired from the DMA/SPI interface connected to the Path Manager chip. Data acquired from this chip includes the time, heading, speed, longitude, latitude, altitude, number of satellites, position fix, battery level, waypoint index, set point altitude, and set point heading.</p>
+<p>Next, data is acquired from the PWM inputs. This includes stick positions, which determine the roll, pitch, yaw, and throttle of the aircraft. These inputs are scaled to values ranging from -1024 to 1024.</p>
+<p>Finally, the VectorNav is polled for the latest rotational data. The roll, pitch, and yaw rate data is acquired through the <em>VN100_SPI_GetRates(0, (float*) &amp;imuData)</em> function call. The roll, pitch, and yaw angles can be determined via the <em>VN100_SPI_GetYPR(0, &amp;imuData[YAW], &amp;imuData[PITCH], &amp;imuData[ROLL])</em> function call.</p>
+<p>This concludes all data acquisition. The next step involves analyzing the error.</p>
+<h2 id="error-analysis-pid-control">Error Analysis (PID control)</h2>
+<p>PID control works on the basis of minimizing error. The majority of the attitude manager involves consecutive PID loops correcting specific portions of flying an aircraft.</p>
+<p>All the PID loop code can be found in the <em>OrientationControl.c</em> file. It is called from the AttitudeManager.c code.</p>
+<h3 id="altitude">Altitude</h3>
+<p>The altitude is controlled through a standard PID loop. This can be found in the code:</p>
+<pre><code>    sp_PitchAngle = controlSignalAltitude(sp_Altitude,(int)gps_Altitude);
+
+    if (sp_PitchAngle &gt; MAX_PITCH_ANGLE)
+
+        sp_PitchAngle = MAX_PITCH_ANGLE;
+
+    if (sp_PitchAngle &lt; -MAX_PITCH_ANGLE)
+
+        sp_PitchAngle = -MAX_PITCH_ANGLE;
+</code></pre>
+<p>Logically, the pitch angle is determined from the desired altitude. If the plane is too low, the pitch angle will be positive (up). If the plane is too high, the pitch angle will be negative (down). The pitch angle is then checked to be within "safety limits".</p>
+<h3 id="throttle">Throttle</h3>
+<p>Like the altitude PID loop, the throttle also has PID loop, which is also based on the altitude:</p>
+<pre><code>    control_Throttle = sp_ThrottleRate + controlSignalThrottle(sp_Altitude, (int)gps_Altitude);
+
+    if (control_Throttle &gt; MAX_PWM){
+
+        control_Throttle = MAX_PWM;
+
+    }
+
+    else if (control_Throttle &lt; MIN_PWM){
+
+        control_Throttle = MIN_PWM;
+
+    }
+</code></pre>
+<p>Logically, if the plane needs to climb, you need to increase the throttle (otherwise it will stall due to low airspeed). Likewise, if the plane needs to reduce its altitude, to prevent high airspeeds, the plane decreases the throttle. If the plane is perfectly positioned, a constant throttle is maintained as per the <em>sp_ThrottleRate</em> variable. Once again, the throttle is limited within the legal limits of the throttle (to ensure the throttle doesn't become negative or larger than 100%).</p>
+<h3 id="heading">Heading</h3>
+<p>The heading control code looks as such:</p>
+<pre><code>    while (sp_Heading &gt; 360)
+
+        sp_Heading -=360;
+
+    while (sp_Heading &lt; 0)
+
+        sp_Heading +=360;
+
+        sp_HeadingRate = controlSignalHeading(sp_Heading, gps_PositionFix==2?gps_Heading:(int)imu_YawAngle);
+
+        //Approximating Roll angle from Heading
+
+        sp_RollAngle = sp_HeadingRate;//(int)(atan((float)(sp_HeadingRate)) * PI/180.0);
+
+    if (sp_RollAngle &gt; MAX_ROLL_ANGLE)
+
+        sp_RollAngle = MAX_ROLL_ANGLE;
+
+    if (sp_RollAngle &lt; -MAX_ROLL_ANGLE)
+
+        sp_RollAngle = -MAX_ROLL_ANGLE;
+</code></pre>
+<p>As you can see, the input is the heading and the resulting output is a roll angle. In other words, if there is a greater error in the heading, a larger roll angle is established to correct for the heading error.</p>
+<p>The first two while loops take into account any angle overflow or underflow, in other words, if the value is above 360 or negative, it is scaled to be between 0 and 360.</p>
+<p>Once again the roll value is limited to a reasonable value, to prevent excessive maneuvers.</p>
+<h3 id="angles">Angles</h3>
+<p>The code to maintain the angular roll and pitch of the aircraft look as such (one statement for each):</p>
+<pre><code>sp_ComputedRollRate = controlSignalAngles(sp_RollAngle,  imu_RollAngle, ROLL, -(SP_RANGE) / (MAX_ROLL_ANGLE));
+</code></pre>
+<p>Note that depending on the on the input angles, the output is a "rate". It is an angular rate. In other words, if the difference between the setpoint and the output is large, the angular rate will also be large.</p>
+<h3 id="angular-rate">Angular Rate</h3>
+<p>The result from the angular PID loop gives rise to the angular rate PID loop. This loop is often acknowledged as a stabilizing system, where small quick vibrations are accounted for.</p>
+<pre><code>control_Roll = controlSignal((sp_ComputedRollRate / SERVO_SCALE_FACTOR), imu_RollRate, ROLL);
+</code></pre>
+<p>The output of this function completes the PID pipeline. The value of <em>control_Roll</em>, or the equivalent variable for the pitch for that matter, is then directly applied to the PWM module, in order to create a correction to the system (using the flaps, elevators, rudder, or what not).</p>
+<h2 id="output-corrections">Output Corrections</h2>
+<p>Once the calculations have been made to determine what corrections should be made to the system, it is then time to physically alter the system based on the calculations.</p>
+<p>This involves output to the PWM module. After a series of checks, to ensure that all values are within the maximum and minimum parameters for the PWM signal, a PWM call is made to the appropriate channel:</p>
+<pre><code>setPWM(1, control_Roll + rollTrim);
+</code></pre>
+<p>As long as the PWM module was initialized, there shouldn't be any problem. The vehicle should move its servos appropriately.</p>
+<h2 id="control-levels">Control Levels</h2>
+<p>The control levels implemented in the attitude manager are an important part of the testing process. These levels determine which input sources have primary control over the aircraft, as well as how the input translates into flight.</p>
+<p>For instance, when testing, one may wish to have control of the throttle, while the roll and pitch is controlled by the autopilot. Such control is implemented in the code.</p>
+<p>As it is evident above, there a separate sections of code, which control individual PID loops. The control levels change the source of the input to the PIDs using a simple bit mask. The control level is actually determined by a single integer. Each value of the integer represents a different <em>control level.</em> As a result, a bit mask is placed within an, if statement to determine whether or not a specific element of control is enabled or disabled.</p>
+<p>For instance, take this scenario:</p>
+<pre><code>if ((controlLevel &amp; ROLL_CONTROL_SOURCE) == 0 &amp;&amp; (controlLevel &amp; HEADING_CONTROL_ON) == 0)
+
+    sp_RollAngle = (int)((-sp_RollRate / ((float)SP\_RANGE / MAX_ROLL_ANGLE) ));
+</code></pre>
+<p>This snippet of code, converts the controller input into a roll angle. For instance, if the stick is centered, the plane will be at a 0° roll angle. If the pilot steers left, the plane will angle itself left at that same angle. The <em>if</em> statement contains two bit masks. Note that the <em>controlLevel</em> variable has a <em>bitwise AND </em>(&amp;) applied to it.</p>
+<p>Therefore, if the controlLevel is (in binary):</p>
+<p>0b00000000 00010011</p>
+<p>The code above will run, because a <em>AND</em> bit mask of 0b00001000, will return a value of zero, just as well as 0b00000010 00000000 will also return a logical value of zero.</p>
+<p>This type of logic is applied to multiple sections of the attitude manager code.</p></div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+                <p>Copyright <a href="http://www.uwarg.com"> University of Waterloo Aerial Robotics Group</a></p>
+            
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

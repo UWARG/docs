@@ -22,13 +22,43 @@
         }, 
         {
             "location": "/groundstation/", 
-            "text": "Welcome to the Groundstation docs!\n\n\nheader2", 
-            "title": "Groundstation"
+            "text": "Welcome to the Groundstation docs!\n\n\nThe groundstation is the software running on the ground computer communicating to the plane through the \ndata-relay-station\n. This wiki describes everything you need to know about it in order to start contributing.\n\n\nTable of Contents\n\n\n\n\nIntroduction", 
+            "title": "Table of Contents"
         }, 
         {
             "location": "/groundstation/#welcome-to-the-groundstation-docs", 
-            "text": "header2", 
+            "text": "The groundstation is the software running on the ground computer communicating to the plane through the  data-relay-station . This wiki describes everything you need to know about it in order to start contributing.", 
             "title": "Welcome to the Groundstation docs!"
+        }, 
+        {
+            "location": "/groundstation/#table-of-contents", 
+            "text": "Introduction", 
+            "title": "Table of Contents"
+        }, 
+        {
+            "location": "/groundstation/introduction/", 
+            "text": "Introduction\n\n\nThe groundstation is a desktop application based on \nNW.js\n. This section will explain what NW.js and \nNode.js\n is, as well as setting up your development environment for building the application.\n\n\nWhat is Javascript and Node.js\n\n\nAs you may already know, javascript is a programming language. It's syntax is very similar to other C-based languages such as C++, Java, and so forth. Javascript was initially intented to only run on the browser, and one of it's biggest limitations is that it doesn't have file access to your computer (for security purposes). This limitation prevented developers from using it other than for web application purposes. \n\n\nEnter \nNode.js\n\n\nNode.js is a cross platform javascript runtime built on Chrome's V8 JavaScript engine. A lot of fancy words there. What this basically means is that Node provides a way for you to run javascript code natively on your computer without the need for a browser. It's essentially an interpreter. In the same way you can run python scripts with \npython script.py\n you can run javascript scripts with \nnode script.js\n. It's important to note that node.js isn't a language itself. You write javascript code and then run it with node.js to execute it. \n\n\nWhat is NW.js\n\n\nOk, so where does \nNW.js\n fit in all this? Why do we need it if we can already write native applications with node.js and javascript. You can think of NW.js as a GUI framework. Usually making a GUI, especially one that's cross-platform (being able to run on Linux, Mac, and Windows) you have to work with very low level graphic libraries and other weird shenanigans that are specific to each OS you're working it. That's what NW.js provides. It abstracts the creation of GUI's and allows you to create cross-platform desktop applications using a single interface. It's the equivalent of the Swing framework for Java or Qt for C++.\n\n\nNW.js itself runs on top of node. How NW.js works is pretty simple. Basically it opens up a customized version of chrome and your app runs through there. So what you're essentially building is a web page, and using javascript to add functionality to the web page.\n\n\nInstallation\n\n\n\n\n\n\nThe first step is cloning the repository. Open up the terminal and run: \n\ngit clone https://github.com/UWARG/WARG-Ground-Station\n\n\n\n\n\n\nThen you need to install Node.js. You can download and install it \nhere\n. Download Node version 5 and above preferably. After you've installed node you should have the \nnode\n command available for you to use in your terminal. Run \nnode help\n to verify that you've successfuly installed node and make sure you're running the right version.\n\n\n\n\n\n\nNow that you've installed node, navigate to the groundstation project directory (the folder that was created when you did the git clone). Then run \nnpm install\n to install all of the apps dependencies. If you get weird errors, try running your terminal in administrative mode (or sudo for linux users).\n\n\n\n\n\n\nNow you're ready to start the app up. Run \nnpm start\n to start the application. You should see a window appear of the groundsation.\n\n\n\n\n\n\nNow you need to download the offline satelite files that the application uses for it's map. \nDownload them here.\n. Extract the zip into the \nassets\n folder of the project directory (so you should have a folder called \nsat_tiles\n in the assets folder). \n\n\n\n\n\n\nCongratulations! You should now have the groundstation installed on your computer ready for you to develop on!", 
+            "title": "Introduction"
+        }, 
+        {
+            "location": "/groundstation/introduction/#introduction", 
+            "text": "The groundstation is a desktop application based on  NW.js . This section will explain what NW.js and  Node.js  is, as well as setting up your development environment for building the application.", 
+            "title": "Introduction"
+        }, 
+        {
+            "location": "/groundstation/introduction/#what-is-javascript-and-nodejs", 
+            "text": "As you may already know, javascript is a programming language. It's syntax is very similar to other C-based languages such as C++, Java, and so forth. Javascript was initially intented to only run on the browser, and one of it's biggest limitations is that it doesn't have file access to your computer (for security purposes). This limitation prevented developers from using it other than for web application purposes.   Enter  Node.js  Node.js is a cross platform javascript runtime built on Chrome's V8 JavaScript engine. A lot of fancy words there. What this basically means is that Node provides a way for you to run javascript code natively on your computer without the need for a browser. It's essentially an interpreter. In the same way you can run python scripts with  python script.py  you can run javascript scripts with  node script.js . It's important to note that node.js isn't a language itself. You write javascript code and then run it with node.js to execute it.", 
+            "title": "What is Javascript and Node.js"
+        }, 
+        {
+            "location": "/groundstation/introduction/#what-is-nwjs", 
+            "text": "Ok, so where does  NW.js  fit in all this? Why do we need it if we can already write native applications with node.js and javascript. You can think of NW.js as a GUI framework. Usually making a GUI, especially one that's cross-platform (being able to run on Linux, Mac, and Windows) you have to work with very low level graphic libraries and other weird shenanigans that are specific to each OS you're working it. That's what NW.js provides. It abstracts the creation of GUI's and allows you to create cross-platform desktop applications using a single interface. It's the equivalent of the Swing framework for Java or Qt for C++.  NW.js itself runs on top of node. How NW.js works is pretty simple. Basically it opens up a customized version of chrome and your app runs through there. So what you're essentially building is a web page, and using javascript to add functionality to the web page.", 
+            "title": "What is NW.js"
+        }, 
+        {
+            "location": "/groundstation/introduction/#installation", 
+            "text": "The first step is cloning the repository. Open up the terminal and run:  git clone https://github.com/UWARG/WARG-Ground-Station    Then you need to install Node.js. You can download and install it  here . Download Node version 5 and above preferably. After you've installed node you should have the  node  command available for you to use in your terminal. Run  node help  to verify that you've successfuly installed node and make sure you're running the right version.    Now that you've installed node, navigate to the groundstation project directory (the folder that was created when you did the git clone). Then run  npm install  to install all of the apps dependencies. If you get weird errors, try running your terminal in administrative mode (or sudo for linux users).    Now you're ready to start the app up. Run  npm start  to start the application. You should see a window appear of the groundsation.    Now you need to download the offline satelite files that the application uses for it's map.  Download them here. . Extract the zip into the  assets  folder of the project directory (so you should have a folder called  sat_tiles  in the assets folder).     Congratulations! You should now have the groundstation installed on your computer ready for you to develop on!", 
+            "title": "Installation"
         }, 
         {
             "location": "/picpilot/", 
@@ -454,6 +484,16 @@
             "location": "/bootcamp/mechanical/#completion-of-bootcamp", 
             "text": "Upon the approved completion of the Bootcamp by a Team Lead you are now eligible to work on other tasks with the team! If you have any feedback you would like to give to make this Bootcamp better please let a Team Lead know as we want this to be the best and most informative introduction to the team as possible.", 
             "title": "Completion of Bootcamp"
+        }, 
+        {
+            "location": "/tutorials/git/", 
+            "text": "Git and Github Tutorial\n\n\nThis page is still a work in progress. Please check back later.", 
+            "title": "Git and Github"
+        }, 
+        {
+            "location": "/tutorials/git/#git-and-github-tutorial", 
+            "text": "This page is still a work in progress. Please check back later.", 
+            "title": "Git and Github Tutorial"
         }
     ]
 }

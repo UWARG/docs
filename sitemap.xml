@@ -10,11 +10,19 @@
     
 
     
+        
     <url>
      <loc>http://www.docs.uwarg.com/groundstation/</loc>
      <lastmod>2016-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/groundstation/introduction/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     
@@ -123,6 +131,16 @@
         
     <url>
      <loc>http://www.docs.uwarg.com/bootcamp/mechanical/</loc>
+     <lastmod>2016-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/tutorials/git/</loc>
      <lastmod>2016-01-06</lastmod>
      <changefreq>daily</changefreq>
     </url>

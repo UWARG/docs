@@ -29,6 +29,18 @@
      <changefreq>daily</changefreq>
     </url>
         
+    <url>
+     <loc>http://www.docs.uwarg.com/groundstation/tutorial/</loc>
+     <lastmod>2016-01-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/groundstation/project-structure/</loc>
+     <lastmod>2016-01-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     

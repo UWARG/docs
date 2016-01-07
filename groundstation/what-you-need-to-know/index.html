@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="University of Waterloo Aerial Robotics Group">
-        <link rel="canonical" href="http://www.docs.uwarg.com/groundstation/introduction/">
+        <link rel="canonical" href="http://www.docs.uwarg.com/groundstation/what-you-need-to-know/">
         <link rel="shortcut icon" href="../../../../favicon.ico">
         
 
-	<title>Introduction - WARG Docs</title>
+	<title>What you need to know - WARG Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -71,14 +71,14 @@
 
                         
                             
-<li class="active">
-    <a href="./">Introduction</a>
+<li >
+    <a href="../introduction/">Introduction</a>
 </li>
 
                         
                             
-<li >
-    <a href="../what-you-need-to-know/">What you need to know</a>
+<li class="active">
+    <a href="./">What you need to know</a>
 </li>
 
                         
@@ -232,12 +232,12 @@
                 </li>
                 
                     <li >
-                        <a rel="next" href="../">
+                        <a rel="next" href="../introduction/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../what-you-need-to-know/">
+                        <a rel="prev" href="../../picpilot/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -262,53 +262,87 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#introduction">Introduction</a></li>
+        <li class="main active"><a href="#what-you-need-to-know">What you need to know</a></li>
         
-            <li><a href="#communication-path">Communication Path</a></li>
+            <li><a href="#javascript">Javascript</a></li>
         
-            <li><a href="#what-is-javascript-and-nodejs">What is Javascript and Node.js?</a></li>
+            <li><a href="#nodejs">Node.js</a></li>
         
-            <li><a href="#what-is-nwjs">What is NW.js?</a></li>
+            <li><a href="#javascript-frameworks">Javascript Frameworks</a></li>
         
-            <li><a href="#installation">Installation</a></li>
+            <li><a href="#libraries-used">Libraries Used</a></li>
         
     
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="introduction">Introduction</h1>
-<p>The groundstation is a desktop application based on <a href="nwjs.iohttp://nwjs.io/">NW.js</a>. This section will explain what NW.js and <a href="https://nodejs.org/en/">Node.js</a> is, as well as setting up your development environment for building the application.</p>
-<h2 id="communication-path">Communication Path</h2>
-<p>The groundstation talks directly to the <a href="https://github.com/UWARG/data-relay-station">data-relay-station</a>. The data-relay-station is a simple python server that acts as the middleman between the PicPilot running on the plane and the groundstation running at the base. The PicPilot sends data using it's xbee module, which the tracking antenna receives relaying it to the data relay station, which sends it to the groundstation. The groundstation can then, based on the data received, send commands back through the same path. As seen from this picture, the groundstation acts as one of the 'clients' to the data relay station (the raspberry pi).</p>
-<p><img alt="High level overview" src="../../images/groundstation/warg-fleet-diagram.png" /></p>
-<h2 id="what-is-javascript-and-nodejs">What is Javascript and Node.js?</h2>
-<p>As you may already know, javascript is a programming language. It's syntax is very similar to other C-based languages such as C++, Java, and so forth. Javascript was initially intended to only be run on the browser, and one of it's biggest limitations is that it doesn't have file access to your computer (for security purposes). This limitation prevented developers from using it other than for web application purposes. </p>
-<p><em>Enter <a href="https://nodejs.org/en/">Node.js</a></em></p>
-<p>Node.js is a cross platform javascript runtime built on Chrome's V8 JavaScript engine. A lot of fancy words there. What this basically means is that Node provides a way for you to run javascript code natively on your computer without the need for a browser. It's essentially an interpreter. In the same way you can run python scripts with <code>python script.py</code> you can run javascript scripts with <code>node script.js</code>. It's important to note that node.js isn't a language itself. You write javascript code and then run it with node.js to execute it. </p>
-<h2 id="what-is-nwjs">What is NW.js?</h2>
-<p>Ok, so where does <a href="http://nwjs.io/">NW.js</a> fit in all this? Why do we need it if we can already write native applications with node.js and javascript. You can think of NW.js as a GUI framework. Usually making a GUI, especially one that's cross-platform (being able to run on Linux, Mac, and Windows) you have to work with very low level graphic libraries and other weird shenanigans that are specific to each OS you're working it. That's what NW.js provides. It abstracts the creation of GUI's and allows you to create cross-platform desktop applications using a single interface. It's the equivalent of the Swing framework for Java or Qt for C++.</p>
-<p>NW.js itself runs on top of node. How NW.js works is pretty simple. Basically it opens up a customized version of chrome and your app runs through there. So what you're essentially building is a web page, and using javascript to add functionality to the web page.</p>
-<h2 id="installation">Installation</h2>
-<ol>
-<li>
-<p>The first step is cloning the repository. Open up the terminal and run: 
-<code>git clone https://github.com/UWARG/WARG-Ground-Station</code></p>
-</li>
-<li>
-<p>Then you need to install Node.js. You can download and install it <a href="https://nodejs.org/en/">here</a>. Download Node version 5 and above preferably. After you've installed node you should have the <code>node</code> command available for you to use in your terminal. Run <code>node help</code> to verify that you've successfuly installed node and make sure you're running the right version.</p>
-</li>
-<li>
-<p>Now that you've installed node, navigate to the groundstation project directory (the folder that was created when you did the git clone). Then run <code>npm install</code> to install all of the apps dependencies. If you get weird errors, try running your terminal in administrative mode (or sudo for linux users).</p>
-</li>
-<li>
-<p>Now you're ready to start the app up. Run <code>npm start</code> to start the application. You should see a window appear of the groundsation.</p>
-</li>
-<li>
-<p>Now you need to download the offline satelite files that the application uses for it's map. <a href="https://drive.google.com/file/d/0BwjduHozuvOiaUFzV2dZdncyZnc/view">Download them here.</a>. Extract the zip into the <code>assets</code> folder of the project directory (so you should have a folder called <code>sat_tiles</code> in the assets folder). </p>
-</li>
-</ol>
-<p>Congratulations! You should now have the groundstation installed on your computer ready for you to develop on! </p></div>
+<h1 id="what-you-need-to-know">What you need to know</h1>
+<p>This section will help to highlight <em>most</em> of what you need to know before you can start developing. </p>
+<h2 id="javascript">Javascript</h2>
+<p>If you already know Javascript, that's awesome. If you don't, then that's fine too. If you're already familiar with another programming language, you'll find javascript really similar and probably be able to pick it up as you start the developing the groundstation. If you don't know programming, it's highly suggested you take this <a href="https://www.codecademy.com/learn/javascript">Codeacademy Javascript Course</a>. The estimated course time is only 10 hours (which is really little if you think about it) and at the end you should be confident in basic programming concepts as well as javascript syntax. The most important javascripts concepts you need to know are: </p>
+<ul>
+<li>The significance of var and when and when not to use it</li>
+<li>That everything in javascript is an object, including functions</li>
+<li>The 3 different ways of declaring javascript objects, and how they are different</li>
+</ul>
+<h2 id="nodejs">Node.js</h2>
+<p>So you don't need to read all of the gigantic <a href="https://nodejs.org/dist/latest-v5.x/docs/api/">Node.js API Documentation</a>, though you should reference it when you need to. Instead all you really need to know about node.js is its built-in package manager and the incredible power of modules that it provides you.</p>
+<h3 id="nodejs-modules">Node.js modules</h3>
+<p>So what are these modules and why are they useful? If you look at the groundstation syntax and other node.js examples online, you may notice the key word <code>require</code> being used a lot. This isn't a native javascript function. It's actually a feature node.js provides you. </p>
+<p>Usually in webpages scripts execute as soon as you load them. If you want to devide your application into different parts, you would have had to split up your main javascript file into different files and load them in the order you want them to be run in. This approach is cumbersome and leads to bad practices. The biggest bad practice is the creation of global variables everywhere. Global variables make your application harder to maintain and debug.</p>
+<p>So what do these modules do? Each module is basically a javascript file, and you call the javascript file by calling <code>require('filelocation/filename)</code>. But how is this different than loading a script on your browser? Well, when you call require on a module, everything in that module runs in its own scope (so you're free to declare global variables in that file without affecting the rest of the application) and the return result of the require function returns whatever you want the module to return.</p>
+<p>Lets take an example comparing traditional methods and using require. </p>
+<h5 id="using-regular-javascript">Using Regular Javascript</h5>
+<pre><code class="html">&lt;head&gt;
+    &lt;script&gt;
+        //this is my module
+        var private_sensitive_variable=6;
+
+        //this is the function that i want my module to return
+        function hello(){
+            console.log('hello'+private_sensitive_variable); //will output hello 6
+        }
+    &lt;/script&gt;
+    &lt;script&gt;
+    //this is a completely seperate module
+    hello(); //i can call this function from the above module which is what i wanted
+
+    console.log(private_sensitive_variable); //this will output 6, which is NOT what I wanted since the variable was declared globally within the above script/module
+    &lt;/script&gt;
+&lt;/head&gt;
+</code></pre>
+
+<p>This is a relatively simple example, however you can see that if we keep doing this, as the application becomes large, it'll become more of a pain to manage the application and keep track of what needs what. Here's the beauty of modules. They provide dependency management, so you can clearly see what each module depends on. In the above example if I reposition the second script above the first I'll get an exception thrown, since the function hello and the variable weren't declared yet. Now lets see how we can handle the same scenario using node modules.</p>
+<h5 id="using-nodejs-modules">Using Node.js Modules</h5>
+<pre><code class="javascript">//this is hello.js
+var private_sensitive_variable=6;
+
+var hello=function(){
+    console.log('hello'+private_sensitive_variable); //will output hello 6
+}
+
+module.exports=hello;
+</code></pre>
+
+<pre><code class="javascript">//this is app.js
+var hello=require('hello');
+
+hello(); //will output hello 6
+
+console.log(private_sensitive_variable); //will throw an exception as this variable hasn't been declared globally or in the context of this module, which is good!
+</code></pre>
+
+<p>You may have noticed the <code>module.exports=hello;</code> line in the <code>hello.js</code> module. What this tells node is the result of calling <code>require</code> on the hello.js module will return the variable/function hello. In <code>app.js</code> we use this module by calling <code>var hello=require('hello')</code>. The variable hello now contains whatever the <code>hello.js</code> module exported, which in this case is a function.</p>
+<p>You can see that even though theres more abstraction in the second method, the code has become far more maintanable. Now calling <code>var</code> will not carelessly create global variables over our application. It will only create them in the scope of the module. We can also see the dependencies on our modules immediately, and keep track of them easily.</p>
+<h3 id="node-package-manager-npm">Node Package Manager (npm)</h3>
+<p>NPM stands for the Node Package Manager. It is based off the concept of node.js modules. It's basically a built-in dependency manager for node.js. Think of it as a plugin manager if you will, similar to pip for python or composer for php. One of the main advantages of using node.js is the abundance of libraries and modules that you can install and use in your application. You can find and search for all the packages available for use in the <a href="https://www.npmjs.com/">NPM registry</a>. </p>
+<p>The most important command of npm is <code>npm install &lt;packagename&gt;</code>. This will install a package in your project directory. Doing an <code>npm install</code> without any parameters at the project root will tell npm to look in your projects <code>package.json</code> file and install your apps dependencies. One of the dependencies that the groundstation relies on is the NW.js module. To try out installing a package globally, try running <code>npm install -g nw</code>. This will install the NW.js module globally on your computer, allowing you to use the <code>nw</code> command. You can use this command to start up the groundstation as well, by navigating to the groundstation directory and running <code>nw</code> in the terminal.</p>
+<h2 id="javascript-frameworks">Javascript Frameworks</h2>
+<p>The groundstation uses <a href="http://backbonejs.org/">Backbone</a> and <a href="http://marionettejs.com/">Marionette</a> as it's javascript frameworks. Why use javascript frameworks at all? To help organize the code in an MVC design pattern. Basically, rather than having all of our system logic (logic responsible for core functionality) and logic for manipulating the view (ie button state, checking user input) in one place, using these frameworks helps split them up to create more maintanable and manageble code. The design pattern it helps enforce is called MVC (Model View Controller) which you can read up on if you'd like.</p>
+<p>You don't have to read the documentation on these frameworks to start working on the groundstation. You'll get a grasp on it after reading the tutorial (next section) and working on the groundstation. </p>
+<h2 id="libraries-used">Libraries Used</h2>
+<p>One of the awesome things about javascript is the awesome community! There are literally thousands of libraries available for us to use. These include <a href="https://jquery.com/">Jquery</a> for simple dom manipulations, and <a href="http://leafletjs.com/">leaflet</a> as the map library. You don't have to know jquery to work on the groundstation, you'll pick it up eventually. Reading the <a href="http://leafletjs.com/reference.html">Leaflet API Docs</a> is pretty useful if you're working with the Map modules.</p></div>
             
         </div>
 

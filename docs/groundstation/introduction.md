@@ -2,6 +2,12 @@
 
 The groundstation is a desktop application based on [NW.js](nwjs.iohttp://nwjs.io/). This section will explain what NW.js and [Node.js](https://nodejs.org/en/) is, as well as setting up your development environment for building the application.
 
+## Communication Path
+
+The groundstation talks directly to the [data-relay-station](https://github.com/UWARG/data-relay-station). The data-relay-station is a simple python server that acts as the middleman between the PicPilot running on the plane and the groundstation running at the base. The PicPilot sends data using it's xbee module, which the tracking antenna receives relaying it to the data relay station, which sends it to the groundstation. The groundstation can then, based on the data received, send commands back through the same path. As seen from this picture, the groundstation acts as one of the 'clients' to the data relay station (the raspberry pi).
+
+![High level overview](../images/groundstation/warg-fleet-diagram.png)
+
 ## What is Javascript and Node.js
 
 As you may already know, javascript is a programming language. It's syntax is very similar to other C-based languages such as C++, Java, and so forth. Javascript was initially intented to only run on the browser, and one of it's biggest limitations is that it doesn't have file access to your computer (for security purposes). This limitation prevented developers from using it other than for web application purposes. 

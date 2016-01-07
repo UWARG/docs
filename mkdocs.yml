@@ -7,7 +7,9 @@ copyright: Copyright <a href="http://www.uwarg.com"> University of Waterloo Aeri
 
 pages:
 - Home: index.md
-- Groundstation: groundstation/index.md
+- Groundstation:
+  - Table of Contents: groundstation/index.md
+  - Introduction: groundstation/introduction.md
 - PicPilot:
   - Table of Contents: picpilot/index.md
   - Introduction: picpilot/introduction.md
@@ -24,7 +26,8 @@ pages:
   - Path Management: picpilot/path-management.md
   - Resources: picpilot/resources.md
   - FAQ: picpilot/faq.md
-
 - Computer Vision: computervision/index.md
 - Bootcamps:
   - Mechanical: bootcamp/mechanical.md
+- Tutorials:
+  - Git and Github: tutorials/git.md

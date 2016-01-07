@@ -10,6 +10,7 @@ pages:
 - Groundstation:
   - Table of Contents: groundstation/index.md
   - Introduction: groundstation/introduction.md
+  - What you need to know: groundstation/what-you-need-to-know.md
 - PicPilot:
   - Table of Contents: picpilot/index.md
   - Introduction: picpilot/introduction.md

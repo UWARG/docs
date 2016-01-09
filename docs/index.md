@@ -4,9 +4,11 @@ The official source of all your WARG needs. Joking, there's only documentation h
 
 ![Sloth GIF](http://i.giphy.com/rrFcUcN3MFmta.gif)
 
-## Bootcamps
+## Bootcamps and Competitions
 
 - [Mechanical Bootcamp](bootcamp/mechanical.md)
+- [Embedded Systems Bootcamp](bootcamp/embedded.md)
+- [R/C Car Competition](bootcamp/rccompetition.md)
 
 ## Projects
 

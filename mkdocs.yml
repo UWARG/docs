@@ -32,5 +32,8 @@ pages:
 - Computer Vision: computervision/index.md
 - Bootcamps:
   - Mechanical: bootcamp/mechanical.md
+  - Computer Vision: bootcamp/computervision.md
+  - Software/Hardware: bootcamp/embedded.md
+  - RC Car Competition: bootcamp/rccompetition.md
 - Tutorials:
   - Git and Github: tutorials/git.md

@@ -64,7 +64,7 @@ You need to have a Github account. Go to the [base code](https://github.com/UWAR
 
 [Git Usage instructions](http://docs.uwarg.com/picpilot/introduction/#github-usage)
 
-R/C Car Help Document
+[R/C Car Help Document](http://docs.uwarg.com/bootcamp/rccompetition/)
 
 **The functions available on the R/C Car include:**
 

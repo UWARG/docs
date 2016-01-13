@@ -37,3 +37,4 @@ pages:
   - RC Car Competition: bootcamp/rccompetition.md
 - Tutorials:
   - Git and Github: tutorials/git.md
+  - Using the terminal: tutorials/shell.md

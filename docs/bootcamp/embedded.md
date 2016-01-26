@@ -52,9 +52,9 @@ Essentially, you must program the car to drive a square path:
 
 Additional Requirements:
 
-- ●●You must use Git to clone and push your final code
-- ●●You must have a 2 second delay after turning on the car until the beginning of your program.
-- ●●No delay function will be provided. You need to write it yourself.
+* You must use Git to clone and push your final code
+* You must have a 2 second delay after turning on the car until the beginning of your program.
+* You delay function will be provided. You need to write it yourself.
 
 You need to have a Github account. Go to the [base code](https://github.com/UWARG/RC-Car-Bootstrap) and click **FORK**.
 

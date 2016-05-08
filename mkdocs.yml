@@ -1,9 +1,10 @@
 site_name: WARG Docs
 site_url: http://www.docs.uwarg.com
-repo_url: https://github.com/UWARG/WARG-Docs
+repo_url: https://github.com/UWARG/
 site_author: University of Waterloo Aerial Robotics Group
 site_favicon: favicon.ico
 copyright: Copyright <a href="http://www.uwarg.com"> University of Waterloo Aerial Robotics Group</a>
+theme: yeti
 
 pages:
 - Home: index.md
@@ -13,6 +14,7 @@ pages:
   - What you need to know: groundstation/what-you-need-to-know.md
   - Tutorial: groundstation/tutorial.md
   - Project Structure: groundstation/project-structure.md
+  - Documenting: groundstation/documenting.md
 - PicPilot:
   - Table of Contents: picpilot/index.md
   - Introduction: picpilot/introduction.md

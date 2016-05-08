@@ -6,7 +6,7 @@ WARG Docs is the central repo for maintaining WARG Documentation found at [docs.
 To install mkdocs, make sure you have python installed (any version works) and pip. Then run ```pip install mkdocs```
 
 # Viewing Changes
-To run an mkdocs server and view the changes you're making, run ```mkdocs serve```
+To run an mkdocs server and view the changes you're making, run ```mkdocs serve```. Then go to  `http://127.0.0.1:8000` on your web browser.
 
 # Deploying
 To deploy run `mkdocs gh-deploy --clean` after you've finished making changes.

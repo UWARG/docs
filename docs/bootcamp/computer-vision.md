@@ -23,7 +23,7 @@ for https
 Note that you will need to have CMake installed so that you can build your module once you've written it.
 
 ## 2. Choose a Task
-Your task is to implement something 
+Your task is to implement something
 
 Since the point of this bootcamp it to familiarize you with our system, it does not really matter what task you choose, however we strongly recommend choosing something relevant to the libraries that we use, predominantly OpenCV, and the type of software we are creating and implement something with that in mind.
 

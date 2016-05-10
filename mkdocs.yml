@@ -31,10 +31,17 @@ pages:
   - Path Management: picpilot/path-management.md
   - Resources: picpilot/resources.md
   - FAQ: picpilot/faq.md
-- Computer Vision: computervision/index.md
+- Computer Vision:
+  - Table of Contents: computer-vision/index.md
+  - Building the project [Linux]: computer-vision/Building-the-project-[Linux].md
+  - Building the project [Windows]: computer-vision/Building-the-project-[Windows].md
+  - Coding Conventions: computer-vision/Coding-Conventions.md
+  - Contributing: computer-vision/Contributing.md
+  - Using the WARG computer environment: computer-vision/Using-the-WARG-server-environment.md
+  - Writing Tests: computer-vision/Writing-Tests.md
 - Bootcamps:
   - Mechanical: bootcamp/mechanical.md
-  - Computer Vision: bootcamp/computervision.md
+  - Computer Vision: bootcamp/computer-vision.md
   - Software/Hardware: bootcamp/embedded.md
   - RC Car Competition: bootcamp/rccompetition.md
 - Tutorials:

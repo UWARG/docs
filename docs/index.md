@@ -8,12 +8,12 @@ The official source of all your WARG needs. Joking, there's only documentation h
 
 - [Mechanical Bootcamp](bootcamp/mechanical.md)
 - [Embedded Systems Bootcamp](bootcamp/embedded.md)
-- [Computer Vision Bootcamp](bootcamp/computervision.md)
+- [Computer Vision Bootcamp](bootcamp/computer-vision.md)
 - [R/C Car Competition](bootcamp/rccompetition.md)
 
 ## Projects
 
 - [PicPilot Documentation](picpilot/index.md)
 - [Groundstation Documentation](groundstation/index.md)
-- [Computer Vision Documentation](computervision/index.md)
+- [Computer Vision Documentation](computer-vision/index.md)
 

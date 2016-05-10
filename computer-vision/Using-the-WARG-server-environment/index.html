@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="University of Waterloo Aerial Robotics Group">
-        <link rel="canonical" href="http://www.docs.uwarg.com/groundstation/project-structure/">
+        <link rel="canonical" href="http://www.docs.uwarg.com/computer-vision/Using-the-WARG-server-environment/">
         <link rel="shortcut icon" href="../../favicon.ico">
         
 
-	<title>Project Structure - WARG Docs</title>
+	<title>Using the WARG computer environment - WARG Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -57,43 +57,43 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Groundstation <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
 <li >
-    <a href="../">Table of Contents</a>
+    <a href="../../groundstation/">Table of Contents</a>
 </li>
 
                     
                         
 <li >
-    <a href="../introduction/">Introduction</a>
+    <a href="../../groundstation/introduction/">Introduction</a>
 </li>
 
                     
                         
 <li >
-    <a href="../what-you-need-to-know/">What you need to know</a>
+    <a href="../../groundstation/what-you-need-to-know/">What you need to know</a>
 </li>
 
                     
                         
 <li >
-    <a href="../tutorial/">Tutorial</a>
-</li>
-
-                    
-                        
-<li class="active">
-    <a href="./">Project Structure</a>
+    <a href="../../groundstation/tutorial/">Tutorial</a>
 </li>
 
                     
                         
 <li >
-    <a href="../documenting/">Documenting</a>
+    <a href="../../groundstation/project-structure/">Project Structure</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../../groundstation/documenting/">Documenting</a>
 </li>
 
                     
@@ -201,49 +201,49 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Computer Vision <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
 <li >
-    <a href="../../computer-vision/">Table of Contents</a>
+    <a href="../">Table of Contents</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../computer-vision/Building-the-project-[Linux]/">Building the project [Linux]</a>
+    <a href="../Building-the-project-[Linux]/">Building the project [Linux]</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../computer-vision/Building-the-project-[Windows]/">Building the project [Windows]</a>
+    <a href="../Building-the-project-[Windows]/">Building the project [Windows]</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../computer-vision/Coding-Conventions/">Coding Conventions</a>
+    <a href="../Coding-Conventions/">Coding Conventions</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../computer-vision/Contributing/">Contributing</a>
+    <a href="../Contributing/">Contributing</a>
+</li>
+
+                    
+                        
+<li class="active">
+    <a href="./">Using the WARG computer environment</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../computer-vision/Using-the-WARG-server-environment/">Using the WARG computer environment</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../computer-vision/Writing-Tests/">Writing Tests</a>
+    <a href="../Writing-Tests/">Writing Tests</a>
 </li>
 
                     
@@ -315,12 +315,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../tutorial/">
+                    <a rel="next" href="../Contributing/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../documenting/">
+                    <a rel="prev" href="../Writing-Tests/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -343,26 +343,64 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#project-structure">Project Structure</a></li>
+        <li class="main active"><a href="#using-the-warg-computer-environment">Using the Warg Computer environment</a></li>
+        
+            <li><a href="#setting-up-an-ssh-client">Setting up an SSH Client</a></li>
+        
+            <li><a href="#getting-an-account">Getting an account</a></li>
+        
+            <li><a href="#connecting-to-the-server">Connecting to the server</a></li>
+        
+            <li><a href="#useful-commands-in-the-server-environment-feel-free-to-expand-this-section">Useful Commands in the Server Environment (feel free to expand this section)</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="project-structure">Project Structure</h1>
-<pre><code class="text">/
-    app/  ===&gt; this is where all of the app javascript files are
-    assets/ ===&gt; this is where all of the apps assets are located (ie images)
-    build/ ====&gt; this is the output directory of running `npm run build`
-    config/ ===&gt; all of the default configuration settings
-    logs/ ===&gt; output of the log files
-    node_modules/ ===&gt; output directory of running `npm install`
-    styles/ ===&gt; CSS directory
-    views/ ===&gt; HTML views directory
-    index.html ===&gt; main index file. Starting point of application
-    package.json ===&gt; Describes the application, including the dependencies
-</code></pre></div>
+<h1 id="using-the-warg-computer-environment">Using the Warg Computer environment</h1>
+<p>(Note that at the time of this being written the server is still being set up, hence a lot of this guide is both not yet applicable and may change)</p>
+<h2 id="setting-up-an-ssh-client">Setting up an SSH Client</h2>
+<p>Before you can connect to the WARG Server you will need an SSH client.</p>
+<h4 id="windows">Windows:</h4>
+<p>There are several windows SSH clients, one of the more popular ones is PuTTY, which can be downloaded <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">here</a></p>
+<h4 id="mac-os-x-and-linux">Mac OS X and Linux:</h4>
+<p>SSH should be installed by default and can be accessed by the following terminal command</p>
+<pre><code class="bash">ssh user@hostname
+</code></pre>
+
+<h2 id="getting-an-account">Getting an account</h2>
+<p>You will not be able to connect to the WARG server without an account on the system. You will have to come in personally to the WARG bay to set this up.</p>
+<h2 id="connecting-to-the-server">Connecting to the server</h2>
+<p>To connect to the WARG server you will need</p>
+<p><strong>User:</strong>     User-name you set up on the WARG server</p>
+<p><strong>Host-name:</strong> ip address of the WARG computer</p>
+<p><strong>Port:</strong> 22 (The default port, you probably won't need to set this)</p>
+<h4 id="linux-and-os-x">Linux and OS X</h4>
+<p>On Linux or OS X this translates to the following command:</p>
+<pre><code class="bash">ssh user@ssh.uwarg.com
+</code></pre>
+
+<p>Optionally you can append -Y to the end of the command to enable graphics forwarding which will allow you to run graphical applications on the server (with the graphics being displayed on your computer)</p>
+<pre><code class="bash">ssh user@ssh.uwarg.com -Y
+</code></pre>
+
+<h4 id="windows_1">Windows</h4>
+<p>On Windows, see one of the following tutorials for more info on configuring PuTTY.</p>
+<p><strong>An older tutorial that covers the basics</strong></p>
+<p><a href="http://jfitz.com/tips/putty_config.html">http://jfitz.com/tips/putty_config.html</a></p>
+<p><strong>More advanced PuTTY usage</strong></p>
+<p><a href="http://support.suso.com/supki/SSH_Tutorial_for_Windows">http://support.suso.com/supki/SSH_Tutorial_for_Windows</a></p>
+<h2 id="useful-commands-in-the-server-environment-feel-free-to-expand-this-section">Useful Commands in the Server Environment (feel free to expand this section)</h2>
+<p>(words in ALL_CAPS are arguments)</p>
+<p><code>ls</code> Shows a list of files and directories in your current directory or in a different one by specifying a different directory <code>ls DIRECTORY</code></p>
+<p><code>cd DIRECTORY</code> opens the given directory</p>
+<p><code>nano</code> Simple command line text editor, can open files with <code>nano FILE_NAME</code></p>
+<p>(for a more complex editor that is better suited to programming, try <code>vim</code> or <code>emacs</code>. <a href="http://www.tuxradar.com/content/emacs-tutorial-beginners">here</a> is an emacs tutorial and <a href="http://vim.wikia.com/wiki/Tutorial">here</a> is a vim one. There is also this fun looking interactive vim tutorial <a href="http://www.openvim.com/tutorial.html">here</a>)</p>
+<p>You can also learn more about any of the commands by appending <code>--help</code> to a command or by entering <code>man COMMAND</code></p>
+<h4 id="useful-graphical-applications">Useful Graphical Applications</h4>
+<p><code>gedit</code> The Gnome text editor</p>
+<p><code>nautilus</code> A Linux file manager</p></div>
         </div>
 
         <footer class="col-md-12">

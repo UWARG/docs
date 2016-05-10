@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="University of Waterloo Aerial Robotics Group">
-        <link rel="canonical" href="http://www.docs.uwarg.com/bootcamp/computervision/">
+        <link rel="canonical" href="http://www.docs.uwarg.com/computer-vision/Building-the-project-[Windows]/">
         <link rel="shortcut icon" href="../../favicon.ico">
         
 
-	<title>Computer Vision - WARG Docs</title>
+	<title>Building the project [Windows] - WARG Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -201,37 +201,82 @@
             
             
             
-                <li >
-                    <a href="../../computervision/">Computer Vision</a>
-                </li>
-            
-            
-            
                 <li class="dropdown active">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bootcamps <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Computer Vision <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
 <li >
-    <a href="../mechanical/">Mechanical</a>
+    <a href="../">Table of Contents</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../Building-the-project-[Linux]/">Building the project [Linux]</a>
 </li>
 
                     
                         
 <li class="active">
-    <a href="./">Computer Vision</a>
+    <a href="./">Building the project [Windows]</a>
 </li>
 
                     
                         
 <li >
-    <a href="../embedded/">Software/Hardware</a>
+    <a href="../Coding-Conventions/">Coding Conventions</a>
 </li>
 
                     
                         
 <li >
-    <a href="../rccompetition/">RC Car Competition</a>
+    <a href="../Contributing/">Contributing</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../Using-the-WARG-server-environment/">Using the WARG computer environment</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../Writing-Tests/">Writing Tests</a>
+</li>
+
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bootcamps <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+<li >
+    <a href="../../bootcamp/mechanical/">Mechanical</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../../bootcamp/computer-vision/">Computer Vision</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../../bootcamp/embedded/">Software/Hardware</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../../bootcamp/rccompetition/">RC Car Competition</a>
 </li>
 
                     
@@ -270,12 +315,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../mechanical/">
+                    <a rel="next" href="../Building-the-project-[Linux]/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../embedded/">
+                    <a rel="prev" href="../Coding-Conventions/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -298,52 +343,15 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#computer-vision-bootcamp">Computer-Vision Bootcamp</a></li>
-        
-            <li><a href="#introduction">Introduction</a></li>
-        
-            <li><a href="#1-fork-and-setup-local-project">1. Fork and Setup Local Project</a></li>
-        
-            <li><a href="#2-choose-a-task">2. Choose a Task</a></li>
-        
-            <li><a href="#3-implement">3. Implement</a></li>
-        
-            <li><a href="#4-submit">4. Submit</a></li>
+        <li class="main active"><a href="#building-the-project">Building the project</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="computer-vision-bootcamp">Computer-Vision Bootcamp</h1>
-<h2 id="introduction">Introduction</h2>
-<p>WARG members often find that joining this team requires more knowledge and has a larger learning curve than other student teams. Once members have acquired this knowledge they gain a lot of confidence and are able to make large contributions to the team. Therefore, this Bootcamp is designed as a first task to be completed to both help you through the learning curve and to familiarize you with our system and conventions. The hope is that once you complete this Bootcamp you will feel confident and hopefully have acquired enough skills such that you are ready to take on tasks with the main software project! Just a quick disclaimer, this Bootcamp will help accelerate and minimize the learning curve but it will not give you all knowledge. The remaining knowledge will be acquired through completing other tasks with the team.</p>
-<h2 id="1-fork-and-setup-local-project">1. Fork and Setup Local Project</h2>
-<p>Forks can be created using the fork button in the top right of the Github Interface (you need to be signed into a Github account).</p>
-<p>Clone your fork with either:</p>
-<pre><code>git clone git@github.com:YOUR_USERNAME_HERE/computer-vision-bootcamp.git
-</code></pre>
-
-<p>if you want to use ssh
-or</p>
-<pre><code>git clone https://github.com/YOUR_USERNAME_HERE/computer-vision-bootcamp.git
-</code></pre>
-
-<p>for https</p>
-<p>Note that you will need to have CMake installed so that you can build your module once you've written it.</p>
-<h2 id="2-choose-a-task">2. Choose a Task</h2>
-<p>Your task is to implement something </p>
-<p>Since the point of this bootcamp it to familiarize you with our system, it does not really matter what task you choose, however we strongly recommend choosing something relevant to the libraries that we use, predominantly OpenCV, and the type of software we are creating and implement something with that in mind.</p>
-<h2 id="3-implement">3. Implement</h2>
-<p>Your code must be implemented as a submodule and must:
-- Follow our <a href="https://github.com/UWARG/computer-vision/wiki/Coding-Conventions">style guide</a>
-- Build using CMake
-- Be well documented using doxygen-formatted comments
-- Be tested using our <a href="https://github.com/UWARG/computer-vision/wiki/Writing-Tests">testing framework</a></p>
-<p>See <a href="https://github.com/UWARG/computer-vision/wiki/Contributing">contributing</a> for an example and more information.</p>
-<h2 id="4-submit">4. Submit</h2>
-<p>To submit your bootcamp project you should create a pull request. Note that this does not mean you are done, we will review your pull request and give you feedback and you will be expected to update it so that if meets all requirements.</p>
-<p>Once your pull request has been merged you are ready to work on the Computer Vision project.</p></div>
+<h1 id="building-the-project">Building the project</h1>
+<p>TODO: Anyone who wants to try doing this, please fill this out</p></div>
         </div>
 
         <footer class="col-md-12">

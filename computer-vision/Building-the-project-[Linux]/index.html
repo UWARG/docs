@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="University of Waterloo Aerial Robotics Group">
-        <link rel="canonical" href="http://www.docs.uwarg.com/groundstation/project-structure/">
+        <link rel="canonical" href="http://www.docs.uwarg.com/computer-vision/Building-the-project-[Linux]/">
         <link rel="shortcut icon" href="../../favicon.ico">
         
 
-	<title>Project Structure - WARG Docs</title>
+	<title>Building the project [Linux] - WARG Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -57,43 +57,43 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Groundstation <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
 <li >
-    <a href="../">Table of Contents</a>
+    <a href="../../groundstation/">Table of Contents</a>
 </li>
 
                     
                         
 <li >
-    <a href="../introduction/">Introduction</a>
+    <a href="../../groundstation/introduction/">Introduction</a>
 </li>
 
                     
                         
 <li >
-    <a href="../what-you-need-to-know/">What you need to know</a>
+    <a href="../../groundstation/what-you-need-to-know/">What you need to know</a>
 </li>
 
                     
                         
 <li >
-    <a href="../tutorial/">Tutorial</a>
-</li>
-
-                    
-                        
-<li class="active">
-    <a href="./">Project Structure</a>
+    <a href="../../groundstation/tutorial/">Tutorial</a>
 </li>
 
                     
                         
 <li >
-    <a href="../documenting/">Documenting</a>
+    <a href="../../groundstation/project-structure/">Project Structure</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../../groundstation/documenting/">Documenting</a>
 </li>
 
                     
@@ -201,49 +201,49 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Computer Vision <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
 <li >
-    <a href="../../computer-vision/">Table of Contents</a>
+    <a href="../">Table of Contents</a>
+</li>
+
+                    
+                        
+<li class="active">
+    <a href="./">Building the project [Linux]</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../computer-vision/Building-the-project-[Linux]/">Building the project [Linux]</a>
+    <a href="../Building-the-project-[Windows]/">Building the project [Windows]</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../computer-vision/Building-the-project-[Windows]/">Building the project [Windows]</a>
+    <a href="../Coding-Conventions/">Coding Conventions</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../computer-vision/Coding-Conventions/">Coding Conventions</a>
+    <a href="../Contributing/">Contributing</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../computer-vision/Contributing/">Contributing</a>
+    <a href="../Using-the-WARG-server-environment/">Using the WARG computer environment</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../computer-vision/Using-the-WARG-server-environment/">Using the WARG computer environment</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../computer-vision/Writing-Tests/">Writing Tests</a>
+    <a href="../Writing-Tests/">Writing Tests</a>
 </li>
 
                     
@@ -315,12 +315,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../tutorial/">
+                    <a rel="next" href="../">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../documenting/">
+                    <a rel="prev" href="../Building-the-project-[Windows]/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -343,25 +343,60 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#project-structure">Project Structure</a></li>
+        <li class="main active"><a href="#building-the-project">Building the Project</a></li>
+        
+            <li><a href="#1-install-dependencies">1. Install Dependencies</a></li>
+        
+            <li><a href="#2-clone-the-repo">2. Clone the Repo</a></li>
+        
+            <li><a href="#3-configure-the-project-with-cmake">3. Configure the project with CMake</a></li>
+        
+            <li><a href="#4-build">4. Build</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="project-structure">Project Structure</h1>
-<pre><code class="text">/
-    app/  ===&gt; this is where all of the app javascript files are
-    assets/ ===&gt; this is where all of the apps assets are located (ie images)
-    build/ ====&gt; this is the output directory of running `npm run build`
-    config/ ===&gt; all of the default configuration settings
-    logs/ ===&gt; output of the log files
-    node_modules/ ===&gt; output directory of running `npm install`
-    styles/ ===&gt; CSS directory
-    views/ ===&gt; HTML views directory
-    index.html ===&gt; main index file. Starting point of application
-    package.json ===&gt; Describes the application, including the dependencies
+<h1 id="building-the-project">Building the Project</h1>
+<h3 id="1-install-dependencies">1. Install Dependencies</h3>
+<p>Dependencies:
+- OpenCV - 3.x (2.x.x is no longer supported)
+- Boost - Tested with 1.56-60, should work with earlier versions
+- ZBar
+- DecklinkSDK (Optional, if available builds support for reading video from Decklink video capture cards)
+- Exiv2</p>
+<h3 id="2-clone-the-repo">2. Clone the Repo</h3>
+<pre><code class="bash">git clone https://github.com/UWARG/computer-vision.git
+</code></pre>
+
+<p>If you want to be able to submit changes you should fork the repository first and then clone your fork</p>
+<pre><code class="bash">git clone https://github.com/YOUR_NAME_HERE/computer-vision.git
+</code></pre>
+
+<h3 id="3-configure-the-project-with-cmake">3. Configure the project with CMake</h3>
+<p>It is recommended to build from a separate directory to keep the source tree clean</p>
+<pre><code class="bash">cd computer vision
+mkdir build
+cd build
+cmake ..
+</code></pre>
+
+<h3 id="4-build">4. Build</h3>
+<pre><code class="bash">make
+</code></pre>
+
+<p>Building individual modules
+Once the project is configured</p>
+<pre><code class="bash">make MODULE_NAME
+</code></pre>
+
+<p>For a list of build targets including Submodules</p>
+<pre><code class="bash">make help
+</code></pre>
+
+<p>Running tests</p>
+<pre><code class="bash">make test
 </code></pre></div>
         </div>
 

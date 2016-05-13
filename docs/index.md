@@ -7,7 +7,7 @@ The official source of all your WARG needs. Joking, there's only documentation h
 ## Bootcamps and Competitions
 
 - [Mechanical Bootcamp](bootcamp/mechanical.md)
-- [Embedded Systems Bootcamp](bootcamp/embedded.md)
+- [Electrical Bootcamp](bootcamp/electrical.md)
 - [Computer Vision Bootcamp](bootcamp/computer-vision.md)
 - [R/C Car Competition](bootcamp/rccompetition.md)
 

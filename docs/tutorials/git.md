@@ -8,7 +8,7 @@ This tutorial will introduce you to git and github. Knowing these is essential i
 
 ## Why use Git?
 
-You may just be used to saving code to your computer locally only, and relying on Ctrl-Z in case you break something and want to restart. This is where git shines. You commit code, which allows you to revert to it later if need be (say, you break code).
+You may just be used to saving code to your computer locally only, and relying on Ctrl-Z in case you break something and want to restart. This is where git shines. You commit code, which allows you to revert to it later if need be (say, you break something).
 
 ## Installing git
 

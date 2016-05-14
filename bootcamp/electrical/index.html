@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="University of Waterloo Aerial Robotics Group">
-        <link rel="canonical" href="http://www.docs.uwarg.com/tutorials/shell/">
+        <link rel="canonical" href="http://www.docs.uwarg.com/bootcamp/electrical/">
         <link rel="shortcut icon" href="../../favicon.ico">
         
 
-	<title>Using the terminal - WARG Docs</title>
+	<title>Electrical - WARG Docs</title>
 
         <link href="../..//css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../..//css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -252,31 +252,31 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bootcamps <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
 <li >
-    <a href="../../bootcamp/mechanical/">Mechanical</a>
+    <a href="../mechanical/">Mechanical</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../bootcamp/computer-vision/">Computer Vision</a>
+    <a href="../computer-vision/">Computer Vision</a>
+</li>
+
+                    
+                        
+<li class="active">
+    <a href="./">Electrical</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../bootcamp/electrical/">Electrical</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../bootcamp/rccompetition/">RC Car Competition</a>
+    <a href="../rccompetition/">RC Car Competition</a>
 </li>
 
                     
@@ -285,19 +285,19 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorials <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
 <li >
-    <a href="../git/">Git and Github</a>
+    <a href="../../tutorials/git/">Git and Github</a>
 </li>
 
                     
                         
-<li class="active">
-    <a href="./">Using the terminal</a>
+<li >
+    <a href="../../tutorials/shell/">Using the terminal</a>
 </li>
 
                     
@@ -315,12 +315,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../git/">
+                    <a rel="next" href="../computer-vision/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
-                <li class="disabled">
-                    <a rel="prev" >
+                <li >
+                    <a rel="prev" href="../rccompetition/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -343,17 +343,76 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#using-the-command-shell">Using the command shell</a></li>
+        <li class="main active"><a href="#warg-electrical-bootcamp">WARG Electrical Bootcamp</a></li>
+        
+            <li><a href="#introduction">Introduction</a></li>
+        
+            <li><a href="#bootcamp-objectives">Bootcamp Objectives</a></li>
+        
+            <li><a href="#bootcamp-outline">Bootcamp Outline</a></li>
+        
+            <li><a href="#1-tracking-antenna-power-circuit">1. Tracking Antenna Power Circuit</a></li>
+        
+            <li><a href="#2-previous-team-contribution">2. Previous Team Contribution</a></li>
+        
+            <li><a href="#completion-of-bootcamp">Completion of Bootcamp</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="using-the-command-shell">Using the command shell</h1>
-<p>Some of the docs and tutorials on this site assume that you know how to navigate the file system using the terminal (whether it be on Windows, Linux, or Mac). For example, working with the computer-vision and groundstation projects is alot easier to do on the command line than with a GUI. In both cases, it isn't possible to setup either of these projects without touching the command line. </p>
-<p>A recommended tutorial you can checkout is <a href="https://www.codecademy.com/learn/learn-the-command-line">CodeAcademy's Command Line Course</a>. They guide you through using bash to navigate the file system, run commands, etc. The course is free and should only take you about 3 hours. It's interactive and will teach you how to use the shell far better than we can ;).</p>
-<p>Note: This course teaches bash (which is what runs on linux by default). It is however far better than the Windows CMD and you can install and use it on Windows by downloading and installing something like <a href="http://cmder.net/">cmder</a>.</p></div>
+<p>﻿</p>
+<h1 id="warg-electrical-bootcamp">WARG Electrical Bootcamp</h1>
+<h2 id="introduction">Introduction</h2>
+<p>WARG members often find that joining this team requires more knowledge and has a larger learning curve than other student teams. Once members have acquired this knowledge they gain a lot of confidence and are able to make large contributions to the team. Therefore, this Bootcamp is designed as a first task to be completed to both help you through the learning curve, while giving you a project that is fully your own. The hope is that once you complete this Bootcamp you will feel confident and hopefully have acquired enough skills such that you are ready to take on tasks with our aircraft! Just a quick disclaimer, this Bootcamp will help accelerate and minimize the learning curve but it will not give you all knowledge. The remaining knowledge will be acquired through completing other tasks with the team.</p>
+<h2 id="bootcamp-objectives">Bootcamp Objectives</h2>
+<ul>
+<li>Learn how to make a PCB board.</li>
+<li>Learn basic computer-aided circuit design principles.</li>
+<li>Learn where to find documentation and how to understand it.</li>
+<li>Learn about basic circuit design</li>
+</ul>
+<h2 id="bootcamp-outline">Bootcamp Outline</h2>
+<p>This Bootcamp has two options, both of which require a Team Leads approval of completion in order to move onto working on other tasks. The estimated time of completion for this Bootcamp is 1 week.</p>
+<h2 id="1-tracking-antenna-power-circuit">1. Tracking Antenna Power Circuit</h2>
+<h3 id="background">Background</h3>
+<p>The tracking antenna helps to ensure our ground station keeps in contact with the plane at all times by pointing antennas at the plane, using data from the ground station. To do this, the tracking antenna has 2 servos that point the antennas, an arduino to do computations and basic control, and multiple sensors to help in calibration. 
+The power circuit allows the antenna to be powered by either a battery or from a power cable, and simplifies the wiring to the servos and arduino.</p>
+<h3 id="task">Task</h3>
+<p>Your task is to design a PCB using DipTrace which will be able to take power from a battery or power cable.  If both battery and power cable are connected, it should default towards the power cable. It will have pin connections for the 2 servos (pan and tilt) and the arduino (5V, GND, and a PWM signal for each servo). To save money, design the PCB as small as possible. There will also be multiple LED indicators to show the circuit is working.</p>
+<p>The example schematic is at the bottom of this page. You can copy it directly, make some improvements, or design your own.  </p>
+<p>Note: We are not actually printing this circuit due to the cost and time constraints.</p>
+<h3 id="inputs-outputs-and-leds">Inputs, Outputs, and LEDs</h3>
+<ul>
+<li>3-wire PWM cable for pan servo</li>
+<li>3-wire PWM cable for tilt servo</li>
+<li>4 female pins for arduino wires (5V, GND, Pan, and Tilt)</li>
+<li>JST battery connector (input power)</li>
+<li>DC 5.5mm barrel jack (9-12V input power)</li>
+<li>LED indicator to indicate the board is powered</li>
+</ul>
+<h3 id="project-checklist">Project Checklist</h3>
+<ul>
+<li>Schematic, PCB, and parts list</li>
+<li>Inputs and outputs listed above</li>
+<li>Circuit elements (MOSFET and Voltage regulator) that regulate power and can switch between the two sources</li>
+<li>If both power elements are plugged in, it defaults to the power cable</li>
+<li>Labels to define inputs, outputs, and component placements</li>
+<li>Traces are adequately sized and well routed</li>
+</ul>
+<h3 id="using-diptrace">Using DipTrace</h3>
+<p>Go to this link and download the freeware:
+<a href="http://diptrace.com/download-diptrace/">http://diptrace.com/download-diptrace/</a></p>
+<p>If you need help with using the CAD software, here are some resources:</p>
+<p>Diptrace Tutorial: <a href="http://diptrace.com/support/tutorials/">http://diptrace.com/support/tutorials/</a></p>
+<p>Schematics: <a href="https://www.youtube.com/watch?v=uCPUqXFvUZU">https://www.youtube.com/watch?v=uCPUqXFvUZU</a></p>
+<p>PCB Layout: <a href="https://www.youtube.com/watch?v=kw51rlCTYBY">https://www.youtube.com/watch?v=kw51rlCTYBY</a></p>
+<h2 id="2-previous-team-contribution">2. Previous Team Contribution</h2>
+<p>If you have been on the team and feel that you have made a contribution significant to be exempt from the option 1 you can contact a Team Lead to explain, and preferably show the project you have done. It will be up to the Team Lead’s discretion whether you qualify to be exempt from the Bootcamp. If the Team Lead feels that you should still complete option 1 it is because they think you can learn and gain skills from the completion of the Bootcamp.</p>
+<h2 id="completion-of-bootcamp">Completion of Bootcamp</h2>
+<p>Show a team lead the schematic, PCB, and parts list files. Upon the approved completion of the Bootcamp by a Team Lead you are now eligible to work on other tasks with the team! If you have any feedback you would like to give to make this Bootcamp better please let a Team Lead know as we want this to be the best and most informative introduction to the team as possible.</p>
+<p><img alt="Example Circuit" src="../resources\tracking_antenna_circuit.PNG" /></p></div>
         </div>
 
         <footer class="col-md-12">

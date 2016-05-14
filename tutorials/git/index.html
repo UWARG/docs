@@ -12,10 +12,10 @@
 
 	<title>Git and Github - WARG Docs</title>
 
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="../../css/highlight.css">
-        <link href="../../css/base.css" rel="stylesheet">
+        <link href="../..//css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../..//css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../..//css/highlight.css">
+        <link href="../..//css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -42,7 +42,7 @@
             </button>
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../..">WARG Docs</a>
+            <a class="navbar-brand" href="../../">WARG Docs</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -52,7 +52,7 @@
             
             
                 <li >
-                    <a href="../..">Home</a>
+                    <a href="../../">Home</a>
                 </li>
             
             
@@ -213,13 +213,13 @@
                     
                         
 <li >
-    <a href="../../computer-vision/Building-the-project-[Linux]/">Building the project [Linux]</a>
+    <a href="../../computer-vision/Building-the-project-%5BLinux%5D/">Building the project [Linux]</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../computer-vision/Building-the-project-[Windows]/">Building the project [Windows]</a>
+    <a href="../../computer-vision/Building-the-project-%5BWindows%5D/">Building the project [Windows]</a>
 </li>
 
                     
@@ -270,7 +270,7 @@
                     
                         
 <li >
-    <a href="../../bootcamp/embedded/">Software/Hardware</a>
+    <a href="../../bootcamp/electrical/">Electrical</a>
 </li>
 
                     
@@ -345,13 +345,51 @@
     
         <li class="main active"><a href="#git-and-github-tutorial">Git and Github Tutorial</a></li>
         
+            <li><a href="#what-is-git">What is Git?</a></li>
+        
+            <li><a href="#why-use-git">Why use Git?</a></li>
+        
+            <li><a href="#installing-git">Installing git</a></li>
+        
+            <li><a href="#how-to-use-git">How to use Git</a></li>
+        
+            <li><a href="#common-commands">Common Commands</a></li>
+        
+            <li><a href="#what-is-github">What is github?</a></li>
+        
+            <li><a href="#other-resources">Other Resources</a></li>
+        
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
 <h1 id="git-and-github-tutorial">Git and Github Tutorial</h1>
-<p>This page is still a work in progress. Please check back later.</p></div>
+<p>This tutorial will introduce you to git and github. Knowing these is essential if you want to contribute to the software side of UWARG.</p>
+<h2 id="what-is-git">What is Git?</h2>
+<p><a href="https://git-scm.com/">Git</a> is a source code version control system. What does this mean? It lets you manage source code. Git tracks changes to your code, lets you revert your code, and allows you to collaborate with other people easily.  Git tracks the <em>changes</em> to your files only, not the individual files themselves.</p>
+<h2 id="why-use-git">Why use Git?</h2>
+<p>You may just be used to saving code to your computer locally only, and relying on Ctrl-Z in case you break something and want to restart. This is where git shines. You commit code, which allows you to revert to it later if need be (say, you break code).</p>
+<h2 id="installing-git">Installing git</h2>
+<p>You have two options when installing Git. There's the command line version (you use it through the command promt/no gui). There's also <a href="https://desktop.github.com/">Github for Desktop</a>, which is a GUI client for Git that integrates with Github (don't worry we'll explain github later on). If you're a beginner, you should probably start out with the GUI client. If you're on linux or interested in using the command shell (its usually faster than the GUI client) then install that.</p>
+<h3 id="windows">Windows</h3>
+<h3 id="mac-os-x">Mac OS X</h3>
+<h3 id="ubuntu">Ubuntu</h3>
+<p>If you're using linux, you can install git by simply running:
+<code>sudo apt-get install git</code>. </p>
+<h2 id="how-to-use-git">How to use Git</h2>
+<p>Using git is very simple. How the workflow works is:</p>
+<ul>
+<li>You edit your code in your project</li>
+<li>You decide that you would like to save the current state of your project</li>
+<li>You add the changed files to the staging index with <code>git add .</code></li>
+<li>You commit the files with <code>git commit -m "Your unique commit message here</code></li>
+</ul>
+<p>That's it! Its that simple. When using git you may want to wrap your head around the concept of the staging index, the remote repository, local repository, etc. Those go beyond this tutorial however if you're interested you head scroll down to the other resources section which lists articles that explain it.</p>
+<h2 id="common-commands">Common Commands</h2>
+<p>Here are some common commands you can use with git:</p>
+<h2 id="what-is-github">What is github?</h2>
+<h2 id="other-resources">Other Resources</h2></div>
         </div>
 
         <footer class="col-md-12">
@@ -362,12 +400,12 @@
             <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
         </footer>
 
-        <script src="../../js/jquery-1.10.2.min.js"></script>
-        <script src="../../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../../js/highlight.pack.js"></script>
-        <script>var base_url = '../..';</script>
-        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
-        <script src="../../js/base.js"></script>
+        <script src="../..//js/jquery-1.10.2.min.js"></script>
+        <script src="../..//js/bootstrap-3.0.3.min.js"></script>
+        <script src="../..//js/highlight.pack.js"></script>
+        <script>var base_url = '../../';</script>
+        <script data-main="../..//mkdocs/js/search.js" src="../..//mkdocs/js/require.js"></script>
+        <script src="../..//js/base.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
             <div class="modal-dialog">

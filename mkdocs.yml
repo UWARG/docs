@@ -47,6 +47,7 @@ pages:
   - Mechanical: bootcamp/mechanical.md
   - Computer Vision: bootcamp/computer-vision.md
   - Electrical: bootcamp/electrical.md
+  - Groundstation: bootcamp/groundstation.md
   - RC Car Competition: bootcamp/rccompetition.md
 - Tutorials:
   - Git and Github: tutorials/git.md

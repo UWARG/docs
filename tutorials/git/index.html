@@ -385,13 +385,17 @@
         
             <li><a href="#installing-git">Installing git</a></li>
         
+            <li><a href="#creating-a-github-account">Creating a Github account</a></li>
+        
+            <li><a href="#setting-up-git-for-the-first-time">Setting up git for the first time</a></li>
+        
             <li><a href="#how-to-use-git">How to use Git</a></li>
         
             <li><a href="#common-commands">Common Commands</a></li>
         
-            <li><a href="#what-is-github">What is github?</a></li>
+            <li><a href="#what-is-github">What is Github?</a></li>
         
-            <li><a href="#other-resources">Other Resources</a></li>
+            <li><a href="#additional-resources">Additional Resources</a></li>
         
     
     </ul>
@@ -407,10 +411,23 @@
 <h2 id="installing-git">Installing git</h2>
 <p>You have two options when installing Git. There's the command line version (you use it through the command promt/no gui). There's also <a href="https://desktop.github.com/">Github for Desktop</a>, which is a GUI client for Git that integrates with Github (don't worry we'll explain github later on). If you're a beginner, you should probably start out with the GUI client. If you're on linux or interested in using the command shell (its usually faster than the GUI client) then install that.</p>
 <h3 id="windows">Windows</h3>
+<p>You can download and run the <a href="https://git-scm.com/downloads">git installer</a></p>
 <h3 id="mac-os-x">Mac OS X</h3>
+<p>You can install <a href="http://brew.sh/">homebrew</a> and install git with <code>brew install git</code></p>
 <h3 id="ubuntu">Ubuntu</h3>
 <p>If you're using linux, you can install git by simply running:
 <code>sudo apt-get install git</code>. </p>
+<h2 id="creating-a-github-account">Creating a Github account</h2>
+<p><a href="https://github.com/join">Sign up</a> for a github account if you don't have one. We'll later explain what github is, but you can just create an account for now.</p>
+<h2 id="setting-up-git-for-the-first-time">Setting up git for the first time</h2>
+<p>To set up git for the first time on your computer, run these commands in the git shell (or the command line): </p>
+<pre><code>git config --global user.name &quot;Your Name&quot;
+git config --global user.email your.email@example.com
+git config --global push.default matching
+git config --global alias.co checkout
+</code></pre>
+
+<p>Where <code>Your Name</code> and <code>your.email@example.com</code> preferrably match your github account. If you've installed the GUI Github for Desktop client, you've probably done all of these steps already at the startup screen.</p>
 <h2 id="how-to-use-git">How to use Git</h2>
 <p>Using git is very simple. How the workflow works is:</p>
 <ul>
@@ -419,11 +436,146 @@
 <li>You add the changed files to the staging index with <code>git add .</code></li>
 <li>You commit the files with <code>git commit -m "Your unique commit message here</code></li>
 </ul>
-<p>That's it! Its that simple. When using git you may want to wrap your head around the concept of the staging index, the remote repository, local repository, etc. Those go beyond this tutorial however if you're interested you head scroll down to the other resources section which lists articles that explain it.</p>
+<h3 id="branching">Branching</h3>
+<p>Git branches are a feature of git that allow you to work on multiple features at once. Branches also allow you to
+prototype and try new things without breaking the main code. A branch lets you essentially create a current snapshot
+of your code. A git repo can have as many branches as you want. </p>
+<p>Say for example you're working on Feature X. Feature X will take a while to make, and since you don't want it to be in the main code until its ready, you decide you want to  branch off of the <code>master</code> branch with a new branch called <code>feature-x</code>. To create a branch you type in <code>git checkout -b feature-x</code>. Now all of your changes and commits are applied to the <code>feature-x</code> branch, and not the master branch. </p>
+<p>Say now you want to add Feature Y. Because you're using branches, you're not directly affecting the main code. You can
+switch to the <code>master</code> branch with <code>git checkout master</code>, which contains the latest, most stable code for your application. 
+Now you can create a branch off of master called <code>feature-y</code> with <code>git branch feature-y</code> and then work on that branch 
+with <code>git checkout feature-y</code>. Note that <code>git checkout -b feature-y</code> is the same as running the previous two commands.</p>
+<p>You can move between branches this way, and work on multiple features all at the same time, whilst not affecting the main code,
+usually located in the <code>master</code> branch until your feature is ready.</p>
+<p>That's it! Its that simple. When using git you may want to wrap your head around the concept of the staging index, the remote repository, local repository, etc. Those go beyond this tutorial however if you're interested you head scroll down to the <a href="./#additional-resources">Additional Resources</a> section which lists articles that explain it.</p>
 <h2 id="common-commands">Common Commands</h2>
 <p>Here are some common commands you can use with git:</p>
-<h2 id="what-is-github">What is github?</h2>
-<h2 id="other-resources">Other Resources</h2></div>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git init</code></td>
+<td>Create a repository in the current directory</td>
+</tr>
+<tr>
+<td><code>git clone {url}</code></td>
+<td>Clone a remote repository into a subdirectory</td>
+</tr>
+<tr>
+<td><code>git add {file or path}</code></td>
+<td>Add file or files in directory recursively to the staging index</td>
+</tr>
+<tr>
+<td><code>git add .</code></td>
+<td>Add all of your changes to the staging index</td>
+</tr>
+<tr>
+<td><code>git add . --all</code></td>
+<td>Add all of your changes to the staging index (including removed files)</td>
+</tr>
+<tr>
+<td><code>git reset HEAD {file or path}</code></td>
+<td>Remove file or files from the staging index</td>
+</tr>
+<tr>
+<td><code>git checkout -- .</code></td>
+<td>Remove all changes from your working tree</td>
+</tr>
+<tr>
+<td><code>git checkout {branch_name}</code></td>
+<td>Switch to a branch</td>
+</tr>
+<tr>
+<td><code>git checkout -b {branch_name}</code></td>
+<td>Switch to a branch and create it if it doesnt yet exist</td>
+</tr>
+<tr>
+<td><code>git branch {branch_name}</code></td>
+<td>Create a branch off of the one you're currently on</td>
+</tr>
+<tr>
+<td><code>git branch</code></td>
+<td>View all the branches you have stored locally, as well as view the branch you're on</td>
+</tr>
+<tr>
+<td><code>git status</code></td>
+<td>Show status of the working tree</td>
+</tr>
+<tr>
+<td><code>git diff {file}</code></td>
+<td>Show the changes in the file</td>
+</tr>
+<tr>
+<td><code>git diff</code></td>
+<td>Show all changes in the working tree</td>
+</tr>
+<tr>
+<td><code>git commit {file or path}</code></td>
+<td>Commit files that has been staged (with git-add)</td>
+</tr>
+<tr>
+<td><code>git reset --soft HEAD^</code></td>
+<td>Undo commit &amp; keep changes in the working tree</td>
+</tr>
+<tr>
+<td><code>git reset --hard HEAD^</code></td>
+<td>Reset the working tree to the last commit</td>
+</tr>
+<tr>
+<td><code>git log {path} --oneline</code></td>
+<td>View commit log, optionally for specific path</td>
+</tr>
+<tr>
+<td><code>git blame [file]</code></td>
+<td>Show file annotated with line modifications</td>
+</tr>
+<tr>
+<td><code>git fetch</code></td>
+<td>Fetch changes from a remote repository</td>
+</tr>
+<tr>
+<td><code>git pull</code></td>
+<td>Fetch and merge changes from a remote repository</td>
+</tr>
+<tr>
+<td><code>git push origin {branch_name}</code></td>
+<td>Push branch and its changes to a remote repository (like github)</td>
+</tr>
+<tr>
+<td><code>git remote -v</code></td>
+<td>List remote repositories</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-is-github">What is Github?</h2>
+<p>When you create a git repository, it created on your file system. <a href="https://www.github.com">Github</a> is the dropbox of git. It allows you to store your git repository online in public. This lets other people download and collaborate with your repo. Github has some extra perks in terms
+of collaborating with other people. One of these features includes the creation of Pull Requests. </p>
+<h3 id="pull-requests">Pull Requests</h3>
+<p>A pull requests is analogous to you asking everyone on your project to take a look at the work you did, and accept your changes if they all agree. Thats what a pull request lets you do.</p>
+<p>A normal git/github workflow works like this:</p>
+<ol>
+<li>You branch off of the master branch of the repo you're working on</li>
+<li>You make your changes, committing often</li>
+<li>You open up a Pull Request on Github against the master branch</li>
+<li>Anyone else working on the project will look at the PR, look at the changes you've made, and make comments on them if necessary</li>
+<li>After everyone gives you the thumbs up, you have permission to merge your changes in to the master branch. At that point anyone else that branches of off master will have your changes</li>
+<li>Repeat Step 1</li>
+</ol>
+<h3 id="forks">Forks</h3>
+<p>Github also allows forks. Forks are essentially the ability to clone github repos that you dont have permission to push to into
+your own account. After you've made changes to your fork, you can create a pull request against the original repo, and the developers
+of the repo can merge your changes in if they like them. </p>
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><a href="https://try.github.io/levels/1/challenges/1">15 Minute Git Tutorial</a></li>
+<li><a href="https://www.codecademy.com/learn/learn-git">CodeAcademy Git Course</a></li>
+<li><a href="https://help.github.com/articles/good-resources-for-learning-git-and-github/">More Resources</a></li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">

@@ -5,6 +5,7 @@ site_author: University of Waterloo Aerial Robotics Group
 site_favicon: favicon.ico
 copyright: Copyright <a href="http://www.uwarg.com"> University of Waterloo Aerial Robotics Group</a>
 theme: yeti
+google_analytics: ['UA-68186801-2', 'docs.uwarg.com']
 
 pages:
 - Home: index.md

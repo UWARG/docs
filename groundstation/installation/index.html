@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="University of Waterloo Aerial Robotics Group">
-        <link rel="canonical" href="http://www.docs.uwarg.com/groundstation/documenting/">
+        <link rel="canonical" href="http://www.docs.uwarg.com/groundstation/installation/">
         <link rel="shortcut icon" href="../../favicon.ico">
         
 
-	<title>Documenting - WARG Docs</title>
+	<title>Installation - WARG Docs</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -80,8 +80,8 @@
 
                     
                         
-<li >
-    <a href="../installation/">Installation</a>
+<li class="active">
+    <a href="./">Installation</a>
 </li>
 
                     
@@ -104,8 +104,8 @@
 
                     
                         
-<li class="active">
-    <a href="./">Documenting</a>
+<li >
+    <a href="../documenting/">Documenting</a>
 </li>
 
                     
@@ -333,12 +333,12 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../contributing/">
+                    <a rel="next" href="../what-you-need-to-know/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../resources/">
+                    <a rel="prev" href="../tutorial/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -361,234 +361,33 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#documenting">Documenting</a></li>
-        
-    
-        <li class="main "><a href="#jsdoc-reference">JSDoc Reference</a></li>
+        <li class="main active"><a href="#installation">Installation</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="documenting">Documenting</h1>
-<p>The ground station uses <a href="http://usejsdoc.org/">jsdocs</a> for its documentation purposes.</p>
-<p>If you're familiar with JavaDoc or PHPDoc, then its very similar. Essentially you add comments
-to your code using a double star comment in the form of <code>/** your comment */</code> and the jsdoc 
-interpreter generates nice well-described documentation based on your source code files.</p>
-<p>A good tutorial of what it is, why we use it, and how to use it can be found here: <a href="http://speakingjs.com/es5/ch29.html">http://speakingjs.com/es5/ch29.html</a>.</p>
-<p><em>You are required to document the necessary part of your code with this format.</em></p>
-<h1 id="jsdoc-reference">JSDoc Reference</h1>
-<table>
-<thead>
-<tr>
-<th>Block</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="http://usejsdoc.org/tags-abstract.html">@abstract</a>˙(synonyms: @virtual)</td>
-<td>This member must be implemented (or overridden) by the inheritor.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-author.html">@author</a></td>
-<td>Identify the author of an item.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-callback.html">@callback</a></td>
-<td>Document a callback function.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-class.html">@class</a> (synonyms: @constructor)</td>
-<td>This function is intended to be called with the "new" keyword.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-classdesc.html">@classdesc</a></td>
-<td>Use the following text to describe the entire class.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-constant.html">@constant</a> (synonyms: @const)</td>
-<td>Document an object as a constant.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-constructs.html">@constructs</a></td>
-<td>This function member will be the constructor for the previous class.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-copyright.html">@copyright</a></td>
-<td>Document some copyright information.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-default.html">@default</a> (synonyms: @defaultvalue)</td>
-<td>Document the default value.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-deprecated.html">@deprecated</a></td>
-<td>Document that this is no longer the preferred way.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-description.html">@description</a> (synonyms: @desc)</td>
-<td>Describe a symbol.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-enum.html">@enum</a></td>
-<td>Document a collection of related properties.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-event.html">@event</a></td>
-<td>Document an event.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-example.html">@example</a></td>
-<td>Provide an example of how to use a documented item.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-exports.html">@exports</a></td>
-<td>Identify the member that is exported by a JavaScript module.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-external.html">@external</a> (synonyms: @host)</td>
-<td>Identifies an external class or module.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-file.html">@file</a> (synonyms: @fileoverview or @overview)</td>
-<td>Describe a file.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-fires.html">@fires</a> (synonyms: @emits)</td>
-<td>Describe the events this method may fire.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-function.html">@function</a> (synonyms: @funco or @method)</td>
-<td>Describe a function or method.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-global.html">@global</a></td>
-<td>Document a global object.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-ignore.html">@ignore</a></td>
-<td>Omit a symbol from the documentation.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-implements.html">@implements</a></td>
-<td>This symbol implements an interface.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-inheritdoc.html">@inheritdoc</a></td>
-<td>Indicate that a symbol should inherit its parent's documentation.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-instance.html">@instance</a></td>
-<td>Document an instance member.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-interface.html">@interface</a></td>
-<td>This symbol is an interface that others can implement.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-lends.html">@lends</a></td>
-<td>Document properties on an object literal as if they belonged to a symbol with a given name.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-license.html">@license</a></td>
-<td>Identify the license that applies to this code.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-listens.html">@listens</a></td>
-<td>List the events that a symbol listens for.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-member.html">@member</a> (synonyms: @var)</td>
-<td>Document a member.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-mixin.html">@mixin</a></td>
-<td>Document a mixin object.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-module.html">@module</a></td>
-<td>Document a JavaScript module.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-name.html">@name</a></td>
-<td>Document the name of an object.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-namespace.html">@namespace</a></td>
-<td>Document a namespace object.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-override.html">@override</a></td>
-<td>Indicate that a symbol overrides its parent.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-param.html">@param</a> (synonyms: @arg or @argument)</td>
-<td>Document the parameter to a function.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-property.html">@property</a> (synonyms: @prop)</td>
-<td>Document a property of an object.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-protected.html">@protected</a></td>
-<td>This symbol is meant to be protected.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-public.html">@public</a></td>
-<td>This symbol is meant to be public.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-readonly.html">@readonly</a></td>
-<td>This symbol is meant to be read-only.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-requires.html">@requires</a></td>
-<td>This file requires a JavaScript module.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-returns.html">@returns</a> (synonyms: @return)</td>
-<td>Document the return value of a function.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-see.html">@see</a></td>
-<td>Refer to some other documentation for more information.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-static.html">@static</a></td>
-<td>Document a static member.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-summary.html">@summary</a></td>
-<td>A shorter version of the full description.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-this.html">@this</a></td>
-<td>What does the 'this' keyword refer to here?</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-throws.html">@throws</a> (synonyms: @exception)</td>
-<td>Describe what errors could be thrown.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-todo.html">@todo</a></td>
-<td>Document tasks to be completed.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-tutorial.html">@tutorial</a></td>
-<td>Insert a link to an included tutorial file.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-type.html">@type</a></td>
-<td>Document the type of an object.</td>
-</tr>
-<tr>
-<td><a href="http://usejsdoc.org/tags-typedef.html">@typedef</a></td>
-<td>Document a custom type.</td>
-</tr>
-</tbody>
-</table></div>
+<h1 id="installation">Installation</h1>
+<ol>
+<li>
+<p>The first step is cloning the repository. Open up the terminal and run: 
+<code>git clone https://github.com/UWARG/WARG-Ground-Station</code></p>
+</li>
+<li>
+<p>Then you need to install Node.js. You can download and install it <a href="https://nodejs.org/en/">here</a>. Download Node version 5 and above preferably. After you've installed node you should have the <code>node</code> command available for you to use in your terminal. Run <code>node help</code> to verify that you've successfuly installed node and make sure you're running the right version.</p>
+</li>
+<li>
+<p>Now that you've installed node, navigate to the groundstation project directory (the folder that was created when you did the git clone). Then run <code>npm install</code> to install all of the apps dependencies. If you get weird errors, try running your terminal in administrative mode (or sudo for linux users).</p>
+</li>
+<li>
+<p>Now you're ready to start the app up. Run <code>npm start</code> to start the application. You should see a window appear of the groundsation.</p>
+</li>
+<li>
+<p>Now you need to download the offline satelite files that the application uses for it's map. <a href="https://drive.google.com/file/d/0BwjduHozuvOiaUFzV2dZdncyZnc/view">Download them here.</a>. Extract the zip into the <code>assets</code> folder of the project directory (so you should have a folder called <code>sat_tiles</code> in the assets folder). </p>
+</li>
+</ol>
+<p>Congratulations! You should now have the groundstation installed on your computer ready for you to develop on! </p></div>
         </div>
 
         <footer class="col-md-12">

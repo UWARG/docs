@@ -30,6 +30,12 @@
     </url>
         
     <url>
+     <loc>http://www.docs.uwarg.com/groundstation/installation/</loc>
+     <lastmod>2016-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>http://www.docs.uwarg.com/groundstation/tutorial/</loc>
      <lastmod>2016-05-14</lastmod>
      <changefreq>daily</changefreq>
@@ -42,7 +48,19 @@
     </url>
         
     <url>
+     <loc>http://www.docs.uwarg.com/groundstation/contributing/</loc>
+     <lastmod>2016-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>http://www.docs.uwarg.com/groundstation/documenting/</loc>
+     <lastmod>2016-05-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://www.docs.uwarg.com/groundstation/resources/</loc>
      <lastmod>2016-05-14</lastmod>
      <changefreq>daily</changefreq>
     </url>

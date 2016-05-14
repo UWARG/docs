@@ -12,10 +12,10 @@
 
 	<title>Project Structure - WARG Docs</title>
 
-        <link href="../..//css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../..//css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="../..//css/highlight.css">
-        <link href="../..//css/base.css" rel="stylesheet">
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -42,7 +42,7 @@
             </button>
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../../">WARG Docs</a>
+            <a class="navbar-brand" href="../..">WARG Docs</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -52,7 +52,7 @@
             
             
                 <li >
-                    <a href="../../">Home</a>
+                    <a href="../..">Home</a>
                 </li>
             
             
@@ -81,6 +81,12 @@
                     
                         
 <li >
+    <a href="../installation/">Installation</a>
+</li>
+
+                    
+                        
+<li >
     <a href="../tutorial/">Tutorial</a>
 </li>
 
@@ -93,7 +99,19 @@
                     
                         
 <li >
+    <a href="../contributing/">Contributing</a>
+</li>
+
+                    
+                        
+<li >
     <a href="../documenting/">Documenting</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../resources/">Additional Resources</a>
 </li>
 
                     
@@ -213,13 +231,13 @@
                     
                         
 <li >
-    <a href="../../computer-vision/Building-the-project-%5BLinux%5D/">Building the project [Linux]</a>
+    <a href="../../computer-vision/Building-the-project-[Linux]/">Building the project [Linux]</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../computer-vision/Building-the-project-%5BWindows%5D/">Building the project [Windows]</a>
+    <a href="../../computer-vision/Building-the-project-[Windows]/">Building the project [Windows]</a>
 </li>
 
                     
@@ -320,7 +338,7 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../documenting/">
+                    <a rel="prev" href="../contributing/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -345,24 +363,86 @@
     
         <li class="main active"><a href="#project-structure">Project Structure</a></li>
         
+            <li><a href="#app">app/</a></li>
+        
+            <li><a href="#assets">assets/</a></li>
+        
+            <li><a href="#build">build/</a></li>
+        
+            <li><a href="#config">config/</a></li>
+        
+            <li><a href="#logs">logs/</a></li>
+        
+            <li><a href="#node_modules">node_modules/</a></li>
+        
+            <li><a href="#styles">styles/</a></li>
+        
+            <li><a href="#views">views/</a></li>
+        
+            <li><a href="#indexhtml">index.html</a></li>
+        
+            <li><a href="#packagejson">package.json</a></li>
+        
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
 <h1 id="project-structure">Project Structure</h1>
+<p>This is the project folder structure. Not that there are
+more folders than listed here, however these are the most relevant.</p>
 <pre><code class="text">/
-    app/  ===&gt; this is where all of the app javascript files are
-    assets/ ===&gt; this is where all of the apps assets are located (ie images)
-    build/ ====&gt; this is the output directory of running `npm run build`
-    config/ ===&gt; all of the default configuration settings
-    logs/ ===&gt; output of the log files
-    node_modules/ ===&gt; output directory of running `npm install`
-    styles/ ===&gt; CSS directory
-    views/ ===&gt; HTML views directory
-    index.html ===&gt; main index file. Starting point of application
-    package.json ===&gt; Describes the application, including the dependencies
-</code></pre></div>
+    app/
+        connections/
+        lib/
+        map/
+        models/
+        util/
+        views/
+        windows/
+    assets/
+        fonts/
+        images/
+        simulation/
+        stl/
+    build/
+    config/
+    logs/
+    node_modules/
+    styles/
+        lib/
+        views/
+    views/
+    index.html
+    package.json
+</code></pre>
+
+<h2 id="app">app/</h2>
+<p>This is where all of the applications javascript files are located. It is the heart and soul of the groundstation.</p>
+<h3 id="applib">app/lib</h3>
+<p>All javascript libraries go here, including jquery, marionette, leaflet, etc..</p>
+<h3 id="appviews">app/views</h3>
+<p>Application logic that's responsible for views. Every single view has its own file here.</p>
+<h2 id="assets">assets/</h2>
+<p>Any binary assets are stored here</p>
+<h2 id="build">build/</h2>
+<p>The output of running <code>npm run build</code>, which creates an executable of the groundstation for every operating system.</p>
+<h2 id="config">config/</h2>
+<p>The groundstation config files are stored here. These config files are then dynamically loaded, stored, and persisted across the application lifecycle.</p>
+<h2 id="logs">logs/</h2>
+<p>Groundstation log output. </p>
+<h3 id="logsdata_entries">logs/data_entries/</h3>
+<p>Output of the logs from the Data Entry Window</p>
+<h2 id="node_modules">node_modules/</h2>
+<p>All of the node modules installed by running <code>npm install</code> are stored in here. You don't really need to be concerned about this directory.</p>
+<h2 id="styles">styles/</h2>
+<p>CSS directory. This is where styles go. Everything in here is a .css file.</p>
+<h2 id="views">views/</h2>
+<p>Templates for the views of the app. Everything in here is .html files.</p>
+<h2 id="indexhtml">index.html</h2>
+<p>This is the starting point of the application. This file is loaded, which in turn loads the necessary javascript files required to make the application run.</p>
+<h2 id="packagejson">package.json</h2>
+<p>This file describes the application, including any dependencies that it requires. You can read more about this file <a href="https://docs.npmjs.com/files/package.json">here</a>.</p></div>
         </div>
 
         <footer class="col-md-12">
@@ -373,12 +453,12 @@
             <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
         </footer>
 
-        <script src="../..//js/jquery-1.10.2.min.js"></script>
-        <script src="../..//js/bootstrap-3.0.3.min.js"></script>
-        <script src="../..//js/highlight.pack.js"></script>
-        <script>var base_url = '../../';</script>
-        <script data-main="../..//mkdocs/js/search.js" src="../..//mkdocs/js/require.js"></script>
-        <script src="../..//js/base.js"></script>
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
             <div class="modal-dialog">

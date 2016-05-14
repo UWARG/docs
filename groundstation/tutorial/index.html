@@ -12,10 +12,10 @@
 
 	<title>Tutorial - WARG Docs</title>
 
-        <link href="../..//css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../..//css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="../..//css/highlight.css">
-        <link href="../..//css/base.css" rel="stylesheet">
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -42,7 +42,7 @@
             </button>
 
             <!-- Main title -->
-            <a class="navbar-brand" href="../../">WARG Docs</a>
+            <a class="navbar-brand" href="../..">WARG Docs</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -52,7 +52,7 @@
             
             
                 <li >
-                    <a href="../../">Home</a>
+                    <a href="../..">Home</a>
                 </li>
             
             
@@ -80,6 +80,12 @@
 
                     
                         
+<li >
+    <a href="../installation/">Installation</a>
+</li>
+
+                    
+                        
 <li class="active">
     <a href="./">Tutorial</a>
 </li>
@@ -93,7 +99,19 @@
                     
                         
 <li >
+    <a href="../contributing/">Contributing</a>
+</li>
+
+                    
+                        
+<li >
     <a href="../documenting/">Documenting</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../resources/">Additional Resources</a>
 </li>
 
                     
@@ -213,13 +231,13 @@
                     
                         
 <li >
-    <a href="../../computer-vision/Building-the-project-%5BLinux%5D/">Building the project [Linux]</a>
+    <a href="../../computer-vision/Building-the-project-[Linux]/">Building the project [Linux]</a>
 </li>
 
                     
                         
 <li >
-    <a href="../../computer-vision/Building-the-project-%5BWindows%5D/">Building the project [Windows]</a>
+    <a href="../../computer-vision/Building-the-project-[Windows]/">Building the project [Windows]</a>
 </li>
 
                     
@@ -315,7 +333,7 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="next" href="../what-you-need-to-know/">
+                    <a rel="next" href="../installation/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
@@ -373,7 +391,7 @@
 <h1 id="groundstation-tutorial">Groundstation Tutorial</h1>
 <p>This tutorial will guide you through creating a groundstation window and adding logic to it using the core application modules. </p>
 <h2 id="installation">Installation</h2>
-<p>Follow the installation guide <a href="../introduction/#installation">here</a> to install the groundstation on your computer.</p>
+<p>Follow the installation guide <a href="../installation/">here</a> to install the groundstation on your computer.</p>
 <h2 id="editor">Editor</h2>
 <p>You can use your prefered editor for this application, or an IDE like Webstorm if you prefer.</p>
 <h2 id="getting-started">Getting Started</h2>
@@ -520,8 +538,8 @@ $(document).ready(function(){
 <p>Each ItemView has to have its own template file, which is the <code>newWindowView.html</code> file we created in the <code>views/</code> folder. We specify this in our ItemView by setting the <code>template</code> property. The ItemView will render that template and then our application entry point (<code>example-window.js</code>) will append it to the body of our window. Here is a diagram showing what happens:</p>
 <p><img alt="Item View Diagram" src="../../images/groundstation/item-view-diagram.png" /></p>
 <h2 id="why-do-it-this-way">Why do it this way?</h2>
-<p>You may be asking yourself what was the point of doing all the fancy stuff if the end result was the same. What we've just done is seperated our view logic and application logic into different modules. </p>
-<p>To be continued...</p></div>
+<p>You may be asking yourself what was the point of doing all the fancy stuff if the end result was the same. What we've just done is seperated our view logic and application logic into different modules. Now, say we want to create a combined window that combines our view with the map. Because all of the logic associated
+with our view is completely isolated, there is no code that we have re-write. We simply import the views that we're interested in and inject them into our new window. This form of writing applications is called an <a href="http://www.tomdalling.com/blog/software-design/model-view-controller-explained/">MVC</a> pattern, standing for Model View Controller.</p></div>
         </div>
 
         <footer class="col-md-12">
@@ -532,12 +550,12 @@ $(document).ready(function(){
             <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
         </footer>
 
-        <script src="../..//js/jquery-1.10.2.min.js"></script>
-        <script src="../..//js/bootstrap-3.0.3.min.js"></script>
-        <script src="../..//js/highlight.pack.js"></script>
-        <script>var base_url = '../../';</script>
-        <script data-main="../..//mkdocs/js/search.js" src="../..//mkdocs/js/require.js"></script>
-        <script src="../..//js/base.js"></script>
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
             <div class="modal-dialog">

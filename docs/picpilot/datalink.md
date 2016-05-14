@@ -1,4 +1,4 @@
-#Datalink
+# Datalink
 
 The datalink is one of the most important peripheral components in an unmanned system. It provides information on the status of the aircraft (telemetry) and provides the crucial functionality of an uplink, in order to be able to communicate with the system and make changes to its overall functionality.
 
@@ -66,18 +66,18 @@ Every command that is sent to the UAV must be predefined with an ID, as well as 
 | 16 | set\_throttleKDGain:<data> | setGain(THROTTLE, KD\_GAIN, <data>) | Float | The command to set the derivative gain for throttle control (speed). |
 | 17 | set\_throttleKPGain:<data> | setGain(THROTTLE, KP\_GAIN, <data>) | Float | The command to set the derivative gain for throttle control (speed). |
 | 18 | set\_throttleKIGain:<data> | setGain(THROTTLE, KI\_GAIN, <data>) | Float | The command to set the integral gain for throttle control (speed). |
-| 19 | set\_pathGain:<data> | <Currently Unsupported, but will not cause errors if set> | Float | The command used to set the gain that scales lateral positional control around a path. |
-| 20 | set\_orbitGain:<data> | <Currently Unsupported, but will not cause errors if set> | Float | The command used to set the gain that scales orbital convergence. |
+| 19 | set\_pathGain:<data> | Currently Unsupported, but will not cause errors if set | Float | The command used to set the gain that scales lateral positional control around a path. |
+| 20 | set\_orbitGain:<data> | Currently Unsupported, but will not cause errors if set | Float | The command used to set the gain that scales orbital convergence. |
 | 21 | set\_showGain:<data> | displayGain = <data> | Char | The command used to switch the output between multiple gain types:0x00 = Yaw0x01 = Pitch0x02 = Roll0x03 = Heading0x04 = Altitude0x05 = Throttle\*Note that there is no support for the path gain or orbital gain yet. |
 | 22 | set\_pitchRate:<data> | sp\_PitchRate = <data> | Int | The user input for the pitch rate in PWM timer tick units. (Normal values range from 470 to 941 [dependent on setup]). Note you must set command 32 greater than 4 to use this. |
 | 23 | set\_rollRate:<data> | sp\_RollRate = <data> | Int | The user input for the roll rate in PWM timer tick units. (Normal values range from 470 to 941 [dependent on setup]) Note you must set command 32 greater than 4 to use this. |
 | 24 | set\_yawRate:<data> | sp\_YawRate = <data> | Int | The user input for the roll rate in PWM timer tick units. (Normal values range from 470 to 941 [dependent on setup]) Note you must set command 32 greater than 4 to use this. |
 | 25 | set\_pitchAngle:<data> | sp\_PitchAngle = <data> | Float | The user input for the pitch angle in degrees. Note you must set command 32 greater than 5 to use this. |
 | 26 | set\_rollAngle:<data> | sp\_RollAngle = <data> | Float | The user input for the roll angle in degrees. Note you must set command 32 greater than 5 to use this. |
-| 27 | set\_yawAngle:<data> | <Currently Unsupported, but will not cause errors if set>sp\_YawAngle = <data> | Float | The user input for the yaw angle in degrees. WILL LIKELY BE REMOVED IN THE FUTURE IF UNEEDED. Note you must set command 32 greater than 5 to use this. |
+| 27 | set\_yawAngle:<data> | Currently Unsupported, but will not cause errors if set| Float | The user input for the yaw angle in degrees. WILL LIKELY BE REMOVED IN THE FUTURE IF UNEEDED. Note you must set command 32 greater than 5 to use this. |
 | 28 | set\_altitude:<data> | sp\_Altitude = <data> | Float | The user input for the altitude in meters above sea level. Note you must set command 32 greater than 6 to use this. |
-| 29 | set\_heading:<data> | <sp\_Heading> = <data> | Float | The user input for the heading in standard compass bearing degrees. Note you must set command 32 greater than 7 to use this. |
-| 30 | set\_throttle:<data> | <sp\_Throttle> = <data> | Int | The user input for the throttle as a percentage. Note you must set command 32 to 8 to use this. |
+| 29 | set\_heading:<data> | sp\_Heading = <data> | Float | The user input for the heading in standard compass bearing degrees. Note you must set command 32 greater than 7 to use this. |
+| 30 | set\_throttle:<data> | sp\_Throttle = <data> | Int | The user input for the throttle as a percentage. Note you must set command 32 to 8 to use this. |
 | 31 | set\_autonomousLevel:<data> | controlLevel = <data> | Int | This sets the source of control input between the autopilot, the remote control, and the ground stations:0b00000000 = Full manual control (default)0b00000001 = Set Pitch Rate(0), Pitch Angle(1)0b00000010 = Pitch Control Source: Controller(0), Ground Station(1) 0b00000100 = Roll Control Type: Roll Rate(0), Roll Angle(1)0b00001000 = Roll Control Sources: Controller(0), Ground Station(1)0b00110000 = Throttle control source: Controller(0), Ground Station(1), Autopilot(2) 0b01000000 = Altitude Source: Ground Station(0), Autopilot(1)0b10000000 = Altitude Control On(1) or Off(0)0b100000000 = Heading control source: Ground Station(0), Autopilot(1)0b1000000000=  To fly with Ground Station Control of the Pitch Rate and Roll Angle:set\_autonomousLevel:14To fly with Ground Station Control of the Pitch Rate, Roll Angle, and Throttle:set\_autonomousLevel:30To fly with Ground Station Control of Altitude, and Throttle (Roll controlled by controller):set\_autonomousLevel:134To fly with Ground Station Control of Altitude, Throttle, Roll Angle:set\_autonomousLevel:156To reset everything and fly with controller:set\_autonomousLevel:0 |
 | 32 | set\_angularWalkVariance:<data> | setAngularWalkVariance(<data>) | Float | Sets the Kalman Filter parameter that determines how fast the gyro bias estimates converge. |
 | 33 | Set\_gyroVariance:<data> | setGyroVariance(<data>) | Float | Sets the Kalman filter parameter that determines the weighting of the gryo in the attitude estimates of the plane. |

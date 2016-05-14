@@ -51,6 +51,7 @@ Go to this link and download the freeware:
 [http://diptrace.com/download-diptrace/](http://diptrace.com/download-diptrace/)
 
 If you need help with using the CAD software, here are some resources:
+
 Diptrace Tutorial: [http://diptrace.com/support/tutorials/](http://diptrace.com/support/tutorials/)
 
 Schematics: [https://www.youtube.com/watch?v=uCPUqXFvUZU](https://www.youtube.com/watch?v=uCPUqXFvUZU)

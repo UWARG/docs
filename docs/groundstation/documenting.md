@@ -2,11 +2,13 @@
 
 The ground station uses [jsdocs](http://usejsdoc.org/) for its documentation purposes.
 
-If you're familiar with Java Doc or PHPDoc, then its very similar. Essentially you add comments
+If you're familiar with JavaDoc or PHPDoc, then its very similar. Essentially you add comments
 to your code using a double star comment in the form of `/** your comment */` and the jsdoc 
 interpreter generates nice well-described documentation based on your source code files.
 
 A good tutorial of what it is, why we use it, and how to use it can be found here: [http://speakingjs.com/es5/ch29.html](http://speakingjs.com/es5/ch29.html).
+
+*You are required to document the necessary part of your code with this format.*
 
 # JSDoc Reference
 

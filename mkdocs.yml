@@ -12,9 +12,12 @@ pages:
   - Table of Contents: groundstation/index.md
   - Introduction: groundstation/introduction.md
   - What you need to know: groundstation/what-you-need-to-know.md
+  - Installation: groundstation/installation.md
   - Tutorial: groundstation/tutorial.md
   - Project Structure: groundstation/project-structure.md
+  - Contributing: groundstation/contributing.md
   - Documenting: groundstation/documenting.md
+  - Additional Resources: groundstation/resources.md
 - PicPilot:
   - Table of Contents: picpilot/index.md
   - Introduction: picpilot/introduction.md

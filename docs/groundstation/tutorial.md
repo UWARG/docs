@@ -4,7 +4,7 @@ This tutorial will guide you through creating a groundstation window and adding 
 
 ## Installation
 
-Follow the installation guide [here](introduction.md#installation) to install the groundstation on your computer.
+Follow the installation guide [here](installation.md) to install the groundstation on your computer.
 
 ## Editor
 
@@ -198,7 +198,5 @@ Each ItemView has to have its own template file, which is the `newWindowView.htm
 
 ## Why do it this way?
 
-You may be asking yourself what was the point of doing all the fancy stuff if the end result was the same. What we've just done is seperated our view logic and application logic into different modules. 
-
-
-To be continued...
+You may be asking yourself what was the point of doing all the fancy stuff if the end result was the same. What we've just done is seperated our view logic and application logic into different modules. Now, say we want to create a combined window that combines our view with the map. Because all of the logic associated
+with our view is completely isolated, there is no code that we have re-write. We simply import the views that we're interested in and inject them into our new window. This form of writing applications is called an [MVC](http://www.tomdalling.com/blog/software-design/model-view-controller-explained/) pattern, standing for Model View Controller.

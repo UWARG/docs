@@ -60,6 +60,8 @@ so you can use jquery methods on it to manipulate it (say for example changing i
 ### Git
 We suggest making a seperate branch on git to do your bootcamp. Making a pull request is not necessary after the completion of your bootcamp, simply show your work the responsible team lead.
 
+### Example: 
+![Example of the Altitude view window](./resources/altitude-view-example.png)
 
 ## 2. Previous Team Contribution
 

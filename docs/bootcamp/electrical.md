@@ -7,10 +7,10 @@ WARG members often find that joining this team requires more knowledge and has a
 
 ## Bootcamp Objectives
 
+- Learn how to make a basic schematic
 - Learn how to make a PCB board.
-- Learn basic computer-aided circuit design principles.
+- Learn how to create a custom pattern
 - Learn where to find documentation and how to understand it.
-- Learn about basic circuit design
 
 ## Bootcamp Outline
 This Bootcamp has two options, both of which require a Team Leads approval of completion in order to move onto working on other tasks. The estimated time of completion for this Bootcamp is 1 week.
@@ -57,6 +57,8 @@ Diptrace Tutorial: [http://diptrace.com/support/tutorials/](http://diptrace.com/
 Schematics: [https://www.youtube.com/watch?v=uCPUqXFvUZU](https://www.youtube.com/watch?v=uCPUqXFvUZU)
 
 PCB Layout: [https://www.youtube.com/watch?v=kw51rlCTYBY](https://www.youtube.com/watch?v=kw51rlCTYBY)
+
+Datasheets: [https://www.octopart.com](https://www.octopart.com)
 
 ## 2. Previous Team Contribution
 

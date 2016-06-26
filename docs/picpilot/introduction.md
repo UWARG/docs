@@ -159,7 +159,7 @@ This document only covers the PICpilot, however a system overview of a previousl
 
 ## Schematics and Board Design
 
-The following schematic was last used at the time of the writing this document. The following schematic was last updated in 2011. You can check out the board schematics [here](https://drive.google.com/file/d/0BySpWXvmBM4JTTBIQmR0bXVOd1k/edit?usp=sharing). They may also be available within the Github repository. You will require [Diptrace](http://diptrace.com/download-diptrace/) in order to view the files. You can use the free version or use WARG's "Pro" license.
+The following schematic was last used at the time of the writing this document. The following schematic was last updated in 2011. You can check out the board schematics [on GrabCAD](https://workbench.grabcad.com/workbench/projects/gcMS11AcdVnQvS14KhtlL2Ihf33rdxOGKYGdbkc53rDmB_#/folder/1932453). You will require [Diptrace](http://diptrace.com/download-diptrace/) in order to view the files. You can use the free version or use WARG's "Pro" license.
 
 ![Board Schematic](http://i.imgur.com/V1Oe8YG.png)
 

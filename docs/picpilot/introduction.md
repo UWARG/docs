@@ -161,7 +161,7 @@ This document only covers the PICpilot, however a system overview of a previousl
 
 The following schematic is V2.1 of the PicPilot. You can check out the board schematics [on GrabCAD](https://workbench.grabcad.com/workbench/projects/gcMS11AcdVnQvS14KhtlL2Ihf33rdxOGKYGdbkc53rDmB_#/folder/1932453). You will require [Diptrace](http://diptrace.com/download-diptrace/) in order to view the files. You can use the free version or use WARG's "Pro" license.
 
-![Board Schematic](../images/picpilot/V2.1_schematic.png)
+![Board Schematic](../images/picpilot/V2.1_schematic.PNG)
 
 This board has 2 dspic33fj256710a chips. This is the PCB for the board. This is the labelled version:
 

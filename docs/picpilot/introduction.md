@@ -159,66 +159,60 @@ This document only covers the PICpilot, however a system overview of a previousl
 
 ## Schematics and Board Design
 
-The following schematic was last used at the time of the writing this document. The following schematic was last updated in 2011. You can check out the board schematics [on GrabCAD](https://workbench.grabcad.com/workbench/projects/gcMS11AcdVnQvS14KhtlL2Ihf33rdxOGKYGdbkc53rDmB_#/folder/1932453). You will require [Diptrace](http://diptrace.com/download-diptrace/) in order to view the files. You can use the free version or use WARG's "Pro" license.
+The following schematic is V2.1 of the PicPilot. You can check out the board schematics [on GrabCAD](https://workbench.grabcad.com/workbench/projects/gcMS11AcdVnQvS14KhtlL2Ihf33rdxOGKYGdbkc53rDmB_#/folder/1932453). You will require [Diptrace](http://diptrace.com/download-diptrace/) in order to view the files. You can use the free version or use WARG's "Pro" license.
 
-![Board Schematic](http://i.imgur.com/V1Oe8YG.png)
+![Board Schematic](../images/picpilot/V2.1_schematic.png)
 
 This board has 2 dspic33fj256710a chips. This is the PCB for the board. This is the labelled version:
 
-![Board Schematic Labelled](http://i.imgur.com/nEdhiwz.png)
+![Board Schematic Labelled](../images/picpilot/V2.1_schematic_annotated.png)
 
-1. Microcontroller 1 - Attitude/Communication Manager
+1. Switching Power Supply 1
 
-2. Microcontroller 2 - Path Manager
+2. Switching Power Supply 2
 
-3. Input PWM
+3. Battery Port
 
-4. Output PWM
+4. External Battery Monitor
 
-5. Output PWM Safety Relay
+5. Analog sensors: airspeed and ultrasonic
 
-6. Output PWM Safety Relay Microcontroller
+6. UART2 Port - Unused
 
-7. Output PWM Safety Relay Microcontroller Programming Port
+7. Path Manager Debug
 
-8. Microcontroller 2 Programming Port
+8. Path Manager Programming Port
 
-9. SPI2 Port - VectorNav-100
+9. I2C- Altimeter
 
-10. SPI2 Ports - GPS
+10. SPI Ports: Top- GPS, Bottom- Unused
 
-11. Switching Power Supply 1
+11. Microcontroller 2 - Path Manager
 
-12. Switching Power Supply 2
+12. SPI -IMU
 
-13. Voltage Regulator
+13. UART2- Xbee
 
-14. SPI2 Port - Used as a power source for the altimeter
+14. Attitude Manager Programming Port
 
-15. UART1 Port - Debug
+15. Microcontroller 2 - Attitude Manager
 
-16. UART2 Port - Wireless Transmitter (Xbee)
+16. Attitude Manager Debug
 
-17. SPI2 Port - Altimeter
+17. Relay Controller Programmer Port
 
-18. UART1 Port - Debug
+18. Safety Relays (Inputs 1-4)
 
-19. UART2 Port - Unused
+19. I2C - PWM Extension
 
-20. Microcontroller 2 Programming Port
+20. PWM Outputs
 
-21. PWM input/output - Sonar
+21. PWM Inputs
 
-The important pins are listed below:
+To get a full list of the different pins, look at the schematic on GrabCad. Highlighted below are the ground connections (and you are politely reminded to NEVER connect these pins to anything but ground, always check before connecting cables).
 
-![Board Pinout](http://i.imgur.com/UFKNtO2.png)
+![Ground Pins](../images/picpilot/ground_net.jpg)
 
-The schematics for the board are below:
-
-![Attitude Manager](http://i.imgur.com/TYwSp8G.png)
-![Path Manager](http://i.imgur.com/MY3hXzZ.png)
-![Ports](http://i.imgur.com/9sDYtfG.png)
-![Other Power Stuff](http://i.imgur.com/J1iwVBz.png)
 
 ## Project files
 

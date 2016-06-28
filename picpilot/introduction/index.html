@@ -535,41 +535,11 @@ These set the default name and email you use when committing to GitHub.</li>
 <p>This document only covers the PICpilot, however a system overview of a previously fully assembled system will be described in this section. In the past, the PICpilot has been expanded into a larger and more sophisticated system as seen below.</p>
 <p><img alt="Sample Autopilot System Integration" src="http://i.imgur.com/GnhOY3N.png" /></p>
 <h2 id="schematics-and-board-design">Schematics and Board Design</h2>
-<p>The following schematic was last used at the time of the writing this document. The following schematic was last updated in 2011. You can check out the board schematics <a href="https://workbench.grabcad.com/workbench/projects/gcMS11AcdVnQvS14KhtlL2Ihf33rdxOGKYGdbkc53rDmB_#/folder/1932453">on GrabCAD</a>. You will require <a href="http://diptrace.com/download-diptrace/">Diptrace</a> in order to view the files. You can use the free version or use WARG's "Pro" license.</p>
-<p><img alt="Board Schematic" src="http://i.imgur.com/V1Oe8YG.png" /></p>
+<p>The following schematic is V2.1 of the PicPilot. You can check out the board schematics <a href="https://workbench.grabcad.com/workbench/projects/gcMS11AcdVnQvS14KhtlL2Ihf33rdxOGKYGdbkc53rDmB_#/folder/1932453">on GrabCAD</a>. You will require <a href="http://diptrace.com/download-diptrace/">Diptrace</a> in order to view the files. You can use the free version or use WARG's "Pro" license.</p>
+<p><img alt="Board Schematic" src="../../images/picpilot/V2.1_schematic.png" /></p>
 <p>This board has 2 dspic33fj256710a chips. This is the PCB for the board. This is the labelled version:</p>
-<p><img alt="Board Schematic Labelled" src="http://i.imgur.com/nEdhiwz.png" /></p>
+<p><img alt="Board Schematic Labelled" src="../../images/picpilot/V2.1_schematic_annotated.png" /></p>
 <ol>
-<li>
-<p>Microcontroller 1 - Attitude/Communication Manager</p>
-</li>
-<li>
-<p>Microcontroller 2 - Path Manager</p>
-</li>
-<li>
-<p>Input PWM</p>
-</li>
-<li>
-<p>Output PWM</p>
-</li>
-<li>
-<p>Output PWM Safety Relay</p>
-</li>
-<li>
-<p>Output PWM Safety Relay Microcontroller</p>
-</li>
-<li>
-<p>Output PWM Safety Relay Microcontroller Programming Port</p>
-</li>
-<li>
-<p>Microcontroller 2 Programming Port</p>
-</li>
-<li>
-<p>SPI2 Port - VectorNav-100</p>
-</li>
-<li>
-<p>SPI2 Ports - GPS</p>
-</li>
 <li>
 <p>Switching Power Supply 1</p>
 </li>
@@ -577,40 +547,65 @@ These set the default name and email you use when committing to GitHub.</li>
 <p>Switching Power Supply 2</p>
 </li>
 <li>
-<p>Voltage Regulator</p>
+<p>Battery Port</p>
 </li>
 <li>
-<p>SPI2 Port - Used as a power source for the altimeter</p>
+<p>External Battery Monitor</p>
 </li>
 <li>
-<p>UART1 Port - Debug</p>
-</li>
-<li>
-<p>UART2 Port - Wireless Transmitter (Xbee)</p>
-</li>
-<li>
-<p>SPI2 Port - Altimeter</p>
-</li>
-<li>
-<p>UART1 Port - Debug</p>
+<p>Analog sensors: airspeed and ultrasonic</p>
 </li>
 <li>
 <p>UART2 Port - Unused</p>
 </li>
 <li>
-<p>Microcontroller 2 Programming Port</p>
+<p>Path Manager Debug</p>
 </li>
 <li>
-<p>PWM input/output - Sonar</p>
+<p>Path Manager Programming Port</p>
+</li>
+<li>
+<p>I2C- Altimeter</p>
+</li>
+<li>
+<p>SPI Ports: Top- GPS, Bottom- Unused</p>
+</li>
+<li>
+<p>Microcontroller 2 - Path Manager</p>
+</li>
+<li>
+<p>SPI -IMU</p>
+</li>
+<li>
+<p>UART2- Xbee</p>
+</li>
+<li>
+<p>Attitude Manager Programming Port</p>
+</li>
+<li>
+<p>Microcontroller 2 - Attitude Manager</p>
+</li>
+<li>
+<p>Attitude Manager Debug</p>
+</li>
+<li>
+<p>Relay Controller Programmer Port</p>
+</li>
+<li>
+<p>Safety Relays (Inputs 1-4)</p>
+</li>
+<li>
+<p>I2C - PWM Extension</p>
+</li>
+<li>
+<p>PWM Outputs</p>
+</li>
+<li>
+<p>PWM Inputs</p>
 </li>
 </ol>
-<p>The important pins are listed below:</p>
-<p><img alt="Board Pinout" src="http://i.imgur.com/UFKNtO2.png" /></p>
-<p>The schematics for the board are below:</p>
-<p><img alt="Attitude Manager" src="http://i.imgur.com/TYwSp8G.png" />
-<img alt="Path Manager" src="http://i.imgur.com/MY3hXzZ.png" />
-<img alt="Ports" src="http://i.imgur.com/9sDYtfG.png" />
-<img alt="Other Power Stuff" src="http://i.imgur.com/J1iwVBz.png" /></p>
+<p>To get a full list of the different pins, look at the schematic on GrabCad. Highlighted below are the ground connections (and you are politely reminded to NEVER connect these pins to anything but ground, always check before connecting cables).</p>
+<p><img alt="Ground Pins" src="../../images/picpilot/ground_net.jpg" /></p>
 <h2 id="project-files">Project files</h2>
 <p>All the project files are hosted on Github. However, for convenience they are listed below (accurate at the time of writing of this document):</p>
 <ul>

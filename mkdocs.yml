@@ -43,6 +43,8 @@ pages:
   - Contributing: computer-vision/Contributing.md
   - Using the WARG computer environment: computer-vision/Using-the-WARG-server-environment.md
   - Writing Tests: computer-vision/Writing-Tests.md
+- Mechanical:
+  - CAD Guidelines: mechanical/cad-guidelines.md 
 - Bootcamps:
   - Mechanical: bootcamp/mechanical.md
   - Computer Vision: bootcamp/computer-vision.md

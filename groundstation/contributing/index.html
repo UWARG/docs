@@ -1,400 +1,471 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <meta name="author" content="University of Waterloo Aerial Robotics Group">
-        <link rel="canonical" href="http://www.docs.uwarg.com/groundstation/contributing/">
-        <link rel="shortcut icon" href="../../favicon.ico">
-        
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="University of Waterloo Aerial Robotics Group">
+  
+  <title>Contributing - WARG Docs</title>
+  
 
-	<title>Contributing - WARG Docs</title>
+  <link rel="shortcut icon" href="../../favicon.ico">
+  
 
-        <link href="../..//css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../..//css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="../..//css/highlight.css">
-        <link href="../..//css/base.css" rel="stylesheet">
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
 
-        
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Contributing";
+    var mkdocs_page_input_path = "groundstation/contributing.md";
+    var mkdocs_page_url = "/groundstation/contributing/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+  <script src="../../sloth-generator.js"></script>
 
-            ga('create', 'UA-68186801-2', 'docs.uwarg.com');
-            ga('send', 'pageview');
-        </script>
-        
-    </head>
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    <body>
+      ga('create', 'UA-68186801-2', 'docs.uwarg.com');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
 
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+<body class="wy-body-for-nav" role="document">
 
-        <!-- Collapsed navigation -->
-        <div class="navbar-header">
-            <!-- Expander button -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+  <div class="wy-grid-for-nav">
 
-            <!-- Main title -->
-            <a class="navbar-brand" href="../../">WARG Docs</a>
-        </div>
-
-        <!-- Expanded navigation -->
-        <div class="navbar-collapse collapse">
-            <!-- Main navigation -->
-            <ul class="nav navbar-nav">
-            
-            
-                <li >
-                    <a href="../../">Home</a>
-                </li>
-            
-            
-            
-                <li class="dropdown active">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Groundstation <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        
-<li >
-    <a href="../">Table of Contents</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../introduction/">Introduction</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../what-you-need-to-know/">What you need to know</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../installation/">Installation</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../tutorial/">Tutorial</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../project-structure/">Project Structure</a>
-</li>
-
-                    
-                        
-<li class="active">
-    <a href="./">Contributing</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../documenting/">Documenting</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../resources/">Additional Resources</a>
-</li>
-
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PicPilot <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        
-<li >
-    <a href="../../picpilot/">Table of Contents</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../picpilot/introduction/">Introduction</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../picpilot/pid-loops/">PID Loops</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../picpilot/pwm-io/">PWM and IO</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../picpilot/uart/">UART</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../picpilot/spi/">SPI</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../picpilot/direct-memory-access/">Direct Memory Access</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../picpilot/i2c/">I2C</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../picpilot/datalink/">Datalink</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../picpilot/analog-to-digital-converter/">Analog to Digital Converter</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../picpilot/sensors-and-peripherals/">Sensors and Peripherals</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../picpilot/attitude-control/">Attitude Control</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../picpilot/path-management/">Path Management</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../picpilot/resources/">Resources</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../picpilot/faq/">FAQ</a>
-</li>
-
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Computer Vision <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        
-<li >
-    <a href="../../computer-vision/">Table of Contents</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../computer-vision/Building-the-project-%5BLinux%5D/">Building the project [Linux]</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../computer-vision/Building-the-project-%5BWindows%5D/">Building the project [Windows]</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../computer-vision/Coding-Conventions/">Coding Conventions</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../computer-vision/Contributing/">Contributing</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../computer-vision/Using-the-WARG-server-environment/">Using the WARG computer environment</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../computer-vision/Writing-Tests/">Writing Tests</a>
-</li>
-
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bootcamps <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        
-<li >
-    <a href="../../bootcamp/mechanical/">Mechanical</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../bootcamp/computer-vision/">Computer Vision</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../bootcamp/electrical/">Electrical</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../bootcamp/groundstation/">Groundstation</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../bootcamp/rccompetition/">RC Car Competition</a>
-</li>
-
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorials <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        
-<li >
-    <a href="../../tutorials/git/">Git and Github</a>
-</li>
-
-                    
-                        
-<li >
-    <a href="../../tutorials/shell/">Using the terminal</a>
-</li>
-
-                    
-                    </ul>
-                </li>
-            
-            
-            </ul>
-
-            <!-- Search, Navigation and Repo links -->
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                        <i class="fa fa-search"></i> Search
-                    </a>
-                </li>
-                <li >
-                    <a rel="next" href="../project-structure/">
-                        <i class="fa fa-arrow-left"></i> Previous
-                    </a>
-                </li>
-                <li >
-                    <a rel="prev" href="../documenting/">
-                        Next <i class="fa fa-arrow-right"></i>
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="https://github.com/UWARG/">
-                        
-                            <i class="fa fa-github"></i>
-                        
-                        GitHub
-                    </a>
-                </li>
-                
-            </ul>
-        </div>
-    </div>
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> WARG Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
 </div>
+      </div>
 
-        <div class="container">
-            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-    
-        <li class="main active"><a href="#contributing">Contributing</a></li>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
         
-            <li><a href="#getting-yourself-a-task">Getting yourself a task</a></li>
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Bootcamps</span></li>
+
         
-            <li><a href="#branches">Branches</a></li>
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../bootcamp/mechanical/">Mechanical</a>
         
-            <li><a href="#coding-conventions">Coding Conventions</a></li>
+    </li>
+
         
-            <li><a href="#documentating-your-code">Documentating your code</a></li>
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../bootcamp/computer-vision/">Computer Vision</a>
         
-            <li><a href="#pull-requests">Pull Requests</a></li>
+    </li>
+
         
-    
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../bootcamp/electrical/">Electrical</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../bootcamp/groundstation/">Groundstation</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../bootcamp/rccompetition/">RC Car Competition</a>
+        
+    </li>
+
+        
     </ul>
-</div></div>
-            <div class="col-md-9" role="main">
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Tutorials</span></li>
 
-<h1 id="contributing">Contributing</h1>
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/git/">Git and Github</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/shell/">Using the terminal</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Groundstation</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../">Table of Contents</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../introduction/">Introduction</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../what-you-need-to-know/">What you need to know</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../installation/">Installation</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../tutorial/">Tutorial</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../project-structure/">Project Structure</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Contributing</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#contributing">Contributing</a></li>
+                
+                    <li><a class="toctree-l4" href="#getting-yourself-a-task">Getting yourself a task</a></li>
+                
+                    <li><a class="toctree-l4" href="#branches">Branches</a></li>
+                
+                    <li><a class="toctree-l4" href="#coding-conventions">Coding Conventions</a></li>
+                
+                    <li><a class="toctree-l4" href="#documentating-your-code">Documentating your code</a></li>
+                
+                    <li><a class="toctree-l4" href="#pull-requests">Pull Requests</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../documenting/">Documenting</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../resources/">Additional Resources</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>PicPilot</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../picpilot/">Table of Contents</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../picpilot/introduction/">Introduction</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../picpilot/pid-loops/">PID Loops</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../picpilot/pwm-io/">PWM and IO</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../picpilot/uart/">UART</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../picpilot/spi/">SPI</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../picpilot/direct-memory-access/">Direct Memory Access</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../picpilot/i2c/">I2C</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../picpilot/datalink/">Datalink</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../picpilot/analog-to-digital-converter/">Analog to Digital Converter</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../picpilot/sensors-and-peripherals/">Sensors and Peripherals</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../picpilot/attitude-control/">Attitude Control</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../picpilot/path-management/">Path Management</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../picpilot/resources/">Resources</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../picpilot/faq/">FAQ</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Computer Vision</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../computer-vision/">Table of Contents</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../computer-vision/Building-the-project-[Linux]/">Building the project [Linux]</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../computer-vision/Building-the-project-[Windows]/">Building the project [Windows]</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../computer-vision/Coding-Conventions/">Coding Conventions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../computer-vision/Contributing/">Contributing</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../computer-vision/Using-the-WARG-server-environment/">Using the WARG computer environment</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../computer-vision/Writing-Tests/">Writing Tests</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Mechanical</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../mechanical/cad-guidelines/">CAD Guidelines</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../mechanical/3d-printing-guidelines/">3D Printing Guidelines</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../mechanical/grabcad/">GrabCad</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">WARG Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Groundstation &raquo;</li>
+        
+      
+    
+    <li>Contributing</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/UWARG/" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="contributing">Contributing</h1>
 <p>In order to contribute to the groundstation you must know how to use git. Check out our tutorial <a href="../../tutorials/git/">here</a> to learn how to use it.
 Follow the guidelines here if you want to contribute to the groundstation.</p>
 <h2 id="getting-yourself-a-task">Getting yourself a task</h2>
@@ -425,48 +496,54 @@ the <a href="../documenting/">documenting section</a>. Your code will not be mer
 <h2 id="pull-requests">Pull Requests</h2>
 <p>After you finish implementing your feature, open up a pull request on github. Let the responsible team lead know and they will code review your changes.
 Until the pull request is merged in, your task is not complete.</p>
-<p><em>YOU MUST OPEN UP PULL REQUESTS. <strong>NEVER</strong> PUSH DIRECTLY TO THE MASTER BRANCH ON GITHUB!</em></p></div>
-        </div>
-
-        <footer class="col-md-12">
-            <hr>
-            
-                <center>Copyright <a href="http://www.uwarg.com"> University of Waterloo Aerial Robotics Group</a></center>
-            
-            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
-        </footer>
-
-        <script src="../..//js/jquery-1.10.2.min.js"></script>
-        <script src="../..//js/bootstrap-3.0.3.min.js"></script>
-        <script src="../..//js/highlight.pack.js"></script>
-        <script>var base_url = '../../';</script>
-        <script data-main="../..//mkdocs/js/search.js" src="../..//mkdocs/js/require.js"></script>
-        <script src="../..//js/base.js"></script>
-        <script src="../..//sloth-generator.js"></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            From here you can search these documents. Enter
-                            your search terms below.
-                        </p>
-                        <form role="form">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
-                            </div>
-                        </form>
-                        <div id="mkdocs-search-results"></div>
-                    </div>
-                    <div class="modal-footer">
-                    </div>
-                </div>
+<p><em>YOU MUST OPEN UP PULL REQUESTS. <strong>NEVER</strong> PUSH DIRECTLY TO THE MASTER BRANCH ON GITHUB!</em></p>
+              
             </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../documenting/" class="btn btn-neutral float-right" title="Documenting">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../project-structure/" class="btn btn-neutral" title="Project Structure"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright <a href="http://www.uwarg.com"> University of Waterloo Aerial Robotics Group</a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
         </div>
-    </body>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UWARG/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../project-structure/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../documenting/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
 </html>

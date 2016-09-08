@@ -46,6 +46,7 @@ pages:
 - Mechanical:
   - CAD Guidelines: mechanical/cad-guidelines.md
   - 3D Printing Guidelines: mechanical/3d-printing-guidelines.md
+  - GrabCad: mechanical/grabcad.md
 - Bootcamps:
   - Mechanical: bootcamp/mechanical.md
   - Computer Vision: bootcamp/computer-vision.md

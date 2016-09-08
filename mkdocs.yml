@@ -4,7 +4,7 @@ repo_url: https://github.com/UWARG/
 site_author: University of Waterloo Aerial Robotics Group
 site_favicon: favicon.ico
 copyright: Copyright <a href="http://www.uwarg.com"> University of Waterloo Aerial Robotics Group</a>
-theme: yeti
+theme: readthedocs
 google_analytics: ['UA-68186801-2', 'docs.uwarg.com']
 
 pages:
@@ -44,7 +44,8 @@ pages:
   - Using the WARG computer environment: computer-vision/Using-the-WARG-server-environment.md
   - Writing Tests: computer-vision/Writing-Tests.md
 - Mechanical:
-  - CAD Guidelines: mechanical/cad-guidelines.md 
+  - CAD Guidelines: mechanical/cad-guidelines.md
+  - 3D Printing Guidelines: mechanical/3d-printing-guidelines.md
 - Bootcamps:
   - Mechanical: bootcamp/mechanical.md
   - Computer Vision: bootcamp/computer-vision.md

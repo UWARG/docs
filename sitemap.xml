@@ -260,6 +260,12 @@
     
         
     <url>
+     <loc>http://www.docs.uwarg.com/mechanical/</loc>
+     <lastmod>2016-09-08</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
      <loc>http://www.docs.uwarg.com/mechanical/cad-guidelines/</loc>
      <lastmod>2016-09-08</lastmod>
      <changefreq>daily</changefreq>

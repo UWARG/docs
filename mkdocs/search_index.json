@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "WARG Docs\n\n\nThe official source of all your WARG needs. Joking, there's only documentation here. Enjoy!\n\n\n\n\nBootcamps and Competitions\n\n\n\n\nMechanical Bootcamp\n\n\nElectrical Bootcamp\n\n\nGroundstation Bootcamp\n\n\nComputer Vision Bootcamp\n\n\n\n\nProjects Documentation\n\n\n\n\nPicPilot Documentation\n\n\nGroundstation Documentation\n\n\nComputer Vision Documentation\n\n\n\n\nTutorials\n\n\n\n\nGit Tutorial\n\n\nCommand Line Tutorial\n\n\n\n\nAPI Documentation\n\n\n\n\nComputer Vision API Docs", 
+            "text": "WARG Docs\n\n\nThe official source of all your WARG needs. Joking, there's only documentation here. Enjoy!\n\n\n\n\nCompetition\n\n\n\n\nUAS 2017 Competition Homepage\n\n\nCompetition Canops\n\n\n\n\nBootcamps\n\n\n\n\nMechanical Bootcamp\n\n\nElectrical Bootcamp\n\n\nGroundstation Bootcamp\n\n\nComputer Vision Bootcamp\n\n\n\n\nProjects Documentation\n\n\n\n\nPicPilot Documentation\n\n\nGroundstation Documentation\n\n\nComputer Vision Documentation\n\n\nMechanical Documentation\n\n\n\n\nTutorials\n\n\n\n\nGit Tutorial\n\n\nCommand Line Tutorial\n\n\n\n\nAPI Documentation\n\n\n\n\nComputer Vision API Docs\n\n\nGround Station API Docs", 
             "title": "Home"
         }, 
         {
@@ -11,13 +11,18 @@
             "title": "WARG Docs"
         }, 
         {
-            "location": "/#bootcamps-and-competitions", 
+            "location": "/#competition", 
+            "text": "UAS 2017 Competition Homepage  Competition Canops", 
+            "title": "Competition"
+        }, 
+        {
+            "location": "/#bootcamps", 
             "text": "Mechanical Bootcamp  Electrical Bootcamp  Groundstation Bootcamp  Computer Vision Bootcamp", 
-            "title": "Bootcamps and Competitions"
+            "title": "Bootcamps"
         }, 
         {
             "location": "/#projects-documentation", 
-            "text": "PicPilot Documentation  Groundstation Documentation  Computer Vision Documentation", 
+            "text": "PicPilot Documentation  Groundstation Documentation  Computer Vision Documentation  Mechanical Documentation", 
             "title": "Projects Documentation"
         }, 
         {
@@ -27,7 +32,7 @@
         }, 
         {
             "location": "/#api-documentation", 
-            "text": "Computer Vision API Docs", 
+            "text": "Computer Vision API Docs  Ground Station API Docs", 
             "title": "API Documentation"
         }, 
         {
@@ -1474,6 +1479,21 @@
             "location": "/computer-vision/Writing-Tests/#example", 
             "text": "file: modules/mymodule/test/test.cpp  #define BOOST_TEST_DYN_LINK\n#define BOOST_TEST_MODULE TestSuiteName\n#include  boost/test/unit_test.hpp \n#include  foo.h  // declares type foo, header is in the core module\n\nBOOST_AUTO_TEST_CASE(TestName) {\n    foo bar;\n    BOOST_CHECK(foo.baz());\n}  file: modules/mymodule/test/CMakeLists.txt  include_directories(${Core_INCLUDE_DIR})\nadd_executable(mytest test.cpp)\ntarget_link_libraries(mytest Core)\n\n# Tests\nadd_test(\n    NAME  example test \n    COMMAND mytest\n)", 
             "title": "Example"
+        }, 
+        {
+            "location": "/mechanical/", 
+            "text": "Welcome to the Mechanical Docs!\n\n\nTable of Contents\n\n\n\n\nGrabCad\n\n\nCAD Guidelines and Commandments\n\n\n3D Printing Guidelines", 
+            "title": "Table of Contents"
+        }, 
+        {
+            "location": "/mechanical/#welcome-to-the-mechanical-docs", 
+            "text": "", 
+            "title": "Welcome to the Mechanical Docs!"
+        }, 
+        {
+            "location": "/mechanical/#table-of-contents", 
+            "text": "GrabCad  CAD Guidelines and Commandments  3D Printing Guidelines", 
+            "title": "Table of Contents"
         }, 
         {
             "location": "/mechanical/cad-guidelines/", 

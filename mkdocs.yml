@@ -9,6 +9,15 @@ google_analytics: ['UA-68186801-2', 'docs.uwarg.com']
 
 pages:
 - Home: index.md
+- Bootcamps:
+  - Mechanical: bootcamp/mechanical.md
+  - Computer Vision: bootcamp/computer-vision.md
+  - Electrical: bootcamp/electrical.md
+  - Groundstation: bootcamp/groundstation.md
+  - RC Car Competition: bootcamp/rccompetition.md
+- Tutorials:
+  - Git and Github: tutorials/git.md
+  - Using the terminal: tutorials/shell.md
 - Groundstation:
   - Table of Contents: groundstation/index.md
   - Introduction: groundstation/introduction.md
@@ -44,15 +53,7 @@ pages:
   - Using the WARG computer environment: computer-vision/Using-the-WARG-server-environment.md
   - Writing Tests: computer-vision/Writing-Tests.md
 - Mechanical:
+  - Table of Contents: mechanical/index.md
   - CAD Guidelines: mechanical/cad-guidelines.md
   - 3D Printing Guidelines: mechanical/3d-printing-guidelines.md
   - GrabCad: mechanical/grabcad.md
-- Bootcamps:
-  - Mechanical: bootcamp/mechanical.md
-  - Computer Vision: bootcamp/computer-vision.md
-  - Electrical: bootcamp/electrical.md
-  - Groundstation: bootcamp/groundstation.md
-  - RC Car Competition: bootcamp/rccompetition.md
-- Tutorials:
-  - Git and Github: tutorials/git.md
-  - Using the terminal: tutorials/shell.md

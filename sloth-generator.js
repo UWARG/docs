@@ -1,3 +1,5 @@
+//created proudly by Serge Babayan sometime in 2015
+
 giphy_url = '';
 myImage = null;
 

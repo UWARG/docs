@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "WARG Docs\n\n\nThe official source of all your WARG needs. Joking, there's only documentation here. Enjoy!\n\n\n\n\nCompetition\n\n\n\n\nUAS 2017 Competition Homepage\n\n\nCompetition Canops\n\n\n\n\nBootcamps\n\n\n\n\nMechanical Bootcamp\n\n\nElectrical Bootcamp\n\n\nGroundstation Bootcamp\n\n\nComputer Vision Bootcamp\n\n\n\n\nProjects Documentation\n\n\n\n\nPicPilot Documentation\n\n\nGroundstation Documentation\n\n\nComputer Vision Documentation\n\n\nMechanical Documentation\n\n\n\n\nTutorials\n\n\n\n\nGit Tutorial\n\n\nCommand Line Tutorial\n\n\n\n\nAPI Documentation\n\n\n\n\nComputer Vision API Docs\n\n\nGround Station API Docs", 
+            "text": "WARG Docs\n\n\nThe official source of all your WARG needs. Joking, there's only documentation here. Enjoy!\n\n\n\n\nCompetition\n\n\n\n\nUAS 2017 Competition Homepage\n\n\nCompetition Canops\n\n\n\n\nBootcamps\n\n\n\n\nMechanical Bootcamp\n\n\nElectrical Bootcamp\n\n\nGroundstation Bootcamp\n\n\nComputer Vision Bootcamp\n\n\nEmbedded Software Bootcamp\n\n\n\n\nProjects Documentation\n\n\n\n\nPicPilot Documentation\n\n\nGroundstation Documentation\n\n\nComputer Vision Documentation\n\n\nMechanical Documentation\n\n\n\n\nTutorials\n\n\n\n\nGit Tutorial\n\n\nCommand Line Tutorial\n\n\n\n\nAPI Documentation\n\n\n\n\nComputer Vision API Docs\n\n\nGround Station API Docs", 
             "title": "Home"
         }, 
         {
@@ -17,7 +17,7 @@
         }, 
         {
             "location": "/#bootcamps", 
-            "text": "Mechanical Bootcamp  Electrical Bootcamp  Groundstation Bootcamp  Computer Vision Bootcamp", 
+            "text": "Mechanical Bootcamp  Electrical Bootcamp  Groundstation Bootcamp  Computer Vision Bootcamp  Embedded Software Bootcamp", 
             "title": "Bootcamps"
         }, 
         {

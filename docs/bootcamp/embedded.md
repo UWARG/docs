@@ -50,6 +50,8 @@ The code for the picpilot is hosted on [Github](http://www.github.com/uwarg/PicP
 ### Submission
 To submit your work, create a pull request of your fork against the main picpilot repository. Name your pull request `Bootcamp by YOURNAME`. Tell the responsible team lead that you've completed the bootcamp and they will review your submission. You may be asked to revise some things.
 
+**Note**: *If you would really like to test out the code, come to one of the work days and we'll show  you how to program the picpilot and actually test it out*
+
 ### Additional Resources
 - Your most valuable resource will be our [picpilot documentation](../picpilot/introduction.md)
 - [Our Git Tutorial](../tutorials/git.md)

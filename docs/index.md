@@ -14,6 +14,7 @@ The official source of all your WARG needs. Joking, there's only documentation h
 - [Electrical Bootcamp](bootcamp/electrical.md)
 - [Groundstation Bootcamp](bootcamp/groundstation.md)
 - [Computer Vision Bootcamp](bootcamp/computer-vision.md)
+- [Embedded Software Bootcamp](bootcamp/embedded.md)
 
 ## Projects Documentation
 

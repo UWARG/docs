@@ -17,11 +17,11 @@ If you don't have a Linux environment, don't worry! You can download a docker im
 * Go to [https://docs.docker.com/mac/](https://docs.docker.com/mac/) for Mac systems
 * Go to [https://docs.docker.com/windows/](https://docs.docker.com/windows/) for Windows systems.
 
-You can get our [docker image here](http://ece.uwaterloo.ca/~warg/docs/docker.zip).
+Once docker is installed you can get our docker image by running `docker pull uwarg/warg-cv`
 
-After completing the download and installing docker:
+After the image has been fetched:
 
-1. Unzip the package.
-2. `docker import IMAGE.tar.gz` where IMAGE is the name of the docker image archive included in the zip archive
-3. `docker images` should now list the new image
-4. `docker run -i -t IMAGE_ID /bin/bash` with the appropriate image id as shown with `docker images`
+1. `docker create -it --name cv uwarg/warg-cv` to create a new container using the warg-cv image called cv
+2. `docker exec -it cv bash` to enter the container
+
+When you want to use the container again in future, use docker exec (as in step 2 above). There is no need to create a new container unless the image has changed.

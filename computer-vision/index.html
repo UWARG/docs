@@ -478,7 +478,6 @@
 <h1 id="contents">Contents</h1>
 <ul>
 <li><a href="./Building-the-project-%5BLinux%5D">Building the project - Linux</a></li>
-<li><a href="./Building-the-project-%5BWindows%5D">Building the project - Windows</a></li>
 <li><a href="./Coding-Conventions">Coding Conventions</a></li>
 <li><a href="./Using-the-WARG-server-environment">Using the WARG Server Environment</a></li>
 <li><a href="./Contributing">Contributing</a></li>
@@ -492,14 +491,13 @@ You may be able to get the project to compile on Mac OS X, but that is up to you
 <li>Go to <a href="https://docs.docker.com/mac/">https://docs.docker.com/mac/</a> for Mac systems</li>
 <li>Go to <a href="https://docs.docker.com/windows/">https://docs.docker.com/windows/</a> for Windows systems.</li>
 </ul>
-<p>You can get our <a href="http://ece.uwaterloo.ca/~warg/docs/docker.zip">docker image here</a>.</p>
-<p>After completing the download and installing docker:</p>
+<p>Once docker is installed you can get our docker image by running <code>docker pull uwarg/warg-cv</code></p>
+<p>After the image has been fetched:</p>
 <ol>
-<li>Unzip the package.</li>
-<li><code>docker import IMAGE.tar.gz</code> where IMAGE is the name of the docker image archive included in the zip archive</li>
-<li><code>docker images</code> should now list the new image</li>
-<li><code>docker run -i -t IMAGE_ID /bin/bash</code> with the appropriate image id as shown with <code>docker images</code></li>
+<li><code>docker create -it --name cv uwarg/warg-cv</code> to create a new container using the warg-cv image called cv</li>
+<li><code>docker exec -it cv bash</code> to enter the container</li>
 </ol>
+<p>When you want to use the container again in future, use docker exec (as in step 2 above). There is no need to create a new container unless the image has changed.</p>
               
             </div>
           </div>

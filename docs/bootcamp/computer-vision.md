@@ -23,7 +23,7 @@ for https
 Note that you will need to have CMake installed so that you can build your module once you've written it.
 
 ## 2. Code
-Your task is to implement [insertion sort](https://en.wikipedia.org/wiki/Insertion_sort) (or indeed a different sorting algorithm if you wish).
+Your task is to implement [merge sort](https://en.wikipedia.org/wiki/Merge_sort) (or indeed a different sorting algorithm if you wish).
 
 Your code must be implemented in a module (see the included core module for an example) and must:
 

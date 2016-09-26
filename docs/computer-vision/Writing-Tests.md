@@ -55,6 +55,6 @@ target_link_libraries(mytest Core)
 # Tests
 add_test(
     NAME "example test"
-    COMMAND mytest
+    COMMAND mytest --log-format=XML --log-sink=TEST-mytest.xml --log-level=all --report-level=no
 )
 ```

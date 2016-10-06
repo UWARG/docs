@@ -384,6 +384,8 @@
             
                 <li class="toctree-l3"><a href="#writing-tests">Writing Tests</a></li>
                 
+                    <li><a class="toctree-l4" href="#test-heirarchy">Test heirarchy</a></li>
+                
                     <li><a class="toctree-l4" href="#example">Example</a></li>
                 
             
@@ -492,24 +494,40 @@ That is, test directories should have the following structure</p>
 <p>Testing should be done using the boost test framework.</p>
 <p>Tutorials provided by boost are found <a href="http://www.boost.org/doc/libs/1_60_0/libs/test/doc/html/boost_test/practical_usage_recommendations/tutorials.html">here</a>.</p>
 <p>API Reference available <a href="http://www.boost.org/doc/libs/1_60_0/libs/test/doc/html/boost_test/utf_reference.html">here</a></p>
-<p>To test code it should be run inside the BOOST_AUTO_TEST_CASE and use the boost test macros to verify sanity and results.
+<p>To test code it should be run inside the <code>BOOST_AUTO_TEST_CASE</code> and use the boost test macros to verify sanity and results.
 Some available macros include</p>
 <pre><code class="cpp">BOOST_WARN(predicate); // produces a warning if predicate is false, does not cause failures
 BOOST_CHECK(predicate); // produces a failure if predicate is false, but continues testing
 BOOST_REQUIRE(predicate); // produces a failure if predicate is false and aborts test suite.
 </code></pre>
 
-<h4 id="example">Example</h4>
-<p>file: modules/mymodule/test/test.cpp</p>
+<h3 id="test-heirarchy">Test heirarchy</h3>
+<p>Boost tests are stored in a heirarchy of nested suites.
+The global suite for a file can be set with the <code>BOOST_TEST_MODULE</code> macro.
+You can define additional suites by encapsulating test cases and suites with <code>BOOST_AUTO_TEST_SUITE(SuiteName);</code> and <code>BOOST_AUTO_TEST_SUITE_END();</code></p>
+<p><em>Note that currently the xsl parser for generating an xUnit compatible XML file does not properly handle nested test suites and only makes use of the suite directly encapsulating the test cases (the suite declared with <code>BOOST_TEST_MODULE</code>).
+However since this is expected to be fixed relatively soon, it is recommended that you use the following format to declare tests.</em></p>
+<h4 id="guidelines-for-naming-test-suites-and-test-cases">Guidelines for naming test suites and test cases</h4>
+<p>The global test suite for a file (specified with <code>BOOST_TEST_MODULE</code>) should correspond to the computer-vision module the tests are part of.
+A test suite should be created for each file with <code>BOOST_AUTO_TEST_SUITE</code> and should encompass all the tests in the file. Tests contained within a single file should all test a single feature or function of the program. Tests for different features/functions should go in their own file with a separate test suite. The file should also have the same name as the test suite (though test suite names should be camel cased).</p>
+<p>Additional test suites can also be created inside test suites at your discretion if a certain suite has a large number of test cases that can be meaningfully subdivided.</p>
+<p>For consistency, test suite and test case names should be UpperCamelCase (and test module name should be the full UpperCamelCase version of the module name. e.g. targetid should be TargetIdentification).</p>
+<p>Also note that all names should be sufficiently descriptive to be unique in their scope (as well as sufficiently descriptive to convey what is being tested in a particular suite/case). That is, each test suite in a module needs to have a unique name to avoid naming conflicts, but names of test suites inside those suites and names of test cases only need to be unique inside their encapsulating test suite.</p>
+<h3 id="example">Example</h3>
+<p>file: modules/mymodule/test/mysuite.cpp</p>
 <pre><code class="cpp">#define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MODULE TestSuiteName
+#define BOOST_TEST_MODULE MyModule
 #include &lt;boost/test/unit_test.hpp&gt;
 #include &quot;foo.h&quot; // declares type foo, header is in the core module
+
+BOOST_AUTO_TEST_SUITE(MySuite);
 
 BOOST_AUTO_TEST_CASE(TestName) {
     foo bar;
     BOOST_CHECK(foo.baz());
 }
+
+BOOST_AUTO_TEST_SUITE_END();
 </code></pre>
 
 <p>file: modules/mymodule/test/CMakeLists.txt</p>

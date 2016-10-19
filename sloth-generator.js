@@ -36,8 +36,8 @@ function updateGiphyUrl() {
   if(imageLink == null ){
     imageLink = document.getElementById("gif_link");
   }
-  var animal = ["sloth","cat","pug","kitty","bunny","dog", "duck", "geese","goat", "taylor swift"]; //yes, taylor swift is an animal
-  var adjective = ["","funny ","sad ", "cute ","derpy "];
+  var animal = ["sloth","sloth","cat","pug","kitty","dog", "duck", "goose","goat", "taylor swift"]; //yes, taylor swift is an animal
+  var adjective = ["","funny ", "cute ","derpy "];
 
   //randomize an animal and adjective
   var query = adjective[Math.ceil(Math.random() * adjective.length)-1] + animal[Math.ceil(Math.random() * animal.length)-1];

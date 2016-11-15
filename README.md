@@ -9,7 +9,9 @@ To install mkdocs, make sure you have python installed (any version works) and p
 To run an mkdocs server and view the changes you're making, run ```mkdocs serve```. Then go to  `http://127.0.0.1:8000` on your web browser.
 
 # Deploying
-To deploy run `mkdocs gh-deploy --clean` after you've finished making changes.
+Nothing needs to be done to be done to deploy the docs. A Jenkins server continuously monitors this repo. However, if you wish to manually deploy, you can use the following command:
+`mkdocs gh-deploy --clean`
+Note,  it is not recommended to manually deploy, without disabling Jenkins,  as Jenkins will automatically deploy the docs even if you did so manually. 
 
 # Further Help
 Check out the [Official mkdocs site](http://www.mkdocs.org/) for more info.

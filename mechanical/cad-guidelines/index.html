@@ -486,15 +486,15 @@
 <h2 id="cad-naming-convention">CAD Naming Convention</h2>
 <p>All CAD files should adhere to the following naming convention (snake upper case):</p>
 <h3 id="for-regular-part-files">For regular part files</h3>
-<pre><code>&lt;PROJECT_NAME&gt;_&lt;PART##&gt;_&lt;PART_NAME&gt;.SLDPRT
+<pre><code>&lt;PROJECT_NAME&gt;__&lt;SUBASSEMBLY_NAME&gt;_&lt;PART##&gt;_&lt;PART_NAME&gt;.SLDPRT
 </code></pre>
 
-<p>eg. <code>GIMBAL_03_OUTSIDE_CASE.SLDPRT</code></p>
+<p>eg. <code>SPIKE__GIMBAL_03_OUTSIDE_CASE.SLDPRT</code></p>
 <h3 id="for-assemblies">For assemblies</h3>
-<pre><code>&lt;PROJECT_NAME&gt;_00_ASSEMBLY.SLDASM
+<pre><code>&lt;PROJECT_NAME&gt;__&lt;SUBASSEMBLY_NAME&gt;_00_ASSEMBLY.SLDASM
 </code></pre>
 
-<p>eg. <code>GIMBAL_00_ASSEMBLY.SLDASM</code></p>
+<p>eg. <code>SPIKE__GIMBAL_00_ASSEMBLY.SLDASM</code></p>
 <h3 id="for-assemblies-within-assemblies">For assemblies within assemblies</h3>
 <p>Create a folder with the same naming convention as the part, and follow the same naming convention inside the folder, prepending the project name.</p>
 <p>For example, if the gimbal assembly contains a part camera which itself is also an assembly:</p>

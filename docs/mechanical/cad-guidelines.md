@@ -25,15 +25,15 @@ All CAD files should adhere to the following naming convention (snake upper case
 
 ### For regular part files
 ```
-<PROJECT_NAME>_<PART##>_<PART_NAME>.SLDPRT
+<PROJECT_NAME>__<SUBASSEMBLY_NAME>_<PART##>_<PART_NAME>.SLDPRT
 ```
-eg. `GIMBAL_03_OUTSIDE_CASE.SLDPRT`
+eg. `SPIKE__GIMBAL_03_OUTSIDE_CASE.SLDPRT`
 
 ### For assemblies
 ```
-<PROJECT_NAME>_00_ASSEMBLY.SLDASM
+<PROJECT_NAME>__<SUBASSEMBLY_NAME>_00_ASSEMBLY.SLDASM
 ```
-eg. `GIMBAL_00_ASSEMBLY.SLDASM`
+eg. `SPIKE__GIMBAL_00_ASSEMBLY.SLDASM`
 
 ### For assemblies within assemblies
 Create a folder with the same naming convention as the part, and follow the same naming convention inside the folder, prepending the project name.

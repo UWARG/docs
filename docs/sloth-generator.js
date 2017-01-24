@@ -2,6 +2,7 @@
 
 giphy_url = '';
 myImage = null;
+imageLink = null;
 
 function getImagesByAlt(alt) {
     var allImages = document.getElementsByTagName("img");
@@ -29,17 +30,19 @@ function httpGetAsync(url, callback){
 //sloth url http://api.giphy.com/v1/gifs/translate?s=sloth&api_key=dc6zaTOxFJmzC
 //funny cat http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC
 function updateGiphyUrl() {
-  var query = Math.ceil(Math.random() * 4);
-  var offset = 0;
-  if (query === 1) {
-    query = 'sloth';
-  } else if (query === 2) {
-    query = 'funny+cat';
-  } else if (query === 3) {
-    query = 'funny+pug';
-  } else if (query === 4) {
-    query = 'kitty';
+  if(myImage == null ){
+    myImage = getImagesByAlt("Sloth GIF")[0];
   }
+  if(imageLink == null ){
+    imageLink = document.getElementById("gif_link");
+  }
+  var animal = ["sloth","sloth","cat","pug","kitty","dog", "duck", "goose","goat", "taylor swift"]; //yes, taylor swift is an animal
+  var adjective = ["","funny ", "cute ","derpy "];
+
+  //randomize an animal and adjective
+  var query = adjective[Math.ceil(Math.random() * adjective.length)-1] + animal[Math.ceil(Math.random() * animal.length)-1];
+  console.log(query);
+  var offset = 0;
   httpGetAsync('http://api.giphy.com/v1/gifs/search?q=' + query + '&api_key=dc6zaTOxFJmzC&rating=pg-13&offset=' + offset,
     function (response) {
       response = JSON.parse(response)
@@ -50,13 +53,13 @@ function updateGiphyUrl() {
       else {
         giphy_url = 'http://i.giphy.com/' + response.data.id + '.gif';
       }
-      myImage.src = giphy_url
+      myImage.src = giphy_url; 
+      imageLink.href = giphy_url;
     });
 }
 
 //only do this at the root page
 if(window.location.pathname == '/'){
-  myImage = getImagesByAlt("Sloth GIF")[0];
   updateGiphyUrl();
   setInterval(updateGiphyUrl, 5000);
 }

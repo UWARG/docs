@@ -7,14 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="author" content="University of Waterloo Aerial Robotics Group">
-  <link rel="shortcut icon" href="../../favicon.ico">
   
   <title>Datalink - WARG Docs</title>
+  
+
+  <link rel="shortcut icon" href="../../favicon.ico">
+  
+
+  
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="../../css/highlight.css">
+
   
   <script>
     // Current page data
@@ -25,7 +31,10 @@
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
   <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+  <script src="../../sloth-generator.js"></script>
+
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -55,7 +64,7 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
+        <ul class="current">
           
             <li>
     <li class="toctree-l1 ">
@@ -455,8 +464,9 @@
     <li>Datalink</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/UWARG/edit/master/docs/picpilot/datalink.md"
-          class="icon icon-github"> Edit on GitHub</a>
+        
+          <a href="https://github.com/UWARG/" class="icon icon-github"> Edit on GitHub</a>
+        
       
     </li>
   </ul>
@@ -1005,65 +1015,419 @@ packet will be sent back since it contains information on the gains.</p>
 </table>
 <p>Note that all telemetry data must be visible within the scope of the AttitudeManager.c file.</p>
 <h2 id="command-uplink-data">Command (Uplink) Data</h2>
-<p>Every command that is sent to the UAV must be predefined with an ID, as well as an associated function. Some commands only change variable values, whereas some call functions with the associated data as a parameter.
-| <strong>ID</strong> | <strong>Socket Command</strong>                        | <strong>Associated Function</strong>                                                     | <strong>Format</strong>                   | <strong>Description</strong>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-|----------------|-------------------------------------------|-----------------------------------------------------------------------------|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 0              | debug:<data>                              | UART1_SendString(<data>)                                                   | Char Array                   | The debugging command, which writes to the UART1 port.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| 1              | set_pitchKDGain:<data>                   | setGain(PITCH, KD_GAIN, <data>)                                            | Float                        | The command to set the derivative gain for pitch control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| 2              | set_rollKDGain:<data>                    | setGain(ROLL, KD_GAIN, <data>)                                             | Float                        | The command to set the derivative gain for roll control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| 3              | set_yawKDGain:<data>                     | setGain(YAW, KD_GAIN, <data>)                                              | Float                        | The command to set the derivative gain for yaw control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| 4              | set_pitchKPGain:<data>                   | setGain(PITCH, KP_GAIN, <data>)                                            | Float                        | The command to set the proportional gain for pitch control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| 5              | set_rollKPGain:<data>                    | setGain(ROLL, KP_GAIN, <data>)                                             | Float                        | The command to set the proportional gain for roll control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| 6              | set_yawKPGain:<data>                     | setGain(YAW, KP_GAIN, <data>)                                              | Float                        | The command to set the proportional gain for yaw control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| 7              | set_pitchKIGain:<data>                   | setGain(PITCH, KI_GAIN, <data>)                                            | Float                        | The command to set the integral gain for pitch control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| 8              | set_rollKIGain:<data>                    | setGain(ROLL, KI_GAIN, <data>)                                             | Float                        | The command to set the proportional gain for roll control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| 9              | set_yawKIGain:<data>                     | setGain(YAW, KI_GAIN, <data>)                                              | Float                        | The command to set the proportional gain for yaw control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| 10             | set_headingKDGain:<data>                 | setGain(HEADING, KD_GAIN, <data>)                                          | Float                        | The command to set the derivative gain for heading control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| 11             | set_headingKPGain:<data>                 | setGain(HEADING, KP_GAIN, <data>)                                          | Float                        | The command to set the proportional gain for heading control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| 12             | set_headingKIGain:<data>                 | setGain(HEADING, KI_GAIN, <data>)                                          | Float                        | The command to set the integral gain for heading control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| 13             | set_altitudeKDGain:<data>                | setGain(ALTITUDE, KD_GAIN, <data>)                                         | Float                        | The command to set the derivative gain for altitude control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| 14             | set_altitudeKPGain:<data>                | setGain(ALTITUDE, KP_GAIN, <data>)                                         | Float                        | The command to set the proportional gain for altitude control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| 15             | set_altitudeKIGain:<data>                | setGain(ALTITUDE, KI_GAIN, <data>)                                         | Float                        | The command to set the integral gain for altitude control.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| 16             | set_throttleKDGain:<data>                | setGain(THROTTLE, KD_GAIN, <data>)                                         | Float                        | The command to set the derivative gain for throttle control (speed).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| 17             | set_throttleKPGain:<data>                | setGain(THROTTLE, KP_GAIN, <data>)                                         | Float                        | The command to set the derivative gain for throttle control (speed).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| 18             | set_throttleKIGain:<data>                | setGain(THROTTLE, KI_GAIN, <data>)                                         | Float                        | The command to set the integral gain for throttle control (speed).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| 19             | set_pathGain:<data>                      | Currently Unsupported, but will not cause errors if set                     | Float                        | The command used to set the gain that scales lateral positional control around a path.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| 20             | set_orbitGain:<data>                     | Currently Unsupported, but will not cause errors if set                     | Float                        | The command used to set the gain that scales orbital convergence.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| 21             | set_showGain:<data>                      | displayGain = <data>                                                        | Char                         | The command used to switch the output between multiple gain types:0x00 = Yaw0x01 = Pitch0x02 = Roll0x03 = Heading0x04 = Altitude0x05 = Throttle*Note that there is no support for the path gain or orbital gain yet.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| 22             | set_pitchRate:<data>                     | sp_PitchRate = <data>                                                      | Int                          | The user input for the pitch rate in PWM timer tick units. (Normal values range from 470 to 941 [dependent on setup]). Note you must set command 32 greater than 4 to use this.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| 23             | set_rollRate:<data>                      | sp_RollRate = <data>                                                       | Int                          | The user input for the roll rate in PWM timer tick units. (Normal values range from 470 to 941 [dependent on setup]) Note you must set command 32 greater than 4 to use this.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| 24             | set_yawRate:<data>                       | sp_YawRate = <data>                                                        | Int                          | The user input for the roll rate in PWM timer tick units. (Normal values range from 470 to 941 [dependent on setup]) Note you must set command 32 greater than 4 to use this.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| 25             | set_pitchAngle:<data>                    | sp_PitchAngle = <data>                                                     | Float                        | The user input for the pitch angle in degrees. Note you must set command 32 greater than 5 to use this.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| 26             | set_rollAngle:<data>                     | sp_RollAngle = <data>                                                      | Float                        | The user input for the roll angle in degrees. Note you must set command 32 greater than 5 to use this.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| 27             | set_yawAngle:<data>                      | Currently Unsupported, but will not cause errors if set                     | Float                        | The user input for the yaw angle in degrees. WILL LIKELY BE REMOVED IN THE FUTURE IF UNEEDED. Note you must set command 32 greater than 5 to use this.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| 28             | set_altitude:<data>                      | sp_Altitude = <data>                                                       | Float                        | The user input for the altitude in meters above sea level. Note you must set command 32 greater than 6 to use this.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| 29             | set_heading:<data>                       | sp_Heading = <data>                                                        | Float                        | The user input for the heading in standard compass bearing degrees. Note you must set command 32 greater than 7 to use this.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| 30             | set_throttle:<data>                      | sp_Throttle = <data>                                                       | Int                          | The user input for the throttle as a percentage. Note you must set command 32 to 8 to use this.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| 31             | set_autonomousLevel:<data>               | controlLevel = <data>                                                       | Int                          | This sets the source of control input between the autopilot, the remote control, and the ground stations:0b00000000 = Full manual control (default)0b00000001 = Set Pitch Rate(0), Pitch Angle(1)0b00000010 = Pitch Control Source: Controller(0), Ground Station(1) 0b00000100 = Roll Control Type: Roll Rate(0), Roll Angle(1)0b00001000 = Roll Control Sources: Controller(0), Ground Station(1)0b00110000 = Throttle control source: Controller(0), Ground Station(1), Autopilot(2) 0b01000000 = Altitude Source: Ground Station(0), Autopilot(1)0b10000000 = Altitude Control On(1) or Off(0)0b100000000 = Heading control source: Ground Station(0), Autopilot(1)0b1000000000=  To fly with Ground Station Control of the Pitch Rate and Roll Angle:set_autonomousLevel:14To fly with Ground Station Control of the Pitch Rate, Roll Angle, and Throttle:set_autonomousLevel:30To fly with Ground Station Control of Altitude, and Throttle (Roll controlled by controller):set_autonomousLevel:134To fly with Ground Station Control of Altitude, Throttle, Roll Angle:set_autonomousLevel:156To reset everything and fly with controller:set_autonomousLevel:0 |
-| 32             | set_angularWalkVariance:<data>           | setAngularWalkVariance(<data>)                                              | Float                        | Sets the Kalman Filter parameter that determines how fast the gyro bias estimates converge.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| 33             | Set_gyroVariance:<data>                  | setGyroVariance(<data>)                                                     | Float                        | Sets the Kalman filter parameter that determines the weighting of the gryo in the attitude estimates of the plane.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| 34             | set_magneticVariance:<data>              | setMagneticVariance(<data>)                                                 | Float                        | Sets the Kalman filter parameter that determines the weighting of the magnetometers in the attitude estimates of the plane.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| 35             | set_accelVariance:<data>                 | setAccelVariance(<data>)                                                    | Float                        | Sets the Kalman filter parameter that determines the weighting of the accelerometers in the attitude estimates of the plane.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| 36             | set_scaleFactor:<data>                   | pitchScaleFactor = <data>                                                   | Float                        | Sets the value for the feed-forward term of pitch, when the aircraft is turning. In other words, when the aircraft is turning, this proportion is added to the elevators to prevent the airplane from losing altitude.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| 37             | calibrate_altimeter:<data>               | amData.calibrationHeight = <data>amData.command = PM_CALIBRATE_ALTIMETER  | Float                        | This sets the reference height on the altimeter to a predefined value. This allows one to choose a <em>relative</em> value for the height aircraft. For example, one may set 0m to refer to the starting or landing terrain height.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| 38             | clear_waypoints:<data>                   | amData.waypoint.id = <data>amData.command = PM_CLEAR_WAYPOINTS            | Byte                         | This command clears ALL waypoints. The <data> is just a dummy variable.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| 39             | remove_waypoint:<data>                   | amData.waypoint.id = <data>amData.command = PM_REMOVE_WAYPOINT            | Byte                         | This command removes a specific waypoint given a specific ID as the parameter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| 40             | set_targetWaypoint:<data>                | amData.waypoint.id = <data>amData.command = PM_SET_TARGET_WAYPOINT       | Byte                         | The target waypoint is the waypoint which the UAV is trying to currently get to. If this command is called, it can be used to skip waypoints, or return to waypoints. The <data> is the specified ID for the new target.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| 41             | return_home:<data>                       | amData.command = PM_RETURN_HOME                                           | Byte                         | This tells the plane to go to the "home" coordinates. The <data> is just a dummy variable.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| 42             | cancel_returnHome:<data>                 | amData.command = PM_CANCEL_RETURN_HOME                                   | Byte                         | This tells the plane to return back to its original path after being called to the "home" coordinates.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| 43             | send_heartbeat:<data>                    | heartbeatTimer = time                                                       | Byte                         | This sends a "heartbeat" (verification ping) to the plane to tell it that a data connection is still present. If this command is not received after a certain amount of time, emergency maneuvers will be used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| 44             | trigger_camera:<data>                    | triggerCamera(<data>)                                                       | Int                          | This manually triggers the camera via a "fake" PWM signal. The <data> is the integer value of the PWM signal.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| 45             | set_triggerDistance:<data>               | setTriggerDistance(<data>)                                                  | Float                        | This sets the trigger distance (how often a picture is taken based on distance). This <data> is a value in meters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| 46             | set_gimbleOffset:<data>                  | setGimbleOffset(<data>)                                                     | Int                          | This provides an offset to the gimbal. If the gimbal is misaligned on start up, this function can correct it.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| 47             | kill_plane:<data>                        | if (<data> == 1234)                    killingPlane = 1;                    | Int                          | This crashes the plane into the ground (in emergencies). This requires a password (<data> = "1234") to ensure this isn't an accident.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| 48             | unkill_plane:<data>                      | if (<data> == 1234)                    killingPlane = 0;                    | Int                          | This changes the state of the plane from "I'm crashing" to "Nevermind, this was just a test". This requires a password (<data> = "1234") to ensure this isn't an accident.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| 128            | new_waypoint:<data>,<data>,<data>,<data> | amData.command = PM_NEW_WAYPOINTamData.waypoint = <data>                  | 4 floats                     | This uploads and appends a waypoint to the aircraft based on corresponding gps coordinates and path instructions. The format is (longitude, latitude, altitude,radius).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| 129            | insert_Waypoint:                         | amData.command = PM_INSERT_WAYPOINT amData.waypoint = <data>              | 4 floats followed by 2 Bytes | This uploads and inserts a waypoint to the aircraft based on corresponding gps coordinates and path instructions. The format is (longitude, latitude, altitude,radius,nextID,previousID).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| 130            | set_ReturnHomeCoordinates:               | amData.command = PM_SET_RETURN_HOME_COORDINATESamData.waypoint = <data> | 3 Floats                     | This sets the home coordinates, to which the plane will return in case of an emergency. The format is (longitude, latitude, altitude).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| 131            | tare_IMU:<data>,<data>,<data>            | adjustVNOrientationMatrix(float* adjustment);                              | 3 Floats                     | This adds a bias adjustment to the matrix based on the last setting. The 3 data values are the x,y,z components of the aircraft.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| 132            | Set_IMU:<data>,<data>,<data>             | setVNOrientationMatrix(float* adjustment);                                 | 3 Floats                     | This is used to set the reference frame of the aircraft's IMU unit. The input values are the x,y,z values of the IMU's rotation respectively.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| 132            | follow_path:<data>,<data>,<data>             | setVNOrientationMatrix(float* adjustment);                                 | 3 Floats                     | This is used to set the reference frame of the aircraft's IMU unit. The input values are the x,y,z values of the IMU's rotation respectively.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| 132            | drop_probe:<data>,<data>,<data>             | setVNOrientationMatrix(float* adjustment);                                 | 3 Floats                     | This is used to set the reference frame of the aircraft's IMU unit. The input values are the x,y,z values of the IMU's rotation respectively.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |</p>
+<p>Every command that is sent to the UAV must be predefined with an ID, as well as an associated function. Some commands only change variable values, whereas some call functions with the associated data as a parameter.</p>
+<table>
+<thead>
+<tr>
+<th><strong>ID</strong></th>
+<th><strong>Socket Command</strong></th>
+<th><strong>Associated Function</strong></th>
+<th><strong>Format</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>debug:<code>data</code></td>
+<td>UART1_SendString(<code>data</code>)</td>
+<td>Char Array</td>
+<td>The debugging command, which writes to the UART1 port.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>set_pitchKDGain:<code>data</code></td>
+<td>setGain(PITCH, KD_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the derivative gain for pitch control.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>set_rollKDGain:<code>data</code></td>
+<td>setGain(ROLL, KD_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the derivative gain for roll control.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>set_yawKDGain:<code>data</code></td>
+<td>setGain(YAW, KD_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the derivative gain for yaw control.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>set_pitchKPGain:<code>data</code></td>
+<td>setGain(PITCH, KP_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the proportional gain for pitch control.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>set_rollKPGain:<code>data</code></td>
+<td>setGain(ROLL, KP_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the proportional gain for roll control.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>set_yawKPGain:<code>data</code></td>
+<td>setGain(YAW, KP_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the proportional gain for yaw control.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>set_pitchKIGain:<code>data</code></td>
+<td>setGain(PITCH, KI_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the integral gain for pitch control.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>set_rollKIGain:<code>data</code></td>
+<td>setGain(ROLL, KI_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the proportional gain for roll control.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>set_yawKIGain:<code>data</code></td>
+<td>setGain(YAW, KI_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the proportional gain for yaw control.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>set_headingKDGain:<code>data</code></td>
+<td>setGain(HEADING, KD_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the derivative gain for heading control.</td>
+</tr>
+<tr>
+<td>11</td>
+<td>set_headingKPGain:<code>data</code></td>
+<td>setGain(HEADING, KP_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the proportional gain for heading control.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>set_headingKIGain:<code>data</code></td>
+<td>setGain(HEADING, KI_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the integral gain for heading control.</td>
+</tr>
+<tr>
+<td>13</td>
+<td>set_altitudeKDGain:<code>data</code></td>
+<td>setGain(ALTITUDE, KD_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the derivative gain for altitude control.</td>
+</tr>
+<tr>
+<td>14</td>
+<td>set_altitudeKPGain:<code>data</code></td>
+<td>setGain(ALTITUDE, KP_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the proportional gain for altitude control.</td>
+</tr>
+<tr>
+<td>15</td>
+<td>set_altitudeKIGain:<code>data</code></td>
+<td>setGain(ALTITUDE, KI_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the integral gain for altitude control.</td>
+</tr>
+<tr>
+<td>16</td>
+<td>set_throttleKDGain:<code>data</code></td>
+<td>setGain(THROTTLE, KD_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the derivative gain for throttle control (speed).</td>
+</tr>
+<tr>
+<td>17</td>
+<td>set_throttleKPGain:<code>data</code></td>
+<td>setGain(THROTTLE, KP_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the derivative gain for throttle control (speed).</td>
+</tr>
+<tr>
+<td>18</td>
+<td>set_throttleKIGain:<code>data</code></td>
+<td>setGain(THROTTLE, KI_GAIN, <code>data</code>)</td>
+<td>Float</td>
+<td>The command to set the integral gain for throttle control (speed).</td>
+</tr>
+<tr>
+<td>19</td>
+<td>set_pathGain:<code>data</code></td>
+<td>Currently Unsupported, but will not cause errors if set</td>
+<td>Float</td>
+<td>The command used to set the gain that scales lateral positional control around a path.</td>
+</tr>
+<tr>
+<td>20</td>
+<td>set_orbitGain:<code>data</code></td>
+<td>Currently Unsupported, but will not cause errors if set</td>
+<td>Float</td>
+<td>The command used to set the gain that scales orbital convergence.</td>
+</tr>
+<tr>
+<td>21</td>
+<td>set_showGain:<code>data</code></td>
+<td>displayGain = <code>data</code></td>
+<td>Char</td>
+<td>The command used to switch the output between multiple gain types:0x00 = Yaw0x01 = Pitch0x02 = Roll0x03 = Heading0x04 = Altitude0x05 = Throttle*Note that there is no support for the path gain or orbital gain yet.</td>
+</tr>
+<tr>
+<td>22</td>
+<td>set_pitchRate:<code>data</code></td>
+<td>sp_PitchRate = <code>data</code></td>
+<td>Int</td>
+<td>The user input for the pitch rate in PWM timer tick units. (Normal values range from 470 to 941 [dependent on setup]). Note you must set command 32 greater than 4 to use this.</td>
+</tr>
+<tr>
+<td>23</td>
+<td>set_rollRate:<code>data</code></td>
+<td>sp_RollRate = <code>data</code></td>
+<td>Int</td>
+<td>The user input for the roll rate in PWM timer tick units. (Normal values range from 470 to 941 [dependent on setup]) Note you must set command 32 greater than 4 to use this.</td>
+</tr>
+<tr>
+<td>24</td>
+<td>set_yawRate:<code>data</code></td>
+<td>sp_YawRate = <code>data</code></td>
+<td>Int</td>
+<td>The user input for the roll rate in PWM timer tick units. (Normal values range from 470 to 941 [dependent on setup]) Note you must set command 32 greater than 4 to use this.</td>
+</tr>
+<tr>
+<td>25</td>
+<td>set_pitchAngle:<code>data</code></td>
+<td>sp_PitchAngle = <code>data</code></td>
+<td>Float</td>
+<td>The user input for the pitch angle in degrees. Note you must set command 32 greater than 5 to use this.</td>
+</tr>
+<tr>
+<td>26</td>
+<td>set_rollAngle:<code>data</code></td>
+<td>sp_RollAngle = <code>data</code></td>
+<td>Float</td>
+<td>The user input for the roll angle in degrees. Note you must set command 32 greater than 5 to use this.</td>
+</tr>
+<tr>
+<td>27</td>
+<td>set_yawAngle:<code>data</code></td>
+<td>Currently Unsupported, but will not cause errors if set</td>
+<td>Float</td>
+<td>The user input for the yaw angle in degrees. WILL LIKELY BE REMOVED IN THE FUTURE IF UNEEDED. Note you must set command 32 greater than 5 to use this.</td>
+</tr>
+<tr>
+<td>28</td>
+<td>set_altitude:<code>data</code></td>
+<td>sp_Altitude = <code>data</code></td>
+<td>Float</td>
+<td>The user input for the altitude in meters above sea level. Note you must set command 32 greater than 6 to use this.</td>
+</tr>
+<tr>
+<td>29</td>
+<td>set_heading:<code>data</code></td>
+<td>sp_Heading = <code>data</code></td>
+<td>Float</td>
+<td>The user input for the heading in standard compass bearing degrees. Note you must set command 32 greater than 7 to use this.</td>
+</tr>
+<tr>
+<td>30</td>
+<td>set_throttle:<code>data</code></td>
+<td>sp_Throttle = <code>data</code></td>
+<td>Int</td>
+<td>The user input for the throttle as a percentage. Note you must set command 32 to 8 to use this.</td>
+</tr>
+<tr>
+<td>31</td>
+<td>set_autonomousLevel:<code>data</code></td>
+<td>controlLevel = <code>data</code></td>
+<td>Int</td>
+<td>This sets the source of control input between the autopilot, the remote control, and the ground stations:0b00000000 = Full manual control (default)0b00000001 = Set Pitch Rate(0), Pitch Angle(1)0b00000010 = Pitch Control Source: Controller(0), Ground Station(1) 0b00000100 = Roll Control Type: Roll Rate(0), Roll Angle(1)0b00001000 = Roll Control Sources: Controller(0), Ground Station(1)0b00110000 = Throttle control source: Controller(0), Ground Station(1), Autopilot(2) 0b01000000 = Altitude Source: Ground Station(0), Autopilot(1)0b10000000 = Altitude Control On(1) or Off(0)0b100000000 = Heading control source: Ground Station(0), Autopilot(1)0b1000000000=  To fly with Ground Station Control of the Pitch Rate and Roll Angle:set_autonomousLevel:14To fly with Ground Station Control of the Pitch Rate, Roll Angle, and Throttle:set_autonomousLevel:30To fly with Ground Station Control of Altitude, and Throttle (Roll controlled by controller):set_autonomousLevel:134To fly with Ground Station Control of Altitude, Throttle, Roll Angle:set_autonomousLevel:156To reset everything and fly with controller:set_autonomousLevel:0</td>
+</tr>
+<tr>
+<td>32</td>
+<td>set_angularWalkVariance:<code>data</code></td>
+<td>setAngularWalkVariance(<code>data</code>)</td>
+<td>Float</td>
+<td>Sets the Kalman Filter parameter that determines how fast the gyro bias estimates converge.</td>
+</tr>
+<tr>
+<td>33</td>
+<td>Set_gyroVariance:<code>data</code></td>
+<td>setGyroVariance(<code>data</code>)</td>
+<td>Float</td>
+<td>Sets the Kalman filter parameter that determines the weighting of the gryo in the attitude estimates of the plane.</td>
+</tr>
+<tr>
+<td>34</td>
+<td>set_magneticVariance:<code>data</code></td>
+<td>setMagneticVariance(<code>data</code>)</td>
+<td>Float</td>
+<td>Sets the Kalman filter parameter that determines the weighting of the magnetometers in the attitude estimates of the plane.</td>
+</tr>
+<tr>
+<td>35</td>
+<td>set_accelVariance:<code>data</code></td>
+<td>setAccelVariance(<code>data</code>)</td>
+<td>Float</td>
+<td>Sets the Kalman filter parameter that determines the weighting of the accelerometers in the attitude estimates of the plane.</td>
+</tr>
+<tr>
+<td>36</td>
+<td>set_scaleFactor:<code>data</code></td>
+<td>pitchScaleFactor = <code>data</code></td>
+<td>Float</td>
+<td>Sets the value for the feed-forward term of pitch, when the aircraft is turning. In other words, when the aircraft is turning, this proportion is added to the elevators to prevent the airplane from losing altitude.</td>
+</tr>
+<tr>
+<td>37</td>
+<td>calibrate_altimeter:<code>data</code></td>
+<td>amData.calibrationHeight = <code>data</code>amData.command = PM_CALIBRATE_ALTIMETER</td>
+<td>Float</td>
+<td>This sets the reference height on the altimeter to a predefined value. This allows one to choose a <em>relative</em> value for the height aircraft. For example, one may set 0m to refer to the starting or landing terrain height.</td>
+</tr>
+<tr>
+<td>38</td>
+<td>clear_waypoints:<code>data</code></td>
+<td>amData.waypoint.id = <code>data</code>amData.command = PM_CLEAR_WAYPOINTS</td>
+<td>Byte</td>
+<td>This command clears ALL waypoints. The <code>data</code> is just a dummy variable.</td>
+</tr>
+<tr>
+<td>39</td>
+<td>remove_waypoint:<code>data</code></td>
+<td>amData.waypoint.id = <code>data</code>amData.command = PM_REMOVE_WAYPOINT</td>
+<td>Byte</td>
+<td>This command removes a specific waypoint given a specific ID as the parameter.</td>
+</tr>
+<tr>
+<td>40</td>
+<td>set_targetWaypoint:<code>data</code></td>
+<td>amData.waypoint.id = <code>data</code>amData.command = PM_SET_TARGET_WAYPOINT</td>
+<td>Byte</td>
+<td>The target waypoint is the waypoint which the UAV is trying to currently get to. If this command is called, it can be used to skip waypoints, or return to waypoints. The <code>data</code> is the specified ID for the new target.</td>
+</tr>
+<tr>
+<td>41</td>
+<td>return_home:<code>data</code></td>
+<td>amData.command = PM_RETURN_HOME</td>
+<td>Byte</td>
+<td>This tells the plane to go to the "home" coordinates. The <code>data</code> is just a dummy variable.</td>
+</tr>
+<tr>
+<td>42</td>
+<td>cancel_returnHome:<code>data</code></td>
+<td>amData.command = PM_CANCEL_RETURN_HOME</td>
+<td>Byte</td>
+<td>This tells the plane to return back to its original path after being called to the "home" coordinates.</td>
+</tr>
+<tr>
+<td>43</td>
+<td>send_heartbeat:<code>data</code></td>
+<td>heartbeatTimer = time</td>
+<td>Byte</td>
+<td>This sends a "heartbeat" (verification ping) to the plane to tell it that a data connection is still present. If this command is not received after a certain amount of time, emergency maneuvers will be used.</td>
+</tr>
+<tr>
+<td>44</td>
+<td>trigger_camera:<code>data</code></td>
+<td>triggerCamera(<code>data</code>)</td>
+<td>Int</td>
+<td>This manually triggers the camera via a "fake" PWM signal. The <code>data</code> is the integer value of the PWM signal.</td>
+</tr>
+<tr>
+<td>45</td>
+<td>set_triggerDistance:<code>data</code></td>
+<td>setTriggerDistance(<code>data</code>)</td>
+<td>Float</td>
+<td>This sets the trigger distance (how often a picture is taken based on distance). This <code>data</code> is a value in meters.</td>
+</tr>
+<tr>
+<td>46</td>
+<td>set_gimbleOffset:<code>data</code></td>
+<td>setGimbleOffset(<code>data</code>)</td>
+<td>Int</td>
+<td>This provides an offset to the gimbal. If the gimbal is misaligned on start up, this function can correct it.</td>
+</tr>
+<tr>
+<td>47</td>
+<td>kill_plane:<code>data</code></td>
+<td>if (<code>data</code> == 1234)                    killingPlane = 1;</td>
+<td>Int</td>
+<td>This crashes the plane into the ground (in emergencies). This requires a password (<code>data</code> = "1234") to ensure this isn't an accident.</td>
+</tr>
+<tr>
+<td>48</td>
+<td>unkill_plane:<code>data</code></td>
+<td>if (<code>data</code> == 1234)                    killingPlane = 0;</td>
+<td>Int</td>
+<td>This changes the state of the plane from "I'm crashing" to "Nevermind, this was just a test". This requires a password (<code>data</code> = "1234") to ensure this isn't an accident.</td>
+</tr>
+<tr>
+<td>128</td>
+<td>new_waypoint:<code>data</code>,<code>data</code>,<code>data</code>,<code>data</code></td>
+<td>amData.command = PM_NEW_WAYPOINTamData.waypoint = <code>data</code></td>
+<td>4 floats</td>
+<td>This uploads and appends a waypoint to the aircraft based on corresponding gps coordinates and path instructions. The format is (longitude, latitude, altitude,radius).</td>
+</tr>
+<tr>
+<td>129</td>
+<td>insert_Waypoint:</td>
+<td>amData.command = PM_INSERT_WAYPOINT amData.waypoint = <code>data</code></td>
+<td>4 floats followed by 2 Bytes</td>
+<td>This uploads and inserts a waypoint to the aircraft based on corresponding gps coordinates and path instructions. The format is (longitude, latitude, altitude,radius,nextID,previousID).</td>
+</tr>
+<tr>
+<td>130</td>
+<td>set_ReturnHomeCoordinates:</td>
+<td>amData.command = PM_SET_RETURN_HOME_COORDINATESamData.waypoint = <code>data</code></td>
+<td>3 Floats</td>
+<td>This sets the home coordinates, to which the plane will return in case of an emergency. The format is (longitude, latitude, altitude).</td>
+</tr>
+<tr>
+<td>131</td>
+<td>tare_IMU:<code>data</code>,<code>data</code>,<code>data</code></td>
+<td>adjustVNOrientationMatrix(float* adjustment);</td>
+<td>3 Floats</td>
+<td>This adds a bias adjustment to the matrix based on the last setting. The 3 data values are the x,y,z components of the aircraft.</td>
+</tr>
+<tr>
+<td>132</td>
+<td>Set_IMU:<code>data</code>,<code>data</code>,<code>data</code></td>
+<td>setVNOrientationMatrix(float* adjustment);</td>
+<td>3 Floats</td>
+<td>This is used to set the reference frame of the aircraft's IMU unit. The input values are the x,y,z values of the IMU's rotation respectively.</td>
+</tr>
+<tr>
+<td>132</td>
+<td>follow_path:<code>data</code>,<code>data</code>,<code>data</code></td>
+<td>setVNOrientationMatrix(float* adjustment);</td>
+<td>3 Floats</td>
+<td>This is used to set the reference frame of the aircraft's IMU unit. The input values are the x,y,z values of the IMU's rotation respectively.</td>
+</tr>
+<tr>
+<td>132</td>
+<td>drop_probe:<code>data</code>,<code>data</code>,<code>data</code></td>
+<td>setVNOrientationMatrix(float* adjustment);</td>
+<td>3 Floats</td>
+<td>This is used to set the reference frame of the aircraft's IMU unit. The input values are the x,y,z values of the IMU's rotation respectively.</td>
+</tr>
+<tr>
+<td>132</td>
+<td>drop_probe:<code>data</code>,<code>data</code>,<code>data</code></td>
+<td>setVNOrientationMatrix(float* adjustment);</td>
+<td>3 Floats</td>
+<td>This is used to set the reference frame of the aircraft's IMU unit. The input values are the x,y,z values of the IMU's rotation respectively.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="interpretting-startup-settings">Interpretting startup settings</h3>
 <h3 id="interpreting-gps">Interpreting GPS</h3>
 <p>Eg. 0x00 = No GPS Fix, 0 Satellites0x1A = GPS Fix, 10 Satellites0x24 = DGPS Fix, 4 Satellites</p>
@@ -1552,10 +1916,10 @@ if ( cmd ) {
       </div>
 
     </section>
-    
+
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+<div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
           <a href="https://github.com/UWARG/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
@@ -1568,8 +1932,6 @@ if ( cmd ) {
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
-      <script src="../../sloth-generator.js"></script>
 
 </body>
 </html>

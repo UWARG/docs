@@ -476,15 +476,15 @@
             <div class="section">
               
                 <h1 id="datalink">Datalink</h1>
-<p>The datalink is one of the most important peripheral components in an unmanned 
-system. It provides information on the status of the aircraft (telemetry) and 
-provides the crucial functionality of an uplink, in order to be able to 
+<p>The datalink is one of the most important peripheral components in an unmanned
+system. It provides information on the status of the aircraft (telemetry) and
+provides the crucial functionality of an uplink, in order to be able to
 communicate with the system and make changes to its overall functionality.</p>
-<p>Make note that the details of this system can change frequently due to the 
-requirements of each user. The telemetry data may change from the ones present 
-in this document. Likewise, uplink commands may change based on newly 
-implemented features and requirements. Although, this document should be updated 
-whenever there is a change, this may not always occur. Therefore, be careful 
+<p>Make note that the details of this system can change frequently due to the
+requirements of each user. The telemetry data may change from the ones present
+in this document. Likewise, uplink commands may change based on newly
+implemented features and requirements. Although, this document should be updated
+whenever there is a change, this may not always occur. Therefore, be careful
 when referencing data in this section.</p>
 <h2 id="telemetry-downlink-data">Telemetry (Downlink) Data</h2>
 <p>The Picpilot sends down packets based on priorities. There are 3 priorities of
@@ -1021,7 +1021,6 @@ packet will be sent back since it contains information on the gains.</p>
 <tr>
 <th><strong>ID</strong></th>
 <th><strong>Socket Command</strong></th>
-<th><strong>Associated Function</strong></th>
 <th><strong>Format</strong></th>
 <th><strong>Description</strong></th>
 </tr>
@@ -1030,400 +1029,331 @@ packet will be sent back since it contains information on the gains.</p>
 <tr>
 <td>0</td>
 <td>debug:<code>data</code></td>
-<td>UART1_SendString(<code>data</code>)</td>
-<td>Char Array</td>
+<td>`char[]</td>
 <td>The debugging command, which writes to the UART1 port.</td>
 </tr>
 <tr>
 <td>1</td>
 <td>set_pitchKDGain:<code>data</code></td>
-<td>setGain(PITCH, KD_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the derivative gain for pitch control.</td>
 </tr>
 <tr>
 <td>2</td>
 <td>set_rollKDGain:<code>data</code></td>
-<td>setGain(ROLL, KD_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the derivative gain for roll control.</td>
 </tr>
 <tr>
 <td>3</td>
 <td>set_yawKDGain:<code>data</code></td>
-<td>setGain(YAW, KD_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the derivative gain for yaw control.</td>
 </tr>
 <tr>
 <td>4</td>
 <td>set_pitchKPGain:<code>data</code></td>
-<td>setGain(PITCH, KP_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the proportional gain for pitch control.</td>
 </tr>
 <tr>
 <td>5</td>
 <td>set_rollKPGain:<code>data</code></td>
-<td>setGain(ROLL, KP_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the proportional gain for roll control.</td>
 </tr>
 <tr>
 <td>6</td>
 <td>set_yawKPGain:<code>data</code></td>
-<td>setGain(YAW, KP_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the proportional gain for yaw control.</td>
 </tr>
 <tr>
 <td>7</td>
 <td>set_pitchKIGain:<code>data</code></td>
-<td>setGain(PITCH, KI_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the integral gain for pitch control.</td>
 </tr>
 <tr>
 <td>8</td>
 <td>set_rollKIGain:<code>data</code></td>
-<td>setGain(ROLL, KI_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the proportional gain for roll control.</td>
 </tr>
 <tr>
 <td>9</td>
 <td>set_yawKIGain:<code>data</code></td>
-<td>setGain(YAW, KI_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the proportional gain for yaw control.</td>
 </tr>
 <tr>
 <td>10</td>
 <td>set_headingKDGain:<code>data</code></td>
-<td>setGain(HEADING, KD_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the derivative gain for heading control.</td>
 </tr>
 <tr>
 <td>11</td>
 <td>set_headingKPGain:<code>data</code></td>
-<td>setGain(HEADING, KP_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the proportional gain for heading control.</td>
 </tr>
 <tr>
 <td>12</td>
 <td>set_headingKIGain:<code>data</code></td>
-<td>setGain(HEADING, KI_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the integral gain for heading control.</td>
 </tr>
 <tr>
 <td>13</td>
 <td>set_altitudeKDGain:<code>data</code></td>
-<td>setGain(ALTITUDE, KD_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the derivative gain for altitude control.</td>
 </tr>
 <tr>
 <td>14</td>
 <td>set_altitudeKPGain:<code>data</code></td>
-<td>setGain(ALTITUDE, KP_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the proportional gain for altitude control.</td>
 </tr>
 <tr>
 <td>15</td>
 <td>set_altitudeKIGain:<code>data</code></td>
-<td>setGain(ALTITUDE, KI_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the integral gain for altitude control.</td>
 </tr>
 <tr>
 <td>16</td>
 <td>set_throttleKDGain:<code>data</code></td>
-<td>setGain(THROTTLE, KD_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the derivative gain for throttle control (speed).</td>
 </tr>
 <tr>
 <td>17</td>
 <td>set_throttleKPGain:<code>data</code></td>
-<td>setGain(THROTTLE, KP_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the derivative gain for throttle control (speed).</td>
 </tr>
 <tr>
 <td>18</td>
 <td>set_throttleKIGain:<code>data</code></td>
-<td>setGain(THROTTLE, KI_GAIN, <code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command to set the integral gain for throttle control (speed).</td>
 </tr>
 <tr>
 <td>19</td>
 <td>set_pathGain:<code>data</code></td>
-<td>Currently Unsupported, but will not cause errors if set</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command used to set the gain that scales lateral positional control around a path.</td>
 </tr>
 <tr>
 <td>20</td>
 <td>set_orbitGain:<code>data</code></td>
-<td>Currently Unsupported, but will not cause errors if set</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The command used to set the gain that scales orbital convergence.</td>
 </tr>
 <tr>
 <td>21</td>
 <td>set_showGain:<code>data</code></td>
-<td>displayGain = <code>data</code></td>
-<td>Char</td>
-<td>The command used to switch the output between multiple gain types:0x00 = Yaw0x01 = Pitch0x02 = Roll0x03 = Heading0x04 = Altitude0x05 = Throttle*Note that there is no support for the path gain or orbital gain yet.</td>
+<td><code>char</code></td>
+<td><strong>NOT SUPPORTED ANYMORE</strong></td>
 </tr>
 <tr>
 <td>22</td>
 <td>set_pitchRate:<code>data</code></td>
-<td>sp_PitchRate = <code>data</code></td>
-<td>Int</td>
+<td><code>int</code></td>
 <td>The user input for the pitch rate in PWM timer tick units. (Normal values range from 470 to 941 [dependent on setup]). Note you must set command 32 greater than 4 to use this.</td>
 </tr>
 <tr>
 <td>23</td>
 <td>set_rollRate:<code>data</code></td>
-<td>sp_RollRate = <code>data</code></td>
-<td>Int</td>
+<td><code>int</code></td>
 <td>The user input for the roll rate in PWM timer tick units. (Normal values range from 470 to 941 [dependent on setup]) Note you must set command 32 greater than 4 to use this.</td>
 </tr>
 <tr>
 <td>24</td>
 <td>set_yawRate:<code>data</code></td>
-<td>sp_YawRate = <code>data</code></td>
-<td>Int</td>
+<td><code>int</code></td>
 <td>The user input for the roll rate in PWM timer tick units. (Normal values range from 470 to 941 [dependent on setup]) Note you must set command 32 greater than 4 to use this.</td>
 </tr>
 <tr>
 <td>25</td>
 <td>set_pitchAngle:<code>data</code></td>
-<td>sp_PitchAngle = <code>data</code></td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The user input for the pitch angle in degrees. Note you must set command 32 greater than 5 to use this.</td>
 </tr>
 <tr>
 <td>26</td>
 <td>set_rollAngle:<code>data</code></td>
-<td>sp_RollAngle = <code>data</code></td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The user input for the roll angle in degrees. Note you must set command 32 greater than 5 to use this.</td>
 </tr>
 <tr>
 <td>27</td>
 <td>set_yawAngle:<code>data</code></td>
-<td>Currently Unsupported, but will not cause errors if set</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The user input for the yaw angle in degrees. WILL LIKELY BE REMOVED IN THE FUTURE IF UNEEDED. Note you must set command 32 greater than 5 to use this.</td>
 </tr>
 <tr>
 <td>28</td>
 <td>set_altitude:<code>data</code></td>
-<td>sp_Altitude = <code>data</code></td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The user input for the altitude in meters above sea level. Note you must set command 32 greater than 6 to use this.</td>
 </tr>
 <tr>
 <td>29</td>
 <td>set_heading:<code>data</code></td>
-<td>sp_Heading = <code>data</code></td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>The user input for the heading in standard compass bearing degrees. Note you must set command 32 greater than 7 to use this.</td>
 </tr>
 <tr>
 <td>30</td>
 <td>set_throttle:<code>data</code></td>
-<td>sp_Throttle = <code>data</code></td>
-<td>Int</td>
+<td><code>int</code></td>
 <td>The user input for the throttle as a percentage. Note you must set command 32 to 8 to use this.</td>
 </tr>
 <tr>
 <td>31</td>
 <td>set_autonomousLevel:<code>data</code></td>
-<td>controlLevel = <code>data</code></td>
-<td>Int</td>
-<td>This sets the source of control input between the autopilot, the remote control, and the ground stations:0b00000000 = Full manual control (default)0b00000001 = Set Pitch Rate(0), Pitch Angle(1)0b00000010 = Pitch Control Source: Controller(0), Ground Station(1) 0b00000100 = Roll Control Type: Roll Rate(0), Roll Angle(1)0b00001000 = Roll Control Sources: Controller(0), Ground Station(1)0b00110000 = Throttle control source: Controller(0), Ground Station(1), Autopilot(2) 0b01000000 = Altitude Source: Ground Station(0), Autopilot(1)0b10000000 = Altitude Control On(1) or Off(0)0b100000000 = Heading control source: Ground Station(0), Autopilot(1)0b1000000000=  To fly with Ground Station Control of the Pitch Rate and Roll Angle:set_autonomousLevel:14To fly with Ground Station Control of the Pitch Rate, Roll Angle, and Throttle:set_autonomousLevel:30To fly with Ground Station Control of Altitude, and Throttle (Roll controlled by controller):set_autonomousLevel:134To fly with Ground Station Control of Altitude, Throttle, Roll Angle:set_autonomousLevel:156To reset everything and fly with controller:set_autonomousLevel:0</td>
+<td><code>int</code></td>
+<td>Sets the autonomous level (full groundstation, full rc, etc.) Read below for more info</td>
 </tr>
 <tr>
 <td>32</td>
 <td>set_angularWalkVariance:<code>data</code></td>
-<td>setAngularWalkVariance(<code>data</code>)</td>
-<td>Float</td>
-<td>Sets the Kalman Filter parameter that determines how fast the gyro bias estimates converge.</td>
-</tr>
-<tr>
-<td>33</td>
-<td>Set_gyroVariance:<code>data</code></td>
-<td>setGyroVariance(<code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>Sets the Kalman filter parameter that determines the weighting of the gryo in the attitude estimates of the plane.</td>
 </tr>
 <tr>
 <td>34</td>
 <td>set_magneticVariance:<code>data</code></td>
-<td>setMagneticVariance(<code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>Sets the Kalman filter parameter that determines the weighting of the magnetometers in the attitude estimates of the plane.</td>
 </tr>
 <tr>
 <td>35</td>
 <td>set_accelVariance:<code>data</code></td>
-<td>setAccelVariance(<code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>Sets the Kalman filter parameter that determines the weighting of the accelerometers in the attitude estimates of the plane.</td>
 </tr>
 <tr>
 <td>36</td>
 <td>set_scaleFactor:<code>data</code></td>
-<td>pitchScaleFactor = <code>data</code></td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>Sets the value for the feed-forward term of pitch, when the aircraft is turning. In other words, when the aircraft is turning, this proportion is added to the elevators to prevent the airplane from losing altitude.</td>
 </tr>
 <tr>
 <td>37</td>
 <td>calibrate_altimeter:<code>data</code></td>
-<td>amData.calibrationHeight = <code>data</code>amData.command = PM_CALIBRATE_ALTIMETER</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>This sets the reference height on the altimeter to a predefined value. This allows one to choose a <em>relative</em> value for the height aircraft. For example, one may set 0m to refer to the starting or landing terrain height.</td>
 </tr>
 <tr>
 <td>38</td>
 <td>clear_waypoints:<code>data</code></td>
-<td>amData.waypoint.id = <code>data</code>amData.command = PM_CLEAR_WAYPOINTS</td>
-<td>Byte</td>
+<td><code>byte</code></td>
 <td>This command clears ALL waypoints. The <code>data</code> is just a dummy variable.</td>
 </tr>
 <tr>
 <td>39</td>
 <td>remove_waypoint:<code>data</code></td>
-<td>amData.waypoint.id = <code>data</code>amData.command = PM_REMOVE_WAYPOINT</td>
-<td>Byte</td>
+<td><code>byte</code></td>
 <td>This command removes a specific waypoint given a specific ID as the parameter.</td>
 </tr>
 <tr>
 <td>40</td>
 <td>set_targetWaypoint:<code>data</code></td>
-<td>amData.waypoint.id = <code>data</code>amData.command = PM_SET_TARGET_WAYPOINT</td>
-<td>Byte</td>
+<td><code>byte</code></td>
 <td>The target waypoint is the waypoint which the UAV is trying to currently get to. If this command is called, it can be used to skip waypoints, or return to waypoints. The <code>data</code> is the specified ID for the new target.</td>
 </tr>
 <tr>
 <td>41</td>
 <td>return_home:<code>data</code></td>
-<td>amData.command = PM_RETURN_HOME</td>
-<td>Byte</td>
+<td><code>byte</code></td>
 <td>This tells the plane to go to the "home" coordinates. The <code>data</code> is just a dummy variable.</td>
 </tr>
 <tr>
 <td>42</td>
 <td>cancel_returnHome:<code>data</code></td>
-<td>amData.command = PM_CANCEL_RETURN_HOME</td>
-<td>Byte</td>
+<td><code>byte</code></td>
 <td>This tells the plane to return back to its original path after being called to the "home" coordinates.</td>
 </tr>
 <tr>
 <td>43</td>
 <td>send_heartbeat:<code>data</code></td>
-<td>heartbeatTimer = time</td>
-<td>Byte</td>
+<td><code>byte</code></td>
 <td>This sends a "heartbeat" (verification ping) to the plane to tell it that a data connection is still present. If this command is not received after a certain amount of time, emergency maneuvers will be used.</td>
 </tr>
 <tr>
 <td>44</td>
 <td>trigger_camera:<code>data</code></td>
-<td>triggerCamera(<code>data</code>)</td>
-<td>Int</td>
+<td><code>int</code></td>
 <td>This manually triggers the camera via a "fake" PWM signal. The <code>data</code> is the integer value of the PWM signal.</td>
 </tr>
 <tr>
 <td>45</td>
 <td>set_triggerDistance:<code>data</code></td>
-<td>setTriggerDistance(<code>data</code>)</td>
-<td>Float</td>
+<td><code>float</code></td>
 <td>This sets the trigger distance (how often a picture is taken based on distance). This <code>data</code> is a value in meters.</td>
 </tr>
 <tr>
 <td>46</td>
 <td>set_gimbleOffset:<code>data</code></td>
-<td>setGimbleOffset(<code>data</code>)</td>
-<td>Int</td>
+<td><code>int</code></td>
 <td>This provides an offset to the gimbal. If the gimbal is misaligned on start up, this function can correct it.</td>
 </tr>
 <tr>
 <td>47</td>
 <td>kill_plane:<code>data</code></td>
-<td>if (<code>data</code> == 1234)                    killingPlane = 1;</td>
-<td>Int</td>
+<td><code>int</code></td>
 <td>This crashes the plane into the ground (in emergencies). This requires a password (<code>data</code> = "1234") to ensure this isn't an accident.</td>
 </tr>
 <tr>
 <td>48</td>
 <td>unkill_plane:<code>data</code></td>
-<td>if (<code>data</code> == 1234)                    killingPlane = 0;</td>
-<td>Int</td>
+<td><code>int</code></td>
 <td>This changes the state of the plane from "I'm crashing" to "Nevermind, this was just a test". This requires a password (<code>data</code> = "1234") to ensure this isn't an accident.</td>
 </tr>
 <tr>
 <td>128</td>
-<td>new_waypoint:<code>data</code>,<code>data</code>,<code>data</code>,<code>data</code></td>
-<td>amData.command = PM_NEW_WAYPOINTamData.waypoint = <code>data</code></td>
-<td>4 floats</td>
-<td>This uploads and appends a waypoint to the aircraft based on corresponding gps coordinates and path instructions. The format is (longitude, latitude, altitude,radius).</td>
+<td>new_waypoint:<code>lon</code>,<code>lat</code>,<code>alt</code>,<code>radius</code> ,<code>type</code></td>
+<td>2x<code>double</code>,2x<code>float</code>,<code>char</code></td>
+<td>This uploads and appends a waypoint to the aircraft based on corresponding gps coordinates and path instructions. Type <code>1</code> for probe drop, type <code>0</code> for regular waypoint</td>
 </tr>
 <tr>
 <td>129</td>
-<td>insert_Waypoint:</td>
-<td>amData.command = PM_INSERT_WAYPOINT amData.waypoint = <code>data</code></td>
-<td>4 floats followed by 2 Bytes</td>
-<td>This uploads and inserts a waypoint to the aircraft based on corresponding gps coordinates and path instructions. The format is (longitude, latitude, altitude,radius,nextID,previousID).</td>
+<td>insert_Waypoint:<code>lon</code>,<code>lat</code>,<code>alt</code>,<code>radius</code>,<code>type</code>, <code>prev_id</code>,<code>next_id</code></td>
+<td>2x<code>double</code>,2x<code>float</code>,3x<code>char</code></td>
+<td>This uploads and inserts a waypoint to the aircraft based on corresponding gps coordinates and path instructions.</td>
 </tr>
 <tr>
 <td>130</td>
-<td>set_ReturnHomeCoordinates:</td>
-<td>amData.command = PM_SET_RETURN_HOME_COORDINATESamData.waypoint = <code>data</code></td>
-<td>3 Floats</td>
-<td>This sets the home coordinates, to which the plane will return in case of an emergency. The format is (longitude, latitude, altitude).</td>
+<td>set_ReturnHomeCoordinates:<code>lon</code>,<code>lat</code>,<code>alt</code></td>
+<td>3x<code>float</code></td>
+<td>This sets the home coordinates, to which the plane will return in case of an emergency.</td>
 </tr>
 <tr>
 <td>131</td>
 <td>tare_IMU:<code>data</code>,<code>data</code>,<code>data</code></td>
-<td>adjustVNOrientationMatrix(float* adjustment);</td>
-<td>3 Floats</td>
+<td>3x<code>float</code></td>
 <td>This adds a bias adjustment to the matrix based on the last setting. The 3 data values are the x,y,z components of the aircraft.</td>
 </tr>
 <tr>
 <td>132</td>
-<td>Set_IMU:<code>data</code>,<code>data</code>,<code>data</code></td>
-<td>setVNOrientationMatrix(float* adjustment);</td>
-<td>3 Floats</td>
+<td>set_IMU:<code>data</code>,<code>data</code>,<code>data</code></td>
+<td>3x<code>float</code></td>
 <td>This is used to set the reference frame of the aircraft's IMU unit. The input values are the x,y,z values of the IMU's rotation respectively.</td>
 </tr>
 <tr>
 <td>132</td>
 <td>follow_path:<code>data</code>,<code>data</code>,<code>data</code></td>
-<td>setVNOrientationMatrix(float* adjustment);</td>
-<td>3 Floats</td>
+<td>3x<code>float</code></td>
 <td>This is used to set the reference frame of the aircraft's IMU unit. The input values are the x,y,z values of the IMU's rotation respectively.</td>
 </tr>
 <tr>
 <td>132</td>
 <td>drop_probe:<code>data</code>,<code>data</code>,<code>data</code></td>
-<td>setVNOrientationMatrix(float* adjustment);</td>
-<td>3 Floats</td>
-<td>This is used to set the reference frame of the aircraft's IMU unit. The input values are the x,y,z values of the IMU's rotation respectively.</td>
-</tr>
-<tr>
-<td>132</td>
-<td>drop_probe:<code>data</code>,<code>data</code>,<code>data</code></td>
-<td>setVNOrientationMatrix(float* adjustment);</td>
-<td>3 Floats</td>
+<td>3x<code>float</code></td>
 <td>This is used to set the reference frame of the aircraft's IMU unit. The input values are the x,y,z values of the IMU's rotation respectively.</td>
 </tr>
 </tbody>

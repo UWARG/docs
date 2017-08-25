@@ -45,6 +45,8 @@ pages:
   - Path Management: picpilot/path-management.md
   - Resources: picpilot/resources.md
   - FAQ: picpilot/faq.md
+- Network:
+  - Data Relay: network/data_relay.md
 - Computer Vision:
   - Table of Contents: computer-vision/index.md
   - Building the project [Linux]: computer-vision/Building-the-project-[Linux].md

@@ -20,6 +20,7 @@ The official source of all your WARG needs. Joking, there's only documentation a
 
 - [PicPilot Documentation](picpilot/index.md)
 - [Groundstation Documentation](groundstation/index.md)
+- [Network Documentation](network/data_relay.md)
 - [Computer Vision Documentation](computer-vision/index.md)
 - [Mechanical Documentation](mechanical/index.md)
 

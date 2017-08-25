@@ -7,34 +7,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <meta name="author" content="University of Waterloo Aerial Robotics Group">
-  
-  <title>Electrical - WARG Docs</title>
-  
-
   <link rel="shortcut icon" href="../../favicon.ico">
   
-
-  
+  <title>Electrical - WARG Docs</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="../../css/highlight.css">
-
   
   <script>
     // Current page data
     var mkdocs_page_name = "Electrical";
-    var mkdocs_page_input_path = "bootcamp/electrical.md";
+    var mkdocs_page_input_path = "bootcamp\\electrical.md";
     var mkdocs_page_url = "/bootcamp/electrical/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
   <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
-  <script src="../../js/theme.js"></script> 
-  <script src="../../sloth-generator.js"></script>
-
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
   
   <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -64,382 +55,252 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        <ul class="current">
+	<ul class="current">
+	  
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../..">Home</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
           
-            <li>
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Bootcamps</span>
     <ul class="subnav">
-    <li><span>Bootcamps</span></li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../mechanical/">Mechanical</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../computer-vision/">Computer Vision</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Electrical</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#warg-electrical-bootcamp">WARG Electrical Bootcamp</a></li>
-                
-                    <li><a class="toctree-l4" href="#introduction">Introduction</a></li>
-                
-                    <li><a class="toctree-l4" href="#bootcamp-objectives">Bootcamp Objectives</a></li>
-                
-                    <li><a class="toctree-l4" href="#bootcamp-outline">Bootcamp Outline</a></li>
-                
-                    <li><a class="toctree-l4" href="#1-tracking-antenna-power-circuit">1. Tracking Antenna Power Circuit</a></li>
-                
-                    <li><a class="toctree-l4" href="#2-previous-team-contribution">2. Previous Team Contribution</a></li>
-                
-                    <li><a class="toctree-l4" href="#completion-of-bootcamp">Completion of Bootcamp</a></li>
-                
-            
-            </ul>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../groundstation/">Groundstation</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../embedded/">Embedded Software</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../rccompetition/">RC Car Competition</a>
-        
-    </li>
-
-        
-    </ul>
-<li>
-          
-            <li>
+                <li class="">
+                    
+    <a class="" href="../mechanical/">Mechanical</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../computer-vision/">Computer Vision</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Electrical</a>
     <ul class="subnav">
-    <li><span>Tutorials</span></li>
-
-        
             
-    <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/git/">Git and Github</a>
+    <li class="toctree-l3"><a href="#warg-electrical-bootcamp">WARG Electrical Bootcamp</a></li>
+    
+        <ul>
         
-    </li>
+            <li><a class="toctree-l4" href="#introduction">Introduction</a></li>
+        
+            <li><a class="toctree-l4" href="#bootcamp-objectives">Bootcamp Objectives</a></li>
+        
+            <li><a class="toctree-l4" href="#bootcamp-outline">Bootcamp Outline</a></li>
+        
+            <li><a class="toctree-l4" href="#1-zeropilot-dcdc-buck-regulator">1. ZeroPilot DC/DC Buck Regulator</a></li>
+        
+            <li><a class="toctree-l4" href="#submitting-the-bootcamp">Submitting the bootcamp</a></li>
+        
+            <li><a class="toctree-l4" href="#2-previous-team-contribution">2. Previous Team Contribution</a></li>
+        
+        </ul>
+    
 
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/shell/">Using the terminal</a>
-        
-    </li>
+    <li class="toctree-l3"><a href="#completion-of-bootcamp">Completion of Bootcamp</a></li>
+    
 
-        
     </ul>
-<li>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../groundstation/">Groundstation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../embedded/">Embedded Software</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../rccompetition/">RC Car Competition</a>
+                </li>
+    </ul>
+	    </li>
           
-            <li>
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
     <ul class="subnav">
-    <li><span>Groundstation</span></li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../groundstation/">Table of Contents</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../groundstation/introduction/">Introduction</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../groundstation/what-you-need-to-know/">What you need to know</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../groundstation/installation/">Installation</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../groundstation/tutorial/">Tutorial</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../groundstation/project-structure/">Project Structure</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../groundstation/contributing/">Contributing</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../groundstation/documenting/">Documenting</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../groundstation/resources/">Additional Resources</a>
-        
-    </li>
-
-        
+                <li class="">
+                    
+    <a class="" href="../../tutorials/git/">Git and Github</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../tutorials/shell/">Using the terminal</a>
+                </li>
     </ul>
-<li>
+	    </li>
           
-            <li>
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Groundstation</span>
     <ul class="subnav">
-    <li><span>PicPilot</span></li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../picpilot/">Table of Contents</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../picpilot/introduction/">Introduction</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../picpilot/pid-loops/">PID Loops</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../picpilot/pwm-io/">PWM and IO</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../picpilot/uart/">UART</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../picpilot/spi/">SPI</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../picpilot/direct-memory-access/">Direct Memory Access</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../picpilot/i2c/">I2C</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../picpilot/datalink/">Datalink</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../picpilot/analog-to-digital-converter/">Analog to Digital Converter</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../picpilot/sensors-and-peripherals/">Sensors and Peripherals</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../picpilot/attitude-control/">Attitude Control</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../picpilot/path-management/">Path Management</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../picpilot/resources/">Resources</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../picpilot/faq/">FAQ</a>
-        
-    </li>
-
-        
+                <li class="">
+                    
+    <a class="" href="../../groundstation/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/what-you-need-to-know/">What you need to know</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/installation/">Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/tutorial/">Tutorial</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/project-structure/">Project Structure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/documenting/">Documenting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/resources/">Additional Resources</a>
+                </li>
     </ul>
-<li>
+	    </li>
           
-            <li>
+            <li class="toctree-l1">
+		
+    <span class="caption-text">PicPilot</span>
     <ul class="subnav">
-    <li><span>Computer Vision</span></li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../computer-vision/">Table of Contents</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../computer-vision/Building-the-project-[Linux]/">Building the project [Linux]</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../computer-vision/Building-the-project-[Windows]/">Building the project [Windows]</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../computer-vision/Coding-Conventions/">Coding Conventions</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../computer-vision/Contributing/">Contributing</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../computer-vision/Using-the-WARG-server-environment/">Using the WARG computer environment</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../computer-vision/Writing-Tests/">Writing Tests</a>
-        
-    </li>
-
-        
+                <li class="">
+                    
+    <a class="" href="../../picpilot/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../picpilot/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../picpilot/pid-loops/">PID Loops</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../picpilot/pwm-io/">PWM and IO</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../picpilot/uart/">UART</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../picpilot/spi/">SPI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../picpilot/direct-memory-access/">Direct Memory Access</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../picpilot/i2c/">I2C</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../picpilot/datalink/">Datalink</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../picpilot/analog-to-digital-converter/">Analog to Digital Converter</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../picpilot/sensors-and-peripherals/">Sensors and Peripherals</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../picpilot/attitude-control/">Attitude Control</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../picpilot/path-management/">Path Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../picpilot/resources/">Resources</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../picpilot/faq/">FAQ</a>
+                </li>
     </ul>
-<li>
+	    </li>
           
-            <li>
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Computer Vision</span>
     <ul class="subnav">
-    <li><span>Mechanical</span></li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../mechanical/">Table of Contents</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../mechanical/cad-guidelines/">CAD Guidelines</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../mechanical/3d-printing-guidelines/">3D Printing Guidelines</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../mechanical/grabcad/">GrabCad</a>
-        
-    </li>
-
-        
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Building-the-project-%5BLinux%5D/">Building the project [Linux]</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Building-the-project-%5BWindows%5D/">Building the project [Windows]</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Coding-Conventions/">Coding Conventions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Using-the-WARG-server-environment/">Using the WARG computer environment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Writing-Tests/">Writing Tests</a>
+                </li>
     </ul>
-<li>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Mechanical</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../mechanical/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/cad-guidelines/">CAD Guidelines</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/3d-printing-guidelines/">3D Printing Guidelines</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/grabcad/">GrabCad</a>
+                </li>
+    </ul>
+	    </li>
           
         </ul>
       </div>
@@ -470,9 +331,8 @@
     <li>Electrical</li>
     <li class="wy-breadcrumbs-aside">
       
-        
-          <a href="https://github.com/UWARG/" class="icon icon-github"> Edit on GitHub</a>
-        
+        <a href="https://github.com/UWARG/edit/master/docs/bootcamp\electrical.md"
+          class="icon icon-github"> Edit on GitHub</a>
       
     </li>
   </ul>
@@ -484,55 +344,88 @@
                 <p>﻿</p>
 <h1 id="warg-electrical-bootcamp">WARG Electrical Bootcamp</h1>
 <h2 id="introduction">Introduction</h2>
+<p>Welcome to the WARG's electrical bootcamp!</p>
 <p>WARG members often find that joining this team requires more knowledge and has a larger learning curve than other student teams. Once members have acquired this knowledge they gain a lot of confidence and are able to make large contributions to the team. Therefore, this Bootcamp is designed as a first task to be completed to both help you through the learning curve, while giving you a project that is fully your own. The hope is that once you complete this Bootcamp you will feel confident and hopefully have acquired enough skills such that you are ready to take on tasks with our aircraft! Just a quick disclaimer, this Bootcamp will help accelerate and minimize the learning curve but it will not give you all knowledge. The remaining knowledge will be acquired through completing other tasks with the team.</p>
 <h2 id="bootcamp-objectives">Bootcamp Objectives</h2>
+<p>In this bootcamp you will learn how to do the following in KiCad:</p>
 <ul>
-<li>Learn how to make a basic schematic</li>
-<li>Learn how to make a PCB board.</li>
-<li>Learn how to create a custom pattern</li>
-<li>Learn where to find documentation and how to understand it.</li>
+<li>Search digikey and select a component</li>
+<li>Manage bill of materials (BOM) and the WARG component library</li>
+<li>Make a symbol or find symbol libraries</li>
+<li>Edit a schematic</li>
+<li>Find a footprint and map it to the part</li>
+<li>Place and route a PCB</li>
+<li>Export gerbers</li>
 </ul>
 <h2 id="bootcamp-outline">Bootcamp Outline</h2>
 <p>This Bootcamp has two options, both of which require a Team Leads approval of completion in order to move onto working on other tasks. The estimated time of completion for this Bootcamp is 1 week.</p>
-<h2 id="1-tracking-antenna-power-circuit">1. Tracking Antenna Power Circuit</h2>
+<h2 id="1-zeropilot-dcdc-buck-regulator">1. ZeroPilot DC/DC Buck Regulator</h2>
 <h3 id="background">Background</h3>
-<p>The tracking antenna helps to ensure our ground station keeps in contact with the plane at all times by pointing antennas at the plane, using data from the ground station. To do this, the tracking antenna has 2 servos that point the antennas, an arduino to do computations and basic control, and multiple sensors to help in calibration. 
-The power circuit allows the antenna to be powered by either a battery or from a power cable, and simplifies the wiring to the servos and arduino.</p>
+<p>In 2017 WARG started work on the new autopilot PCB, called ZeroPilot. With the new board comes a lot of tasks involving designing new circuits, converting circuits from Diptrace (our old software) to KiCad, and fixing bugs in various circuits. ZeroPilot is based off of STM microprocessors. It has a main processor called the autopilot controller which is a Cortex-M7 processor which handles most of our calculations. The board also has a secondary processor as a failsafe, which is called the safety controller. It allows us to confidently test new autopilot code since we can always switch into safety mode if there is an autopilot software error.</p>
+<p>The ZeroPilot requires multiple voltages to power its various systems. There is the main battery which ranges from 7V-16V, and it has to be converted into 5V and 3.3V for different circuits.</p>
 <h3 id="task">Task</h3>
-<p>Your task is to design a PCB using DipTrace which will be able to take power from a battery or power cable.  If both battery and power cable are connected, it should default towards the power cable. It will have pin connections for the 2 servos (pan and tilt) and the arduino (5V, GND, and a PWM signal for each servo). To save money, design the PCB as small as possible. There will also be multiple LED indicators to show the circuit is working.</p>
-<p>The example schematic is at the bottom of this page. You can copy it directly, make some improvements, or design your own.  </p>
-<p>Note: We are not actually printing this circuit due to the cost and time constraints.</p>
-<h3 id="inputs-outputs-and-leds">Inputs, Outputs, and LEDs</h3>
+<p>Your task is to replace the 3.3V regulator to power the main processors. Currently we use a linear regulator (commonly called an LDO) to convert 5V to 3.3V, but this is a very inefficient process, since input current = output current. Replacing the LDO with a buck regulator will save power by more efficiently converting voltage to 3.3V. It’s helpful to know how buck regulators work but not required for the bootcamp</p>
+<p>Replace the LDO (WARG #REGU-002) with a buck regulator that you can find on digikey. The requirements for the buck regulator are listed below.</p>
+<h3 id="requirements">Requirements</h3>
+<p>Below is a list of requirements for the buck regulator circuit:</p>
 <ul>
-<li>3-wire PWM cable for pan servo</li>
-<li>3-wire PWM cable for tilt servo</li>
-<li>4 female pins for arduino wires (5V, GND, Pan, and Tilt)</li>
-<li>JST battery connector (input power)</li>
-<li>DC 5.5mm barrel jack (9-12V input power)</li>
-<li>LED indicator to indicate the board is powered</li>
+<li>Convert Battery voltage (7V-16V) to 3.3V</li>
+<li>Must be able to supply at least 1A of current</li>
+<li>Must be cost effective</li>
 </ul>
-<h3 id="project-checklist">Project Checklist</h3>
+<h3 id="steps">Steps</h3>
+<p>Here are the steps you are expected to take to complete this task.</p>
+<ol>
+<li>
+<p>Download and setup KiCad, Github, and the ZeroPilot repo. Fork and create a bootcamp branch of both github repos (ZeroPilot and WARG-KiCad).</p>
+</li>
+<li>
+<p>Open the circuit editor and anaylze the current circuit. Identify the 3.3V regulator.</p>
+</li>
+<li>
+<p>Find a replacement buck regulator that meets the requirements above. Highly recommend using digikey to find the part.</p>
+</li>
+<li>
+<p>Add the part to the compoent_library.csv in the WARG-KiCad repo and add an appropriate part number, digikey number, and other information to the csv.</p>
+</li>
+<li>
+<p>Either create or find a part symbol for the part you chose. Make sure the part is either in the default KiCad library or in WARG's symbol library (WARG-KiCad).</p>
+</li>
+<li>
+<p>Remove the 3.3V LDO from the schematic and replace it with the symbol you created. Add the necessary components (hint: there will likely be an inductor needed). Run a design rule check to make sure you don't have any errors.</p>
+</li>
+<li>
+<p>Make sure that the parameters of the parts are correct. Make sure every part has a WARG part number field.</p>
+</li>
+<li>
+<p>If needed, create a footprint for the part. Most likely you will be able to find the footprint in KiCad's large library of footprints, but if you do have to create one make sure to save it to the WARG-KiCad repo. Map the footprint to the part you added in step 7.</p>
+</li>
+<li>
+<p>Export the netlist and import it into the PCB editor. Feel free to change the board outline to fit the bigger part, as we don't expect you to re-route the whole board to fit the component.</p>
+</li>
+<li>
+<p>Add tracks to connect the components together. Look at the datasheet for a recommended layout pattern. Ensure that your traces are thick enough to handle the current that will be flowing through it. Also, make sure to update the copper pours to fit the new component and board outline.</p>
+</li>
+<li>
+<p>Export the gerbers into a zip file. These files are what are sent to the manufacturer to print the boards and stencils.</p>
+</li>
+</ol>
+<h2 id="submitting-the-bootcamp">Submitting the bootcamp</h2>
+<p>Create a pull request (PR) to WARG github. Make sure to title your bootcamp PR in the format, "Bootcamp: {name here}". There should be 2 PRs, one for each repo (ZeroPilot and WARG-KiCad). The ZeroPilot PR should also include a zip file containing the manufacturing files. A team lead will review the PR within a few days and reply with approval or with some comments. The team lead will close the PR and not merge it when it is complete.</p>
+<h3 id="resources">Resources</h3>
 <ul>
-<li>Schematic, PCB, and parts list</li>
-<li>Inputs and outputs listed above</li>
-<li>Circuit elements (MOSFET and Voltage regulator) that regulate power and can switch between the two sources</li>
-<li>If both power elements are plugged in, it defaults to the power cable</li>
-<li>Labels to define inputs, outputs, and component placements</li>
-<li>Traces are adequately sized and well routed</li>
+<li><a href="https://github.com/UWARG/ZeroPilot-HW">ZeroPilot repo</a></li>
+<li><a href="https://github.com/UWARG/ZeroPilot-HW">KiCad library repo</a></li>
+<li><a href="https://www.digikey.com/">Digikey to find components</a></li>
+<li><a href="http://kicad-pcb.org/">KiCad Software</a></li>
+<li><a href="http://kicad-pcb.org/help/documentation/">KiCad Documentation</a></li>
+<li><a href="http://docs.kicad-pcb.org/4.0.6/en/getting_started_in_kicad.pdf">KiCad getting started guide</a></li>
+<li>Bootcamp channel on  <a href="https://uwarg.slack.com">slack</a> to ask questions to team leads</li>
 </ul>
-<h3 id="using-diptrace">Using DipTrace</h3>
-<p>Go to this link and download the freeware:
-<a href="http://diptrace.com/download-diptrace/">http://diptrace.com/download-diptrace/</a></p>
-<p>If you need help with using the CAD software, here are some resources:</p>
-<p>Diptrace Tutorial: <a href="http://diptrace.com/support/tutorials/">http://diptrace.com/support/tutorials/</a></p>
-<p>Schematics: <a href="https://www.youtube.com/watch?v=uCPUqXFvUZU">https://www.youtube.com/watch?v=uCPUqXFvUZU</a></p>
-<p>PCB Layout: <a href="https://www.youtube.com/watch?v=kw51rlCTYBY">https://www.youtube.com/watch?v=kw51rlCTYBY</a></p>
-<p>Datasheets: <a href="https://www.octopart.com">https://www.octopart.com</a></p>
 <h2 id="2-previous-team-contribution">2. Previous Team Contribution</h2>
 <p>If you have been on the team and feel that you have made a contribution significant to be exempt from the option 1 you can contact a Team Lead to explain, and preferably show the project you have done. It will be up to the Team Lead’s discretion whether you qualify to be exempt from the Bootcamp. If the Team Lead feels that you should still complete option 1 it is because they think you can learn and gain skills from the completion of the Bootcamp.</p>
-<h2 id="completion-of-bootcamp">Completion of Bootcamp</h2>
-<p>Show a team lead the schematic, PCB, and parts list files. Upon the approved completion of the Bootcamp by a Team Lead you are now eligible to work on other tasks with the team! If you have any feedback you would like to give to make this Bootcamp better please let a Team Lead know as we want this to be the best and most informative introduction to the team as possible.</p>
-<p><img alt="Example Circuit" src="../resources\tracking_antenna_circuit.PNG" /></p>
+<h1 id="completion-of-bootcamp">Completion of Bootcamp</h1>
+<p>Upon the approved completion of the Bootcamp by a Team Lead you are now eligible to work on other tasks with the team! If you have any feedback you would like to give to make this Bootcamp better please let a Team Lead know as we want this to be the best and most informative introduction to the team as possible.</p>
               
             </div>
           </div>
@@ -564,13 +457,13 @@ The power circuit allows the antenna to be powered by either a battery or from a
       </div>
 
     </section>
-
+    
   </div>
 
-<div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/UWARG/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/UWARG/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../computer-vision/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -580,6 +473,8 @@ The power circuit allows the antenna to be powered by either a battery or from a
       
     </span>
 </div>
+    <script src="../../js/theme.js"></script>
+      <script src="../../sloth-generator.js"></script>
 
 </body>
 </html>

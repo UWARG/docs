@@ -10,13 +10,13 @@ WARG members often find that joining this team requires more knowledge and has a
 
 In this bootcamp you will learn how to do the following in KiCad:
 
-- search digikey and select a component
-- manage bill of materials (BOM) and the WARG component library
-- make a symbol or find symbol libraries
-- edit a schematic
-- find a footprint and map it to the part
-- place and route a pcb
-- export gerbers
+- Search digikey and select a component
+- Manage bill of materials (BOM) and the WARG component library
+- Make a symbol or find symbol libraries
+- Edit a schematic
+- Find a footprint and map it to the part
+- Place and route a PCB
+- Export gerbers
 
 ## Bootcamp Outline
 
@@ -26,7 +26,7 @@ This Bootcamp has two options, both of which require a Team Leads approval of co
 
 ### Background
 
-In 2017 WARG started work on the new autopilot pcb, called ZeroPilot. With the new board comes a lot of tasks involving designing new circuits, converting circuits from Diptrace (our old software) to KiCad, and fixing bugs in various circuits. ZeroPilot is based off of STM microprocessors. It has a main processor called the autopilot controller which is a Cortex-M7 processor which handles most of our calculations. The board also has a secondary processor as a failsafe, which is called the safety controller. It allows us to confidently test new autopilot code since we can always switch into safety mode if there is an autopilot software error.
+In 2017 WARG started work on the new autopilot PCB, called ZeroPilot. With the new board comes a lot of tasks involving designing new circuits, converting circuits from Diptrace (our old software) to KiCad, and fixing bugs in various circuits. ZeroPilot is based off of STM microprocessors. It has a main processor called the autopilot controller which is a Cortex-M7 processor which handles most of our calculations. The board also has a secondary processor as a failsafe, which is called the safety controller. It allows us to confidently test new autopilot code since we can always switch into safety mode if there is an autopilot software error.
 
 The ZeroPilot requires multiple voltages to power its various systems. There is the main battery which ranges from 7V-16V, and it has to be converted into 5V and 3.3V for different circuits.
 
@@ -64,7 +64,7 @@ Here are the steps you are expected to take to complete this task.
 
 8. If needed, create a footprint for the part. Most likely you will be able to find the footprint in KiCad's large library of footprints, but if you do have to create one make sure to save it to the WARG-KiCad repo. Map the footprint to the part you added in step 7.
 
-9. Export the netlist and import it into the pcb editor. Feel free to change the board outline to fit the bigger part, as we don't expect you to re-route the whole board to fit the component.
+9. Export the netlist and import it into the PCB editor. Feel free to change the board outline to fit the bigger part, as we don't expect you to re-route the whole board to fit the component.
 
 10. Add tracks to connect the components together. Look at the datasheet for a recommended layout pattern. Ensure that your traces are thick enough to handle the current that will be flowing through it. Also, make sure to update the copper pours to fit the new component and board outline.
 
@@ -77,13 +77,13 @@ Create a pull request (PR) to WARG github. Make sure to title your bootcamp PR i
 
 ### Resources
 
-- [Zeropilot repo](https://github.com/UWARG/ZeroPilot-HW)
+- [ZeroPilot repo](https://github.com/UWARG/ZeroPilot-HW)
 - [KiCad library repo](https://github.com/UWARG/ZeroPilot-HW)
 - [Digikey to find components](https://www.digikey.com/)
 - [KiCad Software](http://kicad-pcb.org/)
 - [KiCad Documentation](http://kicad-pcb.org/help/documentation/)
 - [KiCad getting started guide](http://docs.kicad-pcb.org/4.0.6/en/getting_started_in_kicad.pdf)
--  bootcamp channel on  [slack](https://uwarg.slack.com) to ask questions to team leads
+-  Bootcamp channel on  [slack](https://uwarg.slack.com) to ask questions to team leads
 
 ## 2. Previous Team Contribution
 

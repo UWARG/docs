@@ -1,11 +1,11 @@
 
-#ZeroPilot Hardware
+# ZeroPilot Hardware
 
 ##Introduction
 
 The Zeropilot is WARG's autopilot platform using a custom PCB and firmware. The ZeroPilot has 2 processors on board. The first one, an STM32F7 chip, is the main autopilot processing unit. It controls both low level and high level control, including PID loops, navigation control, and sensor communication. The secondary chip is a STM32F0 chip called the safety controller, which translates the receiver's PPM to PWM, and then transmits it to the main autopilot unit using I2C or SPI. It also controls the autopilot's failsafe mode, and passes the PPM straight to the PWM output so that the pilot has full control of the UAV in case of firmware bugs.
 
-The ZeroPilot schematic and PCB are created using KiCad and can be found on [WARG's Github](github.com/uwarg).
+The ZeroPilot schematic and PCB are created using KiCad and can be found on [WARG's Github](https://github.com/UWARG).
 
 ##PCB Overview
 
@@ -72,7 +72,7 @@ To make sure the schematic looks clean and consistent, we have standardized conv
 
 1. Keep as much circuitry off of the main page as possible. KiCad works in hierarchical structure, so the main page should essentially be a block diagram to show how the schematic is structured
 2. Use busses for cleanliness. It is possible to just put net names for everything and the schematic can be connected that way. However, this is very hard to read and follow where everything is going. If the distance is short, just use lines to connect the pins together. If there are multiple similar signals (such as UART), group them into a bus so that it is visually obvious where else it connects to. It is acceptable for power to be connected only via net names.
-3. Make sure the schematic flows left to right. Because of how we read english, we look at the schematic from left tot right. This means that all inputs should be on the left side, and all outputs should be on the right side. For example, the power circuit should always be on the left side of the schematic since it is the input for the system. PWMs are on the right since that is the final output for the system.
+3. Make sure the schematic flows left to right. Because of how we read english, we look at the schematic from left to right. This means that all inputs should be on the left side, and all outputs should be on the right side. For example, the power circuit should always be on the left side of the schematic since it is the input for the system. PWMs are on the right since that is the final output for the system.
 4. Make sure to use standard WARG or KiCad attribute names. If you need a specific attribute on a part, add its name here for reference.
 
 -part_num: WARG's unique part number that maps to the component library

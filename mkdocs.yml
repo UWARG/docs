@@ -29,10 +29,22 @@ pages:
   - Contributing: groundstation/contributing.md
   - Documenting: groundstation/documenting.md
   - Additional Resources: groundstation/resources.md
-- ZeroPilot:
-  - Table of Contents: zeropilot/index.md
-  - Pinout Reference: zeropilot/pinout_reference.md
-  - Hardware: zeropilot/hardware.md
+- PicPilot:
+  - Table of Contents: picpilot/index.md
+  - Introduction: picpilot/introduction.md
+  - PID Loops: picpilot/pid-loops.md
+  - PWM and IO: picpilot/pwm-io.md
+  - UART: picpilot/uart.md
+  - SPI: picpilot/spi.md
+  - Direct Memory Access: picpilot/direct-memory-access.md
+  - I2C: picpilot/i2c.md
+  - Datalink: picpilot/datalink.md
+  - Analog to Digital Converter: picpilot/analog-to-digital-converter.md
+  - Sensors and Peripherals: picpilot/sensors-and-peripherals.md
+  - Attitude Control: picpilot/attitude-control.md
+  - Path Management: picpilot/path-management.md
+  - Resources: picpilot/resources.md
+  - FAQ: picpilot/faq.md
 - Computer Vision:
   - Table of Contents: computer-vision/index.md
   - Building the project [Linux]: computer-vision/Building-the-project-[Linux].md
@@ -46,5 +58,3 @@ pages:
   - CAD Guidelines: mechanical/cad-guidelines.md
   - 3D Printing Guidelines: mechanical/3d-printing-guidelines.md
   - GrabCad: mechanical/grabcad.md
-- PicPilot:
-  - Table of Contents: picpilot/index.md

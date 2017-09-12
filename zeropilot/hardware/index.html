@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="University of Waterloo Aerial Robotics Group">
+  <link rel="shortcut icon" href="../../favicon.ico">
+  
+  <title>Hardware - WARG Docs</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Hardware";
+    var mkdocs_page_input_path = "zeropilot\\hardware.md";
+    var mkdocs_page_url = "/zeropilot/hardware/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-68186801-2', 'docs.uwarg.com');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> WARG Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Bootcamps</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/mechanical/">Mechanical</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/computer-vision/">Computer Vision</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/electrical/">Electrical</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/groundstation/">Groundstation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/embedded/">Embedded Software</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/rccompetition/">RC Car Competition</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../tutorials/git/">Git and Github</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../tutorials/shell/">Using the terminal</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Groundstation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../groundstation/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/what-you-need-to-know/">What you need to know</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/installation/">Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/tutorial/">Tutorial</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/project-structure/">Project Structure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/documenting/">Documenting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/resources/">Additional Resources</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">ZeroPilot</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../pinout_reference/">Pinout Reference</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Hardware</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#zeropilot-hardware">ZeroPilot Hardware</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#introduction">Introduction</a></li>
+        
+            <li><a class="toctree-l4" href="#pcb-overview">PCB Overview</a></li>
+        
+            <li><a class="toctree-l4" href="#stackup">Stackup</a></li>
+        
+            <li><a class="toctree-l4" href="#power">Power</a></li>
+        
+            <li><a class="toctree-l4" href="#schematic-conventions">Schematic Conventions</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Computer Vision</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Building-the-project-%5BLinux%5D/">Building the project [Linux]</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Building-the-project-%5BWindows%5D/">Building the project [Windows]</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Coding-Conventions/">Coding Conventions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Using-the-WARG-server-environment/">Using the WARG computer environment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Writing-Tests/">Writing Tests</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Mechanical</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../mechanical/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/cad-guidelines/">CAD Guidelines</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/3d-printing-guidelines/">3D Printing Guidelines</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/grabcad/">GrabCad</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">PicPilot</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../picpilot/">Table of Contents</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">WARG Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>ZeroPilot &raquo;</li>
+        
+      
+    
+    <li>Hardware</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UWARG/edit/master/docs/zeropilot\hardware.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="zeropilot-hardware">ZeroPilot Hardware</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The Zeropilot is WARG's autopilot platform using a custom PCB and firmware. The ZeroPilot has 2 processors on board. The first one, an STM32F7 chip, is the main autopilot processing unit. It controls both low level and high level control, including PID loops, navigation control, and sensor communication. The secondary chip is a STM32F0 chip called the safety controller, which translates the receiver's PPM to PWM, and then transmits it to the main autopilot unit using I2C or SPI. It also controls the autopilot's failsafe mode, and passes the PPM straight to the PWM output so that the pilot has full control of the UAV in case of firmware bugs.</p>
+<p>The ZeroPilot schematic and PCB are created using KiCad and can be found on <a href="https://github.com/UWARG">WARG's Github</a>.</p>
+<h2 id="pcb-overview">PCB Overview</h2>
+<p>Below is an overview of the sections of the PCB:</p>
+<p><img alt="PCB Overview" src="../zeroPilot_sections.jpg" /></p>
+<h2 id="stackup">Stackup</h2>
+<p>The ZeroPilot is a 4 layer board. This makes routing the PCB much easier and allows the PCB to be smaller. Each layer has a designated purpose and they are connected through small plated through holes known as vias.</p>
+<h3 id="layer-1-top-layer">Layer 1 (Top layer)</h3>
+<p>This layer has all the components on it including the 2 processors, power circuitry, and molex-SPOX connectors. Routing on here is minimal and is limited to critical routing for components listed below.</p>
+<ul>
+<li>Decoupling capacitors are routed on the top layer since they need to directly be connected to VCC and GND as close as possible. These capacitors smooth out the voltage into the processor and ensure there is no stray AC noise in the 3.3V power supply. There is 1 decoupling capacitor for each VCC pin.</li>
+<li>Crystals are routed on the top layer because the traces must remain short in order to produce a consisent and predictable frequency. Longer traces cause stray capacitance which can affect the frequency of the oscilation. It is also important that the crystals have a good ground pour surrounding them to prevent excess RF energy to be released and affect other components.</li>
+<li>Switching power supplies are routed on the top layer since there is a lot of AC current caused by the 2 buck regulators. Switching regulators quickly turn on and off a switch to let current flow through the inductor, causing a consistent voltage. The feedback pin of the buck regulator allows it monitor the output voltage and change the amount of time the switch is on (its duty cycle) so that the output voltage is constant. This high frequency switching can cause a lot of RF noise, so keeping this routing on one layer helps reduce any stray RF energy.</li>
+</ul>
+<h3 id="layer-2">Layer 2</h3>
+<p>This layer is where most of the routing is done. There are a few important things to note when routing on this layer:</p>
+<ul>
+<li>Do not route underneath any of the 4 crystals. Layer 2 is not shielded from the RF energy of the crystals, so it can induce noise in the signal lines and corrupt communication busses.</li>
+<li>Make sure there are no large gaps with no copper. When the 4 layers are laminated together in the PCB fabrication process, large gaps of copper can cause the layers above to sag and deform.</li>
+<li>For debugging purposes, it is helpful not to run the complete trace on layer 2. If part of the trace is routed on layer 1 or 4, those traces can be cut if there is an issue with it. If the trace is completely on layer 2 then there is no way to break the trace. However, this isn't a high priority</li>
+</ul>
+<h3 id="layer-3">Layer 3</h3>
+<p>This layer is the ground plane. It makes sure all the circuitry has the same ground. Any ground pin of ICs should have a via to connect the chip to this layer and should be near the ground pin of the chip. There are a couple things to note about routing on this layer:</p>
+<ul>
+<li>There should be no routing done on this layer.</li>
+<li>Never route on this layer</li>
+<li>Make sure there isn't a single trace on this layer or else you will be shamed and exiled from WARG (not actually).</li>
+</ul>
+<h3 id="layer-4-bottom-layer">Layer 4 (Bottom layer)</h3>
+<p>This layer is used for power planes and some various components. Reserving a layer for power makes routing significantly easier and minimizes resistances in the power traces.</p>
+<ul>
+<li>Make sure there are no thin spots in the power planes. Bottlenecks cause high resistance and can cause voltages to be different in different parts of the power planes</li>
+<li>Some components can be placed here, but they must have low Z-height so that it is easy to mount on a surface.</li>
+<li>Minimize components on this layer. Due to the SMD reflow process, all components on this side must be done by hand. Only put selective components on this layer when they might not always be used or are easy to solder by hand.</li>
+</ul>
+<h2 id="power">Power</h2>
+<p>The ZeroPilot has 3 voltage regulators to power all the ICs and peripherals.</p>
+<h3 id="5v-external">5V External</h3>
+<p>The 5V external power supply powers PWM and PPM. This is because these connections have a high risk of being shorted. PWMs are not shrouded or keyed connections, so they can be connected backwards or shifted. Separating 5V external and 5V interal power supplies allows increased safety and redundancy to prevent brown-outs on the processors.</p>
+<p>The 5V supply is power by a DC/DC buck regulator and is the same regulator as the 5V interal. It is important that the inductor, boost regulator, and input capacitor are well routed and have thick traces or copper pours.</p>
+<p>the PW_GOOD pin allows the processor to know if the power supply has failed in some way. Usually this is because of a short on the output rail.</p>
+<h3 id="5v-internal">5V Internal</h3>
+<p>The 5V internal power supply powers the communication headers (I2C, SPI, UART), the speaker, and the 3.3V supply. It is more safe than the 5V external supply since it is routed to interal circuitry or to shrouded and keyed connectors.</p>
+<p>The 5V supply is power by a DC/DC buck regulator and is the same regulator as the 5V external. It is important that the inductor, boost regulator, and input capacitor are well routed and have thick traces or copper pours.</p>
+<p>the PW_GOOD pin allows the processor to know if the power supply has failed in some way. Usually this is because of a short on the output rail.</p>
+<h3 id="33v">3.3V</h3>
+<p>The 3.3V power supply is a linear regulator (LDO). It power both processors, microSD card, and flash memory.</p>
+<p>Using and LDO enables a smoother output voltage and smaller footprint at the cost of less efficiency. The regulator is powered off of 5V internal supply and converts the 5V down to 3.3V. LDOs are inefficient because input current = output current. This means that is it is supplying 20mA at 3.3V, the input current will be 20mA at 5V.</p>
+<h2 id="schematic-conventions">Schematic Conventions</h2>
+<p>To make sure the schematic looks clean and consistent, we have standardized convetions for schematic design.</p>
+<ol>
+<li>Keep as much circuitry off of the main page as possible. KiCad works in hierarchical structure, so the main page should essentially be a block diagram to show how the schematic is structured</li>
+<li>Use busses for cleanliness. It is possible to just put net names for everything and the schematic can be connected that way. However, this is very hard to read and follow where everything is going. If the distance is short, just use lines to connect the pins together. If there are multiple similar signals (such as UART), group them into a bus so that it is visually obvious where else it connects to. It is acceptable for power to be connected only via net names.</li>
+<li>Make sure the schematic flows left to right. Because of how we read english, we look at the schematic from left to right. This means that all inputs should be on the left side, and all outputs should be on the right side. For example, the power circuit should always be on the left side of the schematic since it is the input for the system. PWMs are on the right since that is the final output for the system.</li>
+<li>Make sure to use standard WARG or KiCad attribute names. If you need a specific attribute on a part, add its name here for reference.</li>
+</ol>
+<p>-part_num: WARG's unique part number that maps to the component library
+-no_load: This parameter should be used if a component isn't always be soldered onto the board. Use the value <code>NO LOAD</code> to indicate this.</p>
+<ol>
+<li>When you fabricate a board, make a Github release and attached the gerber files to it. This makes it easy to track what is being fabricated. Do the same for the WARG-KiCad library when you order the components for the board, and attach the bill of materials to the release.</li>
+<li>Use common sense. Make the schematic look clean and understandable, even if it means taking a couple hours after a schematic change to make it look nice. Having an easy to understand schematic will make debugging the PCB and schematic issues a much more pleasant experience.</li>
+</ol>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../computer-vision/" class="btn btn-neutral float-right" title="Table of Contents">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../pinout_reference/" class="btn btn-neutral" title="Pinout Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright <a href="http://www.uwarg.com"> University of Waterloo Aerial Robotics Group</a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UWARG/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../pinout_reference/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../computer-vision/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+      <script src="../../sloth-generator.js"></script>
+
+</body>
+</html>

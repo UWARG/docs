@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="University of Waterloo Aerial Robotics Group">
+  <link rel="shortcut icon" href="../../favicon.ico">
+  
+  <title>I2C - WARG Docs</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "I2C";
+    var mkdocs_page_input_path = "picpilot\\i2c.md";
+    var mkdocs_page_url = "/picpilot/i2c/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-68186801-2', 'docs.uwarg.com');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> WARG Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Bootcamps</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/mechanical/">Mechanical</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/computer-vision/">Computer Vision</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/electrical/">Electrical</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/groundstation/">Groundstation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/embedded/">Embedded Software</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/rccompetition/">RC Car Competition</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../tutorials/git/">Git and Github</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../tutorials/shell/">Using the terminal</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Groundstation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../groundstation/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/what-you-need-to-know/">What you need to know</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/installation/">Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/tutorial/">Tutorial</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/project-structure/">Project Structure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/documenting/">Documenting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/resources/">Additional Resources</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">PicPilot</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../pid-loops/">PID Loops</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../pwm-io/">PWM and IO</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../uart/">UART</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../spi/">SPI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../direct-memory-access/">Direct Memory Access</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">I2C</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#i2c">I2C</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#in-the-code">In the code</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../datalink/">Datalink</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../analog-to-digital-converter/">Analog to Digital Converter</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sensors-and-peripherals/">Sensors and Peripherals</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../attitude-control/">Attitude Control</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../path-management/">Path Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../resources/">Resources</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../faq/">FAQ</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Computer Vision</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Building-the-project-%5BLinux%5D/">Building the project [Linux]</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Building-the-project-%5BWindows%5D/">Building the project [Windows]</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Coding-Conventions/">Coding Conventions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Using-the-WARG-server-environment/">Using the WARG computer environment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Writing-Tests/">Writing Tests</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Mechanical</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../mechanical/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/cad-guidelines/">CAD Guidelines</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/3d-printing-guidelines/">3D Printing Guidelines</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/grabcad/">GrabCad</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">WARG Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>PicPilot &raquo;</li>
+        
+      
+    
+    <li>I2C</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UWARG/edit/master/docs/picpilot\i2c.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="i2c">I2C</h1>
+<p>I2C stands for Inter-Integrated Circuit. It is pronounced "I-two-C" or "I-squared-C". It is similar to SPI, with the exception that it does not require a slave select line. All communication takes place on one data line, and one clock line. I2C is a <em>synchronous</em> method of communication, indicating that a clock line is present. Once again, I2C is a protocol for chips to be able to communicate between one another through serial connections (data on a single wire). It cannot operate in full duplex mode, unlike SPI. This means that both chips take turns transmitting and receiving and cannot do so at the same time. The minimum hardware requirements include a clock line (SCL), a data line (SDA), and both lines connected to Vdd via a pull-up resistor. The connections should looks like this:</p>
+<p><img alt="Multiple Slave Setup" src="http://i.imgur.com/9Uqg27B.png" /></p>
+<p>This protocol is extremely simple from a hardware point of view. However, it is significantly slower than SPI, which is the main disadvantage. If you require high speed communication, I2C is not the best choice.</p>
+<p>In a similar fashion to SPI, I2C also has Master and Slave devices. I2C protocol dictates that the master must always initialize communication.</p>
+<p>There are two types of messages that a master device can send. It can be a read or a write message. Both messages are similar in structure; however, the read message requires the slave to respond, whereas the write message does not.</p>
+<p>The write message is structured in the following order:</p>
+<ol>
+<li>Start condition is specified on SDA and SCL (depends on the settings but typically involves the master pulling the data line low, shortly followed by the clock line being pulled low)</li>
+<li>An 8-bit message is then sent, which contains a 7-bit (unique) identifying address, which determines what slave will engage in the data transfer. The 8th bit of the message is a read or write bit. When the bit is low (0), this indicates a write. When the bit is high (1), this indicates a read. In this scenario, we express the write bit (0).</li>
+<li>The master waits for an acknowledgment from the slave. The acknowledgment is the slave pulling the data line low (0), while the master listens. If the acknowledgment is not received, there is likely a problem with the device or the connection.</li>
+<li>At this point data is written 8 bits at a time, until the stop condition is expressed by the master. After each bit, the slave must acknowledge (ACK).</li>
+<li>The stop condition is expressed. (SDA is pulled low, then the SCL is pulled high and it stops pulsing. The SDA is then also pulled high.)</li>
+</ol>
+<p>The read message is very similar to the write message. The start condition and the first byte (address and write bit) must always be present. If a read condition is to exist, a repeated restart must be executed followed by the address of the slave with the read bit (1). The second byte/message may be a command message. Following the message, for the next 8 bytes, the master will expect a response to the command.</p>
+<p>Assuming that the write message from above was never stopped, the read message would be as follows:</p>
+<ol>
+<li>Execute a repeated restart.</li>
+<li>Send the slave address with a read bit (1).</li>
+<li>The slave will respond with 8 bits of data. These 8 bits of data depend on the message sent prior to the repeated restart.</li>
+<li>The master will not acknowledge (Yes I know, laugh all you want)</li>
+<li>The stop condition or a repeated restart is executed.</li>
+</ol>
+<p>A visual depiction of a common I2C message is below:</p>
+<p><img alt="I2C Message" src="http://i.imgur.com/Kv0nULC.png" /></p>
+<p>On the PICpilot, the only I2C peripheral currently in use is the altimeter. The altimeter is connected to the path managing chip.</p>
+<h2 id="in-the-code">In the code</h2>
+<p>The initialization of I2C on the dspic33fj256710a is very simple. There are only a few necessary choices to make:</p>
+<pre><code>I2C2CONbits.A10M = 0;   //7 bit address mode
+
+I2C2CONbits.DISSLW = 1; //Slew Rate control disabled for 100KHz
+
+I2C2CONbits.SMEN = 0;   //Do NOT use SMBus voltage configuration
+
+///I2C1BRG  - BAUD RATE GENERATOR
+
+///MPL3115A2 requires Max 4MHz
+
+I2C2BRG = 19;           //~118KHz clock rate; FCY = 4MHz
+
+//Enable the I2C module
+
+I2C2CONbits.I2CEN = 1;
+</code></pre>
+<p>As you can see, there are only a few important distinctions to make. Firstly, you can have a 10 bit addressing mode or a 7 bit addressing mode. On the PICpilot we use the 7 bit mode.</p>
+<p>Secondly, the clock rate is set via the I2C2BRG register. This could be upgraded to a faster communication speed in the future. The I2C module is then enabled.</p>
+<p>At this point reading and writing can take place. The function to do so is called <em>sendMessage()</em>:</p>
+<pre><code>char sendMessage(char devAddress, char address, char\* data, char length, char rw)
+
+{
+
+    char rData = 0;
+
+    I2CIdle();
+
+    I2C2CONbits.SEN = 1;  //Send Start condition
+
+    I2CIdle();
+
+    //SET Slave Address &amp; write (Address shifted one bit left and then the write(0) bit is added)
+
+    I2C2TRN = devAddress &lt;&lt; 1; //If reading, the read process is specified after the dummy bytes.
+
+    if (rw == READ) //If in reading mode
+
+    {
+
+        rData = readMessage(devAddress, address);
+
+    }
+
+    else //Otherwise go into writing mode
+
+    {
+
+       writeMessage(address,data, length);
+
+    }
+
+    I2CIdle();
+
+    I2C2CONbits.PEN = 1; //Send Stop condition
+
+    I2CIdle();
+
+    return rData;
+
+}
+</code></pre>
+<p>In the above code, the I2CIdle(); command is a while loop, which waits until the module is ready to transmit:</p>
+<pre><code>while((I2C2CON &amp; 0x1F ) || I2C2STATbits.TRSTAT == 1);
+</code></pre>
+<p>In the code, it is evident that the start condition is asserted (using control register 2), followed by loading the device address and the write bit into the <em>I2C2TRN</em> transmit buffer. At this point the read or write functions are executed, depending on the request, before finally sending the stop condition.</p>
+<p>The write command is extremely simple. It simply loops through the data, waiting for an acknowledgment after each one.</p>
+<pre><code>void writeMessage(char address, char\* data, char length)
+
+{
+
+    I2CIdle();
+
+    I2C2TRN = address;  //Then after it is free, write the address.
+
+    //Write each byte of data
+
+    int i = 0;
+
+    for(i = 0; i &lt; length; i++)
+
+    {
+
+        I2CIdle();//Check until transmition was completed
+
+        I2C2TRN = (char)data[i];
+
+    }
+
+}
+</code></pre>
+<p>Note, that the register address is first specified, followed by the iteration of bits that is sent to the buffer.</p>
+<p>On the contrary the read message is a bit more complicated:</p>
+<pre><code>char readMessage(char devAddress, char address)
+
+{
+
+    I2CIdle();
+
+    I2C2TRN = address;  //Then after it is free, write the local address.
+
+    I2CIdle(); //Wait until acknowledge is sent from the slave
+
+    I2C2CONbits.RSEN = 1; //Resend the start condition
+
+    I2CIdle(); //Wait until acknowledge is sent from the slave
+
+    I2C2TRN = (devAddress &lt;&lt; 1) + 1; //Shift and add the read bit(1) - Prep for restart
+
+    I2CIdle(); //Wait until acknowledge is sent from the slave
+
+    ///THE MESSAGE FROM THE SLAVE IS SENT HERE
+
+    I2C2CONbits.RCEN = 1; //Enable receive mode
+
+    I2CIdle(); //Wait until all 8 bits have been acquired
+
+    while (I2C2STATbits.RBF != 1);
+
+    char data = I2C2RCV;
+
+    //Send back a NACK
+
+    I2C2CONbits.ACKDT = 1; //Send NACK
+
+    I2C2CONbits.ACKEN = 1; //Start the acknowledge sequence
+
+    I2CIdle(); //Wait until done
+
+    return data;
+
+}
+</code></pre>
+<p>The register address is sent, which is followed by a restart condition. Then the device address is sent, BUT this time, the read bit is sent. At this point, the master enables receiving and waits until all data is received. A NACK (Not Acknowledgement) is sent prior to returning the data.</p>
+<p>The device and register addresses depend on the device and its functionality.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../datalink/" class="btn btn-neutral float-right" title="Datalink">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../direct-memory-access/" class="btn btn-neutral" title="Direct Memory Access"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright <a href="http://www.uwarg.com"> University of Waterloo Aerial Robotics Group</a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UWARG/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../direct-memory-access/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../datalink/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+      <script src="../../sloth-generator.js"></script>
+
+</body>
+</html>

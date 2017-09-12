@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="University of Waterloo Aerial Robotics Group">
+  <link rel="shortcut icon" href="../../favicon.ico">
+  
+  <title>Path Management - WARG Docs</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Path Management";
+    var mkdocs_page_input_path = "picpilot\\path-management.md";
+    var mkdocs_page_url = "/picpilot/path-management/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-68186801-2', 'docs.uwarg.com');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> WARG Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Bootcamps</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/mechanical/">Mechanical</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/computer-vision/">Computer Vision</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/electrical/">Electrical</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/groundstation/">Groundstation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/embedded/">Embedded Software</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/rccompetition/">RC Car Competition</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../tutorials/git/">Git and Github</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../tutorials/shell/">Using the terminal</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Groundstation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../groundstation/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/what-you-need-to-know/">What you need to know</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/installation/">Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/tutorial/">Tutorial</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/project-structure/">Project Structure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/documenting/">Documenting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/resources/">Additional Resources</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">PicPilot</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../pid-loops/">PID Loops</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../pwm-io/">PWM and IO</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../uart/">UART</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../spi/">SPI</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../direct-memory-access/">Direct Memory Access</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../i2c/">I2C</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../datalink/">Datalink</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../analog-to-digital-converter/">Analog to Digital Converter</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sensors-and-peripherals/">Sensors and Peripherals</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../attitude-control/">Attitude Control</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Path Management</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#path-management">Path Management</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#straight-line-path-following">Straight Line Path Following</a></li>
+        
+            <li><a class="toctree-l4" href="#orbit-following">Orbit Following</a></li>
+        
+            <li><a class="toctree-l4" href="#putting-it-all-together">Putting it all together</a></li>
+        
+            <li><a class="toctree-l4" href="#managing-path-data">Managing Path Data</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../resources/">Resources</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../faq/">FAQ</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Computer Vision</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Building-the-project-%5BLinux%5D/">Building the project [Linux]</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Building-the-project-%5BWindows%5D/">Building the project [Windows]</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Coding-Conventions/">Coding Conventions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Using-the-WARG-server-environment/">Using the WARG computer environment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Writing-Tests/">Writing Tests</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Mechanical</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../mechanical/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/cad-guidelines/">CAD Guidelines</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/3d-printing-guidelines/">3D Printing Guidelines</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/grabcad/">GrabCad</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">WARG Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>PicPilot &raquo;</li>
+        
+      
+    
+    <li>Path Management</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UWARG/edit/master/docs/picpilot\path-management.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="path-management">Path Management</h1>
+<p>Path management can be broken up into 3 sections. The straight parts, the parts where you turn, and the way you put them together. There is not much more to it than that.</p>
+<h2 id="straight-line-path-following">Straight Line Path Following</h2>
+<p>Straight line path following, also known as, following a line, is the most rudimentary part of any unmanned system. It is mostly a mathematical construct applied to a digital system. The mathematics will be described here, which can be easily compared to the code.</p>
+<p>The principle is simple. Given two points, and the location of your vehicle, determine what heading it should follow. Now imagine the plane is directly on the path. The heading would follow the line exactly. Now imagine the plane is slightly off the path. What should happen is that the plane should face slightly towards the path, to minimize its <em>cross-track error</em>. Now imagine the plane is an infinite distance away. The plane should head at a heading perpendicular to the line, in order to regain distance. This is the premise of the straight line path following algorithm. As a result, a heading vector field would look as such:</p>
+<p><img alt="Vector Field of Straight Line Path Following" src="http://i.imgur.com/grZdAgf.png" /></p>
+<p>The equations that govern this behaviour are not complicated. There are only a few things required to make this calculation. Firstly, you must know the heading of the path. If you have the XY coordinates of the path endpoints, you can easily determine that through simple trigonometry. If you only have the GPS coordinates, you should use the <a href="http://en.wikipedia.org/wiki/Haversine_formula">Haversine Formula</a> in order to get the XY coordinates.</p>
+<p>Once you have the coordinates, subtracting them will give you the direction of travel (in an XY plane). Furthermore, by applying the <em>arctan</em> function on the direction of travel, one will determine the path heading. In addition, the value should be between –PI and +PI. Thus, any 2PI corrections that need to be made can be made at this point.</p>
+<p>Now the path error (or cross-track error) is calculated. This is calculated as:</p>
+<pre><code>cos(courseAngle) * (positionY - targetWaypointY) – sin(courseAngle)*(positionX – targetWaypointX)
+</code></pre>
+<p>On a map, the _cross-track error _looks like this:</p>
+<p><img alt="Cross-track error" src="http://i.imgur.com/bDipgFI.jpg" /></p>
+<p>Using trigonometry you can easily derive the formula (as above) for cross-track error to encompass any situation.</p>
+<p>The cross track error is then useful to determine the heading of the aircraft. Once again, using the <em>arctan</em> function is suitable to do so:</p>
+<p><img alt="Straight Line Following Heading Equation" src="http://i.imgur.com/oXRJdsU.png" /></p>
+<pre><code>90 - rad2deg(courseAngle - MAX_PATH_APPROACH_ANGLE * 2/PI * atan(k_gain[PATH] * pathError))
+</code></pre>
+<p>Note, as the atan term increases, the heading approaches the <em>(courseAngle -__MAX_PATH_APPROACH_ANGLE)</em>.</p>
+<p>Note, that the courseAngle is calculated with respect to the x-axis, on the x-y plane. In other words, a path going from West to East would have a courseAngle of 0 degrees. This would be 90 degrees in terms of a true heading. Therefore, to get the true heading, you must subtract the <em>courseAngle</em> from 90 degrees.</p>
+<h2 id="orbit-following">Orbit Following</h2>
+<p>Unlike straight line path following, orbit following involves following a curve of a certain radius. An orbit is depicted by a radius, a center location, and the direction of travel (clockwise or anti-clockwise).</p>
+<p><img alt="Orbit Following" src="http://i.imgur.com/VeXoxoI.png" /></p>
+<p>In order to maintain a certain radius, the Euclidean distance needs to be calculated between the center of the orbit and the plane itself. The goal of this function is to maintain this Euclidean distance constant. The Euclidean distance can be calculated as such:</p>
+<pre><code>float orbitDistance = sqrt(pow(position[0] - center[0],2) + pow(position[1] - center[1],2));
+</code></pre>
+<p>This value is then used to determine the equivalent of <em>cross-track _error, but for an orbit. This is done very easily. The term _d</em> (Euclidean distance) subtracted by the <em>ρ</em> (desired radius) provides the relative error, which must be minimized.</p>
+<p><img alt="Orbit Following Heading Equation" src="http://i.imgur.com/uOmzAbj.png" /></p>
+<pre><code>90 - rad2deg(courseAngle + direction \* (PI/2 + atan(k\_gain[ORBIT] \* (orbitDistance - radius)/radius)))
+</code></pre>
+<p>This equation is actually very similar to the equation governing straight line path following. The <em>arctan</em> function forces the heading to converge onto the orbit. The direction of travel (<em>λ</em>) which can be either <em>1</em> or <em>-1</em>, reverses the effect of the heading perturbations. This is then added onto the course angle as a perturbation. Once again, a gain value needs to be tuned to determine the rate of convergence.</p>
+<p>The course angle can be determined easily based on the location of the curve. For instance, if the vehicle is in the first quadrant of the circle/orbit, the heading will range between 270° and 0°, assuming a counter-clockwise rotation. This course angle can be calculated using this equation:</p>
+<pre><code>float courseAngle = atan2(position[1] - center[1], position[0] - center[0]);
+</code></pre>
+<h2 id="putting-it-all-together">Putting it all together</h2>
+<p>The orbit following and straight path following algorithms are used in combination in order to assemble a path. Both algorithms alternate in usage. Every corner uses the orbit following algorithm. Every straight line uses the straight path following algorithm.</p>
+<p>In order to put the two together, you must draw in orbits between each set of points. The additional restriction is that they must be tangent to both lines, as depicted in this diagram:</p>
+<p><img alt="Path Management" src="http://i.imgur.com/0G5oDFa.png" /></p>
+<p>Figuring out where the tangent will touch requires some basic trigonometry. The derivation won't be explained here, however, the coordinates at which this occurs can be calculated using:</p>
+<p><img alt="Half Plane equation" src="http://i.imgur.com/VtLI024.png" /></p>
+<p>Where nextX/Y/Z refer to the coordinates of the point Wi+1 and targetX/Y/Z refer to the coordinates of the point Wi.</p>
+<p>The turning angle can be calculated via the following equation:</p>
+<pre><code>float turningAngle = acos(-deg2rad(waypointDirection[0] * nextWaypointDirection[0] + waypointDirection[1] * nextWaypointDirection[1] + waypointDirection[2] * nextWaypointDirection[2]));
+</code></pre>
+<p>This is simply the dot product of the (Wi - Wi-1) vector and the (Wi+1 - Wi) vector. Given the dot product formula, you can use the <em>arccos</em> function to determine the angle between the two lines.</p>
+<p>At these calculated points, there is a checkpoint. Imagine a giant plane perpendicular to the path. As soon as the plane crosses this boundary, the next step is executed. For instance, if the vehicle is travelling straight along a path, then passes the plane, it will initiate a turn (orbiting algorithm). Once it passes the next plane, it will initiate the straight line path following algorithm once again.</p>
+<p>In order to detect if a vehicle passes the boundary, the dot product of two vectors must be taken. If the value is positive, it is an indicator that the vehicle has crossed the boundary.</p>
+<p>The dot product is:</p>
+<p><img alt="Dot Product Equation" src="http://i.imgur.com/K8Ezrvm.png" /></p>
+<p>Both vectors have X, Y, and Z components. Likewise, equations that depict the half plane are stated above.</p>
+<p>Note that in the code, all "direction vectors" such as Wi – Wi-1 are normalized.</p>
+<p>For every pair of "checkpoints" the path index is incremented once they are passed. The index is used to identify the data in a linked list through the wireless communications.</p>
+<h2 id="managing-path-data">Managing Path Data</h2>
+<p>Path data is stored in a structure, which contains all necessary information for a single path (line) segment. The construct looks as follows:</p>
+<pre><code>typedef struct _PathData{
+
+    struct _PathData* next;
+
+    struct _PathData* previous;
+
+    long double longitude;  //TODO: Longitude and Latitude is bulky. Use cartesian 2D approximations
+
+    long double latitude;
+
+    float altitude;
+
+    float radius; //Radius of turn
+
+    char id;    //Array ID
+
+    char index;
+
+} PathData;
+</code></pre>
+<p>This structure is a doubly linked list element. It links to the previous node and the next node. This makes it easy to traverse from one element to another. As a result, it is easy to add, insert, delete, and clear all waypoint nodes.</p>
+<p>The included functions are:</p>
+<pre><code>PathData* initializePathNode(void);
+
+unsigned int destroyPathNode(PathData* node);
+
+PathData* initializePathNodeAndNext(void);
+
+unsigned int appendPathNode(PathData* node);
+
+unsigned int removePathNode(unsigned int ID);
+
+void clearPathNodes(void);
+
+unsigned int insertPathNode(PathData* node, unsigned int previousID, unsigned int nextID);
+</code></pre>
+<p>These functions are all executed in the _checkAMData() _function. This function polls input over the DMA/SPI bus. When a new input is detected (via the WaypointWrapper structure), a corresponding function is executed.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../resources/" class="btn btn-neutral float-right" title="Resources">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../attitude-control/" class="btn btn-neutral" title="Attitude Control"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright <a href="http://www.uwarg.com"> University of Waterloo Aerial Robotics Group</a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UWARG/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../attitude-control/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../resources/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+      <script src="../../sloth-generator.js"></script>
+
+</body>
+</html>

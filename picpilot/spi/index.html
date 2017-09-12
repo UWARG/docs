@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="University of Waterloo Aerial Robotics Group">
+  <link rel="shortcut icon" href="../../favicon.ico">
+  
+  <title>SPI - WARG Docs</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "SPI";
+    var mkdocs_page_input_path = "picpilot\\spi.md";
+    var mkdocs_page_url = "/picpilot/spi/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-68186801-2', 'docs.uwarg.com');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> WARG Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Bootcamps</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/mechanical/">Mechanical</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/computer-vision/">Computer Vision</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/electrical/">Electrical</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/groundstation/">Groundstation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/embedded/">Embedded Software</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../bootcamp/rccompetition/">RC Car Competition</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../tutorials/git/">Git and Github</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../tutorials/shell/">Using the terminal</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Groundstation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../groundstation/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/what-you-need-to-know/">What you need to know</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/installation/">Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/tutorial/">Tutorial</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/project-structure/">Project Structure</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/documenting/">Documenting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../groundstation/resources/">Additional Resources</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">PicPilot</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../introduction/">Introduction</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../pid-loops/">PID Loops</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../pwm-io/">PWM and IO</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../uart/">UART</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">SPI</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#spi">SPI</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#in-the-code">In the code</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../direct-memory-access/">Direct Memory Access</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../i2c/">I2C</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../datalink/">Datalink</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../analog-to-digital-converter/">Analog to Digital Converter</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../sensors-and-peripherals/">Sensors and Peripherals</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../attitude-control/">Attitude Control</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../path-management/">Path Management</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../resources/">Resources</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../faq/">FAQ</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Computer Vision</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Building-the-project-%5BLinux%5D/">Building the project [Linux]</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Building-the-project-%5BWindows%5D/">Building the project [Windows]</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Coding-Conventions/">Coding Conventions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Contributing/">Contributing</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Using-the-WARG-server-environment/">Using the WARG computer environment</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../computer-vision/Writing-Tests/">Writing Tests</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Mechanical</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../mechanical/">Table of Contents</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/cad-guidelines/">CAD Guidelines</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/3d-printing-guidelines/">3D Printing Guidelines</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../mechanical/grabcad/">GrabCad</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">WARG Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>PicPilot &raquo;</li>
+        
+      
+    
+    <li>SPI</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/UWARG/edit/master/docs/picpilot\spi.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="spi">SPI</h1>
+<p>SPI stands for Serial Peripheral Interface. It is similar to UART, with the exception that it is a <em>synchronous</em> method of communication. Once again, SPI is a protocol for chips to be able to communicate between on another through serial connections (data on a single wire). It always operates in full duplex mode. This means that both chips <strong>always</strong> transmit and receive at the same time. The minimum hardware requirements include a clock line (SCLK), a Master Out/Slave In (MOSI), a Master In/Slave Out (MISO), and a Slave Select (SS). The Master Out/In and Slave In/Out refer to the transmit and receive pins on both chips. The connections should looks like this:</p>
+<p><img alt="Master-Slave setup" src="http://i.imgur.com/BT5EKVZ.png" /></p>
+<p>Note that there is a "Master" and a "Slave". The master always initiates communication. The slave always responds first. The SCLK (clock) line counts pulses, which are synchronized to the data bits on the MOSI and MISO lines. The SS (Slave Select) line is used to notify an external chip that communication is taking place. This enables multiple chips to be connected on the same data and clock lines. This is depicted here:</p>
+<p><img alt="Multi-slave setup" src="http://i.imgur.com/VNnc53K.png" /></p>
+<p>In the PICpilot, there is never more than one slave per data port. In other words, one does not have to worry about scenarios (multiple slaves) such as the one depicted above.</p>
+<p>The SPI interface transfers 8 bits per packet. The protocol is straight forward:</p>
+<ol>
+<li>The start condition is initiated. The clock starts and the (selected) slave prepares to read and the master prepares to write.</li>
+<li>On the next 8 clock pulses, the slave and master both exchange data (read and write)</li>
+<li>After transmission, the stop condition is set. This occurs when the clock stops (high or low depending on the settings).</li>
+</ol>
+<p>The PIC microcontroller specifications depict the SPI interface as follows:</p>
+<p><img alt="Protocol Definition" src="http://i.imgur.com/R3hgGB4.png" /></p>
+<p>Unlike UART, there is no parity bits, start bits, or stop bits. The beginning and the end of the message are commonly referred to as the <em>Start Condition</em> and the <em>Stop Condition</em>, because they don't actually refer to any bits, but instead they refer to the signal of multiple lines (CLK, SS).</p>
+<p>In the PICpilot, SPI is used for communication with the GPS, VectorNav (IMU), and the two individual cores (CPU/Microcontrollers). The GPS uses SPI2, the VectorNav uses SPI2, and the crosstalk between chips uses SPI1.</p>
+<h2 id="in-the-code">In the code</h2>
+<p>Each dspic33fj256gp710a has two SPI interfaces. They are labeled SPI1 and SPI2. In the code, you won't find any SPI files present. The initialization functions are embedded in the corresponding peripheral files. The SPI1 configuration can be found on both chips, in the file, InterchipDMA.c, as well as the corresponding .h file. The function in those files is init_SPI1. In addition, on the secondary chip (in other words, the path management chip), the SPI2 (GPS) interface is also enabled in the InterchipDMA.c file, as well as the header file. The function is called init_SPI2.</p>
+<p>The SPI2 configuration on the main chip (or more precisely, the attitude management chip) can be found in the VN100.c file, as well as the corresponding header file. The function name is VN100_initSPI. It initializes SPI2.</p>
+<p>This table summarizes the configuration:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>SPI1</strong></th>
+<th><strong>SPI2</strong></th>
+<th><strong>SPI2</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Use</strong></td>
+<td>Interchip Communication</td>
+<td>GPS Communication</td>
+<td>VectorNav Communication</td>
+</tr>
+<tr>
+<td><strong>Chip</strong></td>
+<td>Both chips</td>
+<td>Secondary (Path Managing) Chip</td>
+<td>Primary (Attitude Managing) Chip</td>
+</tr>
+<tr>
+<td><strong>Function</strong></td>
+<td>In InterchipDMA.c,Init_SPI1()</td>
+<td>In InterchipDMA.c,Init_SPI2()</td>
+<td>In VN100.c,VN100_initSPI()</td>
+</tr>
+</tbody>
+</table>
+<p>For detailed register maps and specifications of the SPI interface, see the <a href="http://www.microchip.com/wwwproducts/Devices.aspx?product=dsPIC33FJ256GP710A">dspic33fj256gp710A</a> datasheet.</p>
+<p>The most important settings are listed below.</p>
+<h3 id="spi1-dma-and-spi2-gps">SPI1 – DMA and SPI2 - GPS</h3>
+<pre><code>//Set interrupts
+
+IFS0bits.SPI1IF = 0;
+
+IEC0bits.SPI1IE = 1;
+
+IPC2bits.SPI1IP = 4;
+
+SPI1BUF = 0;
+
+//SPI clock controlled by this module
+
+SPI1CON1bits.DISSCK = 0;
+
+//Output pins are controlled by this module
+
+SPI1CON1bits.DISSDO = 0;
+
+//16/8 bit communication mode (1/0)
+
+SPI1CON1bits.MODE16 = 1; //16
+
+//Master mode(1)/Slave mode(0)
+
+SPI1CON1bits.MSTEN = 0; //Slave
+
+//Enable Slave Select
+
+SPI1CON1bits.SSEN = 0;
+
+//Sample Phase (end/middle)
+
+SPI1CON1bits.SMP = 0; //Sample the input at the middle of the square wave
+
+//Clock Edge Select
+
+SPI1CON1bits.CKE = 0; //Output data changes from idle state to active clock state (1 is the opposite)
+
+//Clock Polarity
+
+SPI1CON1bits.CKP = 0; //Idle clock state is low, active clock state is high
+
+//Enable SPI
+
+SPI1STATbits.SPIEN = 1;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Register</th>
+<th>Value</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IFS0bits.SPI1IF</td>
+<td>0</td>
+<td>This is the interrupt flag for the SPI1 interface.</td>
+</tr>
+<tr>
+<td>IEC0bits.SPI1IE</td>
+<td>1 (0 for GPS)</td>
+<td>This is the interrupt enable bit for the SPI1 interface. This allows interrupts to occur.</td>
+</tr>
+<tr>
+<td>IPC2bits.SPI1IP</td>
+<td>4 (0 for GPS)</td>
+<td>This determines the priority of every interrupt that occurs from the SPI1 interface.</td>
+</tr>
+<tr>
+<td>SPI1BUF</td>
+<td>0</td>
+<td>This is the buffer that is used for sending and receiving data. This is buffer is for both reading and writing.</td>
+</tr>
+<tr>
+<td>SPI1CON1bits.DISSCK</td>
+<td>0</td>
+<td>This bit allows the SPI1 module to control the clock.</td>
+</tr>
+<tr>
+<td>SPI1CON1bits.DISSDO</td>
+<td>0</td>
+<td>This bit allows the SPI1 module to convert the usual GPIO pins into SPI1 pins.</td>
+</tr>
+<tr>
+<td>SPI1CON1bits.MODE16</td>
+<td>1</td>
+<td>This allows 16 bits to be transmitted per message.</td>
+</tr>
+<tr>
+<td>SPI1CON1bits.MSTEN</td>
+<td>0 or 1</td>
+<td>This determines if the chip is the master (attitude manager) or the slave (path manager).</td>
+</tr>
+<tr>
+<td>SPI1CON1bits.SSEN</td>
+<td>0</td>
+<td>This value enables the slave select pin.</td>
+</tr>
+<tr>
+<td>SPI1CON1bits.SMP</td>
+<td>0</td>
+<td>This determines the sampling time of the SPI interface. 0 forces sampling in the middle of the square wave, 1 forces sampling at the end of the square wave.</td>
+</tr>
+<tr>
+<td>SPI1CON1bits.CKE</td>
+<td>0</td>
+<td>This bit determines when the transmitted square wave changes states. 0 means it changes from clock low to high. 1 is the opposite.</td>
+</tr>
+<tr>
+<td>SPI1CON1bits.CKP</td>
+<td>0</td>
+<td>Determines the clock polarity. 0 means that active clock state is high, idle state is low. 1 is the opposite.</td>
+</tr>
+<tr>
+<td>SPI1STATbits.SPIEN</td>
+<td>1</td>
+<td>Enables the entire SPI module.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="spi2-vectornav">SPI2 - VectorNav</h3>
+<p>The VectorNav SPI configuration is very similar. The differences are listed below:</p>
+<table>
+<thead>
+<tr>
+<th>Register</th>
+<th>Value</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IEC0bits.SPI2IE</td>
+<td>0</td>
+<td>This is the interrupt enable bit for the SPI1 interface. This allows interrupts to occur. The interrupt is disabled here.</td>
+</tr>
+<tr>
+<td>SPI2CON1bits.MODE16</td>
+<td>0</td>
+<td>This allows 8 bits to be transmitted per message.</td>
+</tr>
+<tr>
+<td>SPI2CON1bits.MSTEN</td>
+<td>1</td>
+<td>This determines that the chip is the master and the VectorNav is the slave.</td>
+</tr>
+<tr>
+<td>SPI2CON1bits.SSEN</td>
+<td>0</td>
+<td>This value enables the slave select pin.</td>
+</tr>
+<tr>
+<td>SPI2CON1bits.SMP</td>
+<td>0</td>
+<td>This determines the sampling time of the SPI interface. 0 forces sampling in the middle of the square wave, 1 forces sampling at the end of the square wave.</td>
+</tr>
+<tr>
+<td>SPI2CON1bits.CKE</td>
+<td>0</td>
+<td>This bit determines when the transmitted square wave changes states. 0 means it changes from clock low to high. 1 is the opposite.</td>
+</tr>
+<tr>
+<td>SPI2CON1bits.CKP</td>
+<td>1</td>
+<td>Determines the clock polarity. 1 means that active clock state is low, idle state is high. 0 is the opposite.</td>
+</tr>
+<tr>
+<td>SPI2CON1bits.PPRE</td>
+<td>2</td>
+<td>Prescales the clock. It reduces the clock frequency at a 4:1 ratio.</td>
+</tr>
+<tr>
+<td>SPI2CON1bits.SPRE</td>
+<td>6</td>
+<td>The secondary prescaler, prescales the output frequency from the primary prescaler. This one is set to reduce the frequency at a ratio of 2:1.</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../direct-memory-access/" class="btn btn-neutral float-right" title="Direct Memory Access">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../uart/" class="btn btn-neutral" title="UART"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright <a href="http://www.uwarg.com"> University of Waterloo Aerial Robotics Group</a></p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/UWARG/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../uart/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../direct-memory-access/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../../js/theme.js"></script>
+      <script src="../../sloth-generator.js"></script>
+
+</body>
+</html>

@@ -861,6 +861,441 @@
             "title": "Tips"
         }, 
         {
+            "location": "/zeropilot/", 
+            "text": "ZeroPilot Table of Contents\n\n\n\n\nPinout Reference\n\n\nHardware\n\n\nSoftware documentation coming soon", 
+            "title": "Table of Contents"
+        }, 
+        {
+            "location": "/zeropilot/#zeropilot-table-of-contents", 
+            "text": "Pinout Reference  Hardware  Software documentation coming soon", 
+            "title": "ZeroPilot Table of Contents"
+        }, 
+        {
+            "location": "/zeropilot/pinout_reference/", 
+            "text": "ZeroPilot Pinout Reference\n\n\nTODO: make reference for connections to sensors and such and show the pin order for each connector", 
+            "title": "Pinout Reference"
+        }, 
+        {
+            "location": "/zeropilot/pinout_reference/#zeropilot-pinout-reference", 
+            "text": "TODO: make reference for connections to sensors and such and show the pin order for each connector", 
+            "title": "ZeroPilot Pinout Reference"
+        }, 
+        {
+            "location": "/zeropilot/hardware/", 
+            "text": "ZeroPilot Hardware\n\n\nIntroduction\n\n\nThe Zeropilot is WARG's autopilot platform using a custom PCB and firmware. The ZeroPilot has 2 processors on board. The first one, an STM32F7 chip, is the main autopilot processing unit. It controls both low level and high level control, including PID loops, navigation control, and sensor communication. The secondary chip is a STM32F0 chip called the safety controller, which translates the receiver's PPM to PWM, and then transmits it to the main autopilot unit using I2C or SPI. It also controls the autopilot's failsafe mode, and passes the PPM straight to the PWM output so that the pilot has full control of the UAV in case of firmware bugs.\n\n\nThe ZeroPilot schematic and PCB are created using KiCad and can be found on \nWARG's Github\n.\n\n\nPCB Overview\n\n\nBelow is an overview of the sections of the PCB:\n\n\n\n\nStackup\n\n\nThe ZeroPilot is a 4 layer board. This makes routing the PCB much easier and allows the PCB to be smaller. Each layer has a designated purpose and they are connected through small plated through holes known as vias.\n\n\nLayer 1 (Top layer)\n\n\nThis layer has all the components on it including the 2 processors, power circuitry, and molex-SPOX connectors. Routing on here is minimal and is limited to critical routing for components listed below.\n\n\n\n\nDecoupling capacitors are routed on the top layer since they need to directly be connected to VCC and GND as close as possible. These capacitors smooth out the voltage into the processor and ensure there is no stray AC noise in the 3.3V power supply. There is 1 decoupling capacitor for each VCC pin.\n\n\nCrystals are routed on the top layer because the traces must remain short in order to produce a consisent and predictable frequency. Longer traces cause stray capacitance which can affect the frequency of the oscilation. It is also important that the crystals have a good ground pour surrounding them to prevent excess RF energy to be released and affect other components.\n\n\nSwitching power supplies are routed on the top layer since there is a lot of AC current caused by the 2 buck regulators. Switching regulators quickly turn on and off a switch to let current flow through the inductor, causing a consistent voltage. The feedback pin of the buck regulator allows it monitor the output voltage and change the amount of time the switch is on (its duty cycle) so that the output voltage is constant. This high frequency switching can cause a lot of RF noise, so keeping this routing on one layer helps reduce any stray RF energy.\n\n\n\n\nLayer 2\n\n\nThis layer is where most of the routing is done. There are a few important things to note when routing on this layer:\n\n\n\n\nDo not route underneath any of the 4 crystals. Layer 2 is not shielded from the RF energy of the crystals, so it can induce noise in the signal lines and corrupt communication busses.\n\n\nMake sure there are no large gaps with no copper. When the 4 layers are laminated together in the PCB fabrication process, large gaps of copper can cause the layers above to sag and deform.\n\n\nFor debugging purposes, it is helpful not to run the complete trace on layer 2. If part of the trace is routed on layer 1 or 4, those traces can be cut if there is an issue with it. If the trace is completely on layer 2 then there is no way to break the trace. However, this isn't a high priority\n\n\n\n\nLayer 3\n\n\nThis layer is the ground plane. It makes sure all the circuitry has the same ground. Any ground pin of ICs should have a via to connect the chip to this layer and should be near the ground pin of the chip. There are a couple things to note about routing on this layer:\n\n\n\n\nThere should be no routing done on this layer.\n\n\nNever route on this layer\n\n\nMake sure there isn't a single trace on this layer or else you will be shamed and exiled from WARG (not actually).\n\n\n\n\nLayer 4 (Bottom layer)\n\n\nThis layer is used for power planes and some various components. Reserving a layer for power makes routing significantly easier and minimizes resistances in the power traces.\n\n\n\n\nMake sure there are no thin spots in the power planes. Bottlenecks cause high resistance and can cause voltages to be different in different parts of the power planes\n\n\nSome components can be placed here, but they must have low Z-height so that it is easy to mount on a surface.\n\n\nMinimize components on this layer. Due to the SMD reflow process, all components on this side must be done by hand. Only put selective components on this layer when they might not always be used or are easy to solder by hand.\n\n\n\n\nPower\n\n\nThe ZeroPilot has 3 voltage regulators to power all the ICs and peripherals.\n\n\n5V External\n\n\nThe 5V external power supply powers PWM and PPM. This is because these connections have a high risk of being shorted. PWMs are not shrouded or keyed connections, so they can be connected backwards or shifted. Separating 5V external and 5V interal power supplies allows increased safety and redundancy to prevent brown-outs on the processors.\n\n\nThe 5V supply is power by a DC/DC buck regulator and is the same regulator as the 5V interal. It is important that the inductor, boost regulator, and input capacitor are well routed and have thick traces or copper pours.\n\n\nthe PW_GOOD pin allows the processor to know if the power supply has failed in some way. Usually this is because of a short on the output rail.\n\n\n5V Internal\n\n\nThe 5V internal power supply powers the communication headers (I2C, SPI, UART), the speaker, and the 3.3V supply. It is more safe than the 5V external supply since it is routed to interal circuitry or to shrouded and keyed connectors.\n\n\nThe 5V supply is power by a DC/DC buck regulator and is the same regulator as the 5V external. It is important that the inductor, boost regulator, and input capacitor are well routed and have thick traces or copper pours.\n\n\nthe PW_GOOD pin allows the processor to know if the power supply has failed in some way. Usually this is because of a short on the output rail.\n\n\n3.3V\n\n\nThe 3.3V power supply is a linear regulator (LDO). It power both processors, microSD card, and flash memory.\n\n\nUsing and LDO enables a smoother output voltage and smaller footprint at the cost of less efficiency. The regulator is powered off of 5V internal supply and converts the 5V down to 3.3V. LDOs are inefficient because input current = output current. This means that is it is supplying 20mA at 3.3V, the input current will be 20mA at 5V.\n\n\nSchematic Conventions\n\n\nTo make sure the schematic looks clean and consistent, we have standardized convetions for schematic design.\n\n\n\n\nKeep as much circuitry off of the main page as possible. KiCad works in hierarchical structure, so the main page should essentially be a block diagram to show how the schematic is structured\n\n\nUse busses for cleanliness. It is possible to just put net names for everything and the schematic can be connected that way. However, this is very hard to read and follow where everything is going. If the distance is short, just use lines to connect the pins together. If there are multiple similar signals (such as UART), group them into a bus so that it is visually obvious where else it connects to. It is acceptable for power to be connected only via net names.\n\n\nMake sure the schematic flows left to right. Because of how we read english, we look at the schematic from left to right. This means that all inputs should be on the left side, and all outputs should be on the right side. For example, the power circuit should always be on the left side of the schematic since it is the input for the system. PWMs are on the right since that is the final output for the system.\n\n\nMake sure to use standard WARG or KiCad attribute names. If you need a specific attribute on a part, add its name here for reference.\n\n\n\n\n-part_num: WARG's unique part number that maps to the component library\n-no_load: This parameter should be used if a component isn't always be soldered onto the board. Use the value \nNO LOAD\n to indicate this.\n\n\n\n\nWhen you fabricate a board, make a Github release and attached the gerber files to it. This makes it easy to track what is being fabricated. Do the same for the WARG-KiCad library when you order the components for the board, and attach the bill of materials to the release.\n\n\nUse common sense. Make the schematic look clean and understandable, even if it means taking a couple hours after a schematic change to make it look nice. Having an easy to understand schematic will make debugging the PCB and schematic issues a much more pleasant experience.", 
+            "title": "Hardware"
+        }, 
+        {
+            "location": "/zeropilot/hardware/#zeropilot-hardware", 
+            "text": "", 
+            "title": "ZeroPilot Hardware"
+        }, 
+        {
+            "location": "/zeropilot/hardware/#introduction", 
+            "text": "The Zeropilot is WARG's autopilot platform using a custom PCB and firmware. The ZeroPilot has 2 processors on board. The first one, an STM32F7 chip, is the main autopilot processing unit. It controls both low level and high level control, including PID loops, navigation control, and sensor communication. The secondary chip is a STM32F0 chip called the safety controller, which translates the receiver's PPM to PWM, and then transmits it to the main autopilot unit using I2C or SPI. It also controls the autopilot's failsafe mode, and passes the PPM straight to the PWM output so that the pilot has full control of the UAV in case of firmware bugs.  The ZeroPilot schematic and PCB are created using KiCad and can be found on  WARG's Github .", 
+            "title": "Introduction"
+        }, 
+        {
+            "location": "/zeropilot/hardware/#pcb-overview", 
+            "text": "Below is an overview of the sections of the PCB:", 
+            "title": "PCB Overview"
+        }, 
+        {
+            "location": "/zeropilot/hardware/#stackup", 
+            "text": "The ZeroPilot is a 4 layer board. This makes routing the PCB much easier and allows the PCB to be smaller. Each layer has a designated purpose and they are connected through small plated through holes known as vias.", 
+            "title": "Stackup"
+        }, 
+        {
+            "location": "/zeropilot/hardware/#layer-1-top-layer", 
+            "text": "This layer has all the components on it including the 2 processors, power circuitry, and molex-SPOX connectors. Routing on here is minimal and is limited to critical routing for components listed below.   Decoupling capacitors are routed on the top layer since they need to directly be connected to VCC and GND as close as possible. These capacitors smooth out the voltage into the processor and ensure there is no stray AC noise in the 3.3V power supply. There is 1 decoupling capacitor for each VCC pin.  Crystals are routed on the top layer because the traces must remain short in order to produce a consisent and predictable frequency. Longer traces cause stray capacitance which can affect the frequency of the oscilation. It is also important that the crystals have a good ground pour surrounding them to prevent excess RF energy to be released and affect other components.  Switching power supplies are routed on the top layer since there is a lot of AC current caused by the 2 buck regulators. Switching regulators quickly turn on and off a switch to let current flow through the inductor, causing a consistent voltage. The feedback pin of the buck regulator allows it monitor the output voltage and change the amount of time the switch is on (its duty cycle) so that the output voltage is constant. This high frequency switching can cause a lot of RF noise, so keeping this routing on one layer helps reduce any stray RF energy.", 
+            "title": "Layer 1 (Top layer)"
+        }, 
+        {
+            "location": "/zeropilot/hardware/#layer-2", 
+            "text": "This layer is where most of the routing is done. There are a few important things to note when routing on this layer:   Do not route underneath any of the 4 crystals. Layer 2 is not shielded from the RF energy of the crystals, so it can induce noise in the signal lines and corrupt communication busses.  Make sure there are no large gaps with no copper. When the 4 layers are laminated together in the PCB fabrication process, large gaps of copper can cause the layers above to sag and deform.  For debugging purposes, it is helpful not to run the complete trace on layer 2. If part of the trace is routed on layer 1 or 4, those traces can be cut if there is an issue with it. If the trace is completely on layer 2 then there is no way to break the trace. However, this isn't a high priority", 
+            "title": "Layer 2"
+        }, 
+        {
+            "location": "/zeropilot/hardware/#layer-3", 
+            "text": "This layer is the ground plane. It makes sure all the circuitry has the same ground. Any ground pin of ICs should have a via to connect the chip to this layer and should be near the ground pin of the chip. There are a couple things to note about routing on this layer:   There should be no routing done on this layer.  Never route on this layer  Make sure there isn't a single trace on this layer or else you will be shamed and exiled from WARG (not actually).", 
+            "title": "Layer 3"
+        }, 
+        {
+            "location": "/zeropilot/hardware/#layer-4-bottom-layer", 
+            "text": "This layer is used for power planes and some various components. Reserving a layer for power makes routing significantly easier and minimizes resistances in the power traces.   Make sure there are no thin spots in the power planes. Bottlenecks cause high resistance and can cause voltages to be different in different parts of the power planes  Some components can be placed here, but they must have low Z-height so that it is easy to mount on a surface.  Minimize components on this layer. Due to the SMD reflow process, all components on this side must be done by hand. Only put selective components on this layer when they might not always be used or are easy to solder by hand.", 
+            "title": "Layer 4 (Bottom layer)"
+        }, 
+        {
+            "location": "/zeropilot/hardware/#power", 
+            "text": "The ZeroPilot has 3 voltage regulators to power all the ICs and peripherals.", 
+            "title": "Power"
+        }, 
+        {
+            "location": "/zeropilot/hardware/#5v-external", 
+            "text": "The 5V external power supply powers PWM and PPM. This is because these connections have a high risk of being shorted. PWMs are not shrouded or keyed connections, so they can be connected backwards or shifted. Separating 5V external and 5V interal power supplies allows increased safety and redundancy to prevent brown-outs on the processors.  The 5V supply is power by a DC/DC buck regulator and is the same regulator as the 5V interal. It is important that the inductor, boost regulator, and input capacitor are well routed and have thick traces or copper pours.  the PW_GOOD pin allows the processor to know if the power supply has failed in some way. Usually this is because of a short on the output rail.", 
+            "title": "5V External"
+        }, 
+        {
+            "location": "/zeropilot/hardware/#5v-internal", 
+            "text": "The 5V internal power supply powers the communication headers (I2C, SPI, UART), the speaker, and the 3.3V supply. It is more safe than the 5V external supply since it is routed to interal circuitry or to shrouded and keyed connectors.  The 5V supply is power by a DC/DC buck regulator and is the same regulator as the 5V external. It is important that the inductor, boost regulator, and input capacitor are well routed and have thick traces or copper pours.  the PW_GOOD pin allows the processor to know if the power supply has failed in some way. Usually this is because of a short on the output rail.", 
+            "title": "5V Internal"
+        }, 
+        {
+            "location": "/zeropilot/hardware/#33v", 
+            "text": "The 3.3V power supply is a linear regulator (LDO). It power both processors, microSD card, and flash memory.  Using and LDO enables a smoother output voltage and smaller footprint at the cost of less efficiency. The regulator is powered off of 5V internal supply and converts the 5V down to 3.3V. LDOs are inefficient because input current = output current. This means that is it is supplying 20mA at 3.3V, the input current will be 20mA at 5V.", 
+            "title": "3.3V"
+        }, 
+        {
+            "location": "/zeropilot/hardware/#schematic-conventions", 
+            "text": "To make sure the schematic looks clean and consistent, we have standardized convetions for schematic design.   Keep as much circuitry off of the main page as possible. KiCad works in hierarchical structure, so the main page should essentially be a block diagram to show how the schematic is structured  Use busses for cleanliness. It is possible to just put net names for everything and the schematic can be connected that way. However, this is very hard to read and follow where everything is going. If the distance is short, just use lines to connect the pins together. If there are multiple similar signals (such as UART), group them into a bus so that it is visually obvious where else it connects to. It is acceptable for power to be connected only via net names.  Make sure the schematic flows left to right. Because of how we read english, we look at the schematic from left to right. This means that all inputs should be on the left side, and all outputs should be on the right side. For example, the power circuit should always be on the left side of the schematic since it is the input for the system. PWMs are on the right since that is the final output for the system.  Make sure to use standard WARG or KiCad attribute names. If you need a specific attribute on a part, add its name here for reference.   -part_num: WARG's unique part number that maps to the component library\n-no_load: This parameter should be used if a component isn't always be soldered onto the board. Use the value  NO LOAD  to indicate this.   When you fabricate a board, make a Github release and attached the gerber files to it. This makes it easy to track what is being fabricated. Do the same for the WARG-KiCad library when you order the components for the board, and attach the bill of materials to the release.  Use common sense. Make the schematic look clean and understandable, even if it means taking a couple hours after a schematic change to make it look nice. Having an easy to understand schematic will make debugging the PCB and schematic issues a much more pleasant experience.", 
+            "title": "Schematic Conventions"
+        }, 
+        {
+            "location": "/computer-vision/", 
+            "text": "Welcome to the Computer Vision Docs!\n\n\nContents\n\n\n\n\nBuilding the project - Linux\n\n\nBuilding the project - Windows\n\n\nCoding Conventions\n\n\nUsing the WARG Server Environment\n\n\nContributing\n\n\nWriting Tests\n\n\n\n\nInstallation\n\n\nThe installation process depends on what system you have. WARG-CV runs on Linux. However, in case you don\u2019t have Linux, we have premade a DockerFile, so that you can setup a virtual image on any system.\nYou may be able to get the project to compile on Mac OS X, but that is up to you to figure out.\n\n\nIf you don't have a Linux environment, don't worry! You can download a docker image. It is essentially a premade virtual machine.\n\n\n\n\nGo to \nhttps://docs.docker.com/mac/\n for Mac systems\n\n\nGo to \nhttps://docs.docker.com/windows/\n for Windows systems.\n\n\n\n\nOnce docker is installed you can get our docker image by running \ndocker pull uwarg/warg-cv\n\n\nAfter the image has been fetched:\n\n\n\n\ndocker create -it --name cv uwarg/warg-cv\n to create a new container using the warg-cv image called cv\n\n\ndocker exec -it cv bash\n to enter the container\n\n\n\n\nWhen you want to use the container again in future, use docker exec (as in step 2 above). There is no need to create a new container unless the image has changed.", 
+            "title": "Table of Contents"
+        }, 
+        {
+            "location": "/computer-vision/#welcome-to-the-computer-vision-docs", 
+            "text": "", 
+            "title": "Welcome to the Computer Vision Docs!"
+        }, 
+        {
+            "location": "/computer-vision/#contents", 
+            "text": "Building the project - Linux  Building the project - Windows  Coding Conventions  Using the WARG Server Environment  Contributing  Writing Tests", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/computer-vision/#installation", 
+            "text": "The installation process depends on what system you have. WARG-CV runs on Linux. However, in case you don\u2019t have Linux, we have premade a DockerFile, so that you can setup a virtual image on any system.\nYou may be able to get the project to compile on Mac OS X, but that is up to you to figure out.  If you don't have a Linux environment, don't worry! You can download a docker image. It is essentially a premade virtual machine.   Go to  https://docs.docker.com/mac/  for Mac systems  Go to  https://docs.docker.com/windows/  for Windows systems.   Once docker is installed you can get our docker image by running  docker pull uwarg/warg-cv  After the image has been fetched:   docker create -it --name cv uwarg/warg-cv  to create a new container using the warg-cv image called cv  docker exec -it cv bash  to enter the container   When you want to use the container again in future, use docker exec (as in step 2 above). There is no need to create a new container unless the image has changed.", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/computer-vision/Building-the-project-[Linux]/", 
+            "text": "Building the Project\n\n\n1. Install Dependencies\n\n\nDependencies:\n- OpenCV - 3.x (2.x.x is no longer supported)\n- Boost - Tested with 1.56-60, should work with earlier versions\n- ZBar\n- DecklinkSDK (Optional, if available builds support for reading video from Decklink video capture cards)\n- Exiv2\n\n\n2. Clone the Repo\n\n\ngit clone https://github.com/UWARG/computer-vision.git\n\n\n\n\nIf you want to be able to submit changes you should fork the repository first and then clone your fork\n\n\ngit clone https://github.com/YOUR_NAME_HERE/computer-vision.git\n\n\n\n\n3. Configure the project with CMake\n\n\nIt is recommended to build from a separate directory to keep the source tree clean\n\n\ncd computer vision\nmkdir build\ncd build\ncmake ..\n\n\n\n\n4. Build\n\n\nmake\n\n\n\n\nBuilding individual modules\nOnce the project is configured\n\n\nmake MODULE_NAME\n\n\n\n\nFor a list of build targets including Submodules\n\n\nmake help\n\n\n\n\nRunning tests\n\n\nmake test", 
+            "title": "Building the project [Linux]"
+        }, 
+        {
+            "location": "/computer-vision/Building-the-project-[Linux]/#building-the-project", 
+            "text": "", 
+            "title": "Building the Project"
+        }, 
+        {
+            "location": "/computer-vision/Building-the-project-[Linux]/#1-install-dependencies", 
+            "text": "Dependencies:\n- OpenCV - 3.x (2.x.x is no longer supported)\n- Boost - Tested with 1.56-60, should work with earlier versions\n- ZBar\n- DecklinkSDK (Optional, if available builds support for reading video from Decklink video capture cards)\n- Exiv2", 
+            "title": "1. Install Dependencies"
+        }, 
+        {
+            "location": "/computer-vision/Building-the-project-[Linux]/#2-clone-the-repo", 
+            "text": "git clone https://github.com/UWARG/computer-vision.git  If you want to be able to submit changes you should fork the repository first and then clone your fork  git clone https://github.com/YOUR_NAME_HERE/computer-vision.git", 
+            "title": "2. Clone the Repo"
+        }, 
+        {
+            "location": "/computer-vision/Building-the-project-[Linux]/#3-configure-the-project-with-cmake", 
+            "text": "It is recommended to build from a separate directory to keep the source tree clean  cd computer vision\nmkdir build\ncd build\ncmake ..", 
+            "title": "3. Configure the project with CMake"
+        }, 
+        {
+            "location": "/computer-vision/Building-the-project-[Linux]/#4-build", 
+            "text": "make  Building individual modules\nOnce the project is configured  make MODULE_NAME  For a list of build targets including Submodules  make help  Running tests  make test", 
+            "title": "4. Build"
+        }, 
+        {
+            "location": "/computer-vision/Building-the-project-[Windows]/", 
+            "text": "Building the project\n\n\nTODO: Anyone who wants to try doing this, please fill this out", 
+            "title": "Building the project [Windows]"
+        }, 
+        {
+            "location": "/computer-vision/Building-the-project-[Windows]/#building-the-project", 
+            "text": "TODO: Anyone who wants to try doing this, please fill this out", 
+            "title": "Building the project"
+        }, 
+        {
+            "location": "/computer-vision/Coding-Conventions/", 
+            "text": "Coding Conventions\n\n\nCode\n\n\nVariable Names:\n\n\nvarName\n\n\nConstant Names:\n\n\nCONST_NAME\n\n\nFunction Names:\n\n\nfunction_name\n\n\nClass Names:\n\n\nClassName\n\n\nIndentation:\n\n\n4 spaces per level of indentation\n\n\nbrackets:\n\n\nvoid foo_bar(int i) {\n    int varName = (i + 2)/2;\n}\n\n\n\n\nFile Structure\n\n\nFile Names:\n\n\nfile_name.ext\n\n\nDirectory Structure:\n\n\n|-- computer-vision\n    |-- modules\n        |-- core\n            |-- include\n                |-- header.h\n            |-- src\n                |-- source.cpp\n            |-- CMakeLists.txt\n    |-- CMakeLists.txt\n    |-- main.cpp\n         ...\n\n\n\n\nHeader File Formatting\n\n\n/**\n * @file foo.h\n * @author WARG\n *\n * @section LICENSE\n *\n * Copyright (c) 2015-2016, Waterloo Aerial Robotics Group (WARG)\n * All rights reserved.\n *\n * This software is licensed under a modified version of the BSD 3 clause license\n * that should have been included with this software in a file called COPYING.txt\n * Otherwise it is available at:\n * https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#ifndef FOO_H_INCLUDED\n#define FOO_H_INCLUDED\n\n#include \nbar.h\n\n\n/**\n * @class Foo\n *\n * Foo description goes here\n *\n * @brief optional briefer description goes here\n */\n\nclass Foo : public Bar {\npublic:\n\n    /**\n     * Constructor for foo\n     *\n     * @param baz description of param baz immediately follows variable name\n     */\n    Foo(int baz);\n\n    /**\n     * Getter for baz\n     *\n     * @returns description of value returned\n     */\n    int get_baz();\n\nprivate:\n    /**\n     * Description of baz\n     */\n     int baz;\n\n};\n\n#endif // FOO_H_INCLUDED\n\n\n\n\nSource file formatting\n\n\n/*\n * This file is part of WARG's computer-vision\n *\n * Copyright (c) 2015-2016, Waterloo Aerial Robotics Group (WARG)\n * All rights reserved.\n *\n * This software is licensed under a modified version of the BSD 3 clause license\n * that should have been included with this software in a file called COPYING.txt\n * Otherwise it is available at:\n * https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#include \nbar.h\n\n#include \nfoo.h\n\n\nFoo::Foo(int baz) : baz(baz) { }\n\nint Foo::get_baz() {\n    // note that while documentation is not needed in source files\n    //     comments are greatly appreciated\n    return baz;\n}", 
+            "title": "Coding Conventions"
+        }, 
+        {
+            "location": "/computer-vision/Coding-Conventions/#coding-conventions", 
+            "text": "", 
+            "title": "Coding Conventions"
+        }, 
+        {
+            "location": "/computer-vision/Coding-Conventions/#code", 
+            "text": "", 
+            "title": "Code"
+        }, 
+        {
+            "location": "/computer-vision/Coding-Conventions/#variable-names", 
+            "text": "varName", 
+            "title": "Variable Names:"
+        }, 
+        {
+            "location": "/computer-vision/Coding-Conventions/#constant-names", 
+            "text": "CONST_NAME", 
+            "title": "Constant Names:"
+        }, 
+        {
+            "location": "/computer-vision/Coding-Conventions/#function-names", 
+            "text": "function_name", 
+            "title": "Function Names:"
+        }, 
+        {
+            "location": "/computer-vision/Coding-Conventions/#class-names", 
+            "text": "ClassName", 
+            "title": "Class Names:"
+        }, 
+        {
+            "location": "/computer-vision/Coding-Conventions/#indentation", 
+            "text": "4 spaces per level of indentation", 
+            "title": "Indentation:"
+        }, 
+        {
+            "location": "/computer-vision/Coding-Conventions/#brackets", 
+            "text": "void foo_bar(int i) {\n    int varName = (i + 2)/2;\n}", 
+            "title": "brackets:"
+        }, 
+        {
+            "location": "/computer-vision/Coding-Conventions/#file-structure", 
+            "text": "", 
+            "title": "File Structure"
+        }, 
+        {
+            "location": "/computer-vision/Coding-Conventions/#file-names", 
+            "text": "file_name.ext", 
+            "title": "File Names:"
+        }, 
+        {
+            "location": "/computer-vision/Coding-Conventions/#directory-structure", 
+            "text": "|-- computer-vision\n    |-- modules\n        |-- core\n            |-- include\n                |-- header.h\n            |-- src\n                |-- source.cpp\n            |-- CMakeLists.txt\n    |-- CMakeLists.txt\n    |-- main.cpp\n         ...", 
+            "title": "Directory Structure:"
+        }, 
+        {
+            "location": "/computer-vision/Coding-Conventions/#header-file-formatting", 
+            "text": "/**\n * @file foo.h\n * @author WARG\n *\n * @section LICENSE\n *\n * Copyright (c) 2015-2016, Waterloo Aerial Robotics Group (WARG)\n * All rights reserved.\n *\n * This software is licensed under a modified version of the BSD 3 clause license\n * that should have been included with this software in a file called COPYING.txt\n * Otherwise it is available at:\n * https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#ifndef FOO_H_INCLUDED\n#define FOO_H_INCLUDED\n\n#include  bar.h \n\n/**\n * @class Foo\n *\n * Foo description goes here\n *\n * @brief optional briefer description goes here\n */\n\nclass Foo : public Bar {\npublic:\n\n    /**\n     * Constructor for foo\n     *\n     * @param baz description of param baz immediately follows variable name\n     */\n    Foo(int baz);\n\n    /**\n     * Getter for baz\n     *\n     * @returns description of value returned\n     */\n    int get_baz();\n\nprivate:\n    /**\n     * Description of baz\n     */\n     int baz;\n\n};\n\n#endif // FOO_H_INCLUDED", 
+            "title": "Header File Formatting"
+        }, 
+        {
+            "location": "/computer-vision/Coding-Conventions/#source-file-formatting", 
+            "text": "/*\n * This file is part of WARG's computer-vision\n *\n * Copyright (c) 2015-2016, Waterloo Aerial Robotics Group (WARG)\n * All rights reserved.\n *\n * This software is licensed under a modified version of the BSD 3 clause license\n * that should have been included with this software in a file called COPYING.txt\n * Otherwise it is available at:\n * https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#include  bar.h \n#include  foo.h \n\nFoo::Foo(int baz) : baz(baz) { }\n\nint Foo::get_baz() {\n    // note that while documentation is not needed in source files\n    //     comments are greatly appreciated\n    return baz;\n}", 
+            "title": "Source file formatting"
+        }, 
+        {
+            "location": "/computer-vision/Contributing/", 
+            "text": "Contributing\n\n\n\n\nAdding a New Class\n\n\nThe project is divided into modules. Any class that is specific to a certain module should be stored in that module's directory. Classes that need to be accessed by multiple modules should go in Core.\n\n\nThe class should be declared in a header file of the same name as the class and placed in the appropriate module's include directory.\n\n\nFor example: Suppose we are creating class Foo in module Core\n\n\n(See \nCoding Conventions\n for details on formatting)\n\n\nFile: modules/core/include/foo.h\n\n\n/**\n * @file foo.h\n * @author WARG\n *\n * @section LICENSE\n *\n *  Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)\n *  All rights reserved.\n *\n *  This software is licensed under a modified version of the BSD 3 clause license\n *  that should have been included with this software in a file called COPYING.txt\n *  Otherwise it is available at:\n *  https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#ifndef FOO_H_INCLUDED\n#define FOO_H_INCLUDED\n\n#include \nbar.h\n\n\n/**\n * @class Foo\n *\n * Foo description goes here\n *\n * @brief optional briefer description goes here\n */\n\nclass Foo : public Bar {\npublic:\n\n    /**\n     * Constructor for foo\n     *\n     * @param baz description of param baz immediately follows variable name\n     */\n    Foo(int baz);\n\n    /**\n     * Getter for baz\n     *\n     * @returns description of value returned\n     */\n    int get_baz();\n\nprivate:\n    /**\n     * Description of baz\n     */\n     int baz;\n\n};\n\n#endif // FOO_H_INCLUDED\n\n\n\n\nThe corresponding source file which contains the definitions for the class Foo is placed in the src folder\n\n\nFile: modules/core/src/foo.cpp\n\n\n/**\n * @file foo.cpp\n * @author WARG\n *\n * @section LICENSE\n *\n *  Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)\n *  All rights reserved.\n *\n *  This software is licensed under a modified version of the BSD 3 clause license\n *  that should have been included with this software in a file called COPYING.txt\n *  Otherwise it is available at:\n *  https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#include \nbar.h\n\n#include \nfoo.h\n\n\nFoo::Foo(int baz) : baz(baz) { }\n\nint Foo::get_baz() {\n    // note that while documentation is not needed in source files\n    //     comments are greatly appreciated\n    return baz;\n}\n\n\n\n\n\nHowever we're not done yet. While header files when placed in the proper directory are immediately ready for use, source files must be added to the module's CMakeLists.txt file to be compiled into the module.\n\n\nFile: modules/core/CMakeLists.txt\n\n\ninclude_directories(include)\nadd_library(Core src/foo.cpp src/frame.cpp src/pixel_target.cpp src/target.cpp)\n\n\n\n\nYour source file should be added to the arguments of the add_library function (ideally in retaining alphabetical order for readability)\n\n\nBut what if bar is part of an external library?\n\n\nIf you've forgotten what bar is already notice that it is an external class included in foo.h\n\n\nThe first question to answer is whether or not the use of bar can be avoided. In particular it may provide functionality that is already available in one of the project's current dependencies. Unless it provides substantially improved functionality over what is already available it probably shouldn't be added to the project.\n\n\nIf you determine that bar is a necessary dependency, then it needs to be added to CMakeLists.txt as well. As long as it is only being used in one module, it can be defined in that module's CMakeLists.txt rather than the global CMakeLists.txt.\n\n\nFor simplicity we will assume bar.h is part of the package Bar\n\n\nFile: modules/core/CMakeLists.txt\n\n\ninclude_directories(include)\nfind_package(Bar)\nif(Bar_FOUND)\n    include_directories(${Bar_INCLUDE_DIRS})\n    add_library(Core ${Bar_LIBRARIES} src/foo.cpp src/frame.cpp src/pixel_target.cpp src/target.cpp)\nendif()\n\n\n\n\nYou may want to research the library you've added online since many external libraries have additional configuration that needs to be added to the CMakeLists or unusual naming conventions for the package.\n\n\nAnd we're done.\nNow if you re-run cmake and re-build Foo should be built into the project.\n\n\n\n\nContributing to Master Repository\n\n\nTo get your code added to master you will, if you haven't done so already, need to fork the project. This can be done by going to the computer-vision page on GitHub and clicking the fork button in the top right.\n\n\nYou then need to make your local code point your fork rather than master.\n\n\ngit remote set-url origin $FORK_URL\n\n\n\n\nWhere $FORK_URL is the clone link for your fork\n\n\nYou will also want to set a new remote, called upstream, to reference the master repository so that you can pull changes.\n\n\ngit remote add upstream git@github.com:UWARG/computer-vision.git\n\n\n\n\nor for https\n\n\ngit remote add upstream https://github.com/UWARG/computer-vision.git\n\n\n\n\nthis allows upstream changes to be fetched with \ngit fetch upstream\n and merged into the current branch with \ngit merge upstream/branch_name\n\n\nNow, you can commit your code and push to the fork with\n\n\ngit add modules/core/src/foo.cpp modules/core/include/foo.h modules/core/CMakeLists.txt\ngit commit -m \nAdded class Foo\n\ngit push origin\n\n\n\n\nNote that it is recommended to add files individually rather than adding all at once with \ngit add -A .\n\n\nThat way you ensure you only commit the files you intend to add.\nYou can also see a list of all unstaged changes (changes that have yet to be added) using \ngit diff\n\n\nOnce the code is pushed, go to Github to your fork's page and create a pull request by either going into the pull request menu and choosing \"New Pull Request\", or, if you have pushed code recently, a pop-up will appear on the main page prompting you to create a pull request.\n\n\nFrom the pull request page you can add comments to the pull request noting what you have changed, you can review the changed you have made to make sure you haven't included anything unnecessary and then you can submit the request.\n\n\nPlease note that pull requests will be rejected if they contain extraneous changes.\nYou can avoid a lot of issues by configuring git to ignore point out whitespace issues in diffs and to fix when patching with:\n\n\ngit config core.whitespace trailing-space,space-before-tab\ngit config apply.whitespace fix", 
+            "title": "Contributing"
+        }, 
+        {
+            "location": "/computer-vision/Contributing/#contributing", 
+            "text": "", 
+            "title": "Contributing"
+        }, 
+        {
+            "location": "/computer-vision/Contributing/#adding-a-new-class", 
+            "text": "The project is divided into modules. Any class that is specific to a certain module should be stored in that module's directory. Classes that need to be accessed by multiple modules should go in Core.  The class should be declared in a header file of the same name as the class and placed in the appropriate module's include directory.  For example: Suppose we are creating class Foo in module Core  (See  Coding Conventions  for details on formatting)  File: modules/core/include/foo.h  /**\n * @file foo.h\n * @author WARG\n *\n * @section LICENSE\n *\n *  Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)\n *  All rights reserved.\n *\n *  This software is licensed under a modified version of the BSD 3 clause license\n *  that should have been included with this software in a file called COPYING.txt\n *  Otherwise it is available at:\n *  https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#ifndef FOO_H_INCLUDED\n#define FOO_H_INCLUDED\n\n#include  bar.h \n\n/**\n * @class Foo\n *\n * Foo description goes here\n *\n * @brief optional briefer description goes here\n */\n\nclass Foo : public Bar {\npublic:\n\n    /**\n     * Constructor for foo\n     *\n     * @param baz description of param baz immediately follows variable name\n     */\n    Foo(int baz);\n\n    /**\n     * Getter for baz\n     *\n     * @returns description of value returned\n     */\n    int get_baz();\n\nprivate:\n    /**\n     * Description of baz\n     */\n     int baz;\n\n};\n\n#endif // FOO_H_INCLUDED  The corresponding source file which contains the definitions for the class Foo is placed in the src folder  File: modules/core/src/foo.cpp  /**\n * @file foo.cpp\n * @author WARG\n *\n * @section LICENSE\n *\n *  Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)\n *  All rights reserved.\n *\n *  This software is licensed under a modified version of the BSD 3 clause license\n *  that should have been included with this software in a file called COPYING.txt\n *  Otherwise it is available at:\n *  https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#include  bar.h \n#include  foo.h \n\nFoo::Foo(int baz) : baz(baz) { }\n\nint Foo::get_baz() {\n    // note that while documentation is not needed in source files\n    //     comments are greatly appreciated\n    return baz;\n}  However we're not done yet. While header files when placed in the proper directory are immediately ready for use, source files must be added to the module's CMakeLists.txt file to be compiled into the module.  File: modules/core/CMakeLists.txt  include_directories(include)\nadd_library(Core src/foo.cpp src/frame.cpp src/pixel_target.cpp src/target.cpp)  Your source file should be added to the arguments of the add_library function (ideally in retaining alphabetical order for readability)", 
+            "title": "Adding a New Class"
+        }, 
+        {
+            "location": "/computer-vision/Contributing/#but-what-if-bar-is-part-of-an-external-library", 
+            "text": "If you've forgotten what bar is already notice that it is an external class included in foo.h  The first question to answer is whether or not the use of bar can be avoided. In particular it may provide functionality that is already available in one of the project's current dependencies. Unless it provides substantially improved functionality over what is already available it probably shouldn't be added to the project.  If you determine that bar is a necessary dependency, then it needs to be added to CMakeLists.txt as well. As long as it is only being used in one module, it can be defined in that module's CMakeLists.txt rather than the global CMakeLists.txt.  For simplicity we will assume bar.h is part of the package Bar  File: modules/core/CMakeLists.txt  include_directories(include)\nfind_package(Bar)\nif(Bar_FOUND)\n    include_directories(${Bar_INCLUDE_DIRS})\n    add_library(Core ${Bar_LIBRARIES} src/foo.cpp src/frame.cpp src/pixel_target.cpp src/target.cpp)\nendif()  You may want to research the library you've added online since many external libraries have additional configuration that needs to be added to the CMakeLists or unusual naming conventions for the package.  And we're done.\nNow if you re-run cmake and re-build Foo should be built into the project.", 
+            "title": "But what if bar is part of an external library?"
+        }, 
+        {
+            "location": "/computer-vision/Contributing/#contributing-to-master-repository", 
+            "text": "To get your code added to master you will, if you haven't done so already, need to fork the project. This can be done by going to the computer-vision page on GitHub and clicking the fork button in the top right.  You then need to make your local code point your fork rather than master.  git remote set-url origin $FORK_URL  Where $FORK_URL is the clone link for your fork  You will also want to set a new remote, called upstream, to reference the master repository so that you can pull changes.  git remote add upstream git@github.com:UWARG/computer-vision.git  or for https  git remote add upstream https://github.com/UWARG/computer-vision.git  this allows upstream changes to be fetched with  git fetch upstream  and merged into the current branch with  git merge upstream/branch_name  Now, you can commit your code and push to the fork with  git add modules/core/src/foo.cpp modules/core/include/foo.h modules/core/CMakeLists.txt\ngit commit -m  Added class Foo \ngit push origin  Note that it is recommended to add files individually rather than adding all at once with  git add -A .  That way you ensure you only commit the files you intend to add.\nYou can also see a list of all unstaged changes (changes that have yet to be added) using  git diff  Once the code is pushed, go to Github to your fork's page and create a pull request by either going into the pull request menu and choosing \"New Pull Request\", or, if you have pushed code recently, a pop-up will appear on the main page prompting you to create a pull request.  From the pull request page you can add comments to the pull request noting what you have changed, you can review the changed you have made to make sure you haven't included anything unnecessary and then you can submit the request.  Please note that pull requests will be rejected if they contain extraneous changes.\nYou can avoid a lot of issues by configuring git to ignore point out whitespace issues in diffs and to fix when patching with:  git config core.whitespace trailing-space,space-before-tab\ngit config apply.whitespace fix", 
+            "title": "Contributing to Master Repository"
+        }, 
+        {
+            "location": "/computer-vision/Using-the-WARG-server-environment/", 
+            "text": "Using the Warg Computer environment\n\n\n(Note that at the time of this being written the server is still being set up, hence a lot of this guide is both not yet applicable and may change)\n\n\nSetting up an SSH Client\n\n\nBefore you can connect to the WARG Server you will need an SSH client.\n\n\nWindows:\n\n\nThere are several windows SSH clients, one of the more popular ones is PuTTY, which can be downloaded \nhere\n\n\nMac OS X and Linux:\n\n\nSSH should be installed by default and can be accessed by the following terminal command\n\n\nssh user@hostname\n\n\n\n\nGetting an account\n\n\nYou will not be able to connect to the WARG server without an account on the system. You will have to come in personally to the WARG bay to set this up.\n\n\nConnecting to the server\n\n\nTo connect to the WARG server you will need\n\n\nUser:\n     User-name you set up on the WARG server\n\n\nHost-name:\n ip address of the WARG computer\n\n\nPort:\n 22 (The default port, you probably won't need to set this)\n\n\nLinux and OS X\n\n\nOn Linux or OS X this translates to the following command:\n\n\nssh user@ssh.uwarg.com\n\n\n\n\nOptionally you can append -Y to the end of the command to enable graphics forwarding which will allow you to run graphical applications on the server (with the graphics being displayed on your computer)\n\n\nssh user@ssh.uwarg.com -Y\n\n\n\n\nWindows\n\n\nOn Windows, see one of the following tutorials for more info on configuring PuTTY.\n\n\nAn older tutorial that covers the basics\n\n\nhttp://jfitz.com/tips/putty_config.html\n\n\nMore advanced PuTTY usage\n\n\nhttp://support.suso.com/supki/SSH_Tutorial_for_Windows\n\n\nUseful Commands in the Server Environment (feel free to expand this section)\n\n\n(words in ALL_CAPS are arguments)\n\n\nls\n Shows a list of files and directories in your current directory or in a different one by specifying a different directory \nls DIRECTORY\n\n\ncd DIRECTORY\n opens the given directory\n\n\nnano\n Simple command line text editor, can open files with \nnano FILE_NAME\n\n\n(for a more complex editor that is better suited to programming, try \nvim\n or \nemacs\n. \nhere\n is an emacs tutorial and \nhere\n is a vim one. There is also this fun looking interactive vim tutorial \nhere\n)\n\n\nYou can also learn more about any of the commands by appending \n--help\n to a command or by entering \nman COMMAND\n\n\nUseful Graphical Applications\n\n\ngedit\n The Gnome text editor\n\n\nnautilus\n A Linux file manager", 
+            "title": "Using the WARG computer environment"
+        }, 
+        {
+            "location": "/computer-vision/Using-the-WARG-server-environment/#using-the-warg-computer-environment", 
+            "text": "(Note that at the time of this being written the server is still being set up, hence a lot of this guide is both not yet applicable and may change)", 
+            "title": "Using the Warg Computer environment"
+        }, 
+        {
+            "location": "/computer-vision/Using-the-WARG-server-environment/#setting-up-an-ssh-client", 
+            "text": "Before you can connect to the WARG Server you will need an SSH client.", 
+            "title": "Setting up an SSH Client"
+        }, 
+        {
+            "location": "/computer-vision/Using-the-WARG-server-environment/#windows", 
+            "text": "There are several windows SSH clients, one of the more popular ones is PuTTY, which can be downloaded  here", 
+            "title": "Windows:"
+        }, 
+        {
+            "location": "/computer-vision/Using-the-WARG-server-environment/#mac-os-x-and-linux", 
+            "text": "SSH should be installed by default and can be accessed by the following terminal command  ssh user@hostname", 
+            "title": "Mac OS X and Linux:"
+        }, 
+        {
+            "location": "/computer-vision/Using-the-WARG-server-environment/#getting-an-account", 
+            "text": "You will not be able to connect to the WARG server without an account on the system. You will have to come in personally to the WARG bay to set this up.", 
+            "title": "Getting an account"
+        }, 
+        {
+            "location": "/computer-vision/Using-the-WARG-server-environment/#connecting-to-the-server", 
+            "text": "To connect to the WARG server you will need  User:      User-name you set up on the WARG server  Host-name:  ip address of the WARG computer  Port:  22 (The default port, you probably won't need to set this)", 
+            "title": "Connecting to the server"
+        }, 
+        {
+            "location": "/computer-vision/Using-the-WARG-server-environment/#linux-and-os-x", 
+            "text": "On Linux or OS X this translates to the following command:  ssh user@ssh.uwarg.com  Optionally you can append -Y to the end of the command to enable graphics forwarding which will allow you to run graphical applications on the server (with the graphics being displayed on your computer)  ssh user@ssh.uwarg.com -Y", 
+            "title": "Linux and OS X"
+        }, 
+        {
+            "location": "/computer-vision/Using-the-WARG-server-environment/#windows_1", 
+            "text": "On Windows, see one of the following tutorials for more info on configuring PuTTY.  An older tutorial that covers the basics  http://jfitz.com/tips/putty_config.html  More advanced PuTTY usage  http://support.suso.com/supki/SSH_Tutorial_for_Windows", 
+            "title": "Windows"
+        }, 
+        {
+            "location": "/computer-vision/Using-the-WARG-server-environment/#useful-commands-in-the-server-environment-feel-free-to-expand-this-section", 
+            "text": "(words in ALL_CAPS are arguments)  ls  Shows a list of files and directories in your current directory or in a different one by specifying a different directory  ls DIRECTORY  cd DIRECTORY  opens the given directory  nano  Simple command line text editor, can open files with  nano FILE_NAME  (for a more complex editor that is better suited to programming, try  vim  or  emacs .  here  is an emacs tutorial and  here  is a vim one. There is also this fun looking interactive vim tutorial  here )  You can also learn more about any of the commands by appending  --help  to a command or by entering  man COMMAND", 
+            "title": "Useful Commands in the Server Environment (feel free to expand this section)"
+        }, 
+        {
+            "location": "/computer-vision/Using-the-WARG-server-environment/#useful-graphical-applications", 
+            "text": "gedit  The Gnome text editor  nautilus  A Linux file manager", 
+            "title": "Useful Graphical Applications"
+        }, 
+        {
+            "location": "/computer-vision/Writing-Tests/", 
+            "text": "Writing Tests\n\n\nTesting should be done in a directory inside the submodule called test, which should be included in the module's CMakeLists.txt via add_subdirectory and should have its own CMakeLists.txt.\nFurthermore, large test files should be stored in the global computer-vision/testdata directory so that they can be shared between multiple tests.\nThat is, test directories should have the following structure\n\n\n|-- computer-vision\n    |-- modules\n        |-- MODULE_NAME\n            |-- include\n            |-- src\n            |-- test\n                |-- CMakeLists.txt\n                |-- foo_test.cpp\n                |-- bar_test.cpp\n            |-- CMakeLists.txt\n    |-- testdata\n        |-- image.jpg\n\n\n\n\nTesting should be done using the boost test framework.\n\n\nTutorials provided by boost are found \nhere\n.\n\n\nAPI Reference available \nhere\n\n\nTo test code it should be run inside the \nBOOST_AUTO_TEST_CASE\n and use the boost test macros to verify sanity and results.\nSome available macros include\n\n\nBOOST_WARN(predicate); // produces a warning if predicate is false, does not cause failures\nBOOST_CHECK(predicate); // produces a failure if predicate is false, but continues testing\nBOOST_REQUIRE(predicate); // produces a failure if predicate is false and aborts test suite.\n\n\n\n\nTest heirarchy\n\n\nBoost tests are stored in a heirarchy of nested suites.\nThe global suite for a file can be set with the \nBOOST_TEST_MODULE\n macro.\nYou can define additional suites by encapsulating test cases and suites with \nBOOST_AUTO_TEST_SUITE(SuiteName);\n and \nBOOST_AUTO_TEST_SUITE_END();\n\n\nNote that currently the xsl parser for generating an xUnit compatible XML file does not properly handle nested test suites and only makes use of the suite directly encapsulating the test cases (the suite declared with \nBOOST_TEST_MODULE\n).\nHowever since this is expected to be fixed relatively soon, it is recommended that you use the following format to declare tests.\n\n\nGuidelines for naming test suites and test cases\n\n\nThe global test suite for a file (specified with \nBOOST_TEST_MODULE\n) should correspond to the computer-vision module the tests are part of.\nA test suite should be created for each file with \nBOOST_AUTO_TEST_SUITE\n and should encompass all the tests in the file. Tests contained within a single file should all test a single feature or function of the program. Tests for different features/functions should go in their own file with a separate test suite. The file should also have the same name as the test suite (though test suite names should be camel cased).\n\n\nAdditional test suites can also be created inside test suites at your discretion if a certain suite has a large number of test cases that can be meaningfully subdivided.\n\n\nFor consistency, test suite and test case names should be UpperCamelCase (and test module name should be the full UpperCamelCase version of the module name. e.g. targetid should be TargetIdentification).\n\n\nAlso note that all names should be sufficiently descriptive to be unique in their scope (as well as sufficiently descriptive to convey what is being tested in a particular suite/case). That is, each test suite in a module needs to have a unique name to avoid naming conflicts, but names of test suites inside those suites and names of test cases only need to be unique inside their encapsulating test suite.\n\n\nExample\n\n\nfile: modules/mymodule/test/mysuite.cpp\n\n\n#define BOOST_TEST_DYN_LINK\n#define BOOST_TEST_MODULE MyModule\n#include \nboost/test/unit_test.hpp\n\n#include \nfoo.h\n // declares type foo, header is in the core module\n\nBOOST_AUTO_TEST_SUITE(MySuite);\n\nBOOST_AUTO_TEST_CASE(TestName) {\n    foo bar;\n    BOOST_CHECK(foo.baz());\n}\n\nBOOST_AUTO_TEST_SUITE_END();\n\n\n\n\nfile: modules/mymodule/test/CMakeLists.txt\n\n\ninclude_directories(${Core_INCLUDE_DIR})\nadd_executable(mytest test.cpp)\ntarget_link_libraries(mytest Core)\n\n# Tests\nadd_test(\n    NAME \nexample test\n\n    COMMAND mytest --log_format=XML --log_sink=TEST-mytest.xml --log_level=all --report_level=no\n)", 
+            "title": "Writing Tests"
+        }, 
+        {
+            "location": "/computer-vision/Writing-Tests/#writing-tests", 
+            "text": "Testing should be done in a directory inside the submodule called test, which should be included in the module's CMakeLists.txt via add_subdirectory and should have its own CMakeLists.txt.\nFurthermore, large test files should be stored in the global computer-vision/testdata directory so that they can be shared between multiple tests.\nThat is, test directories should have the following structure  |-- computer-vision\n    |-- modules\n        |-- MODULE_NAME\n            |-- include\n            |-- src\n            |-- test\n                |-- CMakeLists.txt\n                |-- foo_test.cpp\n                |-- bar_test.cpp\n            |-- CMakeLists.txt\n    |-- testdata\n        |-- image.jpg  Testing should be done using the boost test framework.  Tutorials provided by boost are found  here .  API Reference available  here  To test code it should be run inside the  BOOST_AUTO_TEST_CASE  and use the boost test macros to verify sanity and results.\nSome available macros include  BOOST_WARN(predicate); // produces a warning if predicate is false, does not cause failures\nBOOST_CHECK(predicate); // produces a failure if predicate is false, but continues testing\nBOOST_REQUIRE(predicate); // produces a failure if predicate is false and aborts test suite.", 
+            "title": "Writing Tests"
+        }, 
+        {
+            "location": "/computer-vision/Writing-Tests/#test-heirarchy", 
+            "text": "Boost tests are stored in a heirarchy of nested suites.\nThe global suite for a file can be set with the  BOOST_TEST_MODULE  macro.\nYou can define additional suites by encapsulating test cases and suites with  BOOST_AUTO_TEST_SUITE(SuiteName);  and  BOOST_AUTO_TEST_SUITE_END();  Note that currently the xsl parser for generating an xUnit compatible XML file does not properly handle nested test suites and only makes use of the suite directly encapsulating the test cases (the suite declared with  BOOST_TEST_MODULE ).\nHowever since this is expected to be fixed relatively soon, it is recommended that you use the following format to declare tests.", 
+            "title": "Test heirarchy"
+        }, 
+        {
+            "location": "/computer-vision/Writing-Tests/#guidelines-for-naming-test-suites-and-test-cases", 
+            "text": "The global test suite for a file (specified with  BOOST_TEST_MODULE ) should correspond to the computer-vision module the tests are part of.\nA test suite should be created for each file with  BOOST_AUTO_TEST_SUITE  and should encompass all the tests in the file. Tests contained within a single file should all test a single feature or function of the program. Tests for different features/functions should go in their own file with a separate test suite. The file should also have the same name as the test suite (though test suite names should be camel cased).  Additional test suites can also be created inside test suites at your discretion if a certain suite has a large number of test cases that can be meaningfully subdivided.  For consistency, test suite and test case names should be UpperCamelCase (and test module name should be the full UpperCamelCase version of the module name. e.g. targetid should be TargetIdentification).  Also note that all names should be sufficiently descriptive to be unique in their scope (as well as sufficiently descriptive to convey what is being tested in a particular suite/case). That is, each test suite in a module needs to have a unique name to avoid naming conflicts, but names of test suites inside those suites and names of test cases only need to be unique inside their encapsulating test suite.", 
+            "title": "Guidelines for naming test suites and test cases"
+        }, 
+        {
+            "location": "/computer-vision/Writing-Tests/#example", 
+            "text": "file: modules/mymodule/test/mysuite.cpp  #define BOOST_TEST_DYN_LINK\n#define BOOST_TEST_MODULE MyModule\n#include  boost/test/unit_test.hpp \n#include  foo.h  // declares type foo, header is in the core module\n\nBOOST_AUTO_TEST_SUITE(MySuite);\n\nBOOST_AUTO_TEST_CASE(TestName) {\n    foo bar;\n    BOOST_CHECK(foo.baz());\n}\n\nBOOST_AUTO_TEST_SUITE_END();  file: modules/mymodule/test/CMakeLists.txt  include_directories(${Core_INCLUDE_DIR})\nadd_executable(mytest test.cpp)\ntarget_link_libraries(mytest Core)\n\n# Tests\nadd_test(\n    NAME  example test \n    COMMAND mytest --log_format=XML --log_sink=TEST-mytest.xml --log_level=all --report_level=no\n)", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/mechanical/", 
+            "text": "Welcome to the Mechanical Docs!\n\n\nTable of Contents\n\n\n\n\nGrabCad\n\n\nCAD Guidelines and Commandments\n\n\n3D Printing Guidelines", 
+            "title": "Table of Contents"
+        }, 
+        {
+            "location": "/mechanical/#welcome-to-the-mechanical-docs", 
+            "text": "", 
+            "title": "Welcome to the Mechanical Docs!"
+        }, 
+        {
+            "location": "/mechanical/#table-of-contents", 
+            "text": "GrabCad  CAD Guidelines and Commandments  3D Printing Guidelines", 
+            "title": "Table of Contents"
+        }, 
+        {
+            "location": "/mechanical/cad-guidelines/", 
+            "text": "WARG CAD Guidelines\n\n\nTo keep things more consistent at WARG, we enforce a set of guidelines on all submitted CAD designs. This only applies to mechanical CAD files (not electrical). Since we use Solidworks for most of our mechanical work, these guidelines mainly apply to it. \n\n\nThe 13 CAD Commandments\n\n\nIn order for your design to be accepted it must adhere to all the commandments listed below. If the part does not you will be notified what modifications need to be made in order for it to be accepted. Once your part is accepted you can begin to manufacturer/make the part. If an assembly of parts is being made all parts and the assembly must be approved before manufacturing/making the assembly.\n\n\n\n\nAll parts (sketches) must be fully defined\n\n\nAll fastening holes (screw, bolt etc.. holes) must be done using hole wizard\n\n\nUse relations to eliminate redundant dimensions\n\n\nParts must be made in MMGS scale\n\n\nParts must use \nWARG\u2019s standard naming convention\n\n\nAssemblies must contain ALL components fully defined and related such that distances are equal\n\n\nAssemblies must have ALL holes concentric with fasteners of required length mated to the holes (check McMaster Carr if you need CAD models of fasteners)\n\n\nNO assembly features\n\n\nWhen making part revisions look at the previous version and identify any filing/drilling/sanding/machining you had to do to the parts to make them fit and ENSURE that the new part is modified so that the changes don\u2019t have to be made again.\n\n\nFillets/Chamfers of equal size must be made in the SAME feature. All fillets/chamfers must be added as features and NOT included in the sketches.\n\n\nEnsure that your assemblies are manufacturable with appropriate tolerances (ie parts have clearance to be assembled and parts don\u2019t have to go through walls/break physics to work).\n\n\nConsider the thickness and dimensions of parts to ensure that they are reasonable. A 3mm and 5mm thickness go a long way.\n\n\nAll of the relevant CAD files should be uploaded and synced on \nGrabCad\n. The design will \nNOT BE REVIEWED\n if it is not on GrabCad. Screenshots and stl files do not suffice.\n\n\n\n\nNOTE\n: \nIf you violate one of these commandments you must notify a team lead with a valid explanation as to the reason for violating the commandment\n\n\nCAD Naming Convention\n\n\nAll CAD files should adhere to the following naming convention (snake upper case):\n\n\nFor regular part files\n\n\nPROJECT_NAME\n__\nSUBASSEMBLY_NAME\n_\nPART##\n_\nPART_NAME\n.SLDPRT\n\n\n\n\neg. \nSPIKE__GIMBAL_03_OUTSIDE_CASE.SLDPRT\n\n\nFor assemblies\n\n\nPROJECT_NAME\n__\nSUBASSEMBLY_NAME\n_00_ASSEMBLY.SLDASM\n\n\n\n\neg. \nSPIKE__GIMBAL_00_ASSEMBLY.SLDASM\n\n\nFor assemblies within assemblies\n\n\nCreate a folder with the same naming convention as the part, and follow the same naming convention inside the folder, prepending the project name.\n\n\nFor example, if the gimbal assembly contains a part camera which itself is also an assembly:\n\n\n\n\nCreate folder named \nGIMBAL_02_CAMERA\n\n\nInside the folder follow the same naming convention, but prepend the original project name at the begining.\n\n\n\n\neg.\n\n\nGIMBAL_00_ASSEMBLY.SLDASM\nGIMBAL_O1_CAMERA\n --\n GIMBAL_CAMERA_00_ASSEMBLY.SLDASM\n --\n GIMBAL_CAMERA_01_GO_PRO.SLDPRT\n\n\n\n\nFor drawings\n\n\nIn the assembly folder create another folder to store drawings.\n\n\nPROJECT_NAME\n_DRAWINGS\n\n\n\n\nFor the actual part files, follow the same naming convention as above, and store them in this folder.\n\n\nRenders\n\n\nCreate a seperate \nRenders\n folder within your project and dump all your renders there. No naming convention here\n\n\nExample\n\n\nProject Name: DATA_RELAY_CASE\n\n\nSub Assemblies: Wooden Case, OrangePi\n\n\nProject Root\n\n\n\n\nSub-assembly", 
+            "title": "CAD Guidelines"
+        }, 
+        {
+            "location": "/mechanical/cad-guidelines/#warg-cad-guidelines", 
+            "text": "To keep things more consistent at WARG, we enforce a set of guidelines on all submitted CAD designs. This only applies to mechanical CAD files (not electrical). Since we use Solidworks for most of our mechanical work, these guidelines mainly apply to it.", 
+            "title": "WARG CAD Guidelines"
+        }, 
+        {
+            "location": "/mechanical/cad-guidelines/#the-13-cad-commandments", 
+            "text": "In order for your design to be accepted it must adhere to all the commandments listed below. If the part does not you will be notified what modifications need to be made in order for it to be accepted. Once your part is accepted you can begin to manufacturer/make the part. If an assembly of parts is being made all parts and the assembly must be approved before manufacturing/making the assembly.   All parts (sketches) must be fully defined  All fastening holes (screw, bolt etc.. holes) must be done using hole wizard  Use relations to eliminate redundant dimensions  Parts must be made in MMGS scale  Parts must use  WARG\u2019s standard naming convention  Assemblies must contain ALL components fully defined and related such that distances are equal  Assemblies must have ALL holes concentric with fasteners of required length mated to the holes (check McMaster Carr if you need CAD models of fasteners)  NO assembly features  When making part revisions look at the previous version and identify any filing/drilling/sanding/machining you had to do to the parts to make them fit and ENSURE that the new part is modified so that the changes don\u2019t have to be made again.  Fillets/Chamfers of equal size must be made in the SAME feature. All fillets/chamfers must be added as features and NOT included in the sketches.  Ensure that your assemblies are manufacturable with appropriate tolerances (ie parts have clearance to be assembled and parts don\u2019t have to go through walls/break physics to work).  Consider the thickness and dimensions of parts to ensure that they are reasonable. A 3mm and 5mm thickness go a long way.  All of the relevant CAD files should be uploaded and synced on  GrabCad . The design will  NOT BE REVIEWED  if it is not on GrabCad. Screenshots and stl files do not suffice.   NOTE :  If you violate one of these commandments you must notify a team lead with a valid explanation as to the reason for violating the commandment", 
+            "title": "The 13 CAD Commandments"
+        }, 
+        {
+            "location": "/mechanical/cad-guidelines/#cad-naming-convention", 
+            "text": "All CAD files should adhere to the following naming convention (snake upper case):", 
+            "title": "CAD Naming Convention"
+        }, 
+        {
+            "location": "/mechanical/cad-guidelines/#for-regular-part-files", 
+            "text": "PROJECT_NAME __ SUBASSEMBLY_NAME _ PART## _ PART_NAME .SLDPRT  eg.  SPIKE__GIMBAL_03_OUTSIDE_CASE.SLDPRT", 
+            "title": "For regular part files"
+        }, 
+        {
+            "location": "/mechanical/cad-guidelines/#for-assemblies", 
+            "text": "PROJECT_NAME __ SUBASSEMBLY_NAME _00_ASSEMBLY.SLDASM  eg.  SPIKE__GIMBAL_00_ASSEMBLY.SLDASM", 
+            "title": "For assemblies"
+        }, 
+        {
+            "location": "/mechanical/cad-guidelines/#for-assemblies-within-assemblies", 
+            "text": "Create a folder with the same naming convention as the part, and follow the same naming convention inside the folder, prepending the project name.  For example, if the gimbal assembly contains a part camera which itself is also an assembly:   Create folder named  GIMBAL_02_CAMERA  Inside the folder follow the same naming convention, but prepend the original project name at the begining.   eg.  GIMBAL_00_ASSEMBLY.SLDASM\nGIMBAL_O1_CAMERA\n --  GIMBAL_CAMERA_00_ASSEMBLY.SLDASM\n --  GIMBAL_CAMERA_01_GO_PRO.SLDPRT", 
+            "title": "For assemblies within assemblies"
+        }, 
+        {
+            "location": "/mechanical/cad-guidelines/#for-drawings", 
+            "text": "In the assembly folder create another folder to store drawings.  PROJECT_NAME _DRAWINGS  For the actual part files, follow the same naming convention as above, and store them in this folder.", 
+            "title": "For drawings"
+        }, 
+        {
+            "location": "/mechanical/cad-guidelines/#renders", 
+            "text": "Create a seperate  Renders  folder within your project and dump all your renders there. No naming convention here", 
+            "title": "Renders"
+        }, 
+        {
+            "location": "/mechanical/cad-guidelines/#example", 
+            "text": "Project Name: DATA_RELAY_CASE  Sub Assemblies: Wooden Case, OrangePi", 
+            "title": "Example"
+        }, 
+        {
+            "location": "/mechanical/cad-guidelines/#project-root", 
+            "text": "", 
+            "title": "Project Root"
+        }, 
+        {
+            "location": "/mechanical/cad-guidelines/#sub-assembly", 
+            "text": "", 
+            "title": "Sub-assembly"
+        }, 
+        {
+            "location": "/mechanical/3d-printing-guidelines/", 
+            "text": "Guide to 3D Printing\n\n\nGeneral guidelines and requirements for 3D printing:\n\n\n\n\nGet your \nWATIMAKE 3D print certification\n.\n\n\nKeep in mind the orientation of the 3D print to maximize strength of the part, minimize support materials, and maximize feature accuracy.\n\n\nConsider the maximum build volume of the printer\n\n\nKeep in mind warping \u2013 the back part of the printer nearer to the extruder is warmer. Maintaining constant temperature will prevent warping due to rapid cooling. Therefore, if certain features are important put them closer to the extruder than the door to maintain a constant environment.\n\n\nConsider splitting large parts into multiple parts and using flanges/mating features to appropriately to attach together.\n\n\nConsider the material your using. ABS is more prone to warping and is no brittle. PLA warps less and is brittle.\n\n\nFilament is not cheap \u2013 consider the amount if infill, you should not be using more than 30% for a structural part.\n\n\nConsider the amount of shells (number of outer layers before infill begins) that you need 4-6 layers is appropriate.", 
+            "title": "3D Printing Guidelines"
+        }, 
+        {
+            "location": "/mechanical/3d-printing-guidelines/#guide-to-3d-printing", 
+            "text": "General guidelines and requirements for 3D printing:   Get your  WATIMAKE 3D print certification .  Keep in mind the orientation of the 3D print to maximize strength of the part, minimize support materials, and maximize feature accuracy.  Consider the maximum build volume of the printer  Keep in mind warping \u2013 the back part of the printer nearer to the extruder is warmer. Maintaining constant temperature will prevent warping due to rapid cooling. Therefore, if certain features are important put them closer to the extruder than the door to maintain a constant environment.  Consider splitting large parts into multiple parts and using flanges/mating features to appropriately to attach together.  Consider the material your using. ABS is more prone to warping and is no brittle. PLA warps less and is brittle.  Filament is not cheap \u2013 consider the amount if infill, you should not be using more than 30% for a structural part.  Consider the amount of shells (number of outer layers before infill begins) that you need 4-6 layers is appropriate.", 
+            "title": "Guide to 3D Printing"
+        }, 
+        {
+            "location": "/mechanical/grabcad/", 
+            "text": "GrabCad\n\n\nHere at WARG we use \nGrabCad Workbench\n for all of our CAD file management. It is a service like Google Drive and Github that's specially designed for sharing CAD files.\n\n\nNOTE\n: \nWe require that all CAD files (non-bootcamp) are uploaded to GrabCad. Please Do not directly send screenshots, stl files, or solidworks files directly to team leads or review! Send them the grabcad link instead\n\n\nFeatures\n\n\nGrabCad is completely free, and features:\n\n\n\n\nSyncing CAD files\n\n\nViewing CAD files from within a web browser\n\n\nRevision storage and rollback\n\n\nAttaching comments to files\n\n\n\n\nThat revision storage is a big one. We no longer have to have multiple files delimited by versions. Grabcad lets you view and rollback to previous version of the CAD file, in case something goes wrong.\n\n\nHow it works\n\n\nMuch like Github, GrabCad creates a new revision of the file when it detects a change in the file. GrabCad doesn't sync automatically, and instead waits for you to issue an upload. It does this so that a single file doesnt have hundreds of revisions from every time you've saved the file.\n\n\nHow to get started\n\n\nAfter you've completed the bootcamp, you will be able granted access to the WARG GrabCad.\n\n\nTo do this:\n\n\n\n\nSign up here: \nworkbench.grabcad.com\n\n\nRequest that a team lead send you a GrabCad invite to the WARG group\n\n\nDownload and install the \nGrabCad desktop app", 
+            "title": "GrabCad"
+        }, 
+        {
+            "location": "/mechanical/grabcad/#grabcad", 
+            "text": "Here at WARG we use  GrabCad Workbench  for all of our CAD file management. It is a service like Google Drive and Github that's specially designed for sharing CAD files.  NOTE :  We require that all CAD files (non-bootcamp) are uploaded to GrabCad. Please Do not directly send screenshots, stl files, or solidworks files directly to team leads or review! Send them the grabcad link instead", 
+            "title": "GrabCad"
+        }, 
+        {
+            "location": "/mechanical/grabcad/#features", 
+            "text": "GrabCad is completely free, and features:   Syncing CAD files  Viewing CAD files from within a web browser  Revision storage and rollback  Attaching comments to files   That revision storage is a big one. We no longer have to have multiple files delimited by versions. Grabcad lets you view and rollback to previous version of the CAD file, in case something goes wrong.", 
+            "title": "Features"
+        }, 
+        {
+            "location": "/mechanical/grabcad/#how-it-works", 
+            "text": "Much like Github, GrabCad creates a new revision of the file when it detects a change in the file. GrabCad doesn't sync automatically, and instead waits for you to issue an upload. It does this so that a single file doesnt have hundreds of revisions from every time you've saved the file.", 
+            "title": "How it works"
+        }, 
+        {
+            "location": "/mechanical/grabcad/#how-to-get-started", 
+            "text": "After you've completed the bootcamp, you will be able granted access to the WARG GrabCad.  To do this:   Sign up here:  workbench.grabcad.com  Request that a team lead send you a GrabCad invite to the WARG group  Download and install the  GrabCad desktop app", 
+            "title": "How to get started"
+        }, 
+        {
             "location": "/picpilot/", 
             "text": "Welcome to the PicPilot wiki!\n\n\nThis site is to document all the functions and required background knowledge about the autopilot system.\n\n\n\n\nIntroduction\n\n\nSetup\n\n\nC\n\n\nProgramming the Device\n\n\nAutopilot System Overview\n\n\nSchematics and Board Design\n\n\nProject Files\n\n\nCoding Convention\n\n\n\n\n\n\nPID Loops\n\n\nPWM I/O\n\n\nUniversal Asynchronous Receive/Transmit (UART)\n\n\nSerial Peripheral Interface (SPI)\n\n\nDirect Memory Access (DMA)\n\n\nInter-Interchip Communication (I2C)\n\n\nDatalink\n\n\nAnalog-to-Digital Converter (ADC)\n\n\nSensors and Peripherals\n\n\nGPS(MEDIATEK-3329)\n\n\nIMU (VectorNav-100)\n\n\nAltimeter (MPL3115A2)\n\n\nXBEE PRO S3B\n\n\nRC Receiever (EzUHF)\n\n\nAirspeed Sensor (To be implemented)\n\n\nUltrasonic Sensor (To be implemented)\n\n\n\n\n\n\nAttitude Control\n\n\nPath Management\n\n\nFAQ - WIP\n\n\n\n\nBackground Reading\n\n\n\n\nInformation on Model Aircraft\n\n\nGeneral Aerodynamic Principles\n\n\nGit Help", 
             "title": "Table of Contents"
@@ -1374,351 +1809,6 @@
             "location": "/picpilot/faq/#faq", 
             "text": "No questions here yet.", 
             "title": "FAQ"
-        }, 
-        {
-            "location": "/computer-vision/", 
-            "text": "Welcome to the Computer Vision Docs!\n\n\nContents\n\n\n\n\nBuilding the project - Linux\n\n\nBuilding the project - Windows\n\n\nCoding Conventions\n\n\nUsing the WARG Server Environment\n\n\nContributing\n\n\nWriting Tests\n\n\n\n\nInstallation\n\n\nThe installation process depends on what system you have. WARG-CV runs on Linux. However, in case you don\u2019t have Linux, we have premade a DockerFile, so that you can setup a virtual image on any system.\nYou may be able to get the project to compile on Mac OS X, but that is up to you to figure out.\n\n\nIf you don't have a Linux environment, don't worry! You can download a docker image. It is essentially a premade virtual machine.\n\n\n\n\nGo to \nhttps://docs.docker.com/mac/\n for Mac systems\n\n\nGo to \nhttps://docs.docker.com/windows/\n for Windows systems.\n\n\n\n\nOnce docker is installed you can get our docker image by running \ndocker pull uwarg/warg-cv\n\n\nAfter the image has been fetched:\n\n\n\n\ndocker create -it --name cv uwarg/warg-cv\n to create a new container using the warg-cv image called cv\n\n\ndocker exec -it cv bash\n to enter the container\n\n\n\n\nWhen you want to use the container again in future, use docker exec (as in step 2 above). There is no need to create a new container unless the image has changed.", 
-            "title": "Table of Contents"
-        }, 
-        {
-            "location": "/computer-vision/#welcome-to-the-computer-vision-docs", 
-            "text": "", 
-            "title": "Welcome to the Computer Vision Docs!"
-        }, 
-        {
-            "location": "/computer-vision/#contents", 
-            "text": "Building the project - Linux  Building the project - Windows  Coding Conventions  Using the WARG Server Environment  Contributing  Writing Tests", 
-            "title": "Contents"
-        }, 
-        {
-            "location": "/computer-vision/#installation", 
-            "text": "The installation process depends on what system you have. WARG-CV runs on Linux. However, in case you don\u2019t have Linux, we have premade a DockerFile, so that you can setup a virtual image on any system.\nYou may be able to get the project to compile on Mac OS X, but that is up to you to figure out.  If you don't have a Linux environment, don't worry! You can download a docker image. It is essentially a premade virtual machine.   Go to  https://docs.docker.com/mac/  for Mac systems  Go to  https://docs.docker.com/windows/  for Windows systems.   Once docker is installed you can get our docker image by running  docker pull uwarg/warg-cv  After the image has been fetched:   docker create -it --name cv uwarg/warg-cv  to create a new container using the warg-cv image called cv  docker exec -it cv bash  to enter the container   When you want to use the container again in future, use docker exec (as in step 2 above). There is no need to create a new container unless the image has changed.", 
-            "title": "Installation"
-        }, 
-        {
-            "location": "/computer-vision/Building-the-project-[Linux]/", 
-            "text": "Building the Project\n\n\n1. Install Dependencies\n\n\nDependencies:\n- OpenCV - 3.x (2.x.x is no longer supported)\n- Boost - Tested with 1.56-60, should work with earlier versions\n- ZBar\n- DecklinkSDK (Optional, if available builds support for reading video from Decklink video capture cards)\n- Exiv2\n\n\n2. Clone the Repo\n\n\ngit clone https://github.com/UWARG/computer-vision.git\n\n\n\n\nIf you want to be able to submit changes you should fork the repository first and then clone your fork\n\n\ngit clone https://github.com/YOUR_NAME_HERE/computer-vision.git\n\n\n\n\n3. Configure the project with CMake\n\n\nIt is recommended to build from a separate directory to keep the source tree clean\n\n\ncd computer vision\nmkdir build\ncd build\ncmake ..\n\n\n\n\n4. Build\n\n\nmake\n\n\n\n\nBuilding individual modules\nOnce the project is configured\n\n\nmake MODULE_NAME\n\n\n\n\nFor a list of build targets including Submodules\n\n\nmake help\n\n\n\n\nRunning tests\n\n\nmake test", 
-            "title": "Building the project [Linux]"
-        }, 
-        {
-            "location": "/computer-vision/Building-the-project-[Linux]/#building-the-project", 
-            "text": "", 
-            "title": "Building the Project"
-        }, 
-        {
-            "location": "/computer-vision/Building-the-project-[Linux]/#1-install-dependencies", 
-            "text": "Dependencies:\n- OpenCV - 3.x (2.x.x is no longer supported)\n- Boost - Tested with 1.56-60, should work with earlier versions\n- ZBar\n- DecklinkSDK (Optional, if available builds support for reading video from Decklink video capture cards)\n- Exiv2", 
-            "title": "1. Install Dependencies"
-        }, 
-        {
-            "location": "/computer-vision/Building-the-project-[Linux]/#2-clone-the-repo", 
-            "text": "git clone https://github.com/UWARG/computer-vision.git  If you want to be able to submit changes you should fork the repository first and then clone your fork  git clone https://github.com/YOUR_NAME_HERE/computer-vision.git", 
-            "title": "2. Clone the Repo"
-        }, 
-        {
-            "location": "/computer-vision/Building-the-project-[Linux]/#3-configure-the-project-with-cmake", 
-            "text": "It is recommended to build from a separate directory to keep the source tree clean  cd computer vision\nmkdir build\ncd build\ncmake ..", 
-            "title": "3. Configure the project with CMake"
-        }, 
-        {
-            "location": "/computer-vision/Building-the-project-[Linux]/#4-build", 
-            "text": "make  Building individual modules\nOnce the project is configured  make MODULE_NAME  For a list of build targets including Submodules  make help  Running tests  make test", 
-            "title": "4. Build"
-        }, 
-        {
-            "location": "/computer-vision/Building-the-project-[Windows]/", 
-            "text": "Building the project\n\n\nTODO: Anyone who wants to try doing this, please fill this out", 
-            "title": "Building the project [Windows]"
-        }, 
-        {
-            "location": "/computer-vision/Building-the-project-[Windows]/#building-the-project", 
-            "text": "TODO: Anyone who wants to try doing this, please fill this out", 
-            "title": "Building the project"
-        }, 
-        {
-            "location": "/computer-vision/Coding-Conventions/", 
-            "text": "Coding Conventions\n\n\nCode\n\n\nVariable Names:\n\n\nvarName\n\n\nConstant Names:\n\n\nCONST_NAME\n\n\nFunction Names:\n\n\nfunction_name\n\n\nClass Names:\n\n\nClassName\n\n\nIndentation:\n\n\n4 spaces per level of indentation\n\n\nbrackets:\n\n\nvoid foo_bar(int i) {\n    int varName = (i + 2)/2;\n}\n\n\n\n\nFile Structure\n\n\nFile Names:\n\n\nfile_name.ext\n\n\nDirectory Structure:\n\n\n|-- computer-vision\n    |-- modules\n        |-- core\n            |-- include\n                |-- header.h\n            |-- src\n                |-- source.cpp\n            |-- CMakeLists.txt\n    |-- CMakeLists.txt\n    |-- main.cpp\n         ...\n\n\n\n\nHeader File Formatting\n\n\n/**\n * @file foo.h\n * @author WARG\n *\n * @section LICENSE\n *\n * Copyright (c) 2015-2016, Waterloo Aerial Robotics Group (WARG)\n * All rights reserved.\n *\n * This software is licensed under a modified version of the BSD 3 clause license\n * that should have been included with this software in a file called COPYING.txt\n * Otherwise it is available at:\n * https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#ifndef FOO_H_INCLUDED\n#define FOO_H_INCLUDED\n\n#include \nbar.h\n\n\n/**\n * @class Foo\n *\n * Foo description goes here\n *\n * @brief optional briefer description goes here\n */\n\nclass Foo : public Bar {\npublic:\n\n    /**\n     * Constructor for foo\n     *\n     * @param baz description of param baz immediately follows variable name\n     */\n    Foo(int baz);\n\n    /**\n     * Getter for baz\n     *\n     * @returns description of value returned\n     */\n    int get_baz();\n\nprivate:\n    /**\n     * Description of baz\n     */\n     int baz;\n\n};\n\n#endif // FOO_H_INCLUDED\n\n\n\n\nSource file formatting\n\n\n/*\n * This file is part of WARG's computer-vision\n *\n * Copyright (c) 2015-2016, Waterloo Aerial Robotics Group (WARG)\n * All rights reserved.\n *\n * This software is licensed under a modified version of the BSD 3 clause license\n * that should have been included with this software in a file called COPYING.txt\n * Otherwise it is available at:\n * https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#include \nbar.h\n\n#include \nfoo.h\n\n\nFoo::Foo(int baz) : baz(baz) { }\n\nint Foo::get_baz() {\n    // note that while documentation is not needed in source files\n    //     comments are greatly appreciated\n    return baz;\n}", 
-            "title": "Coding Conventions"
-        }, 
-        {
-            "location": "/computer-vision/Coding-Conventions/#coding-conventions", 
-            "text": "", 
-            "title": "Coding Conventions"
-        }, 
-        {
-            "location": "/computer-vision/Coding-Conventions/#code", 
-            "text": "", 
-            "title": "Code"
-        }, 
-        {
-            "location": "/computer-vision/Coding-Conventions/#variable-names", 
-            "text": "varName", 
-            "title": "Variable Names:"
-        }, 
-        {
-            "location": "/computer-vision/Coding-Conventions/#constant-names", 
-            "text": "CONST_NAME", 
-            "title": "Constant Names:"
-        }, 
-        {
-            "location": "/computer-vision/Coding-Conventions/#function-names", 
-            "text": "function_name", 
-            "title": "Function Names:"
-        }, 
-        {
-            "location": "/computer-vision/Coding-Conventions/#class-names", 
-            "text": "ClassName", 
-            "title": "Class Names:"
-        }, 
-        {
-            "location": "/computer-vision/Coding-Conventions/#indentation", 
-            "text": "4 spaces per level of indentation", 
-            "title": "Indentation:"
-        }, 
-        {
-            "location": "/computer-vision/Coding-Conventions/#brackets", 
-            "text": "void foo_bar(int i) {\n    int varName = (i + 2)/2;\n}", 
-            "title": "brackets:"
-        }, 
-        {
-            "location": "/computer-vision/Coding-Conventions/#file-structure", 
-            "text": "", 
-            "title": "File Structure"
-        }, 
-        {
-            "location": "/computer-vision/Coding-Conventions/#file-names", 
-            "text": "file_name.ext", 
-            "title": "File Names:"
-        }, 
-        {
-            "location": "/computer-vision/Coding-Conventions/#directory-structure", 
-            "text": "|-- computer-vision\n    |-- modules\n        |-- core\n            |-- include\n                |-- header.h\n            |-- src\n                |-- source.cpp\n            |-- CMakeLists.txt\n    |-- CMakeLists.txt\n    |-- main.cpp\n         ...", 
-            "title": "Directory Structure:"
-        }, 
-        {
-            "location": "/computer-vision/Coding-Conventions/#header-file-formatting", 
-            "text": "/**\n * @file foo.h\n * @author WARG\n *\n * @section LICENSE\n *\n * Copyright (c) 2015-2016, Waterloo Aerial Robotics Group (WARG)\n * All rights reserved.\n *\n * This software is licensed under a modified version of the BSD 3 clause license\n * that should have been included with this software in a file called COPYING.txt\n * Otherwise it is available at:\n * https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#ifndef FOO_H_INCLUDED\n#define FOO_H_INCLUDED\n\n#include  bar.h \n\n/**\n * @class Foo\n *\n * Foo description goes here\n *\n * @brief optional briefer description goes here\n */\n\nclass Foo : public Bar {\npublic:\n\n    /**\n     * Constructor for foo\n     *\n     * @param baz description of param baz immediately follows variable name\n     */\n    Foo(int baz);\n\n    /**\n     * Getter for baz\n     *\n     * @returns description of value returned\n     */\n    int get_baz();\n\nprivate:\n    /**\n     * Description of baz\n     */\n     int baz;\n\n};\n\n#endif // FOO_H_INCLUDED", 
-            "title": "Header File Formatting"
-        }, 
-        {
-            "location": "/computer-vision/Coding-Conventions/#source-file-formatting", 
-            "text": "/*\n * This file is part of WARG's computer-vision\n *\n * Copyright (c) 2015-2016, Waterloo Aerial Robotics Group (WARG)\n * All rights reserved.\n *\n * This software is licensed under a modified version of the BSD 3 clause license\n * that should have been included with this software in a file called COPYING.txt\n * Otherwise it is available at:\n * https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#include  bar.h \n#include  foo.h \n\nFoo::Foo(int baz) : baz(baz) { }\n\nint Foo::get_baz() {\n    // note that while documentation is not needed in source files\n    //     comments are greatly appreciated\n    return baz;\n}", 
-            "title": "Source file formatting"
-        }, 
-        {
-            "location": "/computer-vision/Contributing/", 
-            "text": "Contributing\n\n\n\n\nAdding a New Class\n\n\nThe project is divided into modules. Any class that is specific to a certain module should be stored in that module's directory. Classes that need to be accessed by multiple modules should go in Core.\n\n\nThe class should be declared in a header file of the same name as the class and placed in the appropriate module's include directory.\n\n\nFor example: Suppose we are creating class Foo in module Core\n\n\n(See \nCoding Conventions\n for details on formatting)\n\n\nFile: modules/core/include/foo.h\n\n\n/**\n * @file foo.h\n * @author WARG\n *\n * @section LICENSE\n *\n *  Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)\n *  All rights reserved.\n *\n *  This software is licensed under a modified version of the BSD 3 clause license\n *  that should have been included with this software in a file called COPYING.txt\n *  Otherwise it is available at:\n *  https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#ifndef FOO_H_INCLUDED\n#define FOO_H_INCLUDED\n\n#include \nbar.h\n\n\n/**\n * @class Foo\n *\n * Foo description goes here\n *\n * @brief optional briefer description goes here\n */\n\nclass Foo : public Bar {\npublic:\n\n    /**\n     * Constructor for foo\n     *\n     * @param baz description of param baz immediately follows variable name\n     */\n    Foo(int baz);\n\n    /**\n     * Getter for baz\n     *\n     * @returns description of value returned\n     */\n    int get_baz();\n\nprivate:\n    /**\n     * Description of baz\n     */\n     int baz;\n\n};\n\n#endif // FOO_H_INCLUDED\n\n\n\n\nThe corresponding source file which contains the definitions for the class Foo is placed in the src folder\n\n\nFile: modules/core/src/foo.cpp\n\n\n/**\n * @file foo.cpp\n * @author WARG\n *\n * @section LICENSE\n *\n *  Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)\n *  All rights reserved.\n *\n *  This software is licensed under a modified version of the BSD 3 clause license\n *  that should have been included with this software in a file called COPYING.txt\n *  Otherwise it is available at:\n *  https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#include \nbar.h\n\n#include \nfoo.h\n\n\nFoo::Foo(int baz) : baz(baz) { }\n\nint Foo::get_baz() {\n    // note that while documentation is not needed in source files\n    //     comments are greatly appreciated\n    return baz;\n}\n\n\n\n\n\nHowever we're not done yet. While header files when placed in the proper directory are immediately ready for use, source files must be added to the module's CMakeLists.txt file to be compiled into the module.\n\n\nFile: modules/core/CMakeLists.txt\n\n\ninclude_directories(include)\nadd_library(Core src/foo.cpp src/frame.cpp src/pixel_target.cpp src/target.cpp)\n\n\n\n\nYour source file should be added to the arguments of the add_library function (ideally in retaining alphabetical order for readability)\n\n\nBut what if bar is part of an external library?\n\n\nIf you've forgotten what bar is already notice that it is an external class included in foo.h\n\n\nThe first question to answer is whether or not the use of bar can be avoided. In particular it may provide functionality that is already available in one of the project's current dependencies. Unless it provides substantially improved functionality over what is already available it probably shouldn't be added to the project.\n\n\nIf you determine that bar is a necessary dependency, then it needs to be added to CMakeLists.txt as well. As long as it is only being used in one module, it can be defined in that module's CMakeLists.txt rather than the global CMakeLists.txt.\n\n\nFor simplicity we will assume bar.h is part of the package Bar\n\n\nFile: modules/core/CMakeLists.txt\n\n\ninclude_directories(include)\nfind_package(Bar)\nif(Bar_FOUND)\n    include_directories(${Bar_INCLUDE_DIRS})\n    add_library(Core ${Bar_LIBRARIES} src/foo.cpp src/frame.cpp src/pixel_target.cpp src/target.cpp)\nendif()\n\n\n\n\nYou may want to research the library you've added online since many external libraries have additional configuration that needs to be added to the CMakeLists or unusual naming conventions for the package.\n\n\nAnd we're done.\nNow if you re-run cmake and re-build Foo should be built into the project.\n\n\n\n\nContributing to Master Repository\n\n\nTo get your code added to master you will, if you haven't done so already, need to fork the project. This can be done by going to the computer-vision page on GitHub and clicking the fork button in the top right.\n\n\nYou then need to make your local code point your fork rather than master.\n\n\ngit remote set-url origin $FORK_URL\n\n\n\n\nWhere $FORK_URL is the clone link for your fork\n\n\nYou will also want to set a new remote, called upstream, to reference the master repository so that you can pull changes.\n\n\ngit remote add upstream git@github.com:UWARG/computer-vision.git\n\n\n\n\nor for https\n\n\ngit remote add upstream https://github.com/UWARG/computer-vision.git\n\n\n\n\nthis allows upstream changes to be fetched with \ngit fetch upstream\n and merged into the current branch with \ngit merge upstream/branch_name\n\n\nNow, you can commit your code and push to the fork with\n\n\ngit add modules/core/src/foo.cpp modules/core/include/foo.h modules/core/CMakeLists.txt\ngit commit -m \nAdded class Foo\n\ngit push origin\n\n\n\n\nNote that it is recommended to add files individually rather than adding all at once with \ngit add -A .\n\n\nThat way you ensure you only commit the files you intend to add.\nYou can also see a list of all unstaged changes (changes that have yet to be added) using \ngit diff\n\n\nOnce the code is pushed, go to Github to your fork's page and create a pull request by either going into the pull request menu and choosing \"New Pull Request\", or, if you have pushed code recently, a pop-up will appear on the main page prompting you to create a pull request.\n\n\nFrom the pull request page you can add comments to the pull request noting what you have changed, you can review the changed you have made to make sure you haven't included anything unnecessary and then you can submit the request.\n\n\nPlease note that pull requests will be rejected if they contain extraneous changes.\nYou can avoid a lot of issues by configuring git to ignore point out whitespace issues in diffs and to fix when patching with:\n\n\ngit config core.whitespace trailing-space,space-before-tab\ngit config apply.whitespace fix", 
-            "title": "Contributing"
-        }, 
-        {
-            "location": "/computer-vision/Contributing/#contributing", 
-            "text": "", 
-            "title": "Contributing"
-        }, 
-        {
-            "location": "/computer-vision/Contributing/#adding-a-new-class", 
-            "text": "The project is divided into modules. Any class that is specific to a certain module should be stored in that module's directory. Classes that need to be accessed by multiple modules should go in Core.  The class should be declared in a header file of the same name as the class and placed in the appropriate module's include directory.  For example: Suppose we are creating class Foo in module Core  (See  Coding Conventions  for details on formatting)  File: modules/core/include/foo.h  /**\n * @file foo.h\n * @author WARG\n *\n * @section LICENSE\n *\n *  Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)\n *  All rights reserved.\n *\n *  This software is licensed under a modified version of the BSD 3 clause license\n *  that should have been included with this software in a file called COPYING.txt\n *  Otherwise it is available at:\n *  https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#ifndef FOO_H_INCLUDED\n#define FOO_H_INCLUDED\n\n#include  bar.h \n\n/**\n * @class Foo\n *\n * Foo description goes here\n *\n * @brief optional briefer description goes here\n */\n\nclass Foo : public Bar {\npublic:\n\n    /**\n     * Constructor for foo\n     *\n     * @param baz description of param baz immediately follows variable name\n     */\n    Foo(int baz);\n\n    /**\n     * Getter for baz\n     *\n     * @returns description of value returned\n     */\n    int get_baz();\n\nprivate:\n    /**\n     * Description of baz\n     */\n     int baz;\n\n};\n\n#endif // FOO_H_INCLUDED  The corresponding source file which contains the definitions for the class Foo is placed in the src folder  File: modules/core/src/foo.cpp  /**\n * @file foo.cpp\n * @author WARG\n *\n * @section LICENSE\n *\n *  Copyright (c) 2015, Waterloo Aerial Robotics Group (WARG)\n *  All rights reserved.\n *\n *  This software is licensed under a modified version of the BSD 3 clause license\n *  that should have been included with this software in a file called COPYING.txt\n *  Otherwise it is available at:\n *  https://raw.githubusercontent.com/UWARG/computer-vision/master/COPYING.txt\n */\n\n#include  bar.h \n#include  foo.h \n\nFoo::Foo(int baz) : baz(baz) { }\n\nint Foo::get_baz() {\n    // note that while documentation is not needed in source files\n    //     comments are greatly appreciated\n    return baz;\n}  However we're not done yet. While header files when placed in the proper directory are immediately ready for use, source files must be added to the module's CMakeLists.txt file to be compiled into the module.  File: modules/core/CMakeLists.txt  include_directories(include)\nadd_library(Core src/foo.cpp src/frame.cpp src/pixel_target.cpp src/target.cpp)  Your source file should be added to the arguments of the add_library function (ideally in retaining alphabetical order for readability)", 
-            "title": "Adding a New Class"
-        }, 
-        {
-            "location": "/computer-vision/Contributing/#but-what-if-bar-is-part-of-an-external-library", 
-            "text": "If you've forgotten what bar is already notice that it is an external class included in foo.h  The first question to answer is whether or not the use of bar can be avoided. In particular it may provide functionality that is already available in one of the project's current dependencies. Unless it provides substantially improved functionality over what is already available it probably shouldn't be added to the project.  If you determine that bar is a necessary dependency, then it needs to be added to CMakeLists.txt as well. As long as it is only being used in one module, it can be defined in that module's CMakeLists.txt rather than the global CMakeLists.txt.  For simplicity we will assume bar.h is part of the package Bar  File: modules/core/CMakeLists.txt  include_directories(include)\nfind_package(Bar)\nif(Bar_FOUND)\n    include_directories(${Bar_INCLUDE_DIRS})\n    add_library(Core ${Bar_LIBRARIES} src/foo.cpp src/frame.cpp src/pixel_target.cpp src/target.cpp)\nendif()  You may want to research the library you've added online since many external libraries have additional configuration that needs to be added to the CMakeLists or unusual naming conventions for the package.  And we're done.\nNow if you re-run cmake and re-build Foo should be built into the project.", 
-            "title": "But what if bar is part of an external library?"
-        }, 
-        {
-            "location": "/computer-vision/Contributing/#contributing-to-master-repository", 
-            "text": "To get your code added to master you will, if you haven't done so already, need to fork the project. This can be done by going to the computer-vision page on GitHub and clicking the fork button in the top right.  You then need to make your local code point your fork rather than master.  git remote set-url origin $FORK_URL  Where $FORK_URL is the clone link for your fork  You will also want to set a new remote, called upstream, to reference the master repository so that you can pull changes.  git remote add upstream git@github.com:UWARG/computer-vision.git  or for https  git remote add upstream https://github.com/UWARG/computer-vision.git  this allows upstream changes to be fetched with  git fetch upstream  and merged into the current branch with  git merge upstream/branch_name  Now, you can commit your code and push to the fork with  git add modules/core/src/foo.cpp modules/core/include/foo.h modules/core/CMakeLists.txt\ngit commit -m  Added class Foo \ngit push origin  Note that it is recommended to add files individually rather than adding all at once with  git add -A .  That way you ensure you only commit the files you intend to add.\nYou can also see a list of all unstaged changes (changes that have yet to be added) using  git diff  Once the code is pushed, go to Github to your fork's page and create a pull request by either going into the pull request menu and choosing \"New Pull Request\", or, if you have pushed code recently, a pop-up will appear on the main page prompting you to create a pull request.  From the pull request page you can add comments to the pull request noting what you have changed, you can review the changed you have made to make sure you haven't included anything unnecessary and then you can submit the request.  Please note that pull requests will be rejected if they contain extraneous changes.\nYou can avoid a lot of issues by configuring git to ignore point out whitespace issues in diffs and to fix when patching with:  git config core.whitespace trailing-space,space-before-tab\ngit config apply.whitespace fix", 
-            "title": "Contributing to Master Repository"
-        }, 
-        {
-            "location": "/computer-vision/Using-the-WARG-server-environment/", 
-            "text": "Using the Warg Computer environment\n\n\n(Note that at the time of this being written the server is still being set up, hence a lot of this guide is both not yet applicable and may change)\n\n\nSetting up an SSH Client\n\n\nBefore you can connect to the WARG Server you will need an SSH client.\n\n\nWindows:\n\n\nThere are several windows SSH clients, one of the more popular ones is PuTTY, which can be downloaded \nhere\n\n\nMac OS X and Linux:\n\n\nSSH should be installed by default and can be accessed by the following terminal command\n\n\nssh user@hostname\n\n\n\n\nGetting an account\n\n\nYou will not be able to connect to the WARG server without an account on the system. You will have to come in personally to the WARG bay to set this up.\n\n\nConnecting to the server\n\n\nTo connect to the WARG server you will need\n\n\nUser:\n     User-name you set up on the WARG server\n\n\nHost-name:\n ip address of the WARG computer\n\n\nPort:\n 22 (The default port, you probably won't need to set this)\n\n\nLinux and OS X\n\n\nOn Linux or OS X this translates to the following command:\n\n\nssh user@ssh.uwarg.com\n\n\n\n\nOptionally you can append -Y to the end of the command to enable graphics forwarding which will allow you to run graphical applications on the server (with the graphics being displayed on your computer)\n\n\nssh user@ssh.uwarg.com -Y\n\n\n\n\nWindows\n\n\nOn Windows, see one of the following tutorials for more info on configuring PuTTY.\n\n\nAn older tutorial that covers the basics\n\n\nhttp://jfitz.com/tips/putty_config.html\n\n\nMore advanced PuTTY usage\n\n\nhttp://support.suso.com/supki/SSH_Tutorial_for_Windows\n\n\nUseful Commands in the Server Environment (feel free to expand this section)\n\n\n(words in ALL_CAPS are arguments)\n\n\nls\n Shows a list of files and directories in your current directory or in a different one by specifying a different directory \nls DIRECTORY\n\n\ncd DIRECTORY\n opens the given directory\n\n\nnano\n Simple command line text editor, can open files with \nnano FILE_NAME\n\n\n(for a more complex editor that is better suited to programming, try \nvim\n or \nemacs\n. \nhere\n is an emacs tutorial and \nhere\n is a vim one. There is also this fun looking interactive vim tutorial \nhere\n)\n\n\nYou can also learn more about any of the commands by appending \n--help\n to a command or by entering \nman COMMAND\n\n\nUseful Graphical Applications\n\n\ngedit\n The Gnome text editor\n\n\nnautilus\n A Linux file manager", 
-            "title": "Using the WARG computer environment"
-        }, 
-        {
-            "location": "/computer-vision/Using-the-WARG-server-environment/#using-the-warg-computer-environment", 
-            "text": "(Note that at the time of this being written the server is still being set up, hence a lot of this guide is both not yet applicable and may change)", 
-            "title": "Using the Warg Computer environment"
-        }, 
-        {
-            "location": "/computer-vision/Using-the-WARG-server-environment/#setting-up-an-ssh-client", 
-            "text": "Before you can connect to the WARG Server you will need an SSH client.", 
-            "title": "Setting up an SSH Client"
-        }, 
-        {
-            "location": "/computer-vision/Using-the-WARG-server-environment/#windows", 
-            "text": "There are several windows SSH clients, one of the more popular ones is PuTTY, which can be downloaded  here", 
-            "title": "Windows:"
-        }, 
-        {
-            "location": "/computer-vision/Using-the-WARG-server-environment/#mac-os-x-and-linux", 
-            "text": "SSH should be installed by default and can be accessed by the following terminal command  ssh user@hostname", 
-            "title": "Mac OS X and Linux:"
-        }, 
-        {
-            "location": "/computer-vision/Using-the-WARG-server-environment/#getting-an-account", 
-            "text": "You will not be able to connect to the WARG server without an account on the system. You will have to come in personally to the WARG bay to set this up.", 
-            "title": "Getting an account"
-        }, 
-        {
-            "location": "/computer-vision/Using-the-WARG-server-environment/#connecting-to-the-server", 
-            "text": "To connect to the WARG server you will need  User:      User-name you set up on the WARG server  Host-name:  ip address of the WARG computer  Port:  22 (The default port, you probably won't need to set this)", 
-            "title": "Connecting to the server"
-        }, 
-        {
-            "location": "/computer-vision/Using-the-WARG-server-environment/#linux-and-os-x", 
-            "text": "On Linux or OS X this translates to the following command:  ssh user@ssh.uwarg.com  Optionally you can append -Y to the end of the command to enable graphics forwarding which will allow you to run graphical applications on the server (with the graphics being displayed on your computer)  ssh user@ssh.uwarg.com -Y", 
-            "title": "Linux and OS X"
-        }, 
-        {
-            "location": "/computer-vision/Using-the-WARG-server-environment/#windows_1", 
-            "text": "On Windows, see one of the following tutorials for more info on configuring PuTTY.  An older tutorial that covers the basics  http://jfitz.com/tips/putty_config.html  More advanced PuTTY usage  http://support.suso.com/supki/SSH_Tutorial_for_Windows", 
-            "title": "Windows"
-        }, 
-        {
-            "location": "/computer-vision/Using-the-WARG-server-environment/#useful-commands-in-the-server-environment-feel-free-to-expand-this-section", 
-            "text": "(words in ALL_CAPS are arguments)  ls  Shows a list of files and directories in your current directory or in a different one by specifying a different directory  ls DIRECTORY  cd DIRECTORY  opens the given directory  nano  Simple command line text editor, can open files with  nano FILE_NAME  (for a more complex editor that is better suited to programming, try  vim  or  emacs .  here  is an emacs tutorial and  here  is a vim one. There is also this fun looking interactive vim tutorial  here )  You can also learn more about any of the commands by appending  --help  to a command or by entering  man COMMAND", 
-            "title": "Useful Commands in the Server Environment (feel free to expand this section)"
-        }, 
-        {
-            "location": "/computer-vision/Using-the-WARG-server-environment/#useful-graphical-applications", 
-            "text": "gedit  The Gnome text editor  nautilus  A Linux file manager", 
-            "title": "Useful Graphical Applications"
-        }, 
-        {
-            "location": "/computer-vision/Writing-Tests/", 
-            "text": "Writing Tests\n\n\nTesting should be done in a directory inside the submodule called test, which should be included in the module's CMakeLists.txt via add_subdirectory and should have its own CMakeLists.txt.\nFurthermore, large test files should be stored in the global computer-vision/testdata directory so that they can be shared between multiple tests.\nThat is, test directories should have the following structure\n\n\n|-- computer-vision\n    |-- modules\n        |-- MODULE_NAME\n            |-- include\n            |-- src\n            |-- test\n                |-- CMakeLists.txt\n                |-- foo_test.cpp\n                |-- bar_test.cpp\n            |-- CMakeLists.txt\n    |-- testdata\n        |-- image.jpg\n\n\n\n\nTesting should be done using the boost test framework.\n\n\nTutorials provided by boost are found \nhere\n.\n\n\nAPI Reference available \nhere\n\n\nTo test code it should be run inside the \nBOOST_AUTO_TEST_CASE\n and use the boost test macros to verify sanity and results.\nSome available macros include\n\n\nBOOST_WARN(predicate); // produces a warning if predicate is false, does not cause failures\nBOOST_CHECK(predicate); // produces a failure if predicate is false, but continues testing\nBOOST_REQUIRE(predicate); // produces a failure if predicate is false and aborts test suite.\n\n\n\n\nTest heirarchy\n\n\nBoost tests are stored in a heirarchy of nested suites.\nThe global suite for a file can be set with the \nBOOST_TEST_MODULE\n macro.\nYou can define additional suites by encapsulating test cases and suites with \nBOOST_AUTO_TEST_SUITE(SuiteName);\n and \nBOOST_AUTO_TEST_SUITE_END();\n\n\nNote that currently the xsl parser for generating an xUnit compatible XML file does not properly handle nested test suites and only makes use of the suite directly encapsulating the test cases (the suite declared with \nBOOST_TEST_MODULE\n).\nHowever since this is expected to be fixed relatively soon, it is recommended that you use the following format to declare tests.\n\n\nGuidelines for naming test suites and test cases\n\n\nThe global test suite for a file (specified with \nBOOST_TEST_MODULE\n) should correspond to the computer-vision module the tests are part of.\nA test suite should be created for each file with \nBOOST_AUTO_TEST_SUITE\n and should encompass all the tests in the file. Tests contained within a single file should all test a single feature or function of the program. Tests for different features/functions should go in their own file with a separate test suite. The file should also have the same name as the test suite (though test suite names should be camel cased).\n\n\nAdditional test suites can also be created inside test suites at your discretion if a certain suite has a large number of test cases that can be meaningfully subdivided.\n\n\nFor consistency, test suite and test case names should be UpperCamelCase (and test module name should be the full UpperCamelCase version of the module name. e.g. targetid should be TargetIdentification).\n\n\nAlso note that all names should be sufficiently descriptive to be unique in their scope (as well as sufficiently descriptive to convey what is being tested in a particular suite/case). That is, each test suite in a module needs to have a unique name to avoid naming conflicts, but names of test suites inside those suites and names of test cases only need to be unique inside their encapsulating test suite.\n\n\nExample\n\n\nfile: modules/mymodule/test/mysuite.cpp\n\n\n#define BOOST_TEST_DYN_LINK\n#define BOOST_TEST_MODULE MyModule\n#include \nboost/test/unit_test.hpp\n\n#include \nfoo.h\n // declares type foo, header is in the core module\n\nBOOST_AUTO_TEST_SUITE(MySuite);\n\nBOOST_AUTO_TEST_CASE(TestName) {\n    foo bar;\n    BOOST_CHECK(foo.baz());\n}\n\nBOOST_AUTO_TEST_SUITE_END();\n\n\n\n\nfile: modules/mymodule/test/CMakeLists.txt\n\n\ninclude_directories(${Core_INCLUDE_DIR})\nadd_executable(mytest test.cpp)\ntarget_link_libraries(mytest Core)\n\n# Tests\nadd_test(\n    NAME \nexample test\n\n    COMMAND mytest --log_format=XML --log_sink=TEST-mytest.xml --log_level=all --report_level=no\n)", 
-            "title": "Writing Tests"
-        }, 
-        {
-            "location": "/computer-vision/Writing-Tests/#writing-tests", 
-            "text": "Testing should be done in a directory inside the submodule called test, which should be included in the module's CMakeLists.txt via add_subdirectory and should have its own CMakeLists.txt.\nFurthermore, large test files should be stored in the global computer-vision/testdata directory so that they can be shared between multiple tests.\nThat is, test directories should have the following structure  |-- computer-vision\n    |-- modules\n        |-- MODULE_NAME\n            |-- include\n            |-- src\n            |-- test\n                |-- CMakeLists.txt\n                |-- foo_test.cpp\n                |-- bar_test.cpp\n            |-- CMakeLists.txt\n    |-- testdata\n        |-- image.jpg  Testing should be done using the boost test framework.  Tutorials provided by boost are found  here .  API Reference available  here  To test code it should be run inside the  BOOST_AUTO_TEST_CASE  and use the boost test macros to verify sanity and results.\nSome available macros include  BOOST_WARN(predicate); // produces a warning if predicate is false, does not cause failures\nBOOST_CHECK(predicate); // produces a failure if predicate is false, but continues testing\nBOOST_REQUIRE(predicate); // produces a failure if predicate is false and aborts test suite.", 
-            "title": "Writing Tests"
-        }, 
-        {
-            "location": "/computer-vision/Writing-Tests/#test-heirarchy", 
-            "text": "Boost tests are stored in a heirarchy of nested suites.\nThe global suite for a file can be set with the  BOOST_TEST_MODULE  macro.\nYou can define additional suites by encapsulating test cases and suites with  BOOST_AUTO_TEST_SUITE(SuiteName);  and  BOOST_AUTO_TEST_SUITE_END();  Note that currently the xsl parser for generating an xUnit compatible XML file does not properly handle nested test suites and only makes use of the suite directly encapsulating the test cases (the suite declared with  BOOST_TEST_MODULE ).\nHowever since this is expected to be fixed relatively soon, it is recommended that you use the following format to declare tests.", 
-            "title": "Test heirarchy"
-        }, 
-        {
-            "location": "/computer-vision/Writing-Tests/#guidelines-for-naming-test-suites-and-test-cases", 
-            "text": "The global test suite for a file (specified with  BOOST_TEST_MODULE ) should correspond to the computer-vision module the tests are part of.\nA test suite should be created for each file with  BOOST_AUTO_TEST_SUITE  and should encompass all the tests in the file. Tests contained within a single file should all test a single feature or function of the program. Tests for different features/functions should go in their own file with a separate test suite. The file should also have the same name as the test suite (though test suite names should be camel cased).  Additional test suites can also be created inside test suites at your discretion if a certain suite has a large number of test cases that can be meaningfully subdivided.  For consistency, test suite and test case names should be UpperCamelCase (and test module name should be the full UpperCamelCase version of the module name. e.g. targetid should be TargetIdentification).  Also note that all names should be sufficiently descriptive to be unique in their scope (as well as sufficiently descriptive to convey what is being tested in a particular suite/case). That is, each test suite in a module needs to have a unique name to avoid naming conflicts, but names of test suites inside those suites and names of test cases only need to be unique inside their encapsulating test suite.", 
-            "title": "Guidelines for naming test suites and test cases"
-        }, 
-        {
-            "location": "/computer-vision/Writing-Tests/#example", 
-            "text": "file: modules/mymodule/test/mysuite.cpp  #define BOOST_TEST_DYN_LINK\n#define BOOST_TEST_MODULE MyModule\n#include  boost/test/unit_test.hpp \n#include  foo.h  // declares type foo, header is in the core module\n\nBOOST_AUTO_TEST_SUITE(MySuite);\n\nBOOST_AUTO_TEST_CASE(TestName) {\n    foo bar;\n    BOOST_CHECK(foo.baz());\n}\n\nBOOST_AUTO_TEST_SUITE_END();  file: modules/mymodule/test/CMakeLists.txt  include_directories(${Core_INCLUDE_DIR})\nadd_executable(mytest test.cpp)\ntarget_link_libraries(mytest Core)\n\n# Tests\nadd_test(\n    NAME  example test \n    COMMAND mytest --log_format=XML --log_sink=TEST-mytest.xml --log_level=all --report_level=no\n)", 
-            "title": "Example"
-        }, 
-        {
-            "location": "/mechanical/", 
-            "text": "Welcome to the Mechanical Docs!\n\n\nTable of Contents\n\n\n\n\nGrabCad\n\n\nCAD Guidelines and Commandments\n\n\n3D Printing Guidelines", 
-            "title": "Table of Contents"
-        }, 
-        {
-            "location": "/mechanical/#welcome-to-the-mechanical-docs", 
-            "text": "", 
-            "title": "Welcome to the Mechanical Docs!"
-        }, 
-        {
-            "location": "/mechanical/#table-of-contents", 
-            "text": "GrabCad  CAD Guidelines and Commandments  3D Printing Guidelines", 
-            "title": "Table of Contents"
-        }, 
-        {
-            "location": "/mechanical/cad-guidelines/", 
-            "text": "WARG CAD Guidelines\n\n\nTo keep things more consistent at WARG, we enforce a set of guidelines on all submitted CAD designs. This only applies to mechanical CAD files (not electrical). Since we use Solidworks for most of our mechanical work, these guidelines mainly apply to it. \n\n\nThe 13 CAD Commandments\n\n\nIn order for your design to be accepted it must adhere to all the commandments listed below. If the part does not you will be notified what modifications need to be made in order for it to be accepted. Once your part is accepted you can begin to manufacturer/make the part. If an assembly of parts is being made all parts and the assembly must be approved before manufacturing/making the assembly.\n\n\n\n\nAll parts (sketches) must be fully defined\n\n\nAll fastening holes (screw, bolt etc.. holes) must be done using hole wizard\n\n\nUse relations to eliminate redundant dimensions\n\n\nParts must be made in MMGS scale\n\n\nParts must use \nWARG\u2019s standard naming convention\n\n\nAssemblies must contain ALL components fully defined and related such that distances are equal\n\n\nAssemblies must have ALL holes concentric with fasteners of required length mated to the holes (check McMaster Carr if you need CAD models of fasteners)\n\n\nNO assembly features\n\n\nWhen making part revisions look at the previous version and identify any filing/drilling/sanding/machining you had to do to the parts to make them fit and ENSURE that the new part is modified so that the changes don\u2019t have to be made again.\n\n\nFillets/Chamfers of equal size must be made in the SAME feature. All fillets/chamfers must be added as features and NOT included in the sketches.\n\n\nEnsure that your assemblies are manufacturable with appropriate tolerances (ie parts have clearance to be assembled and parts don\u2019t have to go through walls/break physics to work).\n\n\nConsider the thickness and dimensions of parts to ensure that they are reasonable. A 3mm and 5mm thickness go a long way.\n\n\nAll of the relevant CAD files should be uploaded and synced on \nGrabCad\n. The design will \nNOT BE REVIEWED\n if it is not on GrabCad. Screenshots and stl files do not suffice.\n\n\n\n\nNOTE\n: \nIf you violate one of these commandments you must notify a team lead with a valid explanation as to the reason for violating the commandment\n\n\nCAD Naming Convention\n\n\nAll CAD files should adhere to the following naming convention (snake upper case):\n\n\nFor regular part files\n\n\nPROJECT_NAME\n__\nSUBASSEMBLY_NAME\n_\nPART##\n_\nPART_NAME\n.SLDPRT\n\n\n\n\neg. \nSPIKE__GIMBAL_03_OUTSIDE_CASE.SLDPRT\n\n\nFor assemblies\n\n\nPROJECT_NAME\n__\nSUBASSEMBLY_NAME\n_00_ASSEMBLY.SLDASM\n\n\n\n\neg. \nSPIKE__GIMBAL_00_ASSEMBLY.SLDASM\n\n\nFor assemblies within assemblies\n\n\nCreate a folder with the same naming convention as the part, and follow the same naming convention inside the folder, prepending the project name.\n\n\nFor example, if the gimbal assembly contains a part camera which itself is also an assembly:\n\n\n\n\nCreate folder named \nGIMBAL_02_CAMERA\n\n\nInside the folder follow the same naming convention, but prepend the original project name at the begining.\n\n\n\n\neg.\n\n\nGIMBAL_00_ASSEMBLY.SLDASM\nGIMBAL_O1_CAMERA\n --\n GIMBAL_CAMERA_00_ASSEMBLY.SLDASM\n --\n GIMBAL_CAMERA_01_GO_PRO.SLDPRT\n\n\n\n\nFor drawings\n\n\nIn the assembly folder create another folder to store drawings.\n\n\nPROJECT_NAME\n_DRAWINGS\n\n\n\n\nFor the actual part files, follow the same naming convention as above, and store them in this folder.\n\n\nRenders\n\n\nCreate a seperate \nRenders\n folder within your project and dump all your renders there. No naming convention here\n\n\nExample\n\n\nProject Name: DATA_RELAY_CASE\n\n\nSub Assemblies: Wooden Case, OrangePi\n\n\nProject Root\n\n\n\n\nSub-assembly", 
-            "title": "CAD Guidelines"
-        }, 
-        {
-            "location": "/mechanical/cad-guidelines/#warg-cad-guidelines", 
-            "text": "To keep things more consistent at WARG, we enforce a set of guidelines on all submitted CAD designs. This only applies to mechanical CAD files (not electrical). Since we use Solidworks for most of our mechanical work, these guidelines mainly apply to it.", 
-            "title": "WARG CAD Guidelines"
-        }, 
-        {
-            "location": "/mechanical/cad-guidelines/#the-13-cad-commandments", 
-            "text": "In order for your design to be accepted it must adhere to all the commandments listed below. If the part does not you will be notified what modifications need to be made in order for it to be accepted. Once your part is accepted you can begin to manufacturer/make the part. If an assembly of parts is being made all parts and the assembly must be approved before manufacturing/making the assembly.   All parts (sketches) must be fully defined  All fastening holes (screw, bolt etc.. holes) must be done using hole wizard  Use relations to eliminate redundant dimensions  Parts must be made in MMGS scale  Parts must use  WARG\u2019s standard naming convention  Assemblies must contain ALL components fully defined and related such that distances are equal  Assemblies must have ALL holes concentric with fasteners of required length mated to the holes (check McMaster Carr if you need CAD models of fasteners)  NO assembly features  When making part revisions look at the previous version and identify any filing/drilling/sanding/machining you had to do to the parts to make them fit and ENSURE that the new part is modified so that the changes don\u2019t have to be made again.  Fillets/Chamfers of equal size must be made in the SAME feature. All fillets/chamfers must be added as features and NOT included in the sketches.  Ensure that your assemblies are manufacturable with appropriate tolerances (ie parts have clearance to be assembled and parts don\u2019t have to go through walls/break physics to work).  Consider the thickness and dimensions of parts to ensure that they are reasonable. A 3mm and 5mm thickness go a long way.  All of the relevant CAD files should be uploaded and synced on  GrabCad . The design will  NOT BE REVIEWED  if it is not on GrabCad. Screenshots and stl files do not suffice.   NOTE :  If you violate one of these commandments you must notify a team lead with a valid explanation as to the reason for violating the commandment", 
-            "title": "The 13 CAD Commandments"
-        }, 
-        {
-            "location": "/mechanical/cad-guidelines/#cad-naming-convention", 
-            "text": "All CAD files should adhere to the following naming convention (snake upper case):", 
-            "title": "CAD Naming Convention"
-        }, 
-        {
-            "location": "/mechanical/cad-guidelines/#for-regular-part-files", 
-            "text": "PROJECT_NAME __ SUBASSEMBLY_NAME _ PART## _ PART_NAME .SLDPRT  eg.  SPIKE__GIMBAL_03_OUTSIDE_CASE.SLDPRT", 
-            "title": "For regular part files"
-        }, 
-        {
-            "location": "/mechanical/cad-guidelines/#for-assemblies", 
-            "text": "PROJECT_NAME __ SUBASSEMBLY_NAME _00_ASSEMBLY.SLDASM  eg.  SPIKE__GIMBAL_00_ASSEMBLY.SLDASM", 
-            "title": "For assemblies"
-        }, 
-        {
-            "location": "/mechanical/cad-guidelines/#for-assemblies-within-assemblies", 
-            "text": "Create a folder with the same naming convention as the part, and follow the same naming convention inside the folder, prepending the project name.  For example, if the gimbal assembly contains a part camera which itself is also an assembly:   Create folder named  GIMBAL_02_CAMERA  Inside the folder follow the same naming convention, but prepend the original project name at the begining.   eg.  GIMBAL_00_ASSEMBLY.SLDASM\nGIMBAL_O1_CAMERA\n --  GIMBAL_CAMERA_00_ASSEMBLY.SLDASM\n --  GIMBAL_CAMERA_01_GO_PRO.SLDPRT", 
-            "title": "For assemblies within assemblies"
-        }, 
-        {
-            "location": "/mechanical/cad-guidelines/#for-drawings", 
-            "text": "In the assembly folder create another folder to store drawings.  PROJECT_NAME _DRAWINGS  For the actual part files, follow the same naming convention as above, and store them in this folder.", 
-            "title": "For drawings"
-        }, 
-        {
-            "location": "/mechanical/cad-guidelines/#renders", 
-            "text": "Create a seperate  Renders  folder within your project and dump all your renders there. No naming convention here", 
-            "title": "Renders"
-        }, 
-        {
-            "location": "/mechanical/cad-guidelines/#example", 
-            "text": "Project Name: DATA_RELAY_CASE  Sub Assemblies: Wooden Case, OrangePi", 
-            "title": "Example"
-        }, 
-        {
-            "location": "/mechanical/cad-guidelines/#project-root", 
-            "text": "", 
-            "title": "Project Root"
-        }, 
-        {
-            "location": "/mechanical/cad-guidelines/#sub-assembly", 
-            "text": "", 
-            "title": "Sub-assembly"
-        }, 
-        {
-            "location": "/mechanical/3d-printing-guidelines/", 
-            "text": "Guide to 3D Printing\n\n\nGeneral guidelines and requirements for 3D printing:\n\n\n\n\nGet your \nWATIMAKE 3D print certification\n.\n\n\nKeep in mind the orientation of the 3D print to maximize strength of the part, minimize support materials, and maximize feature accuracy.\n\n\nConsider the maximum build volume of the printer\n\n\nKeep in mind warping \u2013 the back part of the printer nearer to the extruder is warmer. Maintaining constant temperature will prevent warping due to rapid cooling. Therefore, if certain features are important put them closer to the extruder than the door to maintain a constant environment.\n\n\nConsider splitting large parts into multiple parts and using flanges/mating features to appropriately to attach together.\n\n\nConsider the material your using. ABS is more prone to warping and is no brittle. PLA warps less and is brittle.\n\n\nFilament is not cheap \u2013 consider the amount if infill, you should not be using more than 30% for a structural part.\n\n\nConsider the amount of shells (number of outer layers before infill begins) that you need 4-6 layers is appropriate.", 
-            "title": "3D Printing Guidelines"
-        }, 
-        {
-            "location": "/mechanical/3d-printing-guidelines/#guide-to-3d-printing", 
-            "text": "General guidelines and requirements for 3D printing:   Get your  WATIMAKE 3D print certification .  Keep in mind the orientation of the 3D print to maximize strength of the part, minimize support materials, and maximize feature accuracy.  Consider the maximum build volume of the printer  Keep in mind warping \u2013 the back part of the printer nearer to the extruder is warmer. Maintaining constant temperature will prevent warping due to rapid cooling. Therefore, if certain features are important put them closer to the extruder than the door to maintain a constant environment.  Consider splitting large parts into multiple parts and using flanges/mating features to appropriately to attach together.  Consider the material your using. ABS is more prone to warping and is no brittle. PLA warps less and is brittle.  Filament is not cheap \u2013 consider the amount if infill, you should not be using more than 30% for a structural part.  Consider the amount of shells (number of outer layers before infill begins) that you need 4-6 layers is appropriate.", 
-            "title": "Guide to 3D Printing"
-        }, 
-        {
-            "location": "/mechanical/grabcad/", 
-            "text": "GrabCad\n\n\nHere at WARG we use \nGrabCad Workbench\n for all of our CAD file management. It is a service like Google Drive and Github that's specially designed for sharing CAD files.\n\n\nNOTE\n: \nWe require that all CAD files (non-bootcamp) are uploaded to GrabCad. Please Do not directly send screenshots, stl files, or solidworks files directly to team leads or review! Send them the grabcad link instead\n\n\nFeatures\n\n\nGrabCad is completely free, and features:\n\n\n\n\nSyncing CAD files\n\n\nViewing CAD files from within a web browser\n\n\nRevision storage and rollback\n\n\nAttaching comments to files\n\n\n\n\nThat revision storage is a big one. We no longer have to have multiple files delimited by versions. Grabcad lets you view and rollback to previous version of the CAD file, in case something goes wrong.\n\n\nHow it works\n\n\nMuch like Github, GrabCad creates a new revision of the file when it detects a change in the file. GrabCad doesn't sync automatically, and instead waits for you to issue an upload. It does this so that a single file doesnt have hundreds of revisions from every time you've saved the file.\n\n\nHow to get started\n\n\nAfter you've completed the bootcamp, you will be able granted access to the WARG GrabCad.\n\n\nTo do this:\n\n\n\n\nSign up here: \nworkbench.grabcad.com\n\n\nRequest that a team lead send you a GrabCad invite to the WARG group\n\n\nDownload and install the \nGrabCad desktop app", 
-            "title": "GrabCad"
-        }, 
-        {
-            "location": "/mechanical/grabcad/#grabcad", 
-            "text": "Here at WARG we use  GrabCad Workbench  for all of our CAD file management. It is a service like Google Drive and Github that's specially designed for sharing CAD files.  NOTE :  We require that all CAD files (non-bootcamp) are uploaded to GrabCad. Please Do not directly send screenshots, stl files, or solidworks files directly to team leads or review! Send them the grabcad link instead", 
-            "title": "GrabCad"
-        }, 
-        {
-            "location": "/mechanical/grabcad/#features", 
-            "text": "GrabCad is completely free, and features:   Syncing CAD files  Viewing CAD files from within a web browser  Revision storage and rollback  Attaching comments to files   That revision storage is a big one. We no longer have to have multiple files delimited by versions. Grabcad lets you view and rollback to previous version of the CAD file, in case something goes wrong.", 
-            "title": "Features"
-        }, 
-        {
-            "location": "/mechanical/grabcad/#how-it-works", 
-            "text": "Much like Github, GrabCad creates a new revision of the file when it detects a change in the file. GrabCad doesn't sync automatically, and instead waits for you to issue an upload. It does this so that a single file doesnt have hundreds of revisions from every time you've saved the file.", 
-            "title": "How it works"
-        }, 
-        {
-            "location": "/mechanical/grabcad/#how-to-get-started", 
-            "text": "After you've completed the bootcamp, you will be able granted access to the WARG GrabCad.  To do this:   Sign up here:  workbench.grabcad.com  Request that a team lead send you a GrabCad invite to the WARG group  Download and install the  GrabCad desktop app", 
-            "title": "How to get started"
         }
     ]
 }

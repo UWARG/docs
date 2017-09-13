@@ -19,8 +19,8 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Table of Contents";
-    var mkdocs_page_input_path = "computer-vision\\index.md";
-    var mkdocs_page_url = "/computer-vision/";
+    var mkdocs_page_input_path = "zeropilot\\index.md";
+    var mkdocs_page_url = "/zeropilot/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -156,17 +156,23 @@
 		
     <span class="caption-text">ZeroPilot</span>
     <ul class="subnav">
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../zeropilot/">Table of Contents</a>
+    <a class="current" href="./">Table of Contents</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#zeropilot-table-of-contents">ZeroPilot Table of Contents</a></li>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../zeropilot/pinout_reference/">Pinout Reference</a>
+    <a class="" href="pinout_reference/">Pinout Reference</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../zeropilot/hardware/">Hardware</a>
+    <a class="" href="hardware/">Hardware</a>
                 </li>
     </ul>
 	    </li>
@@ -175,48 +181,33 @@
 		
     <span class="caption-text">Computer Vision</span>
     <ul class="subnav">
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Table of Contents</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#welcome-to-the-computer-vision-docs">Welcome to the Computer Vision Docs!</a></li>
-    
-
-    <li class="toctree-l3"><a href="#contents">Contents</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#installation">Installation</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../computer-vision/">Table of Contents</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="Building-the-project-%5BLinux%5D/">Building the project [Linux]</a>
+    <a class="" href="../computer-vision/Building-the-project-%5BLinux%5D/">Building the project [Linux]</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="Building-the-project-%5BWindows%5D/">Building the project [Windows]</a>
+    <a class="" href="../computer-vision/Building-the-project-%5BWindows%5D/">Building the project [Windows]</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="Coding-Conventions/">Coding Conventions</a>
+    <a class="" href="../computer-vision/Coding-Conventions/">Coding Conventions</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="Contributing/">Contributing</a>
+    <a class="" href="../computer-vision/Contributing/">Contributing</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="Using-the-WARG-server-environment/">Using the WARG computer environment</a>
+    <a class="" href="../computer-vision/Using-the-WARG-server-environment/">Using the WARG computer environment</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="Writing-Tests/">Writing Tests</a>
+    <a class="" href="../computer-vision/Writing-Tests/">Writing Tests</a>
                 </li>
     </ul>
 	    </li>
@@ -333,14 +324,14 @@
     
       
         
-          <li>Computer Vision &raquo;</li>
+          <li>ZeroPilot &raquo;</li>
         
       
     
     <li>Table of Contents</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/UWARG/edit/master/docs/computer-vision\index.md"
+        <a href="https://github.com/UWARG/edit/master/docs/zeropilot\index.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -350,31 +341,12 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="welcome-to-the-computer-vision-docs">Welcome to the Computer Vision Docs!</h1>
-<h1 id="contents">Contents</h1>
+                <h1 id="zeropilot-table-of-contents">ZeroPilot Table of Contents</h1>
 <ul>
-<li><a href="../Building-the-project-%5BLinux%5D">Building the project - Linux</a></li>
-<li><a href="../Building-the-project-%5BWindows%5D">Building the project - Windows</a></li>
-<li><a href="../Coding-Conventions">Coding Conventions</a></li>
-<li><a href="../Using-the-WARG-server-environment">Using the WARG Server Environment</a></li>
-<li><a href="../Contributing">Contributing</a></li>
-<li><a href="../Writing-Tests">Writing Tests</a></li>
+<li><a href="../hardware/pinout_reference">Pinout Reference</a></li>
+<li><a href="../zeropilot/hardware">Hardware</a></li>
+<li>Software documentation coming soon</li>
 </ul>
-<h2 id="installation">Installation</h2>
-<p>The installation process depends on what system you have. WARG-CV runs on Linux. However, in case you don’t have Linux, we have premade a DockerFile, so that you can setup a virtual image on any system.
-You may be able to get the project to compile on Mac OS X, but that is up to you to figure out.</p>
-<p>If you don't have a Linux environment, don't worry! You can download a docker image. It is essentially a premade virtual machine.</p>
-<ul>
-<li>Go to <a href="https://docs.docker.com/mac/">https://docs.docker.com/mac/</a> for Mac systems</li>
-<li>Go to <a href="https://docs.docker.com/windows/">https://docs.docker.com/windows/</a> for Windows systems.</li>
-</ul>
-<p>Once docker is installed you can get our docker image by running <code>docker pull uwarg/warg-cv</code></p>
-<p>After the image has been fetched:</p>
-<ol>
-<li><code>docker create -it --name cv uwarg/warg-cv</code> to create a new container using the warg-cv image called cv</li>
-<li><code>docker exec -it cv bash</code> to enter the container</li>
-</ol>
-<p>When you want to use the container again in future, use docker exec (as in step 2 above). There is no need to create a new container unless the image has changed.</p>
               
             </div>
           </div>
@@ -382,10 +354,10 @@ You may be able to get the project to compile on Mac OS X, but that is up to you
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Building-the-project-%5BLinux%5D/" class="btn btn-neutral float-right" title="Building the project [Linux]">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="pinout_reference/" class="btn btn-neutral float-right" title="Pinout Reference">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../zeropilot/hardware/" class="btn btn-neutral" title="Hardware"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../groundstation/resources/" class="btn btn-neutral" title="Additional Resources"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -415,10 +387,10 @@ You may be able to get the project to compile on Mac OS X, but that is up to you
           <a href="https://github.com/UWARG/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../zeropilot/hardware/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../groundstation/resources/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="Building-the-project-%5BLinux%5D/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="pinout_reference/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

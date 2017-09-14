@@ -211,7 +211,7 @@ This board has 2 dspic33fj256710a chips. This is the PCB for the board. This is 
 
 To get a full list of the different pins, look at the schematic on GrabCad. Highlighted below are the ground connections (and you are politely reminded to NEVER connect these pins to anything but ground, always check before connecting cables).
 
-![Ground Pins](../images/picpilot/ground_net.jpg)
+![Ground Pins](images/picpilot/ground_net.jpg)
 
 
 ## Project files

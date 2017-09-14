@@ -1,6 +1,5 @@
+# Welcome to the ZeroPilot Documentation!
 
-# ZeroPilot Table of Contents
-
-- [Pinout Reference](hardware/pinout_reference)
+- [Introduction](zeropilot/introduction)
 - [Hardware](zeropilot/hardware)
-- Software documentation coming soon
+- [Pinout Reference](zeropilot/pinout_reference)

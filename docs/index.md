@@ -18,10 +18,11 @@ The official source of all your WARG needs. Joking, there's only documentation a
 
 ## Projects Documentation
 
-- [PicPilot Documentation](picpilot/index.md)
+- [ZeroPilot Documentation](zeropilot/index.md)
 - [Groundstation Documentation](groundstation/index.md)
 - [Computer Vision Documentation](computer-vision/index.md)
 - [Mechanical Documentation](mechanical/index.md)
+- [PICPilot Documentation](picpilot/index.md)
 
 ## Tutorials
 - [Git Tutorial](./tutorials/git.md)

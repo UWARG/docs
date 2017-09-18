@@ -26,11 +26,20 @@ Git is a version control system we use to manage changes in our code. If you are
 
 ### GNU ARM Embedded
 
-[download](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)
+GNU ARM Embedded is the toolchain (compiler, etc.) that will be used to build the software for ZeroPilot.
+
+- [Download link](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)
+- [Installation instructions](https://gnu-mcu-eclipse.github.io/toolchain/arm/install/)
+
 
 ### GNU MCU Eclipse
 
-[link](https://github.com/gnu-mcu-eclipse/org.eclipse.epp.packages/releases/)
+GNU MCU Eclipse is and Integrated Devlelopemnt Environment (IDE) build on Eclipse that had been designed for programming ARM micorcontrollers.
+
+- [Download link](https://github.com/gnu-mcu-eclipse/org.eclipse.epp.packages/releases/)
+- [Installation instructions](https://gnu-mcu-eclipse.github.io/install/)
+    - Note that you will not need to install SEGGER J-Link or QEMU.
+
 
 ## System Overview
 

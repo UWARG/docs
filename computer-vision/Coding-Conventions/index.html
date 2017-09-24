@@ -19,7 +19,7 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Coding Conventions";
-    var mkdocs_page_input_path = "computer-vision\\Coding-Conventions.md";
+    var mkdocs_page_input_path = "computer-vision/Coding-Conventions.md";
     var mkdocs_page_url = "/computer-vision/Coding-Conventions/";
   </script>
   
@@ -181,11 +181,11 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../Building-the-project-%5BLinux%5D/">Building the project [Linux]</a>
+    <a class="" href="../Building-the-project-[Linux]/">Building the project [Linux]</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../Building-the-project-%5BWindows%5D/">Building the project [Windows]</a>
+    <a class="" href="../Building-the-project-[Windows]/">Building the project [Windows]</a>
                 </li>
                 <li class=" current">
                     
@@ -209,7 +209,9 @@
         
             <li><a class="toctree-l4" href="#indentation">Indentation:</a></li>
         
-            <li><a class="toctree-l4" href="#brackets">brackets:</a></li>
+            <li><a class="toctree-l4" href="#brackets">Brackets:</a></li>
+        
+            <li><a class="toctree-l4" href="#arithmetic">Arithmetic</a></li>
         
         </ul>
     
@@ -365,7 +367,7 @@
     <li>Coding Conventions</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/UWARG/edit/master/docs/computer-vision\Coding-Conventions.md"
+        <a href="https://github.com/UWARG/edit/master/docs/computer-vision/Coding-Conventions.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -378,24 +380,73 @@
                 <h2 id="coding-conventions">Coding Conventions</h2>
 <h2 id="code">Code</h2>
 <h4 id="variable-names">Variable Names:</h4>
-<p>varName</p>
+<ul>
+<li>Lower camel case</li>
+</ul>
+<p>e.g. <code>varName</code></p>
 <h4 id="constant-names">Constant Names:</h4>
-<p>CONST_NAME</p>
+<ul>
+<li>Upper snake case</li>
+</ul>
+<p>e.g. <code>CONST_NAME</code></p>
 <h4 id="function-names">Function Names:</h4>
-<p>function_name</p>
+<ul>
+<li>Lower snake case</li>
+</ul>
+<p>e.g. <code>function_name</code></p>
 <h4 id="class-names">Class Names:</h4>
-<p>ClassName</p>
+<ul>
+<li>Upper camel case</li>
+</ul>
+<p>e.g. <code>ClassName</code></p>
 <h4 id="indentation">Indentation:</h4>
-<p>4 spaces per level of indentation</p>
-<h4 id="brackets">brackets:</h4>
+<ul>
+<li>4 spaces per level of indentation</li>
+<li>No tabs</li>
+</ul>
+<h4 id="brackets">Brackets:</h4>
+<ul>
+<li>Single space before opening brackets</li>
+<li>Single space after closing brackets if followed by an else</li>
+<li>No space before opening parentheses in function declarations/definitions</li>
+<li>Single space before opening parentheses in if statements</li>
+</ul>
 <pre><code class="c++">void foo_bar(int i) {
     int varName = (i + 2)/2;
+
+    if (true) {
+
+    } else if (false) {
+
+    } else {
+
+    }
 }
+</code></pre>
+
+<h4 id="arithmetic">Arithmetic</h4>
+<ul>
+<li>No spaces around <code>*</code>, <code>/</code>, <code>%</code> and operators with higher precedence than them (e.g. <code>++</code>, <code>--</code>, <code>::</code>, <code>!</code>) with the exceptions of c-style casts and the sizeof operator, which should only have a space preceding them.</li>
+<li>Single space on either side of <code>+</code>, <code>-</code> and operators with lower precedence than them (e.g. <code>&lt;&lt;</code>, <code>==</code>, <code>||</code>) with the exception of comma <code>,</code>, which only has a space following it.</li>
+</ul>
+<pre><code class="c++">int varName = (i + 2)/2;
+int rem = (i + 2)%2;
+int i, j;
+i = (int)(2.5*2);
+bool x = i == 2 || j == 3;
+size_t s = sizeof(int);
+size_t s = sizeof(x); // avoid using 'sizeof x' as it can lead to ambiguity when followed by a more complicated expression,
 </code></pre>
 
 <h2 id="file-structure">File Structure</h2>
 <h4 id="file-names">File Names:</h4>
-<p>file_name.ext</p>
+<ul>
+<li>Lower snake case for source and header files, with the name of the file matching class the file contains if the file contains a class (but in lower snake case instead of upper camel case)</li>
+<li>Note CMake uses upper camel case for its files</li>
+<li>executables and scripts should be lower-case with a dash separating words</li>
+</ul>
+<p>e.g. header: <code>file_name.h</code></p>
+<p>e.g. executable: <code>warg-cv</code></p>
 <h4 id="directory-structure">Directory Structure:</h4>
 <pre><code>|-- computer-vision
     |-- modules
@@ -411,6 +462,18 @@
 </code></pre>
 
 <h4 id="header-file-formatting">Header File Formatting</h4>
+<ul>
+<li>Header files should include a doxygen <code>@file</code> block identical to the one below (use correct file name)</li>
+<li>If the file contains a class declaration, it should also include a doxygen <code>@class</code> block with at minimum a @brief description (Brief descriptions are always shown in doxygen, while long descriptions are ommitted in the brief overview of the functions and this will be blank if no <code>@brief</code> is included)</li>
+<li>All functions in the header file should have a doxygen comment block containing at minimum a <code>@brief</code> description<ul>
+<li>A longer description, if warranted, should include a description of the function's contract (i.e. the guaranteed results of the function) as well as any other information pertinent to anyone calling the function</li>
+<li>Function parameters should be described with an <code>@param</code> description</li>
+<li>Function return value should be described with an <code>@returns</code> description</li>
+<li>If the function may throw an exception, the circumstances of this and the type of exception thrown should be described in the long description of the function</li>
+</ul>
+</li>
+<li>All variables and constants in the header file should have a doxygen comment with at minimum a <code>@brief</code> description</li>
+</ul>
 <pre><code class="c++">/**
  * @file foo.h
  * @author WARG
@@ -436,7 +499,7 @@
  *
  * Foo description goes here
  *
- * @brief optional briefer description goes here
+ * @brief Brief description goes here
  */
 
 class Foo : public Bar {
@@ -458,7 +521,7 @@ public:
 
 private:
     /**
-     * Description of baz
+     * @brief Description of baz
      */
      int baz;
 
@@ -468,8 +531,15 @@ private:
 </code></pre>
 
 <h4 id="source-file-formatting">Source file formatting</h4>
-<pre><code class="c++">/*
- * This file is part of WARG's computer-vision
+<ul>
+<li>Source files should include a doxygen <code>@file</code> block identical to the one below (use correct file name)</li>
+<li>Source files are not required to have doxygen formatting, but it is recommended that you use it if declaring classes/functions/variables etc. inside the source file</li>
+</ul>
+<pre><code class="c++">/**
+ * @file foo.h
+ * @author WARG
+ *
+ * @section LICENSE
  *
  * Copyright (c) 2015-2016, Waterloo Aerial Robotics Group (WARG)
  * All rights reserved.
@@ -486,7 +556,7 @@ private:
 Foo::Foo(int baz) : baz(baz) { }
 
 int Foo::get_baz() {
-    // note that while documentation is not needed in source files
+    // note that while documentation is not required in source files
     //     comments are greatly appreciated
     return baz;
 }
@@ -502,7 +572,7 @@ int Foo::get_baz() {
         <a href="../Contributing/" class="btn btn-neutral float-right" title="Contributing">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../Building-the-project-%5BWindows%5D/" class="btn btn-neutral" title="Building the project [Windows]"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Building-the-project-[Windows]/" class="btn btn-neutral" title="Building the project [Windows]"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -532,7 +602,7 @@ int Foo::get_baz() {
           <a href="https://github.com/UWARG/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../Building-the-project-%5BWindows%5D/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Building-the-project-[Windows]/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../Contributing/" style="color: #fcfcfc">Next &raquo;</a></span>

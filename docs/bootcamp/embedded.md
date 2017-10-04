@@ -42,8 +42,11 @@ You are tasked with implementing this feature for the autopilot.
 - Feel free to use the existing code as reference
 - The datalink documentation (the data the groundstation received) can be found [here](../picpilot/datalink.md)
 
-### Git
-The code for the picpilot is hosted on [Github](http://www.github.com/uwarg/PicPilot). You will have to fork the repository to make your changes. Also its recommended that you make your own branch. If you don't know what git or github is, or how to use it, please read this [git and github tutorial](../tutorials/git.md) that we wrote.
+### Installation
+
+To install the IDE and compiler, go to the [PICPilot documentation](../picpilot/introduction.md). 
+
+To get the codebase, fork the repository from Github from [Github](http://www.github.com/uwarg/PicPilot). You will have to fork the repository to make your changes. Also its recommended that you make your own branch. If you don't know what git or github is, or how to use it, please read this [git and github tutorial](../tutorials/git.md) that we wrote.
 
 ### Submission
 To submit your work, create a pull request of your fork against the main PicPilot repository. Name your pull request `Bootcamp by YOURNAME`. Tell the responsible team lead that you've completed the bootcamp and they will review your submission. You may be asked to revise some things.

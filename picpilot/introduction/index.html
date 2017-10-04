@@ -19,7 +19,7 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Introduction";
-    var mkdocs_page_input_path = "picpilot/introduction.md";
+    var mkdocs_page_input_path = "picpilot\\introduction.md";
     var mkdocs_page_url = "/picpilot/introduction/";
   </script>
   
@@ -181,11 +181,11 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../../computer-vision/Building-the-project-[Linux]/">Building the project [Linux]</a>
+    <a class="" href="../../computer-vision/Building-the-project-%5BLinux%5D/">Building the project [Linux]</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../computer-vision/Building-the-project-[Windows]/">Building the project [Windows]</a>
+    <a class="" href="../../computer-vision/Building-the-project-%5BWindows%5D/">Building the project [Windows]</a>
                 </li>
                 <li class="">
                     
@@ -355,7 +355,7 @@
     <li>Introduction</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/UWARG/edit/master/docs/picpilot/introduction.md"
+        <a href="https://github.com/UWARG/edit/master/docs/picpilot\introduction.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -370,10 +370,18 @@
 <p>This software is designed to be used with two communicating microcontrollers (essential double cores). Due to the atypical nature of the software, it is recommended to view the board schematics <a href="https://drive.google.com/file/d/0BySpWXvmBM4JTTBIQmR0bXVOd1k/edit?usp=sharing">here</a>. The schematics are also included in another section of this document.</p>
 <p>The two processors are allocated to two individual tasks. The chip which is responsible for attitude management is often referred to as the "main" chip. It is responsible for making corrections to the planes orientation in space, which involves pitch, roll, yaw, heading, throttle, and altitude. It also manages a few additional tasks involving relaying communication with the ground station. The second processor is often referred to as the "Path Manager". This chip controls the where the plane should fly (path), and the transitions in altitude and heading between each waypoint (specific GPS coordinates). It also controls the GPS and altitude sensors. These two chips work asynchronously from one another in order to automate the plane.</p>
 <h2 id="setup">Setup</h2>
-<p>To get started, you will need three things:
-<em> A Git Client - https://github.com/
-</em> MPLAB XC16 Compiler (16-bit) - http://www.microchip.com/pagehandler/en-us/family/mplabx/home.html?tab=t2#tab-2
-* (Optional) MPLAB X IDE - http://www.microchip.com/pagehandler/en-us/family/mplabx/home.html?tab=t2#tab-2</p>
+<p>To get started, you will need three things:</p>
+<ul>
+<li>
+<p><a href="https://github.com/">A Git Client</a></p>
+</li>
+<li>
+<p><a href="http://www.microchip.com/pagehandler/en-us/family/mplabx/home.html?tab=t2#tab-2">MPLAB XC16 Compiler (16-bit)</a></p>
+</li>
+<li>
+<p><a href="http://www.microchip.com/pagehandler/en-us/family/mplabx/home.html?tab=t2#tab-2">(Optional) MPLAB X IDE</a></p>
+</li>
+</ul>
 <h2 id="github-setup">Github Setup</h2>
 <p>A similar powerpoint presentation can be found here:<a href="https://docs.google.com/presentation/d/1HkjCdRQyY1LFaUO-24SxHGLx4cgeq_Z5OWQQNKFfidM/edit?usp=sharing">https://docs.google.com/presentation/d/1HkjCdRQyY1LFaUO-24SxHGLx4cgeq_Z5OWQQNKFfidM/edit?usp=sharing</a></p>
 <p>If you are not using the GUI skip this section.</p>

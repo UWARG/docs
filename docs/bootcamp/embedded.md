@@ -12,7 +12,7 @@ WARG members often find that joining this team requires more knowledge and has a
 - Learn how to track code revisions and perform code reviews via Git
 
 ## Bootcamp Outline
-This Bootcamp has two options, both of which require a team lead's approval of completion in order to move onto working on other tasks. The estimated time of completion for this Bootcamp is 1 week. 
+This Bootcamp has two options, both of which require a team lead's approval of completion in order to move onto working on other tasks. The estimated time of completion for this Bootcamp is 1 week.
 
 **Note**: *This will vary depending on your expirience level in programming. This is a rough estimate and don't get discouraged if it takes you longer!*
 
@@ -20,35 +20,36 @@ This Bootcamp has two options, both of which require a team lead's approval of c
 
 ### Background
 
-The groundstation is the main line of communication between the aircraft and the ground control crew. Even though the aircraft is completely automonous, someone's gotta tell it what to do and where to go.
+The groundstation is the main line of communication between the aircraft and the ground control crew. Even though the aircraft is completely autonomous, someone's got to tell it what to do and where to go.
 
-The aircraft's autopilot (called the PicPilot) is what manages the communication to the groundstation from the aircraft. The groundstation communicates with the plane by sending it integer-based commmands, through the xbee data link. The autopilot interprets the command, and can choose to perform a certain action in response.
+The aircraft's autopilot (called the PicPilot) is what manages the communication to the groundstation from the aircraft. The groundstation communicates with the plane by sending it integer-based commmands, through the XBee data link. The autopilot interprets the command, and can choose to perform a certain action in response.
 
-The aircraft is also equiped with 2 modules for the purposes of the competition. A go pro camera attached the front of the aircarft for taking aerial photos, and a probe drop module that's capable of dropping its payload (toilet papers).
+The aircraft is also equipped with 2 modules for the purposes of the competition. A go pro camera attached the front of the aircraft for taking aerial photos, and a probe drop module that's capable of dropping its payload.
 
 ### Task
 
-In order to make it easier to track the location of dropped probes, the ground station operators would like to send a command to the autopilot that will both:
+The groundstation operator has to be able to send a command to drop the probe, which involves actuating a servo using PWM. There are 3 probe drops, so you will have to write some code to manage the 3 separate servos.
 
-1. Drop one of the three probes
-2. Trigger a camera to take a shot
-
-The groundstation will send a value along with the command that can either be 1, 2, or 3, indicating the probe to drop.
+The command will be a multi-part command. The first part will tell the autopilot which servo to operate (1,2, or 3), and the second part will tell the autopilot what position the servo should be in (opened or closed). All servos should be closed on startup.
 
 You are tasked with implementing this feature for the autopilot.
 
 ### Hints
 - Because of resource constraints, you will not have the ability to actually test the code. Just make sure it compiles
-- The code to drop a probe or trigger a camera **ALREADY** exists. You just have to write the code that actually executes them when a command is received from the groundstation
+- Use the PWM.c file to actuate the servo. Set reasonable constants for minimum and maximum PWM for the probe drop servo.
+- Make sure you use a PWM channel that is currently not in use, and make sure to initialize it when the vehicle arms.
 - You can name the command whatever you want, but it has to be sensible and match the already existing command naming convention
-- Feel free to use the existing code as reference (code for dropping probe and triggering camera seperately already exist)
+- Feel free to use the existing code as reference
 - The datalink documentation (the data the groundstation received) can be found [here](../picpilot/datalink.md)
 
-### Git
-The code for the picpilot is hosted on [Github](http://www.github.com/uwarg/PicPilot). You will have to fork the repository to make your changes. Also its recommened that you make your own branch. If you don't know what git or github is, or how to use it, please read this [git and github tutorial](../tutorials/git.md) that we wrote.
+### Installation
+
+To install the IDE and compiler, go to the [PICPilot documentation](../picpilot/introduction.md). 
+
+To get the codebase, fork the repository from Github from [Github](http://www.github.com/uwarg/PicPilot). You will have to fork the repository to make your changes. Also its recommended that you make your own branch. If you don't know what git or github is, or how to use it, please read this [git and github tutorial](../tutorials/git.md) that we wrote.
 
 ### Submission
-To submit your work, create a pull request of your fork against the main picpilot repository. Name your pull request `Bootcamp by YOURNAME`. Tell the responsible team lead that you've completed the bootcamp and they will review your submission. You may be asked to revise some things.
+To submit your work, create a pull request of your fork against the main PicPilot repository. Name your pull request `Bootcamp by YOURNAME`. Tell the responsible team lead that you've completed the bootcamp and they will review your submission. You may be asked to revise some things.
 
 **Note**: *If you would really like to test out the code, come to one of the work days and we'll show  you how to program the picpilot and actually test it out*
 
@@ -65,6 +66,3 @@ If you have worked on the PicPilot before, and feel that you've made a significa
 ## Completion of Bootcamp
 
 Upon the approved completion of the Bootcamp by a Team Lead you are now eligible to work on other tasks related to the picpilot! If you have any feedback you would like to give to make this Bootcamp better please let a team lead know as we want this to be the best and most informative introduction to the team as possible.
-
-
-

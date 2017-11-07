@@ -38,11 +38,12 @@ Use the command `python data_relay.py`. If it started correctly, it should print
 
 To see what options are available, use `python data_relay.py -h` to view all the possible parameters
 
-### 4. Stopping the script
 
-Currently it is hard to stop the data relay due to the way the code was structured. The code is synchronous so CTRL+C doesn't work as usual. This bug is being investigated and will soon be fixed.
+## Manually Sending Commands
 
-To stop the process, use the `pkill python`. This will kill all python processes. To view the running processes, use `ps`. This will let you see if the data relay is already running.
+The data relay can recieve commands in 2 ways. The normal way to send commands is through the ground station, using a TCP network connection. However, there is a way to manually send it commands from the data relay computer.
+
+Once the script is started, a command prompt should come up, starting with `(Cmd) `. To manually send a command, type `cmd` then type the command you want, or press tab to view possible commands. Send any command data after the colon. To view the format of the commands, view the `commands.py` file.
 
 ## Simulator
 

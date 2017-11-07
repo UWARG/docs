@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "WARG Docs\n\n\nThe official source of all your WARG needs. Joking, there's only documentation and GIFs here. Enjoy!\n\n\n\n\n\n\n\nCompetition\n\n\n\n\nUAS 2017 Competition Homepage\n\n\nCompetition Canops\n\n\n\n\nBootcamps\n\n\n\n\nMechanical Bootcamp\n\n\nElectrical Bootcamp\n\n\nGroundstation Bootcamp\n\n\nComputer Vision Bootcamp\n\n\nEmbedded Software Bootcamp\n\n\n\n\nProjects Documentation\n\n\n\n\nPicPilot Documentation\n\n\nGroundstation Documentation\n\n\nComputer Vision Documentation\n\n\nMechanical Documentation\n\n\n\n\nTutorials\n\n\n\n\nGit Tutorial\n\n\nCommand Line Tutorial\n\n\n\n\nAPI Documentation\n\n\n\n\nComputer Vision API Docs\n\n\nGround Station API Docs", 
+            "text": "WARG Docs\n\n\nThe official source of all your WARG needs. Joking, there's only documentation and GIFs here. Enjoy!\n\n\n\n\n\n\n\nCompetition\n\n\n\n\nUAS 2017 Competition Homepage\n\n\nCompetition Canops\n\n\n\n\nBootcamps\n\n\n\n\nMechanical Bootcamp\n\n\nElectrical Bootcamp\n\n\nGroundstation Bootcamp\n\n\nComputer Vision Bootcamp\n\n\nEmbedded Software Bootcamp\n\n\n\n\nProjects Documentation\n\n\n\n\nPicPilot Documentation\n\n\nGroundstation Documentation\n\n\nNetwork Documentation\n\n\nComputer Vision Documentation\n\n\nMechanical Documentation\n\n\n\n\nTutorials\n\n\n\n\nGit Tutorial\n\n\nCommand Line Tutorial\n\n\n\n\nAPI Documentation\n\n\n\n\nComputer Vision API Docs\n\n\nGround Station API Docs", 
             "title": "Home"
         }, 
         {
@@ -22,7 +22,7 @@
         }, 
         {
             "location": "/#projects-documentation", 
-            "text": "PicPilot Documentation  Groundstation Documentation  Computer Vision Documentation  Mechanical Documentation", 
+            "text": "PicPilot Documentation  Groundstation Documentation  Network Documentation  Computer Vision Documentation  Mechanical Documentation", 
             "title": "Projects Documentation"
         }, 
         {
@@ -949,6 +949,76 @@
             "location": "/zeropilot/hardware/#schematic-conventions", 
             "text": "To make sure the schematic looks clean and consistent, we have standardized convetions for schematic design.   Keep as much circuitry off of the main page as possible. KiCad works in hierarchical structure, so the main page should essentially be a block diagram to show how the schematic is structured  Use busses for cleanliness. It is possible to just put net names for everything and the schematic can be connected that way. However, this is very hard to read and follow where everything is going. If the distance is short, just use lines to connect the pins together. If there are multiple similar signals (such as UART), group them into a bus so that it is visually obvious where else it connects to. It is acceptable for power to be connected only via net names.  Make sure the schematic flows left to right. Because of how we read english, we look at the schematic from left to right. This means that all inputs should be on the left side, and all outputs should be on the right side. For example, the power circuit should always be on the left side of the schematic since it is the input for the system. PWMs are on the right since that is the final output for the system.  Make sure to use standard WARG or KiCad attribute names. If you need a specific attribute on a part, add its name here for reference.   -part_num: WARG's unique part number that maps to the component library\n-no_load: This parameter should be used if a component isn't always be soldered onto the board. Use the value  NO LOAD  to indicate this.   When you fabricate a board, make a Github release and attached the gerber files to it. This makes it easy to track what is being fabricated. Do the same for the WARG-KiCad library when you order the components for the board, and attach the bill of materials to the release.  Use common sense. Make the schematic look clean and understandable, even if it means taking a couple hours after a schematic change to make it look nice. Having an easy to understand schematic will make debugging the PCB and schematic issues a much more pleasant experience.", 
             "title": "Schematic Conventions"
+        }, 
+        {
+            "location": "/network/data_relay/", 
+            "text": "Data Relay\n\n\nPurpose\n\n\nThe data relay is a python script that can run on any computer and is primarly run on Raspberry Pi. It is the communication link with the vehicles and the ground stations. It communicates with XBees over a serial USB connection to receive and transmit data like commands from the ground station and telemetry coming from the UAV. The relay has a TCP connection over its network to communicate with various ground devices such as ground stations, tracking antennas, computer vision software, and WARG's android app. The benefit of this system is to allow multiple planes to communicate with multiple ground stations to give flexibility and redundancy.\n\n\nSeparating the ground station from the data relay makes our system safer by ensuring the plane will still fly if a ground station fails. If the ground station fails for any reason, another ground station can take its place and continue the UAV flight. To get write access, the ground stations sends 'commander' to the ground station over the TCP connection. This extra step ensure that other applications connected to the data relay will never accidentally send a command to the plane.\n\n\nSetup\n\n\nThe installation instructions can be found in the \ngithub README.md\n. These setup instructions will assist you in setting up the Raspberry Pi to run the data relay\n\n\n1. Setup the Hardware\n\n\nStep 1... plug in the device (duh). Connect power to the Raspberry Pi. Either plug in an ethernet cable to the Pi's ethernet port or connect it to the Wifi network. Plug in the XBee via USB cable unless you are planning to just use the Xbee simulator.\n\n\n2. Connecting the the Raspberry Pi\n\n\nThere are multiple ways to connect to the Raspberry Pi:\n\n\nThe easiest way to start the data relay script is to plug in a monitor and keyboard to the Pi. A terminal window will appear where you can run commands and start the script from.\n\n\nAn SSH connection is helpful and is what is usually used on the flight line to connect to the Raspberry Pi. To do this, type the following command:\n\n\nssh root@192.168.1.103\n\nThe IP address might be slightly different, and depending on the type of Raspberry Pi it might be \npi@[IP address]\n.\n\n\nIf you do this method, type \nscreen\n as the first command. This will make sure the script will still run even if the ssh connection breaks.\n\n\nYou can also setup the raspberry Pi to start the python script on startup so you don't need to connect to it at all. There are multiple ways to do this and currently have some issues, so this will be documented once a good method is figured out.\n\n\n3. Running the script\n\n\nAssuming the script isn't configured to run on startup, use the following command to start the data relay:\n\n\nIf you used ssh, first use the \nscreen\n command.\n\n\nUse the command \npython data_relay.py\n. If it started correctly, it should print out \nwriting headers\n\n\nTo see what options are available, use \npython data_relay.py -h\n to view all the possible parameters\n\n\nManually Sending Commands\n\n\nThe data relay can recieve commands in 2 ways. The normal way to send commands is through the ground station, using a TCP network connection. However, there is a way to manually send it commands from the data relay computer.\n\n\nOnce the script is started, a command prompt should come up, starting with \n(Cmd)\n. To manually send a command, type \ncmd\n then type the command you want, or press tab to view possible commands. Send any command data after the colon. To view the format of the commands, view the \ncommands.py\n file.\n\n\nSimulator\n\n\nThe data relay has the ability to run without an Xbee connected for debuggin purposes. It uses a csv file to print out data from a previous flight to simlate plane data. Use the --simfile parameter to use the simulator:\n\n\npython data_relay.py --simfile FILENAME.csv\n\n\nThe data relay can also simulate the XBee link to the autopilot system using a USB-uart dongle. Connect a USB-uart dongle from the data relay computer to the XBee port on the autopilot board. Use the --uart command to enable this feature:\n\npython data_relay.py --uart\n\n\nNetwork Connection\n\n\nThe data relay communicates to ground stations and other apps using a TCP connection. To enable ground stations to find the data relay computer without needing its IP address, the ground station broadcasts on a UDP connection to see if there are any data relays on the network. The data relay will respond to the UDP broadcast with a UDP packet to the IP address of the broadcast. The packet will include the IP address and port number of the data relay. The port number can also be seen in the data relay logs in the terminal. After this, the ground station will connect to the TCP connection. The TCP connection is more stable than a UDP connection and has a handshake protocol to make sure the ground station is connected to the data relay.\n\n\nThe data relay can use just the TCP mode if the UDP connection is unwanted. The legacy TCP information is below. Use --legacy_port to enable this:\n\n\nIP: 192.168.1.103\nPort: 1234", 
+            "title": "Data Relay"
+        }, 
+        {
+            "location": "/network/data_relay/#data-relay", 
+            "text": "", 
+            "title": "Data Relay"
+        }, 
+        {
+            "location": "/network/data_relay/#purpose", 
+            "text": "The data relay is a python script that can run on any computer and is primarly run on Raspberry Pi. It is the communication link with the vehicles and the ground stations. It communicates with XBees over a serial USB connection to receive and transmit data like commands from the ground station and telemetry coming from the UAV. The relay has a TCP connection over its network to communicate with various ground devices such as ground stations, tracking antennas, computer vision software, and WARG's android app. The benefit of this system is to allow multiple planes to communicate with multiple ground stations to give flexibility and redundancy.  Separating the ground station from the data relay makes our system safer by ensuring the plane will still fly if a ground station fails. If the ground station fails for any reason, another ground station can take its place and continue the UAV flight. To get write access, the ground stations sends 'commander' to the ground station over the TCP connection. This extra step ensure that other applications connected to the data relay will never accidentally send a command to the plane.", 
+            "title": "Purpose"
+        }, 
+        {
+            "location": "/network/data_relay/#setup", 
+            "text": "The installation instructions can be found in the  github README.md . These setup instructions will assist you in setting up the Raspberry Pi to run the data relay", 
+            "title": "Setup"
+        }, 
+        {
+            "location": "/network/data_relay/#1-setup-the-hardware", 
+            "text": "Step 1... plug in the device (duh). Connect power to the Raspberry Pi. Either plug in an ethernet cable to the Pi's ethernet port or connect it to the Wifi network. Plug in the XBee via USB cable unless you are planning to just use the Xbee simulator.", 
+            "title": "1. Setup the Hardware"
+        }, 
+        {
+            "location": "/network/data_relay/#2-connecting-the-the-raspberry-pi", 
+            "text": "There are multiple ways to connect to the Raspberry Pi:  The easiest way to start the data relay script is to plug in a monitor and keyboard to the Pi. A terminal window will appear where you can run commands and start the script from.  An SSH connection is helpful and is what is usually used on the flight line to connect to the Raspberry Pi. To do this, type the following command:  ssh root@192.168.1.103 \nThe IP address might be slightly different, and depending on the type of Raspberry Pi it might be  pi@[IP address] .  If you do this method, type  screen  as the first command. This will make sure the script will still run even if the ssh connection breaks.  You can also setup the raspberry Pi to start the python script on startup so you don't need to connect to it at all. There are multiple ways to do this and currently have some issues, so this will be documented once a good method is figured out.", 
+            "title": "2. Connecting the the Raspberry Pi"
+        }, 
+        {
+            "location": "/network/data_relay/#3-running-the-script", 
+            "text": "Assuming the script isn't configured to run on startup, use the following command to start the data relay:  If you used ssh, first use the  screen  command.  Use the command  python data_relay.py . If it started correctly, it should print out  writing headers  To see what options are available, use  python data_relay.py -h  to view all the possible parameters", 
+            "title": "3. Running the script"
+        }, 
+        {
+            "location": "/network/data_relay/#manually-sending-commands", 
+            "text": "The data relay can recieve commands in 2 ways. The normal way to send commands is through the ground station, using a TCP network connection. However, there is a way to manually send it commands from the data relay computer.  Once the script is started, a command prompt should come up, starting with  (Cmd) . To manually send a command, type  cmd  then type the command you want, or press tab to view possible commands. Send any command data after the colon. To view the format of the commands, view the  commands.py  file.", 
+            "title": "Manually Sending Commands"
+        }, 
+        {
+            "location": "/network/data_relay/#simulator", 
+            "text": "The data relay has the ability to run without an Xbee connected for debuggin purposes. It uses a csv file to print out data from a previous flight to simlate plane data. Use the --simfile parameter to use the simulator:  python data_relay.py --simfile FILENAME.csv  The data relay can also simulate the XBee link to the autopilot system using a USB-uart dongle. Connect a USB-uart dongle from the data relay computer to the XBee port on the autopilot board. Use the --uart command to enable this feature: python data_relay.py --uart", 
+            "title": "Simulator"
+        }, 
+        {
+            "location": "/network/data_relay/#network-connection", 
+            "text": "The data relay communicates to ground stations and other apps using a TCP connection. To enable ground stations to find the data relay computer without needing its IP address, the ground station broadcasts on a UDP connection to see if there are any data relays on the network. The data relay will respond to the UDP broadcast with a UDP packet to the IP address of the broadcast. The packet will include the IP address and port number of the data relay. The port number can also be seen in the data relay logs in the terminal. After this, the ground station will connect to the TCP connection. The TCP connection is more stable than a UDP connection and has a handshake protocol to make sure the ground station is connected to the data relay.  The data relay can use just the TCP mode if the UDP connection is unwanted. The legacy TCP information is below. Use --legacy_port to enable this:  IP: 192.168.1.103\nPort: 1234", 
+            "title": "Network Connection"
+        }, 
+        {
+            "location": "/network/multi_echo/", 
+            "text": "Multi Echo Server\n\n\nPurpose\n\n\nThe Multi echo server is a python script that can run on any computer and is meant to be run on the raspberry pi along with the data relay. The server recieves information from a TCP connection and echos it out to all devices connected to the server via TCP connection. This allows communication between ground applications to talk to eachother.\n\n\nCurrently this script is not in use in our current setup. However, this script will likely be used for computer vision and tracking antenna communication between them and the ground station. Having this communication between ground applications enables the ground station operator to have more data about all the running scripts. For example, the multi-echo server could allow the ground station operator to send commands to the tracking antenna to initialize it, or to get data about the antenna's orientation and status. It can also be used to transmit computer vision data such as potential mission targets to the ground stations.\n\n\nNetwork\n\n\nThe network for the multi echo is setup the same as the data relay. The UDP broadcast is not yet implemented, so it always runs in legacy mode. The standard connection information is listed below:\n\n\nIP address: 192.168.1.103 (same as data relay)\n\n\nPort: 4321", 
+            "title": "Multi Echo"
+        }, 
+        {
+            "location": "/network/multi_echo/#multi-echo-server", 
+            "text": "", 
+            "title": "Multi Echo Server"
+        }, 
+        {
+            "location": "/network/multi_echo/#purpose", 
+            "text": "The Multi echo server is a python script that can run on any computer and is meant to be run on the raspberry pi along with the data relay. The server recieves information from a TCP connection and echos it out to all devices connected to the server via TCP connection. This allows communication between ground applications to talk to eachother.  Currently this script is not in use in our current setup. However, this script will likely be used for computer vision and tracking antenna communication between them and the ground station. Having this communication between ground applications enables the ground station operator to have more data about all the running scripts. For example, the multi-echo server could allow the ground station operator to send commands to the tracking antenna to initialize it, or to get data about the antenna's orientation and status. It can also be used to transmit computer vision data such as potential mission targets to the ground stations.", 
+            "title": "Purpose"
+        }, 
+        {
+            "location": "/network/multi_echo/#network", 
+            "text": "The network for the multi echo is setup the same as the data relay. The UDP broadcast is not yet implemented, so it always runs in legacy mode. The standard connection information is listed below:  IP address: 192.168.1.103 (same as data relay)  Port: 4321", 
+            "title": "Network"
         }, 
         {
             "location": "/computer-vision/", 

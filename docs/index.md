@@ -6,7 +6,7 @@ The official source of all your WARG needs. Joking, there's only documentation a
 </a>
 ## Competition
 - [UAS 2017 Competition Homepage](https://unmannedsystems.ca/home/students/student-competition-details/)
-- [Competition Canops](https://unmannedsystems.ca/download/2017-conops-and-rules/#)
+- [Competition Conops](https://unmannedsystems.ca/download/2017-conops-and-rules/#)
 
 ## Bootcamps
 

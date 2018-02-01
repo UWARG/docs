@@ -82,7 +82,7 @@ Create a pull request (PR) to WARG github. Make sure to title your bootcamp PR i
 - [Digikey to find components](https://www.digikey.com/)
 - [KiCad Software](http://kicad-pcb.org/)
 - [KiCad Documentation](http://kicad-pcb.org/help/documentation/)
-- [KiCad getting started guide](http://docs.kicad-pcb.org/4.0.6/en/getting_started_in_kicad.pdf)
+- [KiCad getting started guide](http://docs.kicad-pcb.org/stable/en/getting_started_in_kicad.pdf)
 -  Bootcamp channel on  [slack](https://uwarg.slack.com) to ask questions to team leads
 
 ## 2. Previous Team Contribution

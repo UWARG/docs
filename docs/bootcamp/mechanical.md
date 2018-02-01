@@ -7,7 +7,7 @@ WARG members often find that joining this team requires more knowledge and has a
 ## Bootcamp Objectives
 
 - Make justified mechanical design decisions based on project constraints and criteria
-- Learn to take accurate measurements of parts using vernier callipers
+- Learn to take accurate measurements of parts using vernier calipers
 - Learn CAD design in SolidWorks
 - Learn how to make assemblies in SolidWorks
 
@@ -22,14 +22,14 @@ A camera gimbal is an electromechanical device used to stabilize and direct a ca
 
 ### Task
 
-You are tasked with designing a two-axis gimbal (mechanical or electromechanical) to house a GoPro Hero 3 camera. This gimbal design needs to be lightweight, minimize drag and have a 360 degree range of motion in both axis. The gimbal will be attached to a flat rigid board using four M4 bolts. The design does not need to include the board but needs to have proper holes for the bolts to attach the gimbal to the board. You will need to come into the WARG bay (E5 2001) and take all necessary measurements of the GoPro in METRIC UNITS using our Vernier Callipers. You need to design a case to hold the GoPro and the case must make the power button easily accessible through the case. All parts must be made in SolidWorks using units of **mm and g**. If your design uses servos and/or motors you will need to model these in SolidWorks as well. Once all of the parts are made you will make an assembly with the proper mating to demonstrate the 360 degree range of motion in both axis. Once all of these tasks are completed you can bring your completed **part files and assembly file** to a Team Lead for evaluation.
+You are tasked with designing a two-axis gimbal (mechanical or electromechanical) to house a GoPro Hero 3 camera. This gimbal design needs to be lightweight, minimize drag, Additionally, the gimbal must have 90 degrees of motion in the roll axis and 120 degrees in the pitch axis. The gimbal will be attached to a flat rigid board using four M4 bolts. The design does not need to include the board but needs to have proper holes for the bolts to attach the gimbal to the board. You will need to come into the WARG bay (E5 2001) and take all necessary measurements of the GoPro using our calipers. You need to design a case to hold the GoPro and the case must make the power button, record button, and HDMI output easily accessible through the case. All parts must be made in SolidWorks using units of **mm and g**. If your design uses servos and/or motors you will need to model these in SolidWorks as well. After all of the parts are made, you will make an assembly with the proper mating to demonstrate the required range of motion in both axis. Once all of these tasks are completed, use the Solidworks "Pack and Go" feature to create a zip file of your parts and assembly. Then send this zip file to the appropriate team lead for approval.
 
 ### Project Checklist
 - Parts made in SolidWorks using dimensions of mm and g
 - GoPro Case measured with power button exposed
 - Mounting method using 4 M4 bolts to the flat board
 - Motors / Servos selected and modeled (if required)
-- Assembly created with the gimbal able to rotate 360 degrees in both axis
+- Assembly created with the gimbal able to rotate the requisite amount in both axis
 
 ### Using Solidworks
 

@@ -9,9 +9,12 @@ The two processors are allocated to two individual tasks. The chip which is resp
 ## Setup
 
 To get started, you will need three things:
-* A Git Client - https://github.com/
-* MPLAB XC16 Compiler (16-bit) - http://www.microchip.com/pagehandler/en-us/family/mplabx/home.html?tab=t2#tab-2
-* (Optional) MPLAB X IDE - http://www.microchip.com/pagehandler/en-us/family/mplabx/home.html?tab=t2#tab-2
+
+- [A Git Client]( https://github.com/)
+
+- [MPLAB XC16 Compiler (16-bit)](http://www.microchip.com/pagehandler/en-us/family/mplabx/home.html?tab=t2#tab-2)
+
+- [(Optional) MPLAB X IDE](http://www.microchip.com/pagehandler/en-us/family/mplabx/home.html?tab=t2#tab-2)
 
 ## Github Setup
 

@@ -38,7 +38,7 @@ You are tasked with implementing this on the Safety Controller.
 
 - Because of resource constraints, you will likely not have the ability to actually test the code. Just make sure it compiles.
 - Look at the tim.c functions for PWM. Use adc.c functions for potentiometer values. You will also have to use some of the Drivers/STM32F0xx_HAL_Driver files.
-- You can look at the ZeroPilot for good example code.
+- You can look at the ZeroPilot repo for good example code.
 - At the top of the main.h file is the IO pin mappings. Use those defines when configuring your ADC and PWM ports.
 
 ### Git

@@ -22,24 +22,24 @@ This Bootcamp has two options, both of which require a team lead's approval of c
 
 ### Background
 
-One of the biggest things that makes embedded programming interesting is working at the barrier between hardware and software. There are several low-level peripherals on-board the microcontrollers for interfacing with various devices. more here about ADC and TIM.
+One of the biggest things that makes embedded programming interesting is working at the barrier between hardware and software. There are several low-level peripherals on-board the microcontrollers for interfacing with various devices. The two low-level libraries you will be working with for this bootcamp are the analog to digital converters (ADC) and the timers (TIM).
+
+Analog to digital converters (ADCs) take an analog value and convert it to a digital numbers. This peripheral is useful to interface with sensors, battery voltages, and potentiometers. For this bootcamp, you will be using the analog voltage of the potentiometer and converting it to a digital PWM signal to drive a servo.
+
+Timer modules are a hardware feature of embedded microcontrollers. They allow the program to delay without blocking other code from running. Timers are useful to implement PWM, since PWM has very specific timing requirements for when the IO pin gets turned on and off.
 
 ### Task
 
-The groundstation operator has to be able to send a command to drop the probe, which involves actuating a servo using PWM. There are 3 probe drops, so you will have to write some code to manage the 3 separate servos.
+Your task is to input a potentiometer value from 0 to 3.3V and convert it to a PWM signal to drive a servo. The potentiometer should be able to control the servo to its full throw. Servo testers are useful for determining servo range, prototype testing, and centering servos.
 
-The command will be a multi-part command. The first part will tell the autopilot which servo to operate (1,2, or 3), and the second part will tell the autopilot what position the servo should be in (opened or closed). All servos should be closed on startup.
-
-You are tasked with implementing this feature for the Safety Controller.
+You are tasked with implementing this on the Safety Controller.
 
 ### Hints
 
 - Because of resource constraints, you will likely not have the ability to actually test the code. Just make sure it compiles.
-- Use the PWM.c file to actuate the servo. Set reasonable constants for minimum and maximum PWM for the probe drop servo.
-- Make sure you use a PWM channel that is currently not in use, and make sure to initialize it when the vehicle arms.
-- You can name the command whatever you want, but it has to be sensible and match the already existing command naming convention
-- Feel free to use the existing code as reference
-- The datalink documentation (the data the groundstation received) can be found [here](../picpilot/datalink.md)
+- Look at the tim.c functions for PWM. Use adc.c functions for potentiometer values. You will also have to use some of the Drivers/STM32F0xx_HAL_Driver files.
+- You can look at the ZeroPilot for good example code.
+- At the top of the main.h file is the IO pin mappings. Use those defines when configuring your ADC and PWM ports.
 
 ### Git
 
@@ -47,9 +47,9 @@ The code for the embedded bootcamp is hosted on [GitHub](https://www.github.com/
 
 ### Submission
 
-To submit your work, create a pull request of your fork against the `UWARG/embedded-bootcamp` repository. Name your pull request `Bootcamp by YOURNAME`. Tell the responsible team lead that you've completed the bootcamp and they will review your submission. You may be asked to revise some things.
+To submit your work, create a pull request of your fork against the `UWARG/embedded-bootcamp` repository. Name your pull request `Bootcamp: YOURNAME`. Tell the responsible team lead that you've completed the bootcamp and they will review your submission. You may be asked to revise some things.
 
-**Note**: *If you would really like to test out the code, come to one of the work days and we'll show you how to program the board and actually test it out*
+**Note**: *If you would like to test out the code, come to one of the work days and we'll show you how to program the board and actually test it out*
 
 ### Additional Resources
 

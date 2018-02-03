@@ -98,9 +98,9 @@
         
             <li><a class="toctree-l4" href="#bootcamp-outline">Bootcamp Outline</a></li>
         
-            <li><a class="toctree-l4" href="#1-add-a-drop-and-snap-command-to-the-picpilot">1. Add a drop and snap command to the picpilot:</a></li>
+            <li><a class="toctree-l4" href="#1-implement-a-servo-tester">1. Implement a Servo Tester</a></li>
         
-            <li><a class="toctree-l4" href="#2-previous-team-contribution">2. Previous Team Contribution</a></li>
+            <li><a class="toctree-l4" href="#2-previous-experience">2. Previous Experience</a></li>
         
             <li><a class="toctree-l4" href="#completion-of-bootcamp">Completion of Bootcamp</a></li>
         
@@ -111,7 +111,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../rccompetition/">RC Car Competition</a>
+    <a class="" href="../embedded-archived/">Archived Embedded Software</a>
                 </li>
     </ul>
 	    </li>
@@ -379,49 +379,44 @@
                 <h1 id="warg-embedded-software-bootcamp">WARG Embedded Software Bootcamp</h1>
 <h2 id="introduction">Introduction</h2>
 <p>Welcome to the Embedded Software Bootcamp!</p>
-<p>WARG members often find that joining this team requires more knowledge and has a larger learning curve than other student teams. Once members have acquired this knowledge they gain a lot of confidence and are able to make large contributions to the team. Therefore, this Bootcamp is designed as a first task to be completed to both help you through the learning curve, while giving you a project that is fully your own. The hope is that once you complete this Bootcamp you will feel confident and hopefully have acquired enough skills such that you are ready to take on tasks with our aircraft! Just a quick disclaimer, this Bootcamp will help accelerate and minimize the learning curve but it will not give you all knowledge. The remaining knowledge will be acquired through completing other tasks with the team.</p>
+<p>WARG members often find that joining this team requires more knowledge and has a larger learning curve than other student teams. Once members have acquired this knowledge they gain a lot of confidence and are able to make large contributions to the team. Therefore, this Bootcamp is designed as a first task to be completed to both help you through the learning curve, while giving you a project that is fully your own. The hope is that once you complete this Bootcamp you will feel confident and hopefully have acquired enough skills such that you are ready to take on tasks with our aircraft! Just a quick disclaimer: this Bootcamp will help accelerate and minimize the learning curve, but it will not teach you everything there is to know about. The remaining knowledge will be acquired through completing other tasks with the team.</p>
 <h2 id="bootcamp-objectives">Bootcamp Objectives</h2>
 <ul>
-<li>Learn C, and become familiar with some of the concepts in embedded programming</li>
-<li>Learn the underlying PicPilot(autopilot) code structure</li>
-<li>Learn how to track code revisions and perform code reviews via Git</li>
+<li>Learn C, and become familiar with some of the concepts in embedded programming.</li>
+<li>Learn the underlying Hardware Abstraction Layer (HAL) libraries.</li>
+<li>Learn how to track code revisions and perform code reviews using GitHub.</li>
 </ul>
 <h2 id="bootcamp-outline">Bootcamp Outline</h2>
 <p>This Bootcamp has two options, both of which require a team lead's approval of completion in order to move onto working on other tasks. The estimated time of completion for this Bootcamp is 1 week.</p>
 <p><strong>Note</strong>: <em>This will vary depending on your expirience level in programming. This is a rough estimate and don't get discouraged if it takes you longer!</em></p>
-<h2 id="1-add-a-drop-and-snap-command-to-the-picpilot">1. Add a drop and snap command to the picpilot:</h2>
+<h2 id="1-implement-a-servo-tester">1. Implement a Servo Tester</h2>
 <h3 id="background">Background</h3>
-<p>The groundstation is the main line of communication between the aircraft and the ground control crew. Even though the aircraft is completely autonomous, someone's got to tell it what to do and where to go.</p>
-<p>The aircraft's autopilot (called the PicPilot) is what manages the communication to the groundstation from the aircraft. The groundstation communicates with the plane by sending it integer-based commmands, through the XBee data link. The autopilot interprets the command, and can choose to perform a certain action in response.</p>
-<p>The aircraft is also equipped with 2 modules for the purposes of the competition. A go pro camera attached the front of the aircraft for taking aerial photos, and a probe drop module that's capable of dropping its payload.</p>
+<p>One of the biggest things that makes embedded programming interesting is working at the barrier between hardware and software. There are several low-level peripherals on-board the microcontrollers for interfacing with various devices. The two low-level libraries you will be working with for this bootcamp are the analog to digital converters (ADC) and the timers (TIM).</p>
+<p>Analog to digital converters (ADCs) take an analog value and convert it to a digital numbers. This peripheral is useful to interface with sensors, battery voltages, and potentiometers. For this bootcamp, you will be using the analog voltage of the potentiometer and converting it to a digital PWM signal to drive a servo.</p>
+<p>Timer modules are a hardware feature of embedded microcontrollers. They allow the program to delay without blocking other code from running. Timers are useful to implement PWM, since PWM has very specific timing requirements for when the IO pin gets turned on and off.</p>
 <h3 id="task">Task</h3>
-<p>The groundstation operator has to be able to send a command to drop the probe, which involves actuating a servo using PWM. There are 3 probe drops, so you will have to write some code to manage the 3 separate servos.</p>
-<p>The command will be a multi-part command. The first part will tell the autopilot which servo to operate (1,2, or 3), and the second part will tell the autopilot what position the servo should be in (opened or closed). All servos should be closed on startup.</p>
-<p>You are tasked with implementing this feature for the autopilot.</p>
+<p>Your task is to input a potentiometer value from 0 to 3.3V and convert it to a PWM signal to drive a servo. The potentiometer should be able to control the servo to its full throw. Servo testers are useful for determining servo range, prototype testing, and centering servos.</p>
+<p>You are tasked with implementing this on the Safety Controller.</p>
 <h3 id="hints">Hints</h3>
 <ul>
-<li>Because of resource constraints, you will not have the ability to actually test the code. Just make sure it compiles</li>
-<li>Use the PWM.c file to actuate the servo. Set reasonable constants for minimum and maximum PWM for the probe drop servo.</li>
-<li>Make sure you use a PWM channel that is currently not in use, and make sure to initialize it when the vehicle arms.</li>
-<li>You can name the command whatever you want, but it has to be sensible and match the already existing command naming convention</li>
-<li>Feel free to use the existing code as reference</li>
-<li>The datalink documentation (the data the groundstation received) can be found <a href="../../picpilot/datalink/">here</a></li>
+<li>Because of resource constraints, you will likely not have the ability to actually test the code. Just make sure it compiles.</li>
+<li>Look at the tim.c functions for PWM. Use adc.c functions for potentiometer values. You will also have to use some of the Drivers/STM32F0xx_HAL_Driver files.</li>
+<li>You can look at the ZeroPilot repo for good example code.</li>
+<li>At the top of the main.h file is the IO pin mappings. Use those defines when configuring your ADC and PWM ports.</li>
 </ul>
-<h3 id="installation">Installation</h3>
-<p>To install the IDE and compiler, go to the <a href="../../picpilot/introduction/">PICPilot documentation</a>. </p>
-<p>To get the codebase, fork the repository from Github from <a href="http://www.github.com/uwarg/PicPilot">Github</a>. You will have to fork the repository to make your changes. Also its recommended that you make your own branch. If you don't know what git or github is, or how to use it, please read this <a href="../../tutorials/git/">git and github tutorial</a> that we wrote.</p>
+<h3 id="git">Git</h3>
+<p>The code for the embedded bootcamp is hosted on <a href="https://www.github.com/UWARG/embedded-bootcamp">GitHub</a>. You will have to fork the repository to make your changes. If you don't know what git or github is, or how to use it, please read this <a href="../../tutorials/git/">git and github tutorial</a> that we wrote.</p>
 <h3 id="submission">Submission</h3>
-<p>To submit your work, create a pull request of your fork against the main PicPilot repository. Name your pull request <code>Bootcamp by YOURNAME</code>. Tell the responsible team lead that you've completed the bootcamp and they will review your submission. You may be asked to revise some things.</p>
-<p><strong>Note</strong>: <em>If you would really like to test out the code, come to one of the work days and we'll show  you how to program the picpilot and actually test it out</em></p>
+<p>To submit your work, create a pull request of your fork against the <code>UWARG/embedded-bootcamp</code> repository. Name your pull request <code>Bootcamp: YOURNAME</code>. Tell the responsible team lead that you've completed the bootcamp and they will review your submission. You may be asked to revise some things.</p>
+<p><strong>Note</strong>: <em>If you would like to test out the code, come to one of the work days and we'll show you how to program the board and actually test it out</em></p>
 <h3 id="additional-resources">Additional Resources</h3>
 <ul>
-<li>Your most valuable resource will be our <a href="../../picpilot/introduction/">picpilot documentation</a></li>
+<li>Your most valuable resource will be our <a href="https://uwarg-docs.atlassian.net/wiki/spaces/ZP/overview">ZeroPilot documentation</a></li>
 <li><a href="../../tutorials/git/">Our Git Tutorial</a></li>
-<li><a href="../../picpilot/datalink/">Datalink Documentation</a></li>
-<li><a href="https://www.sparkfun.com/tutorials/category/1">Sparkfun Embedded Electronics Tutorial</a></li>
+<li><a href="https://www.sparkfun.com/tutorials/category/1">SparkFun Embedded Electronics Tutorial</a></li>
 </ul>
-<h2 id="2-previous-team-contribution">2. Previous Team Contribution</h2>
-<p>If you have worked on the PicPilot before, and feel that you've made a significant enough contribution to be exempt from option 1, you can contact the responsible team lead to explain, and preferably show what you've done. It will be up to the Team Lead’s discretion whether you qualify to be exempt from the Bootcamp. If the Team Lead feels that you should still complete option 1 it is because they think you can learn and gain skills from the completion of the Bootcamp.</p>
+<h2 id="2-previous-experience">2. Previous Experience</h2>
+<p>If you have worked on ZeroPilot before, or feel that you've obtained significant enough experience elsewhere to be exempt from option 1, you can contact the responsible team lead to explain, and preferably show what you've done. It will be up to the Team Lead’s discretion whether you qualify to be exempt from the Bootcamp. If the Team Lead feels that you should still complete option 1 it is because they think you can learn and gain skills from the completion of the Bootcamp.</p>
 <h2 id="completion-of-bootcamp">Completion of Bootcamp</h2>
 <p>Upon the approved completion of the Bootcamp by a Team Lead you are now eligible to work on other tasks related to the picpilot! If you have any feedback you would like to give to make this Bootcamp better please let a team lead know as we want this to be the best and most informative introduction to the team as possible.</p>
               
@@ -431,7 +426,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../rccompetition/" class="btn btn-neutral float-right" title="RC Car Competition">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../embedded-archived/" class="btn btn-neutral float-right" title="Archived Embedded Software">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../groundstation/" class="btn btn-neutral" title="Groundstation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -467,7 +462,7 @@
         <span><a href="../groundstation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../rccompetition/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../embedded-archived/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

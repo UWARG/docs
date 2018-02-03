@@ -15,7 +15,7 @@ pages:
   - Electrical: bootcamp/electrical.md
   - Groundstation: bootcamp/groundstation.md
   - Embedded Software: bootcamp/embedded.md
-  - RC Car Competition: bootcamp/rccompetition.md
+  - Archived Embedded Software: bootcamp/embedded-archived.md
 - Tutorials:
   - Git and Github: tutorials/git.md
   - Using the terminal: tutorials/shell.md

@@ -5,7 +5,7 @@ The official source of all your WARG needs. Joking, there's only documentation a
 ![Sloth GIF](./images/sloth-deal-with-it.gif)
 </a>
 ## Competition
-- [UAS 2017 Competition Homepage](https://unmannedsystems.ca/home/students/student-competition-details/)
+- [UAS Competition Homepage](https://unmannedsystems.ca/home/students/student-competition-details/)
 - [Competition Conops](https://unmannedsystems.ca/download/2017-conops-and-rules/#)
 
 ## Bootcamps

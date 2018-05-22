@@ -44,6 +44,8 @@ Below is a list of requirements for the buck regulator circuit:
 - Must be able to supply at least 1A of current
 - Must be cost effective
 
+NOTE: Make sure you connect the input of the added buck regulator to VBATT, not to the 5V output of the other regulator. Chaining buck regulators in series is very inefficient since efficiency decreases with lower input current.
+
 ### Steps
 
 Here are the steps you are expected to take to complete this task.

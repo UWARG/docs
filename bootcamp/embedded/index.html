@@ -79,10 +79,6 @@
                     
     <a class="" href="../electrical/">Electrical</a>
                 </li>
-                <li class="">
-                    
-    <a class="" href="../groundstation/">Groundstation</a>
-                </li>
                 <li class=" current">
                     
     <a class="current" href="./">Embedded Software</a>
@@ -109,10 +105,6 @@
 
     </ul>
                 </li>
-                <li class="">
-                    
-    <a class="" href="../embedded-archived/">Archived Embedded Software</a>
-                </li>
     </ul>
 	    </li>
           
@@ -127,49 +119,6 @@
                 <li class="">
                     
     <a class="" href="../../tutorials/shell/">Using the terminal</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Groundstation</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../groundstation/">Table of Contents</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/introduction/">Introduction</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/what-you-need-to-know/">What you need to know</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/installation/">Installation</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/tutorial/">Tutorial</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/project-structure/">Project Structure</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/contributing/">Contributing</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/documenting/">Documenting</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/resources/">Additional Resources</a>
                 </li>
     </ul>
 	    </li>
@@ -215,10 +164,6 @@
                 <li class="">
                     
     <a class="" href="../../computer-vision/">Table of Contents</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../computer-vision/Installation/">Installation</a>
                 </li>
                 <li class="">
                     
@@ -366,7 +311,7 @@
     <li>Embedded Software</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/UWARG/edit/master/docs/bootcamp\embedded.md"
+        <a href="https://github.com/UWARG/edit/master/docs/bootcamp/embedded.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -387,7 +332,7 @@
 <li>Learn how to track code revisions and perform code reviews using GitHub.</li>
 </ul>
 <h2 id="bootcamp-outline">Bootcamp Outline</h2>
-<p>This Bootcamp has two options, both of which require a team lead's approval of completion in order to move onto working on other tasks. The estimated time of completion for this Bootcamp is 1 week.</p>
+<p>This Bootcamp has two options, both of which require a team lead's approval of completion in order to move onto working on other tasks. The estimated time of completion for this Bootcamp is a 2-4 hours.</p>
 <p><strong>Note</strong>: <em>This will vary depending on your expirience level in programming. This is a rough estimate and don't get discouraged if it takes you longer!</em></p>
 <h2 id="1-implement-a-servo-tester">1. Implement a Servo Tester</h2>
 <h3 id="background">Background</h3>
@@ -399,14 +344,14 @@
 <p>You are tasked with implementing this on the Safety Controller.</p>
 <h3 id="hints">Hints</h3>
 <ul>
-<li>Because of resource constraints, you will likely not have the ability to actually test the code. Just make sure it compiles.</li>
-<li>Look at the tim.c functions for PWM. Use adc.c functions for potentiometer values. You will also have to use some of the Drivers/STM32F0xx_HAL_Driver files.</li>
-<li>You can look at the ZeroPilot repo for good example code.</li>
-<li>At the top of the main.h file is the IO pin mappings. Use those defines when configuring your ADC and PWM ports.</li>
+<li>For PWM, you will need to use timer 16 to create a PWM signal. The signal should be at 50Hz, with an on-time ranging from 1ms - 2ms. To acheive this frequency, you will need to change the prescaler and period in tim.c. Note that the input clock frequency is 48 MHz.</li>
+<li>Look at HAL_TIM_ and HAL_ADC_ functions to access the timers and ADCs.</li>
+<li>At the top of the main.h file is the IO pin mappings. Use those defines when configuring your ADC and PWM ports. If you want to learn more about the pinout and IO configuration, you can download STM32Cube and open the bootcamp.ioc file.</li>
 </ul>
 <h3 id="git">Git</h3>
 <p>The code for the embedded bootcamp is hosted on <a href="https://www.github.com/UWARG/embedded-bootcamp">GitHub</a>. You will have to fork the repository to make your changes. If you don't know what git or github is, or how to use it, please read this <a href="../../tutorials/git/">git and github tutorial</a> that we wrote.</p>
 <h3 id="submission">Submission</h3>
+<p>Because of resource constraints, you will likely not have the ability to actually test the code. Just make sure it compiles.</p>
 <p>To submit your work, create a pull request of your fork against the <code>UWARG/embedded-bootcamp</code> repository. Name your pull request <code>Bootcamp: YOURNAME</code>. Tell the responsible team lead that you've completed the bootcamp and they will review your submission. You may be asked to revise some things.</p>
 <p><strong>Note</strong>: <em>If you would like to test out the code, come to one of the work days and we'll show you how to program the board and actually test it out</em></p>
 <h3 id="additional-resources">Additional Resources</h3>
@@ -418,7 +363,7 @@
 <h2 id="2-previous-experience">2. Previous Experience</h2>
 <p>If you have worked on ZeroPilot before, or feel that you've obtained significant enough experience elsewhere to be exempt from option 1, you can contact the responsible team lead to explain, and preferably show what you've done. It will be up to the Team Lead’s discretion whether you qualify to be exempt from the Bootcamp. If the Team Lead feels that you should still complete option 1 it is because they think you can learn and gain skills from the completion of the Bootcamp.</p>
 <h2 id="completion-of-bootcamp">Completion of Bootcamp</h2>
-<p>Upon the approved completion of the Bootcamp by a Team Lead you are now eligible to work on other tasks related to the picpilot! If you have any feedback you would like to give to make this Bootcamp better please let a team lead know as we want this to be the best and most informative introduction to the team as possible.</p>
+<p>Upon the approved completion of the Bootcamp by a Team Lead you are now eligible to work on other tasks related to the ZeroPilot! If you have any feedback you would like to give to make this Bootcamp better please let a team lead know as we want this to be the best and most informative introduction to the team as possible.</p>
               
             </div>
           </div>
@@ -426,10 +371,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../embedded-archived/" class="btn btn-neutral float-right" title="Archived Embedded Software">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../tutorials/git/" class="btn btn-neutral float-right" title="Git and Github">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../groundstation/" class="btn btn-neutral" title="Groundstation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../electrical/" class="btn btn-neutral" title="Electrical"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -445,12 +390,12 @@
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
@@ -459,15 +404,17 @@
           <a href="https://github.com/UWARG/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../groundstation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../electrical/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../embedded-archived/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../tutorials/git/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
+    <script>var base_url = '../..';</script>
     <script src="../../js/theme.js"></script>
-      <script src="../../sloth-generator.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
 
 </body>
 </html>

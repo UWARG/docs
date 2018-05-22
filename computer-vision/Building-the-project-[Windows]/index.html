@@ -81,15 +81,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../../bootcamp/groundstation/">Groundstation</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../../bootcamp/embedded/">Embedded Software</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../bootcamp/embedded-archived/">Archived Embedded Software</a>
                 </li>
     </ul>
 	    </li>
@@ -105,49 +97,6 @@
                 <li class="">
                     
     <a class="" href="../../tutorials/shell/">Using the terminal</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Groundstation</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../../groundstation/">Table of Contents</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/introduction/">Introduction</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/what-you-need-to-know/">What you need to know</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/installation/">Installation</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/tutorial/">Tutorial</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/project-structure/">Project Structure</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/contributing/">Contributing</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/documenting/">Documenting</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../groundstation/resources/">Additional Resources</a>
                 </li>
     </ul>
 	    </li>
@@ -196,10 +145,6 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../Installation/">Installation</a>
-                </li>
-                <li class="">
-                    
     <a class="" href="../Building-the-project-%5BLinux%5D/">Building the project [Linux]</a>
                 </li>
                 <li class=" current">
@@ -208,6 +153,16 @@
     <ul class="subnav">
             
     <li class="toctree-l3"><a href="#building-the-project">Building the project</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#installing-docker">Installing Docker</a></li>
+        
+            <li><a class="toctree-l4" href="#setting-up-the-image">Setting up the image</a></li>
+        
+            <li><a class="toctree-l4" href="#compiling-and-running">Compiling and Running</a></li>
+        
+        </ul>
     
 
     </ul>
@@ -350,7 +305,7 @@
     <li>Building the project [Windows]</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/UWARG/edit/master/docs/computer-vision\Building-the-project-[Windows].md"
+        <a href="https://github.com/UWARG/edit/master/docs/computer-vision/Building-the-project-[Windows].md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -361,7 +316,25 @@
             <div class="section">
               
                 <h1 id="building-the-project">Building the project</h1>
-<p>TODO: Anyone who wants to try doing this, please fill this out</p>
+<p>To build the project on Windows, you will need to setup a Docker. It is possible to setup the libraries in Windows natively, but it is much easier to use Docker since it has all of the libraries preinstalled.</p>
+<h2 id="installing-docker">Installing Docker</h2>
+<p>If you don't have a Linux environment, don't worry! You can download a docker image. It is essentially a premade virtual machine.</p>
+<ul>
+<li>Go to <a href="https://docs.docker.com/mac/">https://docs.docker.com/mac/</a> for Mac systems</li>
+<li>Go to <a href="https://docs.docker.com/windows/">https://docs.docker.com/windows/</a> for Windows systems.</li>
+</ul>
+<h2 id="setting-up-the-image">Setting up the image</h2>
+<p>Once docker is installed you can get our docker image by running <code>docker pull uwarg/warg-cv</code></p>
+<p>After the image has been fetched:</p>
+<ol>
+<li><code>docker create -it --name cv uwarg/warg-cv</code> to create a new container using the warg-cv image called cv</li>
+<li><code>docker start cv</code> to start the image</li>
+<li><code>docker exec -it cv bash</code> to enter the container</li>
+<li><code>git clone https://github.com/UWARG/computer-vision</code> to clone the repo into the image.</li>
+</ol>
+<p>When you want to use the container again in future, use docker exec (as in step 3 above). There is no need to create a new container unless the image has changed.</p>
+<h2 id="compiling-and-running">Compiling and Running</h2>
+<p>Once the docker is setup, you can follow the same instructions that are in <a href="../Building-the-project-%5BLinux%5D/">building the project in linux</a>.</p>
               
             </div>
           </div>
@@ -388,12 +361,12 @@
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
@@ -409,8 +382,10 @@
       
     </span>
 </div>
+    <script>var base_url = '../..';</script>
     <script src="../../js/theme.js"></script>
-      <script src="../../sloth-generator.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
 
 </body>
 </html>

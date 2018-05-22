@@ -1,7 +1,6 @@
 #Welcome to the Computer Vision Docs!
 
 # Contents
-- [Installation](Installation)
 - [Building the project - Linux](Building-the-project-%5BLinux%5D)
 - [Building the project - Windows](Building-the-project-%5BWindows%5D)
 - [Coding Conventions](Coding-Conventions)

@@ -14,7 +14,7 @@ WARG members often find that joining this team requires more knowledge and has a
 
 ## Bootcamp Outline
 
-This Bootcamp has two options, both of which require a team lead's approval of completion in order to move onto working on other tasks. The estimated time of completion for this Bootcamp is 1 week.
+This Bootcamp has two options, both of which require a team lead's approval of completion in order to move onto working on other tasks. The estimated time of completion for this Bootcamp is a 2-4 hours.
 
 **Note**: *This will vary depending on your expirience level in programming. This is a rough estimate and don't get discouraged if it takes you longer!*
 
@@ -36,16 +36,17 @@ You are tasked with implementing this on the Safety Controller.
 
 ### Hints
 
-- Because of resource constraints, you will likely not have the ability to actually test the code. Just make sure it compiles.
-- Look at the tim.c functions for PWM. Use adc.c functions for potentiometer values. You will also have to use some of the Drivers/STM32F0xx_HAL_Driver files.
-- You can look at the ZeroPilot repo for good example code.
-- At the top of the main.h file is the IO pin mappings. Use those defines when configuring your ADC and PWM ports.
+- For PWM, you will need to use timer 16 to create a PWM signal. The signal should be at 50Hz, with an on-time ranging from 1ms - 2ms. To acheive this frequency, you will need to change the prescaler and period in tim.c. Note that the input clock frequency is 48 MHz.
+- Look at HAL_TIM_ and HAL_ADC_ functions to access the timers and ADCs.
+- At the top of the main.h file is the IO pin mappings. Use those defines when configuring your ADC and PWM ports. If you want to learn more about the pinout and IO configuration, you can download STM32Cube and open the bootcamp.ioc file.
 
 ### Git
 
 The code for the embedded bootcamp is hosted on [GitHub](https://www.github.com/UWARG/embedded-bootcamp). You will have to fork the repository to make your changes. If you don't know what git or github is, or how to use it, please read this [git and github tutorial](../tutorials/git.md) that we wrote.
 
 ### Submission
+
+Because of resource constraints, you will likely not have the ability to actually test the code. Just make sure it compiles.
 
 To submit your work, create a pull request of your fork against the `UWARG/embedded-bootcamp` repository. Name your pull request `Bootcamp: YOURNAME`. Tell the responsible team lead that you've completed the bootcamp and they will review your submission. You may be asked to revise some things.
 
@@ -63,4 +64,4 @@ If you have worked on ZeroPilot before, or feel that you've obtained significant
 
 ## Completion of Bootcamp
 
-Upon the approved completion of the Bootcamp by a Team Lead you are now eligible to work on other tasks related to the picpilot! If you have any feedback you would like to give to make this Bootcamp better please let a team lead know as we want this to be the best and most informative introduction to the team as possible.
+Upon the approved completion of the Bootcamp by a Team Lead you are now eligible to work on other tasks related to the ZeroPilot! If you have any feedback you would like to give to make this Bootcamp better please let a team lead know as we want this to be the best and most informative introduction to the team as possible.

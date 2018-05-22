@@ -12,15 +12,12 @@ The official source of all your WARG needs. Joking, there's only documentation a
 
 - [Mechanical Bootcamp](bootcamp/mechanical.md)
 - [Electrical Bootcamp](bootcamp/electrical.md)
-- [Groundstation Bootcamp](bootcamp/groundstation.md)
 - [Computer Vision Bootcamp](bootcamp/computer-vision.md)
 - [Embedded Bootcamp](bootcamp/embedded.md)
-- [Archived Embedded Bootcamp](bootcamp/embedded-archived.md)
 
 ## Projects Documentation
 
-- [PicPilot Documentation](picpilot/index.md)
-- [Groundstation Documentation](groundstation/index.md)
+- [ZeroPilot Documentation](zeropilot/index.md)
 - [Network Documentation](network/data_relay.md)
 - [Computer Vision Documentation](computer-vision/index.md)
 - [Mechanical Documentation](mechanical/index.md)

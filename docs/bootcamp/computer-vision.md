@@ -6,6 +6,8 @@ WARG members often find that joining this team requires more knowledge and has a
 
 ## 1. Fork and Setup Local Project
 
+For full instructions on how to setup your environment, check out [computer vision documentation](/computer-vision/index.md)
+
 Forks can be created using the fork button in the top right of the Github Interface (you need to be signed into a Github account).
 
 Clone your fork with either:
@@ -20,7 +22,6 @@ git clone https://github.com/YOUR_USERNAME_HERE/computer-vision-bootcamp.git
 ```
 for https
 
-Note that you will need to have CMake installed so that you can build your module once you've written it.
 
 ## 2. Code
 Your task is to implement [merge sort](https://en.wikipedia.org/wiki/Merge_sort) (or indeed a different sorting algorithm if you wish).

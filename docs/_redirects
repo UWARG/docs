@@ -1,0 +1,2 @@
+# Redirect domain aliases to primary domain
+https://docs.uwarg.com/* https://www.docs.uwarg.com/:splat 301!

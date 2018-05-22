@@ -3,7 +3,7 @@
 
     
     <url>
-     <loc>http://www.docs.uwarg.com/</loc>
+     <loc>https://www.docs.uwarg.com/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -12,41 +12,25 @@
     
         
     <url>
-     <loc>http://www.docs.uwarg.com/bootcamp/mechanical/</loc>
+     <loc>https://www.docs.uwarg.com/bootcamp/mechanical/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/bootcamp/computer-vision/</loc>
+     <loc>https://www.docs.uwarg.com/bootcamp/computer-vision/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/bootcamp/electrical/</loc>
+     <loc>https://www.docs.uwarg.com/bootcamp/electrical/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/bootcamp/embedded/</loc>
-     <lastmod>2018-05-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>http://www.docs.uwarg.com/tutorials/git/</loc>
-     <lastmod>2018-05-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://www.docs.uwarg.com/tutorials/shell/</loc>
+     <loc>https://www.docs.uwarg.com/bootcamp/embedded/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -56,19 +40,13 @@
     
         
     <url>
-     <loc>http://www.docs.uwarg.com/zeropilot/</loc>
+     <loc>https://www.docs.uwarg.com/tutorials/git/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/zeropilot/pinout_reference/</loc>
-     <lastmod>2018-05-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://www.docs.uwarg.com/zeropilot/hardware/</loc>
+     <loc>https://www.docs.uwarg.com/tutorials/shell/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -78,59 +56,19 @@
     
         
     <url>
-     <loc>http://www.docs.uwarg.com/network/data_relay/</loc>
+     <loc>https://www.docs.uwarg.com/zeropilot/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/network/multi_echo/</loc>
-     <lastmod>2018-05-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>http://www.docs.uwarg.com/computer-vision/</loc>
+     <loc>https://www.docs.uwarg.com/zeropilot/pinout_reference/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/computer-vision/Building-the-project-[Linux]/</loc>
-     <lastmod>2018-05-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://www.docs.uwarg.com/computer-vision/Building-the-project-[Windows]/</loc>
-     <lastmod>2018-05-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://www.docs.uwarg.com/computer-vision/Coding-Conventions/</loc>
-     <lastmod>2018-05-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://www.docs.uwarg.com/computer-vision/Contributing/</loc>
-     <lastmod>2018-05-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://www.docs.uwarg.com/computer-vision/Using-the-WARG-server-environment/</loc>
-     <lastmod>2018-05-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://www.docs.uwarg.com/computer-vision/Writing-Tests/</loc>
+     <loc>https://www.docs.uwarg.com/zeropilot/hardware/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -140,25 +78,13 @@
     
         
     <url>
-     <loc>http://www.docs.uwarg.com/mechanical/</loc>
+     <loc>https://www.docs.uwarg.com/network/data_relay/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/mechanical/cad-guidelines/</loc>
-     <lastmod>2018-05-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://www.docs.uwarg.com/mechanical/3d-printing-guidelines/</loc>
-     <lastmod>2018-05-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://www.docs.uwarg.com/mechanical/grabcad/</loc>
+     <loc>https://www.docs.uwarg.com/network/multi_echo/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -168,91 +94,165 @@
     
         
     <url>
-     <loc>http://www.docs.uwarg.com/picpilot/</loc>
+     <loc>https://www.docs.uwarg.com/computer-vision/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/picpilot/introduction/</loc>
+     <loc>https://www.docs.uwarg.com/computer-vision/Building-the-project-[Linux]/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/picpilot/pid-loops/</loc>
+     <loc>https://www.docs.uwarg.com/computer-vision/Building-the-project-[Windows]/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/picpilot/pwm-io/</loc>
+     <loc>https://www.docs.uwarg.com/computer-vision/Coding-Conventions/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/picpilot/uart/</loc>
+     <loc>https://www.docs.uwarg.com/computer-vision/Contributing/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/picpilot/spi/</loc>
+     <loc>https://www.docs.uwarg.com/computer-vision/Using-the-WARG-server-environment/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/picpilot/direct-memory-access/</loc>
+     <loc>https://www.docs.uwarg.com/computer-vision/Writing-Tests/</loc>
+     <lastmod>2018-05-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://www.docs.uwarg.com/mechanical/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/picpilot/i2c/</loc>
+     <loc>https://www.docs.uwarg.com/mechanical/cad-guidelines/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/picpilot/datalink/</loc>
+     <loc>https://www.docs.uwarg.com/mechanical/3d-printing-guidelines/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/picpilot/analog-to-digital-converter/</loc>
+     <loc>https://www.docs.uwarg.com/mechanical/grabcad/</loc>
+     <lastmod>2018-05-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://www.docs.uwarg.com/picpilot/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/picpilot/sensors-and-peripherals/</loc>
+     <loc>https://www.docs.uwarg.com/picpilot/introduction/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/picpilot/attitude-control/</loc>
+     <loc>https://www.docs.uwarg.com/picpilot/pid-loops/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/picpilot/path-management/</loc>
+     <loc>https://www.docs.uwarg.com/picpilot/pwm-io/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/picpilot/resources/</loc>
+     <loc>https://www.docs.uwarg.com/picpilot/uart/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>http://www.docs.uwarg.com/picpilot/faq/</loc>
+     <loc>https://www.docs.uwarg.com/picpilot/spi/</loc>
+     <lastmod>2018-05-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://www.docs.uwarg.com/picpilot/direct-memory-access/</loc>
+     <lastmod>2018-05-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://www.docs.uwarg.com/picpilot/i2c/</loc>
+     <lastmod>2018-05-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://www.docs.uwarg.com/picpilot/datalink/</loc>
+     <lastmod>2018-05-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://www.docs.uwarg.com/picpilot/analog-to-digital-converter/</loc>
+     <lastmod>2018-05-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://www.docs.uwarg.com/picpilot/sensors-and-peripherals/</loc>
+     <lastmod>2018-05-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://www.docs.uwarg.com/picpilot/attitude-control/</loc>
+     <lastmod>2018-05-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://www.docs.uwarg.com/picpilot/path-management/</loc>
+     <lastmod>2018-05-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://www.docs.uwarg.com/picpilot/resources/</loc>
+     <lastmod>2018-05-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://www.docs.uwarg.com/picpilot/faq/</loc>
      <lastmod>2018-05-22</lastmod>
      <changefreq>daily</changefreq>
     </url>

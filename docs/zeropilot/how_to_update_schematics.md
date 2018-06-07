@@ -69,4 +69,4 @@ Go back to the schematic of the component you made, open the properties again, a
 
 ### Congratulations! You just made a new component!
 
-Next, how to add the schematic to ZeroPilot.sch.
+Next, how to add the schematic to ZeroPilot.sch. (Work in progress)

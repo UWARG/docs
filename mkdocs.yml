@@ -21,6 +21,7 @@ pages:
   - Table of Contents: zeropilot/index.md
   - Pinout Reference: zeropilot/pinout_reference.md
   - Hardware: zeropilot/hardware.md
+  - How to Update Schematics: zeropilot/how_to_update_schematics.md
 - Network:
   - Data Relay: network/data_relay.md
   - Multi Echo: network/multi_echo.md

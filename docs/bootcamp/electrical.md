@@ -77,7 +77,7 @@ Here are the steps you are expected to take to complete this task.
 Create a pull request (PR) to WARG github. Make sure to title your bootcamp PR in the format, "Bootcamp: {name here}". There should be 2 PRs, one for each repo (ZeroPilot and WARG-KiCad). The ZeroPilot PR should also include a zip file containing the manufacturing files. A team lead will review the PR within a few days and reply with approval or with some comments. The team lead will close the PR and not merge it when it is complete.
 
 
-### Resources
+## Resources
 
 - [ZeroPilot repo](https://github.com/UWARG/ZeroPilot-HW)
 - [KiCad library repo](https://github.com/UWARG/ZeroPilot-HW)

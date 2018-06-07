@@ -36,8 +36,8 @@ You are tasked with implementing this on the Safety Controller.
 
 ### Hints
 
-- For PWM, you will need to use timer 16 to create a PWM signal. The signal should be at 50Hz, with an on-time ranging from 1ms - 2ms. To acheive this frequency, you will need to change the prescaler and period in tim.c. Note that the input clock frequency is 48 MHz.
-- Look at HAL_TIM_ and HAL_ADC_ functions to access the timers and ADCs.
+- For PWM, you will need to use timer 16 to create a PWM signal. The signal should be at 50Hz, with an on-time ranging from 1ms - 2ms. To acheive this frequency, you will need to change the prescaler and period in tim.c. Note that the input clock frequency is 48 MHz. To change the duty cycle, you will need to set the compare register using the HAL library APIs.
+- Look at HAL_TIM_, __HAL_TIM_ and HAL_ADC_ functions to access the timers and ADCs.
 - At the top of the main.h file is the IO pin mappings. Use those defines when configuring your ADC and PWM ports. If you want to learn more about the pinout and IO configuration, you can download STM32Cube and open the bootcamp.ioc file.
 
 ### Git
@@ -57,10 +57,10 @@ To submit your work, create a pull request of your fork against the `UWARG/embed
 - Your most valuable resource will be our [ZeroPilot documentation](https://uwarg-docs.atlassian.net/wiki/spaces/ZP/overview)
 - [Our Git Tutorial](../tutorials/git.md)
 - [SparkFun Embedded Electronics Tutorial](https://www.sparkfun.com/tutorials/category/1)
-
+- [Expanation of Output Compare/PWM](http://www.micromouseonline.com/2016/02/06/pwm-basics-on-the-stm32-general-purpose-timers/)
 ## 2. Previous Experience
 
-If you have worked on ZeroPilot before, or feel that you've obtained significant enough experience elsewhere to be exempt from option 1, you can contact the responsible team lead to explain, and preferably show what you've done. It will be up to the Team Lead’s discretion whether you qualify to be exempt from the Bootcamp. If the Team Lead feels that you should still complete option 1 it is because they think you can learn and gain skills from the completion of the Bootcamp.
+If you feel that you've obtained significant enough experience elsewhere to be exempt from option 1, you can contact the responsible team lead to explain, and preferably show what you've done. It will be up to the Team Lead’s discretion whether you qualify to be exempt from the Bootcamp. If the Team Lead feels that you should still complete option 1 it is because they think you can learn and gain skills from the completion of the Bootcamp.
 
 ## Completion of Bootcamp
 

@@ -11,7 +11,7 @@ The ZeroPilot schematic and PCB are created using KiCad and can be found on [WAR
 
 Below is an overview of the sections of the PCB:
 
-![PCB Overview](zeroPilot_sections.jpg)
+![PCB Overview](resources/zeroPilot_sections.jpg)
 ##Stackup
 
 The ZeroPilot is a 4 layer board. This makes routing the PCB much easier and allows the PCB to be smaller. Each layer has a designated purpose and they are connected through small plated through holes known as vias.

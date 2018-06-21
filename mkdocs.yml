@@ -19,6 +19,8 @@ pages:
   - Using the terminal: tutorials/shell.md
 - ZeroPilot:
   - Table of Contents: zeropilot/index.md
+  - Software Installation: zeropilot/software_installation.md
+  - Software Overview: zeropilot/software_overview.md
   - Pinout Reference: zeropilot/pinout_reference.md
   - Hardware: zeropilot/hardware.md
   - How to Update Schematics: zeropilot/how_to_update_schematics.md

@@ -54,7 +54,7 @@ To submit your work, create a pull request of your fork against the `UWARG/embed
 
 ### Additional Resources
 
-- Your most valuable resource will be our [ZeroPilot documentation](https://uwarg-docs.atlassian.net/wiki/spaces/ZP/overview)
+- Your most valuable resource will be our [ZeroPilot documentation](../zeropilot/software_installation)
 - [Our Git Tutorial](../tutorials/git.md)
 - [SparkFun Embedded Electronics Tutorial](https://www.sparkfun.com/tutorials/category/1)
 - [Expanation of Output Compare/PWM](http://www.micromouseonline.com/2016/02/06/pwm-basics-on-the-stm32-general-purpose-timers/)

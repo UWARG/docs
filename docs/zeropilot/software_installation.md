@@ -20,7 +20,7 @@ The first step is to grab the source code from our [WARG Github](https://github.
 
 Before cloning the repo locally, fork the UWARG repo to your personal account. This will be used to make changes, and then your changes can be merged into the UWARG repo using a Pull Request (PR).
 
-__Note for the bootcamp__: You git commands will be slightly different from this, since you will be grabbing the embedded-bootcamp repo instead of ZeroPilot-SW. Make sure you get the right repo, or else your bootcamp will be very confusing!
+__Note for the bootcamp__: Your git commands will be slightly different from this, since you will be grabbing the embedded-bootcamp repo instead of ZeroPilot-SW. Make sure you get the right repo, or else your bootcamp will be very confusing!
 
 ### Using Git via Command Line (more powerful)
 To get started with Git using the command line, download [Git](https://git-scm.com/downloads) for your specific operating system. Once you have installed git, you should be able to open up Git Bash. It is also recommended to add git to your path variables, either through the installation process or through [environment variables](https://www.java.com/en/download/help/path.xml).

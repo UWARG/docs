@@ -55,7 +55,7 @@ To verify it properly installed, open up a new terminal and run `cmake --version
 
 To install the GNU ARM Embedded toolchain, download the installer from the [download page](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads). Similar to the CMake install, __make sure you select "Add Path to Environment Variable" when installing__. This option will be on the last page of the installer.
 
-![GNU ARM Embedded Path Option](gnu_path_option.png)
+![GNU ARM Embedded Path Option](resources/gnu_path_option.png)
 
 To verify the install, open up a command line and type `arm-none-eabi-gcc --version`. If this is not a recognized command, check your path variables and restart your terminal.
 

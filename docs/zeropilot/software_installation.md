@@ -47,11 +47,15 @@ CMake is a simple, cross-platform build system. It's used for building and uploa
 To install, visit the [CMake website](https://cmake.org/download/) and download the installer for your operating system.
 __When installing, make sure to select Add CMake to system PATH!__ It doesn't matter if you add it for current user or all users, that depends on if your system is a multi-user system.
 
+![CMake Path Option](resources/cmake_path_option.png)
+
 To verify it properly installed, open up a new terminal and run `cmake --version`. If it doesn't recognize cmake as a command, you did something wrong. Check the program files exist, and verify the path variable has been updated.
 
 ## Step 3: Install GNU ARM Embedded
 
 To install the GNU ARM Embedded toolchain, download the installer from the [download page](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads). Similar to the CMake install, __make sure you select "Add Path to Environment Variable" when installing__. This option will be on the last page of the installer.
+
+![GNU ARM Embedded Path Option](gnu_path_option.png)
 
 To verify the install, open up a command line and type `arm-none-eabi-gcc --version`. If this is not a recognized command, check your path variables and restart your terminal.
 

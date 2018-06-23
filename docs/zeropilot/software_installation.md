@@ -66,7 +66,17 @@ To start, download the binary from the [Ninja github page](https://github.com/ni
 
 Once you have installed the binary, you will need to add it to the path variable so that your bash terminal can access the command. To do this, create a folder in the directory "C:\Ninja". Put the binary file in this folder. Unlike the other programs with installers, you will have to manually add it to the path.
 
-Go to environment variables, then select the PATH variable and click edit. At the end of the variable, add a semicolon if there isn't one there already, then paste in your directory where the binary file is ("C:\Ninja", for example).
+Search for environment variables in Windows Start and select "Edit the system environment variables". Select Environment Variables at the bottom of the window.
+
+![Environment Variables](resources/environment_variables.PNG)
+
+Either in the User variables or the System variables, select Path then click Edit.
+
+![Environment Variables Path](resources/environment_variables_path.PNG)
+
+Click New then paste in your directory where the binary file is ("C:\Ninja", for example).
+
+![Environment Variables New Path](resources/environment_variables_new_path.PNG)
 
 To verify the install, open a new terminal and run `ninja --version`. If this command fails, try restarting your terminal and verifying the path variable has been updated correctly.
 

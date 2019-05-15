@@ -50,7 +50,7 @@ NOTE: Make sure you connect the input of the added buck regulator to VBATT, not 
 
 Here are the steps you are expected to take to complete this task.
 
-1. Download and setup KiCad, Github, and the ZeroPilot repo. Fork and create a bootcamp branch of both github repos (ZeroPilot and WARG-KiCad). __Make sure to download Version 4.0.7 of KiCad (http://downloads.kicad-pcb.org/windows/stable/).__
+1. Download and setup KiCad, Github, and the ZeroPilot repo. Fork and create a bootcamp branch of both github repos (ZeroPilot and WARG-KiCad). Currently we are using KiCad 5: http://kicad-pcb.org/download/windows/
 
 2. Open the circuit editor and anaylze the current circuit. Identify the 3.3V regulator.
 
